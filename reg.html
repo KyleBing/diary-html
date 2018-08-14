@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--css-->
+    <link rel="stylesheet" href="../lib/css/reset.css">
+    <link rel="stylesheet" href="css/diary.css">
+    <!--js-->
+    <script src="../lib/js/jquery-2.2.4.min.js"></script>
+    <script src="js/diary.js"></script>
+    <script src="js/vue_2.5.11.js"></script>
+
+    <link rel="shortcut icon" href="img/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/touch-icon.png">
+
+    <title>注册</title>
+</head>
+<body class="reg-bg">
+
+<!--APP-->
+<div id="reg">
+    <div class="logo">
+        <img src="img/logo_big.png" alt="Diary Logo">
+    </div>
+    <form action="portal" id="regForm">
+        <div class="input-group">
+            <label for="email" :class="[(emailVerified || email.length<1)? '' : 'red']">{{ labelEmail }}</label>
+            <input v-model.lazy="email"
+                   type="text"
+                   name="email"
+                   id="email" >
+        </div>
+        <div class="input-group">
+            <label for="password1">密码</label>
+            <input  v-model.lzay="password1"
+                    name="password1"
+                    type="password"
+                    id="password1">
+        </div>
+        <div class="input-group">
+            <label for="password2" :class="[(passwordVerified || password2<1)? '' : 'red']">{{ labelCheckPassword }}</label>
+            <input v-model="password2"
+                   type="password"
+                   name="password2"
+                   id="password2"
+                   class="focused">
+        </div>
+
+        <button class="btn"
+                :class="[verified ? 'btn-active' : 'btn-inactive']"
+                type="button"
+                @click="regSubmit" >注册</button>
+    </form>
+    <div class="footer clearfix">
+        <a href="login.html" class="left">登录</a>
+        <a href="findpassword.html" class="right">找回密码</a>
+    </div>
+    <!--prompt-->
+    <div class="prompt" v-show="prompt.length>0">
+        <h3> {{ prompt }}</h3>
+    </div>
+</div>
+
+
+
+<script>
+    var vm = new Vue({
+        el: "#reg",
+        data: {
+            labelEmail: "邮箱",
+            email: "",
+            password1: "",
+            password2: "",
+            labelCheckPassword: "再次确认密码",
+            prompt: "",
+        },
+        computed:{
+            emailVerified: function () {
+                return verifyEmail(this.email)
+            },
+            passwordVerified: function () {
+                if (this.password1.length > 0 && this.password1 == this.password2){
+                    return true
+                } else {
+                    return false
+                }
+            },
+            verified: function () {
+                return this.emailVerified && this.passwordVerified
+            }
+        },
+        methods:{
+            regSubmit: function () {
+                if (this.verified){
+                    $.ajax({
+                        url:"portal/",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            "email": this.email,
+                            "password": this.password1,
+                            "type": "register"
+                        },
+                        success: function (data, textStatus, xhr) {
+                            /*
+                            data:
+                                - query_status
+                                - exist
+                                - add_status
+                                - login_status
+
+                            */
+                            if(data.query_status){
+                                if(data.exist){
+                                    setPrompt("邮箱已被注册");
+
+                                } else if (data.add_status){
+                                    setPrompt("注册成功，正在跳转到登录页面");
+                                    var t = setTimeout("window.document.location = 'login.html'",2000)
+                                }
+                            }
+
+                        },
+                        error:function (XMLHttpRequest, errorStatus, errorThrown) {
+                            console.log(errorStatus)
+                        }
+                    })
+                }
+            }
+        },
+        watch:{
+            email: function(){
+                if (this.emailVerified){
+                    this.labelEmail = "邮箱"
+                } else {
+                    this.labelEmail = "输入的邮箱不正确，请重新输入"
+                }
+            },
+            password2: function () {
+                if (this.passwordVerified){
+                    this.labelCheckPassword = "再次确认密码"
+                } else {
+                    this.labelCheckPassword = "两次密码不一致"
+                }
+            }
+        }
+    });
+
+    function verifyEmail(email) {
+        var re = /\w+@\w+\.\w+/;
+        return re.test(email)
+    }
+
+    function setPrompt(prompt){
+        vm.prompt = prompt;
+        var t = setTimeout("vm.prompt = ''",3000);
+    }
+
+</script>
+
+</body>
