@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../lib/css/reset.css">
     <link rel="stylesheet" href="css/diary.css">
     <!--js-->
+    <script src="../lib/js/vue_2.5.11.js"></script>
     <script src="../lib/js/jquery-2.2.4.min.js"></script>
     <script src="js/diary.js"></script>
 
@@ -16,161 +17,219 @@
     <title>日记</title>
 </head>
 <body>
-<nav class="navbar" id="navbar">
+
+
+<nav class="navbar clearfix" id="navbar">
+    <div v-show="btnMenu"     @click="showMenu"         class="navbar-btn left">                        <img src="img/tabicon/menu.png"     alt="菜单"></div>
+    <div v-show="btnClose"    @click="closeMenu"        class="navbar-btn left" style="display: none;"> <img src="img/tabicon/close.png"    alt="关闭"></div>
+    <div v-show="btnAdd"      @click="addClicked"       class="navbar-btn right">                       <img src="img/tabicon/add.png"      alt="添加"></div>
+    <div v-show="btnConfirm"  @click="confirmClicked"   class="navbar-btn right" style="display: none;"><img src="img/tabicon/confirm.png"  alt="添加"></div>
     <div class="brand">
         <a href="."><img src="img/logo.png" alt="日记"></a>
     </div>
-
 </nav>
 
-<div class="content">
-    <div class="diary-list-group">
-        <h3 class="list-header">2017-09</h3>
-        <div class="list-content">
-            <a href="edit.php?id=12" class="list-item">
-                <i class="category orange"></i>
-                <span class="date">1</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category yellow"></i>
-                <span class="date">2</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category green"></i>
-                <span class="date">4</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category blue"></i>
-                <span class="date">13</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category purple"></i>
-                <span class="date">25</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category magenta"></i>
-                <span class="date">30</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-        </div>
-    </div>
-    <div class="diary-list-group">
-        <h3 class="list-header">2017-09</h3>
-        <div class="list-content">
-            <a href="edit?id=12" class="list-item">
-                <i class="category orange"></i>
-                <span class="date">1</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category yellow"></i>
-                <span class="date">2</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category green"></i>
-                <span class="date">4</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category blue"></i>
-                <span class="date">13</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category purple"></i>
-                <span class="date">25</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category magenta"></i>
-                <span class="date">30</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-        </div>
-    </div>
-    <div class="diary-list-group">
-        <h3 class="list-header">2017-09</h3>
-        <div class="list-content">
-            <a href="edit?id=12" class="list-item">
-                <i class="category orange"></i>
-                <span class="date">1</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category yellow"></i>
-                <span class="date">2</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category green"></i>
-                <span class="date">4</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category blue"></i>
-                <span class="date">13</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category purple"></i>
-                <span class="date">25</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category magenta"></i>
-                <span class="date">30</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-        </div>
-    </div>
-    <div class="diary-list-group">
-        <h3 class="list-header">2017-09</h3>
-        <div class="list-content">
-            <a href="edit?id=12" class="list-item">
-                <i class="category orange"></i>
-                <span class="date">1</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category yellow"></i>
-                <span class="date">2</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category green"></i>
-                <span class="date">4</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category blue"></i>
-                <span class="date">13</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category purple"></i>
-                <span class="date">25</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-            <a class="list-item">
-                <i class="category magenta"></i>
-                <span class="date">30</span>
-                <p class="detail">修复网站 LoveYou 页面</p>
-            </a>
-        </div>
-    </div>
-</div>
-
 <!--MENU-->
-<div class="menu-panel">
+<div class="menu-panel" id="menu-panel" v-show="menuPanelShowed" style="display: none;">
+    <div class="menu-list-group" v-show="menuListShowed">
+        <a class="menu-list-group-item" href="login.html">登录</a>
+        <a class="menu-list-group-item" href="reg.html">注册</a>
+        <a class="menu-list-group-item" @click="referenceClicked">说明</a>
+        <a class="menu-list-group-item" @click="aboutClicked">关于</a>
+        <a class="menu-list-group-item" @click="showSearchBar">搜索</a>
+    </div>
+
+    <!--reference-->
+    <ul class="reference" v-show="referenceShowed" style="display: none;">
+        <li class="list-group-item bg-orange">生活</li>
+        <li class="list-group-item bg-green">学习</li>
+        <li class="list-group-item bg-red">大事</li>
+        <li class="list-group-item bg-yellow">运动</li>
+        <li class="list-group-item bg-magenta">其它</li>
+    </ul>
+
+
+    <!--about-->
+    <div class="about" v-show="aboutShowed" style="display: none;">
+        <h3 class="title">标题日记</h3>
+        <h4 class="subtitle">用一句话记录你最珍贵的时刻</h4>
+        <div class="author">
+            <a href="" class="social-link">@十月ky</a>
+            <a href="mailto:kylebing@163.com">kylebing@163.com</a>
+        </div>
+    </div>
+    <!--search-->
 
 </div>
 
+<script>
 
+    // Navbar
+    let navbar = new Vue({
+        el:"#navbar",
+        data:{
+            btnClose: false,
+            btnMenu: true,
+            btnAdd: true,
+            btnConfirm: false
+        },
+        methods:{
+            showMenu: function () {
+                this.btnClose = true;
+                this.btnMenu = false;
+                // this.btnAdd = false;
+                menu.menuPanelShowed = true;
+            },
+            closeMenu: function () {
+                if (menu.secondMenuShowed){
+                    menu.menuListShowed = true;
+                    menu.secondMenuShowed = false;
+                } else {
+                    this.btnClose = false;
+                    this.btnMenu = true;
+                    this.btnAdd = true;
+                    menu.menuPanelShowed = false;
+                }
+
+            },
+            addClicked:function () {
+                window.document.location = 'edit.html';
+            },
+            confirmClicked: function () {
+
+            }
+        }
+    });
+
+    // MenuPanel
+    let menu = new Vue({
+        el: "#menu-panel",
+        data:{
+            menuPanelShowed:    false,      // menu panel
+            secondMenuShowed:   false,      // second menu
+            menuListShowed:     true,       // menu list
+            referenceShowed:    false,      // reference
+            aboutShowed:        false       // about
+        },
+        watch:{
+          secondMenuShowed: function () { // false all second panel when secondMenuShowed is false.
+              if (!this.secondMenuShowed){
+                  this.referenceShowed = false;
+                  this.aboutShowed = false;
+              }
+          },
+          menuPanelShowed: function () {
+              if(this.menuPanelShowed){
+                  navbar.btnAdd = false;
+              }
+          }
+        },
+        methods:{
+            referenceClicked: function () {
+                this.menuListShowed = false;
+                this.menuPanelShowed = true;
+                this.secondMenuShowed = true;
+                this.referenceShowed = true;
+            },
+            aboutClicked: function () {
+                this.menuListShowed = false;
+                this.menuPanelShowed = true;
+                this.secondMenuShowed = true;
+                this.aboutShowed = true;
+            },
+            // TODO:SearchBar
+            showSearchBar: function () {
+
+            }
+        }
+    });
+
+    $(window).on('load',function () {
+        $(window).on('scroll',function () {
+            let lastTop = $('.list-item:last').offset().top;
+            let scrollTop = $('.content').scrollTop();
+            console.log(lastTop,scrollTop)
+        })
+    })
+
+</script>
+
+
+
+<div class="content" id="diaryApp">
+    <div class="diary-list-group">
+        <!--<h3 class="list-header">2017-09</h3>-->
+        <div class="list-content">
+            <diary-list-item
+                    v-for="diary in diaries"
+                    :key="diary.id"
+                    :diary="diary"
+            ></diary-list-item>
+        </div>
+    </div>
+
+    <button v-show="haveMore" @click.prevent="loadMore" class="load-more">加载更多</button>
+</div>
+
+
+<script>
+
+    Vue.component('diary-list-item',{
+        props:['diary'],
+        template:'  <a :href="\'edit.php?id=\'+diary.id" class="list-item">\
+                        <i :class="[\'category\', \'bg-\'+diary.category]"></i>\
+                        <span class="date"> {{ parseInt(diary.date.slice(8,10))  }} </span>\
+                        <p class="detail"> {{ diary.content }} </p>\
+                    </a>'
+    });
+
+    var pageNo = 0;
+    let PAGE_AMOUNT = 20;
+
+    function getDiaries() {
+        $.ajax({
+            url: 'portal/',
+            type: 'POST',
+            dataType: 'json',
+            data:{
+                "pageNo":pageNo,
+                "type":"query",
+                "PAGE_AMOUNT":PAGE_AMOUNT
+            },
+            success: function (data, textStaus, xhr) {
+                diaryApp.diaries = diaryApp.diaries.concat(data);
+
+                // 在后面判断获取的数据，小于1或小于每页的数量时，隐藏加载更多按钮
+                if(data.length < 1 || data.length < PAGE_AMOUNT) {
+                    diaryApp.haveMore = false;
+                }
+            },
+            error:function (xhr, textStatus, throws) {
+            }
+        })
+        pageNo++;
+    }
+
+
+// Diary
+    let diaryApp = new Vue({
+        el: "#diaryApp",
+        data: {
+            haveMore: true,
+            diaries: []
+        },
+        created: function () {
+            getDiaries()
+        },
+        methods:{
+            loadMore: function () {
+                getDiaries()
+            }
+        }
+    });
+
+
+
+</script>
 </body>
 </html>

@@ -1,39 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--css-->
+    <link rel="stylesheet" href="../lib/css/reset.css">
+    <link rel="stylesheet" href="css/diary.css">
+    <!--js-->
+    <script src="../lib/js/vue_2.5.11.js"></script>
+    <script src="../lib/js/jquery-2.2.4.min.js"></script>
+    <script src="js/diary.js"></script>
 
+    <link rel="shortcut icon" href="img/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/touch-icon.png">
+
+    <title>日记</title>
+</head>
 <body>
-<nav class="navbar">
-    <div class="navbar-btn left-button">
-        <a href="."><img src="img/tabicon/close.png" alt="菜单"></a>
-    </div>
-    <div class="navbar-btn right-button">
-        <a href="edit.php"><img src="img/tabicon/done.png" alt="添加"></a>
-    </div>
+
+
+<nav class="navbar clearfix" id="navbar">
+    <div @click="closeEditor"        class="navbar-btn left" > <img src="img/tabicon/close.png"    alt="关闭"></div>
+    <div @click="confirmClicked"   class="navbar-btn right" ><img src="img/tabicon/confirm.png"  alt="添加"></div>
     <div class="brand">
-        <a href="edit"><img src="img/logo.png" alt="日记"></a>
+        <a href="."><img src="img/logo.png" alt="日记"></a>
     </div>
 </nav>
 
-<div class="content">
 
-    <textarea class="diary-editor"></textarea>
+<div class="content" id="diaryEditor">
+
+    <textarea class="diary-editor" v-model.lazy="content"></textarea>
     <div class="date-selector">
-        <span class="title">日期</span>
-        <span class="date">2018年5月20日</span>
+        <label for="date" class="title">日期</label>
+        <input class="date" type="date" name="date" id="date" :value="date">
     </div>
     <div class="category-selector">
-        <input type="radio" name="category" id="category-diary" checked>
+        <input type="radio" name="category" value="life"    id="category-diary" v-model="category" checked="checked">
         <label for="category-diary">生活</label>
-        <input type="radio" name="category" id="category-study">
+        <input type="radio" name="category" value="study"   id="category-study" v-model="category">
         <label for="category-study">学习</label>
-        <input type="radio" name="category" id="category-work">
+        <input type="radio" name="category" value="work"    id="category-work" v-model="category">
         <label for="category-work">工作</label>
-        <input type="radio" name="category" id="category-sport">
+        <input type="radio" name="category" value="sport"   id="category-sport" v-model="category">
         <label for="category-sport">运动</label>
-        <input type="radio" name="category" id="category-bigevent">
+        <input type="radio" name="category" value="bigevent" id="category-bigevent" v-model="category">
         <label for="category-bigevent">大事</label>
-        <input type="radio" name="category" id="category-others">
+        <input type="radio" name="category" value="others"  id="category-others" v-model="category">
         <label for="category-others">其它</label>
 
     </div>
 </div>
+
+<script>
+
+    // initial
+    $(function () { // document ready
+        getContent(diaryID);
+
+    });
+
+
+    // Navbar
+    let navbar = new Vue({
+        el:"#navbar",
+        data:{
+        },
+        methods:{
+            closeEditor:function () {
+                window.document.location = '.';
+            },
+            confirmClicked: function () {
+
+            }
+        }
+    });
+
+
+
+    // variables
+    let diaryID = 10;
+
+
+    // query
+    function getContent(id) {
+        $.ajax({
+            url: "portal/",
+            dataType: 'json',
+            data:{
+                'type': 'edit_query',
+                'id':diaryID,
+            },
+            success: function (data, statusText, xhr) {
+                console.log(data);
+                diaryEditor.content     = data.content;
+                diaryEditor.date        = new Date(date.date);
+                diaryEditor.category    = data.dategory
+            },
+            error: function (xhr, statusText, error) {
+                console.log(statusText);
+            }
+        })
+    }
+
+    // Create
+    function createNewDiary(){
+        $.ajax({
+            url: 'portal/',
+            dataType: 'json',
+            data: {
+                'type': 'create',
+                'content': diaryEditor.content,
+                'date' : diaryEditor.date,
+                'category' : diaryEditor.category
+            },
+            success: function (data, statusText, xhr) {
+                // TODO: after success edit diary
+                if (data.add_status){
+                    console.log('添加成功');
+                    window.document.location = 'index.html';
+                } else {
+                    console.log('添加失败')
+                }
+            },
+            error: function (statusText, xhr, error) {
+                console.log(statusText);
+            }
+        })
+    }
+
+    let diaryEditor = new Vue({
+        el: '#diaryEditor',
+        data: {
+            content:"",
+            date: "",
+            category: ""
+        }
+    })
+</script>
 </body>
 </html>

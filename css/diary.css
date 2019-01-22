@@ -1,3 +1,15 @@
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.hidden {
+  visibility: hidden;
+}
+.show {
+  visibility: visible;
+}
 .bg-orange {
   background-color: #FF9500;
 }
@@ -52,12 +64,28 @@
 .red {
   color: #FF3B30 !important;
 }
+.bg-life {
+  background-color: #FF9500;
+}
+.bg-study {
+  background-color: #4CD964;
+}
+.bg-bigevent {
+  background-color: #FF2D55;
+}
+.bg-sport {
+  background-color: #007AFF;
+}
+.bg-others {
+  background-color: #8E8E93;
+}
 body {
   position: relative;
   background-color: #EFEFF4;
 }
 .content {
-  position: relative;
+  padding-top: 45px;
+  width: 100%;
 }
 .navbar {
   z-index: 999;
@@ -68,19 +96,21 @@ body {
   background-color: #373737;
 }
 .navbar .navbar-btn {
+  background-color: transparent;
   cursor: pointer;
   width: 55px;
   height: 45px;
 }
+.navbar .navbar-btn:active {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 0.8;
+}
 .navbar .navbar-btn img {
   display: block;
   height: 45px;
-}
-.navbar .left-button {
-  float: left;
-}
-.navbar .right-button {
-  float: right;
 }
 .navbar .brand {
   margin: 0 auto;
@@ -91,9 +121,6 @@ body {
   margin: 0 auto;
   display: block;
   height: 45px;
-}
-.content {
-  margin-top: 45px;
 }
 .list-content {
   background-color: #fff;
@@ -125,33 +152,6 @@ body {
   display: block;
   float: left;
 }
-.diary-list-group .list-item .bg-orange {
-  background-color: #FF9500;
-}
-.diary-list-group .list-item .bg-yellow {
-  background-color: #FFCC00;
-}
-.diary-list-group .list-item .bg-green {
-  background-color: #4CD964;
-}
-.diary-list-group .list-item .bg-blue {
-  background-color: #007AFF;
-}
-.diary-list-group .list-item .bg-syan {
-  background-color: #5AC8FA;
-}
-.diary-list-group .list-item .bg-purple {
-  background-color: #5856D6;
-}
-.diary-list-group .list-item .bg-gray {
-  background-color: #8E8E93;
-}
-.diary-list-group .list-item .bg-magenta {
-  background-color: #FF2D55;
-}
-.diary-list-group .list-item .bg-red {
-  background-color: #FF3B30;
-}
 .diary-list-group .list-item .date {
   font-family: "SF UI Display";
   width: 30px;
@@ -163,6 +163,9 @@ body {
   padding-left: 10px;
 }
 .diary-list-group .list-item .detail {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   margin-left: 40px;
   line-height: 28px;
   display: block;
@@ -185,6 +188,23 @@ body {
   -o-transform: scaleY(0.5);
   transform: scaleY(0.5);
 }
+.load-more {
+  border-color: #EFEFF4;
+  border: 1px solid #8E8E93;
+  display: block;
+  height: 25px;
+  line-height: 25px;
+  font-size: 14px;
+  text-align: center;
+  width: 40%;
+  margin: 20px auto;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.load-more:active {
+  background-color: #8E8E93;
+}
 .diary-editor {
   display: block;
   width: 100%;
@@ -205,6 +225,8 @@ body {
   line-height: 40px;
 }
 .date-selector .date {
+  font-size: 18px;
+  height: 40px;
   float: right;
   line-height: 40px;
 }
@@ -262,7 +284,8 @@ body {
   color: #8E8E93;
 }
 .menu-panel {
-  display: none;
+  z-index: 10;
+  overflow: auto;
   position: fixed;
   top: 45px;
   left: 0;
@@ -298,16 +321,16 @@ body {
 .menu-list-group-item:active {
   background-color: #646464;
 }
-.reference-list-group {
+.reference {
   padding: 30px;
 }
-.reference-list-group::after {
+.reference::after {
   content: '';
   display: block;
   clear: both;
   visibility: hidden;
 }
-.reference-list-group .list-group-item {
+.reference .list-group-item {
   margin-bottom: 20px;
   font-size: 20px;
   text-align: center;
@@ -322,8 +345,41 @@ body {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.reference-list-group .list-group-item:nth-child(2n+0) {
+.reference .list-group-item:nth-child(2n+0) {
   margin-right: 0;
+}
+.about {
+  position: relative;
+  height: 100%;
+  text-align: center;
+  color: #EFEFF4;
+  padding-top: 60px;
+}
+.about .title {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 30px;
+  color: white;
+}
+.about .subtitle {
+  font-weight: normal;
+}
+.about .author {
+  width: 100%;
+  position: absolute;
+  bottom: 60px;
+}
+.about .author a {
+  display: block;
+  line-height: 20px;
+  font-size: 14px;
+  height: 20px;
+}
+.about .author a:link,
+.about .author a:hover,
+.about .author a:active,
+.about .author a:visited {
+  color: #EFEFF4;
 }
 .reg-bg {
   position: relative;

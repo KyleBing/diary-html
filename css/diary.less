@@ -1,5 +1,6 @@
 
 @import "variables.less";
+@import "common-style.less";
 
 
 .bg-orange  { background-color: @main-orange; }
@@ -23,6 +24,11 @@
 .red     { color: @red !important; }
 
 
+.bg-life { .bg-orange }
+.bg-study { .bg-green }
+.bg-bigevent { .bg-magenta }
+.bg-sport { .bg-blue }
+.bg-others { .bg-gray }
 // FUNCITONS
 
 .border-radius(@corner){
@@ -45,7 +51,8 @@ body{
   background-color: @main-light-gray;
 }
 .content{
-  position: relative;
+  padding-top: 45px;
+  width: 100%;
 }
 
 .navbar{
@@ -56,20 +63,23 @@ body{
   width: 100%;
   background-color: @main-dark-gray;
   .navbar-btn{
+    background-color: transparent;
     cursor: pointer;
     width: 55px;
     height: 45px;
+    &:active{
+      -webkit-border-radius: 50px;
+      -moz-border-radius: 50px;
+      border-radius: 50px;
+      background-color: rgba(255,255,255,0.1);
+      opacity: 0.8;
+    }
     img{
       display: block;
       height: 45px;
     }
   }
-  .left-button{
-    float: left;
-  }
-  .right-button{
-    float: right;
-  }
+
   .brand{
     margin: 0 auto;
     height: 45px;
@@ -82,9 +92,6 @@ body{
   }
 }
 
-.content{
-  margin-top: 45px;
-}
 
 .list-content{
   background-color: #fff;
@@ -114,20 +121,12 @@ body{
       background-color: @color-list-selected;
     }
     .category{
+      //.border-radius(0 5px 5px 0);
       width: 5px;
       height: @list-item-height;
       display: block;
       float: left;
     }
-    .bg-orange  { background-color: @main-orange; }
-    .bg-yellow  { background-color: @yellow; }
-    .bg-green   { background-color: @green; }
-    .bg-blue    { background-color: @blue; }
-    .bg-syan    { background-color: @syan; }
-    .bg-purple  { background-color: @purple; }
-    .bg-gray    { background-color: @gray; }
-    .bg-magenta { background-color: @magenta; }
-    .bg-red     { background-color: @red; }
     .date{
       font-family: "SF UI Display";
       width: 30px;
@@ -140,6 +139,9 @@ body{
 
     }
     .detail{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       margin-left: 40px;
       line-height: @list-item-height;
       display: block;
@@ -162,6 +164,23 @@ body{
         transform: scaleY(0.5);
       }
     }
+  }
+}
+.load-more {
+  border-color: @main-light-gray;
+  border: 1px solid @gray;
+  display: block;
+  height: 25px;
+  line-height: 25px;
+  font-size: @list-item-font-size;
+  text-align: center;
+  width: 40%;
+  margin: 20px auto;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  &:active {
+    background-color: @gray;
   }
 }
 
@@ -187,6 +206,8 @@ body{
     line-height: 40px;
   }
   .date{
+    font-size: 18px;
+    height: 40px;
     float: right;
     line-height: 40px;
   }
@@ -239,7 +260,8 @@ body{
 
 
 .menu-panel{
-  display: none;
+  z-index: 10;
+  overflow: auto;
   position: fixed;
   top: 45px;
   left: 0;
@@ -282,7 +304,7 @@ body{
 
 @reference-list-item-height: 40px;
 
-.reference-list-group{
+.reference{
   padding: 30px;
   &::after{
     .clearfix;
@@ -307,7 +329,38 @@ body{
   }
 }
 
+.about{
+  position: relative;
+  height: 100%;
+  text-align: center;
+  color: @main-light-gray;
+  padding-top: 60px;
+  .title{
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 30px;
+    color: white;
+  }
+  .subtitle{
+    font-weight: normal;
+  }
+  .author{
+    width: 100%;
+    position: absolute;
+    bottom: 60px;
+    a{
+      display: block;
+      line-height: 20px;
+      font-size: @size-note;
+      height: 20px;
+      &:link,&:hover,&:active,&:visited{
+        color: @main-light-gray;
+      }
+    }
 
+  }
+
+}
 
 // Register
 

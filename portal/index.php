@@ -6,25 +6,25 @@
  * Time: 09:13
  */
 
-date_default_timezone_set('Asia/Shanghai');
+require 'config.php';
 
-//configuration
-$host=          "127.0.0.1";
-$port =         '3306';
-$database =     "diary";
-$user =         "root";
-$passwd =       "nnqi";
-
-
+// REGISTER
 $email    = $_POST["email"];
 $password = $_POST["password"];
 $type     = $_POST["type"];
 
-/*
-- verify email
-    - exist return false
-    - success register and return success
-*/
+
+// QUERY
+$page_no = $_POST["pageNo"];
+$page_amount = $_POST["PAGE_AMOUNT"];
+$id = $_POST["id"];
+
+// CREATE and Edit
+$content = $_POST['content'];
+$date = $_POST['date'];
+$category = $_POST['category'];
+
+
 
 
 switch ($type) {
@@ -36,16 +36,112 @@ switch ($type) {
         $result = login_user($email, $password);
         echo json_encode($result);
         break;
-    default: break;
+    case "query":
+        $result = query($page_amount,$page_no);
+        $json_result = json_encode($result, true);
+        echo $json_result;
+        break;
+    case "edit_query":
+        $result = edit_query($id);
+        echo json_encode($result);
+        break;
+    case "edit":
+//        $result = edit($page_amount,$page_no);
+        echo json_encode($result);
+        break;
+    case "create":
+        $result = create($content,$date, $category);
+        echo json_encode($result);
+        break;
+    case "delete":
+        echo json_encode($result);
+        break;
+    default: echo 'request error';
 }
 
 
 
-//login
+// CREATE
+function create($content, $date, $category)
+{
+    global $host, $user, $passwd, $database;
+
+    $sql = "insert into diaries (date, category, content) VALUES ($date, $category, $content)";
+    $con = new mysqli($host, $user, $passwd, $database);
+    $con->set_charset('utf8');
+
+    $result = $con->query($sql); // 成功返回 true，失败返回 false
+    $con->close();
+
+
+    $response = new Response();
+
+    if ($result) {
+        $response->add_status = true;
+
+    } else {
+        $response->add_status = false;
+    }
+
+
+    return $response;
+
+}
+
+// EDIT QUERY
+function edit_query($id)
+{
+    global $host, $user, $passwd, $database;
+
+    $sql = "select * from diaries where id = $id";
+    $con = new mysqli($host, $user, $passwd, $database);
+    $con->set_charset('utf8');
+
+    $result = $con->query($sql);
+
+    $con->close();
+
+    return $result;
+//    return $result->fetch_all(1);
+
+}
+
+
+
+// Query
+function query($page_amount,$page_no)
+{
+    global $host, $user, $passwd, $database;
+    $start_point = $page_no * $page_amount;
+
+    $sql = "select * from diaries limit $start_point, $page_amount";
+    $con = new mysqli($host, $user, $passwd, $database);
+    $con->set_charset('utf8');
+
+    $result = $con->query($sql);
+
+    $con->close();
+
+    return $result->fetch_all(1);
+    // 参数1会把字段名也读取出来
+
+}
+
+
+
+
+
+/**********
+- verify email
+    - exist return false
+    - success register and return success
+***********/
+
+// login
 function login_user($login_email,$login_password){
     global $host,$user,$passwd,$database;
 
-    $sql = "select * from USER where email='$login_email'";
+    $sql = "select * from users where email='$login_email'";
     $con = new mysqli( $host, $user, $passwd, $database);
     $con->set_charset('utf8');
 
@@ -90,7 +186,7 @@ function login_user($login_email,$login_password){
 function register_user($reg_email,$reg_password){
     global $host,$user,$passwd,$database;
 
-    $sql = "select email from USER where email='$reg_email'";
+    $sql = "select email from users where email='$reg_email'";
     $con = new mysqli( $host, $user, $passwd, $database);
     $con->set_charset('utf8');
 
@@ -123,16 +219,18 @@ function register_user($reg_email,$reg_password){
 
 
 
+
 //Other Test Functions
 function echo_msg($words){
     print ("<h2>".$words."</h2>");
 }
 
 class Response{
-    public $query_status = false;
-    public $exist = false;
-    public $add_status = false;
-    public $login_status = false;
+    public $query_status    = false;
+    public $exist           = false;
+    public $add_status      = false;
+    public $delete_status   = false;
+    public $login_status    = false;
 }
 
 ?>
