@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,7 +93,7 @@
 
             },
             addClicked:function () {
-                window.document.location = 'edit.html';
+                location = 'edit.html';
             },
             confirmClicked: function () {
 
@@ -144,13 +144,13 @@
         }
     });
 
-    $(window).on('load',function () {
-        $(window).on('scroll',function () {
+    window.onload = () => {
+        window.onscroll = () => {
             let lastTop = $('.list-item:last').offset().top;
             let scrollTop = $('.content').scrollTop();
             console.log(lastTop,scrollTop)
-        })
-    })
+        }
+    }
 
 </script>
 
@@ -183,7 +183,7 @@
                     </a>'
     });
 
-    var pageNo = 0;
+    let pageNo = 0;
     let PAGE_AMOUNT = 20;
 
     function getDiaries() {
@@ -206,7 +206,7 @@
             },
             error:function (xhr, textStatus, throws) {
             }
-        })
+        });
         pageNo++;
     }
 
