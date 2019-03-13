@@ -16,6 +16,19 @@ define('PASSWORD',  'nnqi');
 
  class MSql
 {
+
+
+     /************************* 日记操作 *************************/
+
+     // 查询日记
+     public static function QueryDiaries($startPoint, $pageCount)
+     {
+         return "select * from diaries limit $startPoint, $pageCount";
+     }
+
+
+     /************************* 用户操作 *************************/
+
      //  更新密码
      public static function UpdateUserPassword($email, $password)
      {

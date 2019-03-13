@@ -1,4 +1,11 @@
 <?php
+/**
+ * 用户的相关操作方法
+ * Created by PhpStorm.
+ * User: Kyle
+ * Date: 2019-03-13
+ * Time: 19:24
+ */
 
 require "class/Response.php";
 require "class/MSql.php";
@@ -22,7 +29,6 @@ switch ($_GET['type']){
     default:
         echo json_encode(new ResponseError('请求参数错误'));
 }
-
 
 
 
@@ -76,20 +82,4 @@ function updatePassword($email, $oldPassword, $newPassword){
     $con->close();
 }
 
-//
-function checkLogin($email, $uuid){
-    $con = new mysqli(HOST,USER,PASSWORD,DATABASE,PORT);
-    $result = $con->query(MSql::QueryUserPassword($email));
-    if ($result) {
-        $response = '';
-        if ($result->num_rows !== 0) { // 存在用户
-            $row = $result->fetch_array();
-            if (password_verify($uuid, $row[password])) {
-                return true;
-            }
-        }
-    }
-    $con->close();
-    return false;
-}
 
