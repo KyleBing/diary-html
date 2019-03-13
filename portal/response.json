@@ -1,0 +1,45 @@
+[
+
+//  错误提示
+  {
+    "success": "false",
+    "info": "已存在该用户"
+  },
+
+//  操作成功提示
+  {
+    "success": "true",
+    "info": "添加用户成功"
+  },
+
+//  查询成功提示
+  {
+    "success": "true",
+    "info": "查询成功",
+    "data": [
+      {
+        "id": "01",
+        "title": "First",
+        "content": "这是内容",
+        "create_time": "2019-03-13 23:45:34",
+        "modify_time": "2019-03-13 23:45:34",
+        "category": "life"
+      },
+      {
+        "id": "02",
+        "title": "Second",
+        "content": "这是内容",
+        "create_time": "2019-03-13 23:45:34",
+        "modify_time": "2019-03-13 23:45:34",
+        "category": "sport"
+      }
+    ]
+  },
+
+  // 登录成功
+  {
+    "success": "true",
+    "token": "fihewihfdiweh",
+    "info": "查询成功"
+  }
+]

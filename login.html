@@ -68,22 +68,22 @@
             prompt: "",
         },
         computed:{
-            emailVerified: function () {
+            emailVerified: () => {
                 return verifyEmail(this.email)
             },
-            passwordVerified: function () {
+            passwordVerified: () => {
                 if (this.password.length > 0){
                     return true
                 } else {
                     return false
                 }
             },
-            verified: function () {
+            verified: () => {
                 return this.emailVerified && this.passwordVerified
             }
         },
         methods:{
-            loginSubmit: function () {
+            loginSubmit: () => {
                 if (this.verified){
                     $.ajax({
                         url:"portal/",
@@ -94,7 +94,7 @@
                             "password": this.password,
                             "type":"login"
                         },
-                        success: function (data, textStatus, xhr) {
+                        success: (data, textStatus, xhr) => {
                             /*
                             data:
                                 - query_status
@@ -107,7 +107,7 @@
                                 if(data.exist){
                                     if (data.login_status){
                                         setPrompt("登录成功，正在跳转...")
-                                        var t = setTimeout("window.document.location = 'index.html'",1500)
+                                        let t = setTimeout("window.document.location = 'index.html'",1500)
                                     } else {
                                         setPrompt("密码不正确");
                                     }
@@ -118,7 +118,7 @@
                             }
 
                         },
-                        error:function (XMLHttpRequest, errorStatus, errorThrown) {
+                        error: (XMLHttpRequest, errorStatus, errorThrown) => {
                             console.log(errorStatus)
                         }
                     })
@@ -126,7 +126,7 @@
             }
         },
         watch:{
-            email: function(){
+            email: () => {
                 if (this.emailVerified){
                     this.labelEmail = "邮箱"
                 } else {
@@ -137,13 +137,13 @@
     });
 
     function verifyEmail(email) {
-        var re = /\w+@\w+\.\w+/;
+        let re = /\w+@\w+\.\w+/;
         return re.test(email)
     }
 
     function setPrompt(prompt){
         vm.prompt = prompt;
-        var t = setTimeout("vm.prompt = ''",3000);
+        let t = setTimeout("vm.prompt = ''",3000);
     }
 
 </script>

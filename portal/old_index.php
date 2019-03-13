@@ -8,27 +8,17 @@
 
 require 'config.php';
 
-// REGISTER
-$email    = $_POST["email"];
-$password = $_POST["password"];
-$type     = $_POST["type"];
+
+echo Sql::InsetNewUser('kylebing@163.com','nnqi',date('Y-m-d H:i:s'));
 
 
 // QUERY
-$page_no = $_POST["pageNo"];
-$page_amount = $_POST["PAGE_AMOUNT"];
-$id = $_POST["id"];
-
-// CREATE and Edit
-$content = $_POST['content'];
-$date = $_POST['date'];
-$category = $_POST['category'];
-
-
-
 
 switch ($type) {
     case "register" :
+        $email    = $_POST["email"];
+        $password = $_POST["password"];
+        $type     = $_POST["type"];
         $result = register_user($email, $password);
         echo json_encode($result);
         break;
@@ -181,8 +171,13 @@ function login_user($login_email,$login_password){
 }
 
 
-// Register New User
-// 返回 RegResponse 状态对象
+/****************************
+ *
+ *    Register New User
+ * 返回 RegResponse 状态对象
+ *
+ ****************************/
+
 function register_user($reg_email,$reg_password){
     global $host,$user,$passwd,$database;
 
