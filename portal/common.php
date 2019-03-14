@@ -8,13 +8,13 @@
  */
 
 // 验证是否已登录
-function checkLogin($email, $uuid){
+function checkLogin($email, $token){
     $con = new mysqli(HOST,USER,PASSWORD,DATABASE,PORT);
     $result = $con->query(MSql::QueryUserPassword($email));
     if ($result) {
         if ($result->num_rows !== 0) { // 存在用户
             $row = $result->fetch_array();
-            if (password_verify($uuid, $row[password])) {
+            if ($token === $row['password']) {
                 return true;
             }
         }

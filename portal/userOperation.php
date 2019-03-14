@@ -27,6 +27,9 @@ switch ($_POST['type']){
     case 'update':
         updatePassword($_POST['email'],$_POST['oldPassword'],$_POST['newPassword']);
         break;
+    case 'login':
+        login($_POST['email'],$_POST['password']);
+        break;
     default:
         $response = new ResponseError('请求参数错误');
         echo $response->toJson();
@@ -90,3 +93,30 @@ function updatePassword($email, $oldPassword, $newPassword){
 }
 
 
+//登录
+function login($email, $password)
+{
+    $con = new dsqli();
+    $result = $con->query(MSql::QueryUserPassword($email));
+    $response = '';
+
+    if ($result) {
+        $response = '';
+        if ($result->num_rows !== 0) { // 存在用户
+            $row = $result->fetch_array();
+            if (password_verify($password, $row['password'])) {
+                $response = new ResponseLogin();
+                $response->setEmail($email);
+                $response->setToken($row['password']);
+            } else {
+                $response = new ResponseError('密码不正确');
+            }
+        } else { // 查无此用户 查询失败
+            $response = new ResponseError('用户不存在');
+        }
+    } else {
+        $response = new ResponseError('查询失败');
+    }
+    echo $response->toJson();
+    $con->close();
+}

@@ -101,14 +101,14 @@
         methods:{
             regSubmit: function ()  {
                 if (this.verified){
-                    let data = {
+                    let queryData = {
                         "invitation": this.invitation,
                         "email": this.email,
                         "password": this.password1,
                         "type": "insert"
                     };
                     $.ajax({
-                        data:data,
+                        data:queryData,
                         url:URL.userOperation,
                         dataType:'json',
                         method:"POST",
@@ -121,7 +121,7 @@
                         if(data.success){
                             setTimeout (()=> { location = FrontURL.login },2000)
                         }
-                        prompt(data.info);
+                        prompt(`${data.info},正在前往登录`);
                     }
                 }
             }

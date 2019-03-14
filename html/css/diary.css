@@ -508,6 +508,7 @@ body {
   background-color: #EFEFF4;
 }
 .prompt {
+  z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;

@@ -43,7 +43,7 @@
         <button class="btn"
                 :class="verified ? 'btn-active' : 'btn-inactive'"
                 type="button"
-                @click="loginSubmit" >登录</button>
+                @click.prevent="loginSubmit" >登录</button>
     </form>
     <div class="footer clearfix">
         <a href="regist.html" class="left">注册</a>
@@ -58,11 +58,10 @@
     var vm = new Vue({
         el: "#login",
         data: {
-            type: "login",
             labelEmail: "邮箱",
+            labelCheckPassword: "再次确认密码",
             email: "",
-            password: "",
-            labelCheckPassword: "再次确认密码"
+            password: ""
         },
         computed:{
             emailVerified: function ()  {
@@ -82,20 +81,27 @@
         },
         methods:{
             loginSubmit: function () {
-
-                if (this.verified){
-                    let data = {
-                        "email": this.email,
-                        "password": this.password,
-                        "type":"query"
-                    };
-                    API.setData(URL.userOperation,data,onSuccess);
-                    function onSuccess(data) {
-                        if(data.success){
-                            setTimeout (()=>{location = FrontURL.index},2000)
-                        }
-                        prompt(data.info);
+                let queryData = {
+                    "email": this.email,
+                    "password": this.password,
+                    "type":"login"
+                };
+                $.ajax({
+                    data:queryData,
+                    url:URL.userOperation,
+                    dataType:'json',
+                    method:"POST",
+                    success:onSuccess,
+                    error:(xhr) => {
+                        console.log(xhr);
                     }
+                });
+                function onSuccess(data) {
+                    if(data.success){
+                        setAuthorization(data.email, data.token);
+                        setTimeout (()=>{location = FrontURL.index},2000)
+                    }
+                    prompt(data.info);
                 }
             }
         },

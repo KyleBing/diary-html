@@ -11,26 +11,26 @@ require "class/Response.php";
 require "class/MSql.php";
 require "common.php";
 
-if ($_GET['uuid'] === 'kylebing'){
-//if (checkLogin($_GET['email'],$_GET['uuid'])){
+if (checkLogin($_COOKIE['email'],$_COOKIE['token'])){
     switch ($_GET['type']){
         case 'query':
             queryDiaries($_GET['pageCount'],$_GET['pageNo']);
             break;
         case 'update':
-            updateDiary($_GET['diaryId'],$_GET['diaryContent'],$_GET['diaryCategory'],$_GET['diaryDate']);
+            updateDiary($_POST['diaryId'],$_POST['diaryContent'],$_POST['diaryCategory'],$_POST['diaryDate']);
             break;
         case 'add':
-            addDiary($_GET['diaryContent'],$_GET['diaryCategory'],$_GET['diaryDate']);
+            addDiary($_POST['diaryContent'],$_POST['diaryCategory'],$_POST['diaryDate']);
             break;
         case 'delete':
-            deleteDiary($_GET['diaryId']);
+            deleteDiary($_POST['diaryId']);
             break;
         case 'search':
             searchDiary($_GET['diaryCategory'], $_GET['keyword'], $_GET['pageCount'], $_GET['pageNo']);
             break;
         default:
-            echo json_encode(new ResponseError('请求参数错误'));
+            $response = new ResponseError('请求参数错误');
+            echo $response->toJson();
             break;
     }
 } else {

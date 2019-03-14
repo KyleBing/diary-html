@@ -77,5 +77,39 @@ class ResponseSuccess extends Response
     {
         $this->data = $data;
     }
+}
+
+class ResponseLogin extends Response
+{
+    var $success = true;
+    var $info = '';
+    var $token = '';
+    var $email = '';
+
+    public function __construct(string $info = '登录成功')
+    {
+        $this->info = $info;
+    }
+
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    public function setToken(string $token): void
+    {
+        $this->token = $token;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
 
 }
+
