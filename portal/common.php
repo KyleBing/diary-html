@@ -1,5 +1,6 @@
 <?php
 /**
+ * 通用方法
  * Created by PhpStorm.
  * User: Kyle
  * Date: 2019-03-13

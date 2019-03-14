@@ -1,5 +1,6 @@
 <?php
 /**
+ * SQL 操作
  * Created by PhpStorm.
  * User: Kyle
  * Date: 2019-03-12
@@ -19,6 +20,32 @@ define('PASSWORD',  'nnqi');
 
 
      /************************* 日记操作 *************************/
+
+     // 搜索日记
+     public static function SearchDiaries($category, $keyword, $startPoint, $pageCount)
+     {
+         return "SELECT * from diaries WHERE category like '%${category}%' AND content like '%${keyword}%' limit $startPoint, $pageCount";
+     }
+
+     // 添加日记
+     public static function AddDiary($content, $category, $date)
+     {
+         $timeNow = date('Y-m-d H:i:s');
+         return "INSERT into diaries(content,category,create_date,modify_date,date) VALUES('${content}','${category}','${timeNow}','${timeNow}','${date}')";
+     }
+
+     // 删除日记
+     public static function DeleteDiary($id)
+     {
+         return "DELETE from diaries WHERE id='${id}'";
+     }
+
+     // 更新日记
+     public static function UpdateDiary($id,$content,$category,$date)
+     {
+         $timeNow = date('Y-m-d H:i:s');
+         return "update diaries set modify_date='${timeNow}', date='${date}', category='${category}',content='${content}' WHERE id='${id}'";
+     }
 
      // 查询日记
      public static function QueryDiaries($startPoint, $pageCount)
@@ -54,5 +81,19 @@ define('PASSWORD',  'nnqi');
          return "select email from users where email='${email}'";
      }
 
+}
+
+/**
+ * dsqli 继承 mysqli
+ * Created by PhpStorm.
+ * User: Kyle
+ * Date: 2019-03-12
+ * Time: 18:00
+ */
+class dsqli extends mysqli {
+     public function __construct()
+     {
+         parent::__construct(HOST, USER, PASSWORD, DATABASE, PORT);
+     }
 }
 

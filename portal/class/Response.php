@@ -1,5 +1,6 @@
 <?php
 /**
+ * 返回结果集
  * Created by PhpStorm.
  * User: Kyle
  * Date: 2019-03-13
@@ -15,6 +16,10 @@ class Response
     public function __construct(string $info)
     {
         $this->info = $info;
+    }
+
+    public function toJson(){
+        return json_encode($this);
     }
 
 
