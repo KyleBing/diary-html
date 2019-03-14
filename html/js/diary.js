@@ -1,3 +1,7 @@
+
+
+
+
 $(function () {
     // INIT
     setMenuHeight();
@@ -15,7 +19,11 @@ $(function () {
     }
 });
 
+let URL = {
+    userOperation: 'portal'
+}
 
-// cookie
-
+let API = {
+    config
+}
 

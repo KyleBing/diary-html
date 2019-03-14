@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--css-->
-    <link rel="stylesheet" href="../lib/css/reset.css">
+    <link rel="stylesheet" href="../../lib/css/reset.css">
     <link rel="stylesheet" href="css/diary.css">
     <!--js-->
-    <script src="../lib/js/jquery-2.2.4.min.js"></script>
+    <script src="../../lib/js/jquery-2.2.4.min.js"></script>
     <script src="js/diary.js"></script>
     <script src="js/vue_2.5.11.js"></script>
 
     <link rel="shortcut icon" href="img/logo.png" type="image/png">
     <link rel="apple-touch-icon" href="img/touch-icon.png">
 
-    <title>注册</title>
+    <title>登录</title>
 </head>
 <body class="reg-bg">
 
 <!--APP-->
-<div id="reg">
+<div id="login">
     <div class="logo">
         <img src="img/logo_big.png" alt="Diary Logo">
     </div>
-    <form action="portal" id="regForm">
+    <form action="../portal" id="regForm">
         <div class="input-group">
             <label for="email" :class="[(emailVerified || email.length<1)? '' : 'red']">{{ labelEmail }}</label>
             <input v-model.lazy="email"
@@ -32,28 +32,20 @@
                    id="email" >
         </div>
         <div class="input-group">
-            <label for="password1">密码</label>
-            <input  v-model.lzay="password1"
-                    name="password1"
+            <label for="password">密码</label>
+            <input  v-model.lzay="password"
+                    name="password"
                     type="password"
-                    id="password1">
-        </div>
-        <div class="input-group">
-            <label for="password2" :class="[(passwordVerified || password2<1)? '' : 'red']">{{ labelCheckPassword }}</label>
-            <input v-model="password2"
-                   type="password"
-                   name="password2"
-                   id="password2"
-                   class="focused">
+                    id="password">
         </div>
 
         <button class="btn"
                 :class="[verified ? 'btn-active' : 'btn-inactive']"
                 type="button"
-                @click="regSubmit" >注册</button>
+                @click="loginSubmit" >登录</button>
     </form>
     <div class="footer clearfix">
-        <a href="login.html" class="left">登录</a>
+        <a href="regist.html" class="left">注册</a>
         <a href="findpassword.html" class="right">找回密码</a>
     </div>
     <!--prompt-->
@@ -66,32 +58,32 @@
 
 <script>
     var vm = new Vue({
-        el: "#reg",
+        el: "#login",
         data: {
+            type: "login",
             labelEmail: "邮箱",
             email: "",
-            password1: "",
-            password2: "",
+            password: "",
             labelCheckPassword: "再次确认密码",
             prompt: "",
         },
         computed:{
-            emailVerified: function () {
+            emailVerified: () => {
                 return verifyEmail(this.email)
             },
-            passwordVerified: function () {
-                if (this.password1.length > 0 && this.password1 == this.password2){
+            passwordVerified: () => {
+                if (this.password.length > 0){
                     return true
                 } else {
                     return false
                 }
             },
-            verified: function () {
+            verified: () => {
                 return this.emailVerified && this.passwordVerified
             }
         },
         methods:{
-            regSubmit: function () {
+            loginSubmit: () => {
                 if (this.verified){
                     $.ajax({
                         url:"portal/",
@@ -99,30 +91,34 @@
                         dataType: "json",
                         data: {
                             "email": this.email,
-                            "password": this.password1,
-                            "type": "register"
+                            "password": this.password,
+                            "type":"login"
                         },
-                        success: function (data, textStatus, xhr) {
+                        success: (data, textStatus, xhr) => {
                             /*
                             data:
                                 - query_status
                                 - exist
                                 - add_status
                                 - login_status
-
                             */
                             if(data.query_status){
+                                // 邮箱存在
                                 if(data.exist){
-                                    setPrompt("邮箱已被注册");
-
-                                } else if (data.add_status){
-                                    setPrompt("注册成功，正在跳转到登录页面");
-                                    var t = setTimeout("window.document.location = 'login.html'",2000)
+                                    if (data.login_status){
+                                        setPrompt("登录成功，正在跳转...")
+                                        let t = setTimeout("window.document.location = 'index.html'",1500)
+                                    } else {
+                                        setPrompt("密码不正确");
+                                    }
+                                } else {
+                                // 邮箱不存在
+                                    setPrompt("未找到用户，请检查邮箱是否正确");
                                 }
                             }
 
                         },
-                        error:function (XMLHttpRequest, errorStatus, errorThrown) {
+                        error: (XMLHttpRequest, errorStatus, errorThrown) => {
                             console.log(errorStatus)
                         }
                     })
@@ -130,31 +126,24 @@
             }
         },
         watch:{
-            email: function(){
+            email: () => {
                 if (this.emailVerified){
                     this.labelEmail = "邮箱"
                 } else {
                     this.labelEmail = "输入的邮箱不正确，请重新输入"
-                }
-            },
-            password2: function () {
-                if (this.passwordVerified){
-                    this.labelCheckPassword = "再次确认密码"
-                } else {
-                    this.labelCheckPassword = "两次密码不一致"
                 }
             }
         }
     });
 
     function verifyEmail(email) {
-        var re = /\w+@\w+\.\w+/;
+        let re = /\w+@\w+\.\w+/;
         return re.test(email)
     }
 
     function setPrompt(prompt){
         vm.prompt = prompt;
-        var t = setTimeout("vm.prompt = ''",3000);
+        let t = setTimeout("vm.prompt = ''",3000);
     }
 
 </script>
