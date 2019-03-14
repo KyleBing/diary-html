@@ -14,18 +14,18 @@ require "class/MSql.php";
 define('INVITATION','kylebingooOO');
 
 
-switch ($_GET['type']){
+switch ($_POST['type']){
     case 'insert':
-        if (isset($_GET['invitation']) && $_GET['invitation'] == INVITATION){
-            addNewUser($_GET['email'],$_GET['password']);
+        if (isset($_POST['invitation']) && $_POST['invitation'] == INVITATION){
+            addNewUser($_POST['email'],$_POST['password']);
         } else {
             $response = new ResponseError('邀请码不正确');
-            $response->toJson();
+            echo $response->toJson();
         }
         break;
 
     case 'update':
-        updatePassword($_GET['email'],$_GET['oldPassword'],$_GET['newPassword']);
+        updatePassword($_POST['email'],$_POST['oldPassword'],$_POST['newPassword']);
         break;
     default:
         $response = new ResponseError('请求参数错误');
@@ -46,9 +46,9 @@ function addNewUser($email, $password){
         $result = $con->query(MSql::InsetNewUser($email,password_hash($password,PASSWORD_DEFAULT)));
 
             if ($result) {
-                $response = new ResponseSuccess('添加用户成功');
+                $response = new ResponseSuccess('注册成功');
             } else {
-                $response = new ResponseError('插入用户失败');
+                $response = new ResponseError('注册失败');
             }
         } else { // 如果用户已存在，返回结果
             $response =  new ResponseError('用户已存在');

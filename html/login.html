@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="css/diary.css">
     <!--js-->
     <script src="../../lib/js/jquery-2.2.4.min.js"></script>
+    <script src="../../lib/js/vue_2.66.js"></script>
+    <script src="../../lib/js/jquery.cookie%202.js"></script>
     <script src="js/diary.js"></script>
-    <script src="js/vue_2.5.11.js"></script>
 
     <link rel="shortcut icon" href="img/logo.png" type="image/png">
     <link rel="apple-touch-icon" href="img/touch-icon.png">
@@ -40,7 +41,7 @@
         </div>
 
         <button class="btn"
-                :class="[verified ? 'btn-active' : 'btn-inactive']"
+                :class="verified ? 'btn-active' : 'btn-inactive'"
                 type="button"
                 @click="loginSubmit" >登录</button>
     </form>
@@ -48,10 +49,7 @@
         <a href="regist.html" class="left">注册</a>
         <a href="findpassword.html" class="right">找回密码</a>
     </div>
-    <!--prompt-->
-    <div class="prompt" v-show="prompt.length>0">
-        <h3> {{ prompt }}</h3>
-    </div>
+
 </div>
 
 
@@ -64,69 +62,45 @@
             labelEmail: "邮箱",
             email: "",
             password: "",
-            labelCheckPassword: "再次确认密码",
-            prompt: "",
+            labelCheckPassword: "再次确认密码"
         },
         computed:{
-            emailVerified: () => {
-                return verifyEmail(this.email)
+            emailVerified: function ()  {
+                let emailRe = /^\w+@\w+\.\w+$/i;
+                return emailRe.test(this.email)
             },
-            passwordVerified: () => {
+            passwordVerified: function ()  {
                 if (this.password.length > 0){
                     return true
                 } else {
                     return false
                 }
             },
-            verified: () => {
+            verified: function ()  {
                 return this.emailVerified && this.passwordVerified
             }
         },
         methods:{
-            loginSubmit: () => {
-                if (this.verified){
-                    $.ajax({
-                        url:"portal/",
-                        type: "POST",
-                        dataType: "json",
-                        data: {
-                            "email": this.email,
-                            "password": this.password,
-                            "type":"login"
-                        },
-                        success: (data, textStatus, xhr) => {
-                            /*
-                            data:
-                                - query_status
-                                - exist
-                                - add_status
-                                - login_status
-                            */
-                            if(data.query_status){
-                                // 邮箱存在
-                                if(data.exist){
-                                    if (data.login_status){
-                                        setPrompt("登录成功，正在跳转...")
-                                        let t = setTimeout("window.document.location = 'index.html'",1500)
-                                    } else {
-                                        setPrompt("密码不正确");
-                                    }
-                                } else {
-                                // 邮箱不存在
-                                    setPrompt("未找到用户，请检查邮箱是否正确");
-                                }
-                            }
+            loginSubmit: function () {
 
-                        },
-                        error: (XMLHttpRequest, errorStatus, errorThrown) => {
-                            console.log(errorStatus)
+                if (this.verified){
+                    let data = {
+                        "email": this.email,
+                        "password": this.password,
+                        "type":"query"
+                    };
+                    API.setData(URL.userOperation,data,onSuccess);
+                    function onSuccess(data) {
+                        if(data.success){
+                            setTimeout (()=>{location = FrontURL.index},2000)
                         }
-                    })
+                        prompt(data.info);
+                    }
                 }
             }
         },
         watch:{
-            email: () => {
+            email: function () {
                 if (this.emailVerified){
                     this.labelEmail = "邮箱"
                 } else {
@@ -135,16 +109,6 @@
             }
         }
     });
-
-    function verifyEmail(email) {
-        let re = /\w+@\w+\.\w+/;
-        return re.test(email)
-    }
-
-    function setPrompt(prompt){
-        vm.prompt = prompt;
-        let t = setTimeout("vm.prompt = ''",3000);
-    }
 
 </script>
 

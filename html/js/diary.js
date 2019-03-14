@@ -1,7 +1,4 @@
 
-
-
-
 $(function () {
     // INIT
     setMenuHeight();
@@ -20,10 +17,98 @@ $(function () {
 });
 
 let URL = {
-    userOperation: 'portal'
-}
+    userOperation:  '../portal/userOperation.php',
+    diaryOperation: '../portal/diaryOperation.php'
+};
+
+let FrontURL = {
+    login:  'login.html',
+    index:  'index.html'
+};
 
 let API = {
-    config
+    getData: (url, queryData, onSuccess, onError, onComplate) => {
+        let authorizationKey = getAuthorization();
+        if (authorizationKey){
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                method: 'GET',
+                success:(data) => {
+                    onSuccess && onSuccess(data)
+                },
+                error: (xhr) => {
+                    console.log(xhr);
+                    onError && onError(data)
+                },
+                onComplate: (xhr) => {
+                    onComplate && onComplate(xhr)
+                }
+            })
+        } else {
+            location = FrontURL.login;
+        }
+    },
+
+    setData: (url, queryData, onSuccess, onError, onComplate) => {
+        let authorizationKey = getAuthorization();
+        if (authorizationKey){
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                method: 'POST',
+                success:(data) => {
+                    onSuccess && onSuccess(data)
+                },
+                error: (xhr) => {
+                    console.log(xhr);
+                    onError && onError(data)
+                },
+                onComplate: (xhr) => {
+                    onComplate && onComplate(xhr)
+                }
+            })
+        } else {
+            location = FrontURL.login;
+        }
+    }
+};
+
+
+// 设置cookie
+function setAuthorization(email, token) {
+    $.cookie('email',email,{expires: 7, path: '/'});
+    $.cookie('token',token,{expires: 7, path: '/'});
 }
 
+// 获取cookie
+function getAuthorization() {
+    let email = $.cookie('email');
+    let token = $.cookie('token');
+    if (email === undefined || token === undefined){
+        return false;
+    } else {
+        return {
+            email: email,
+            token: token
+        }
+    }
+}
+
+// 删除cookie
+function deleteAuthorization() {
+    $.removeCookie('email',{path: '/'});
+    $.removeCookie('token',{path: '/'});
+}
+
+
+function prompt(title, timeout = 3){
+    let template = ` <div class="prompt">
+                        <h3>${title}</h3>
+                    </div>`;
+    $('body').append(template);
+
+    setTimeout(() => {
+        $('.prompt').remove();
+    },1000 * timeout);
+}
