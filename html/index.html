@@ -33,11 +33,10 @@
 <!--MENU-->
 <div class="menu-panel" id="menu-panel" v-show="menuPanelShowed" style="display: none;">
     <div class="menu-list-group" v-show="menuListShowed">
-        <a class="menu-list-group-item" href="login.html">登录</a>
-        <a class="menu-list-group-item" href="regist.html">注册</a>
         <a class="menu-list-group-item" @click="referenceClicked">说明</a>
         <a class="menu-list-group-item" @click="aboutClicked">关于</a>
         <a class="menu-list-group-item" @click="showSearchBar">搜索</a>
+        <a class="menu-list-group-item" @click="logout">退出</a>
     </div>
 
     <!--reference-->
@@ -93,7 +92,7 @@
                 }
 
             },
-            addClicked:function () {
+            addClicked: function () {
                 location = 'edit.html';
             },
             confirmClicked: function () {
@@ -110,20 +109,20 @@
             secondMenuShowed:   false,      // second menu
             menuListShowed:     true,       // menu list
             referenceShowed:    false,      // reference
-            aboutShowed:        false       // about
+            aboutShowed:        false,      // about
         },
         watch:{
-          secondMenuShowed: function () { // false all second panel when secondMenuShowed is false.
-              if (!this.secondMenuShowed){
-                  this.referenceShowed = false;
-                  this.aboutShowed = false;
-              }
-          },
-          menuPanelShowed: function () {
-              if(this.menuPanelShowed){
-                  navbar.btnAdd = false;
-              }
-          }
+            secondMenuShowed: function () { // false all second panel when secondMenuShowed is false.
+                if (!this.secondMenuShowed){
+                    this.referenceShowed = false;
+                    this.aboutShowed = false;
+                }
+            },
+            menuPanelShowed: function () {
+                if(this.menuPanelShowed){
+                    navbar.btnAdd = false;
+                }
+            }
         },
         methods:{
             referenceClicked: function () {
@@ -138,26 +137,36 @@
                 this.secondMenuShowed = true;
                 this.aboutShowed = true;
             },
-            // TODO:SearchBar
             showSearchBar: function () {
-
+                diaryApp.searchBarShow = true;
+                navbar.closeMenu();
+                $('#keyword').focus();
+            },
+            logout: function(){
+                deleteAuthorization();
+                location = FrontURL.login;
             }
         }
     });
 
-/*    window.onload = () => {
-        window.onscroll = () => {
-            let lastTop = $('.list-item:last').offset().top;
-            let scrollTop = $('.content').scrollTop();
-            console.log(lastTop,scrollTop)
-        }
-    }*/
-
+    /*    window.onload = () => {
+            window.onscroll = () => {
+                let lastTop = $('.list-item:last').offset().top;
+                let scrollTop = $('.content').scrollTop();
+                console.log(lastTop,scrollTop)
+            }
+        }*/
 </script>
 
 
 
-<div class="content" id="diaryApp">
+<div class="container" id="diaryApp">
+    <div class="search-bar" v-show="searchBarShow">
+        <form @submit.prevent="searchConfirmed">
+            <input id="keyword" type="text" placeholder="搜索内容" v-model="keyword">
+            <span v-show="keyword.length > 0" @click="clearSearchBar" class="clear">✕</span>
+        </form>
+    </div>
     <div class="diary-list-group">
         <!--<h3 class="list-header">2017-09</h3>-->
         <div class="list-content">
@@ -226,8 +235,10 @@
     let diaryApp = new Vue({
         el: "#diaryApp",
         data: {
+            searchBarShow: false,
             haveMore: true,
-            diaries: []
+            diaries: [],
+            keyword: ''
         },
         created: function () {
             getDiaries()
@@ -235,6 +246,43 @@
         methods:{
             loadMore: function () {
                 getDiaries()
+            },
+            clearSearchBar: function () {
+                this.keyword = ''
+            },
+            searchConfirmed: function () {
+                pageNo = 1;
+                let queryData = {
+                    "keyword": this.keyword,
+                    "pageCount": PAGE_AMOUNT,
+                    "pageNo": pageNo,
+                    "type": "search"
+                };
+                if (getAuthorization()){
+                    $.ajax({
+                        data:queryData,
+                        url:URL.diaryOperation,
+                        dataType:'json',
+                        method:"GET",
+                        success:onSuccess,
+                        error:(xhr) => {
+                            console.log(xhr);
+                        }
+                    });
+                    function onSuccess(data) {
+                        if(data.success){
+                            diaryApp.diaries = [];
+                            diaryApp.diaries = diaryApp.diaries.concat(data.data);
+                            // 在后面判断获取的数据，小于1或小于每页的数量时，隐藏加载更多按钮
+                            if(data.data.length < 1 || data.data.length < PAGE_AMOUNT) {
+                                diaryApp.haveMore = false;
+                            }
+                            pageNo++;
+                        } else {
+                            prompt(data.info);
+                        }
+                    }
+                }
             }
         }
     });

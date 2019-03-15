@@ -83,9 +83,37 @@ body {
   position: relative;
   background-color: #EFEFF4;
 }
-.content {
+.container {
   padding-top: 45px;
   width: 100%;
+}
+.search-bar {
+  position: relative;
+  padding: 5px;
+}
+.search-bar input {
+  width: 100%;
+  line-height: 25px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 3px 10px;
+  display: block;
+  border: 1px solid #EFEFF4;
+  font-size: 1em;
+}
+.search-bar .clear {
+  color: #8E8E93;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+  cursor: pointer;
+  top: 12px;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  right: 10px;
+  display: block;
 }
 .navbar {
   z-index: 999;

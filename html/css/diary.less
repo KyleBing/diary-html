@@ -24,6 +24,7 @@
 .red     { color: @red !important; }
 
 
+
 .bg-life { .bg-orange }
 .bg-study { .bg-green }
 .bg-bigevent { .bg-magenta }
@@ -50,11 +51,37 @@ body{
   position: relative;
   background-color: @main-light-gray;
 }
-.content{
+.container{
   padding-top: 45px;
   width: 100%;
 }
 
+.search-bar{
+  position: relative;
+  padding: 5px;
+  input{
+    width: 100%;
+    line-height: 25px;
+    .border-radius(@radius);
+    padding: 3px 10px;
+    display: block;
+    border: 1px solid @main-light-gray;
+    font-size: 1em;
+  }
+  .clear{
+    color: @gray;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+    top: 12px;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    right: 10px;
+    display: block;
+  }
+}
 .navbar{
   z-index: 999;
   position: fixed;
@@ -96,6 +123,7 @@ body{
 .list-content{
   background-color: #fff;
 }
+
 
 .diary-list-group{
   .list-header{
@@ -393,7 +421,7 @@ body{
       height: @height-input;
       background-color: @main-dark-gray;
       width: 100%;
-      .border-radius(@raius);
+      .border-radius(@radius);
       display: block;
       padding: 8px 15px;
       font-size: @size-big;
@@ -413,7 +441,7 @@ body{
     font-weight: bold;
     font-size: @size-big;
     color: @main-light-gray;
-    .border-radius(@raius);
+    .border-radius(@radius);
   }
   .btn-active{
     background-color: @main-orange;
