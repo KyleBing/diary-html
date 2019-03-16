@@ -45,8 +45,8 @@
 }
 
 
-//FRAME
 
+//FRAME
 body{
   position: relative;
   background-color: @main-light-gray;
@@ -212,8 +212,38 @@ body{
   }
 }
 
+.action-list-group{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.action-list-item{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: #ffffff;
+  cursor: pointer;
+  display: block;
+  line-height: 45px;
+  text-align: center;
+  border-bottom: 1px solid @main-light-gray;
+  &:nth-child(last){
+    border: none;
+  }
+  &:hover{
+    background-color: darken(#fff,10%);
+  }
+  &:active{
+    background-color: darken(#fff,15%);
+  }
+}
+
 
 //NEW
+
+
 
 .diary-editor{
   display: block;

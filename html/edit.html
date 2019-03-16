@@ -51,12 +51,90 @@
         <label for="category-others">其它</label>
 
     </div>
-    <div class="operation">
-        <a class="btn btn-action">删除</a>
-    </div>
+</div>
+
+
+<div class="action-list-group" id="modal-action">
+    <action-list-item
+            v-for="action in actions"
+            v-bind:action="action"
+            v-bind:key="action.id"
+    ></action-list-item>
 </div>
 
 <script>
+
+    Vue.component('action-list-item', {
+        props: ['action'],
+        template: `<a :onclick="action.action" class="action-list-item" :class="action.class">{{action.title}}</a>`
+    });
+
+    let modal = new Vue({
+        el: '#modal-action',
+        data: {
+            actions:[{
+                id: 1,
+                class: '',
+                title: '删除',
+                action: 'showConfirm()'
+            }],
+            delete: [{
+                id: 1,
+                class: '',
+                title: '删除',
+                action: 'showConfirm()'
+            }],
+            confirm: [
+                {
+                    id: 1,
+                    class:'red',
+                    title: '确定',
+                    action: 'deleteCurrentDiary()'
+                },
+                {
+                    id: 2,
+                    class: '',
+                    title: '取消',
+                    action: 'closeConfirm()'
+                }
+            ]
+        },
+        method: {
+
+        }
+
+    });
+
+    function showConfirm () {
+        modal.actions = modal.confirm;
+    }
+    function closeConfirm () {
+        modal.actions = modal.delete;
+    }
+    function deleteCurrentDiary() {
+        let queryData = {
+            diaryId: diaryEditor.id,
+            type:'delete'
+        };
+        $.ajax({
+            url: URL.diaryOperation,
+            dataType: 'json',
+            method: 'POST',
+            data: queryData,
+            success: function (data) {
+                if(data.success){
+                    prompt(data.info,()=>{
+                        location = FrontURL.index
+                    },1)
+                } else {
+                    prompt(data.info)
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr);
+            }
+        })
+    }
 
     // Navbar
     let navbar = new Vue({
@@ -112,58 +190,6 @@
         }
     });
 
-
-
-    // variables
-    let diaryID = 10;
-
-
-    // query
-    function getContent(id) {
-        $.ajax({
-            url: "portal/",
-            dataType: 'json',
-            data:{
-                'type': 'edit_query',
-                'id':diaryID,
-            },
-            success: function (data, statusText, xhr) {
-                console.log(data);
-                diaryEditor.content     = data.content;
-                diaryEditor.date        = new Date(date.date);
-                diaryEditor.category    = data.dategory
-            },
-            error: function (xhr, statusText, error) {
-                console.log(statusText);
-            }
-        })
-    }
-
-    // Create
-    function createNewDiary(){
-        $.ajax({
-            url: 'portal/',
-            dataType: 'json',
-            data: {
-                'type': 'create',
-                'content': diaryEditor.content,
-                'date' : diaryEditor.date,
-                'category' : diaryEditor.category
-            },
-            success: function (data, statusText, xhr) {
-                // TODO: after success edit diary
-                if (data.add_status){
-                    console.log('添加成功');
-                    window.document.location = 'index.html';
-                } else {
-                    console.log('添加失败')
-                }
-            },
-            error: function (statusText, xhr, error) {
-                console.log(statusText);
-            }
-        })
-    }
 
     let diaryEditor = new Vue({
         el: '#diaryEditor',

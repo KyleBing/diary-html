@@ -233,6 +233,33 @@ body {
 .load-more:active {
   background-color: #8E8E93;
 }
+.action-list-group {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.action-list-item {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: #ffffff;
+  cursor: pointer;
+  display: block;
+  line-height: 45px;
+  text-align: center;
+  border-bottom: 1px solid #EFEFF4;
+}
+.action-list-item:nth-child(last) {
+  border: none;
+}
+.action-list-item:hover {
+  background-color: #e6e6e6;
+}
+.action-list-item:active {
+  background-color: #d9d9d9;
+}
 .diary-editor {
   display: block;
   width: 100%;
