@@ -24,7 +24,7 @@ define('PASSWORD',  'nnqi');
      // 搜索日记
      public static function SearchDiaries($category, $keyword, $startPoint, $pageCount)
      {
-         return "SELECT * from diaries WHERE category like '%${category}%' AND content like '%${keyword}%' limit $startPoint, $pageCount";
+         return "SELECT * from diaries where category like '%${category}%' AND content like '%${keyword}%' order by date desc  limit $startPoint, $pageCount";
      }
 
      // 添加日记
@@ -47,10 +47,10 @@ define('PASSWORD',  'nnqi');
          return "update diaries set modify_date='${timeNow}', date='${date}', category='${category}',content='${content}' WHERE id='${id}'";
      }
 
-     // 查询日记
-     public static function QueryDiaries($startPoint, $pageCount)
+     // 查询日记内容
+     public static function QueryDiaries($id)
      {
-         return "select * from diaries limit $startPoint, $pageCount";
+         return "select * from diaries where id = '${id}'";
      }
 
 

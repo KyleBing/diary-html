@@ -11,12 +11,13 @@ require "class/Response.php";
 require "class/MSql.php";
 require "common.php";
 
-if (checkLogin($_COOKIE['email'],$_COOKIE['token'])){
-    switch ($_GET['type']){
+
+if (checkLogin($_COOKIE['diaryEmail'],$_COOKIE['diaryToken'])){
+    switch ($_REQUEST['type']){
         case 'query':
-            queryDiaries($_GET['pageCount'],$_GET['pageNo']);
+            queryDiary($_GET['diaryId']);
             break;
-        case 'update':
+        case 'modify':
             updateDiary($_POST['diaryId'],$_POST['diaryContent'],$_POST['diaryCategory'],$_POST['diaryDate']);
             break;
         case 'add':
@@ -26,7 +27,10 @@ if (checkLogin($_COOKIE['email'],$_COOKIE['token'])){
             deleteDiary($_POST['diaryId']);
             break;
         case 'search':
-            searchDiary($_GET['diaryCategory'], $_GET['keyword'], $_GET['pageCount'], $_GET['pageNo']);
+        case 'list':
+            $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+            $category = isset($_GET['diaryCategory']) ? $_GET['diaryCategory'] : '';
+            searchDiary($category, $keyword, $_GET['pageCount'], $_GET['pageNo']);
             break;
         default:
             $response = new ResponseError('请求参数错误');
@@ -39,14 +43,13 @@ if (checkLogin($_COOKIE['email'],$_COOKIE['token'])){
 }
 
 
-
-function queryDiaries($pageCount,$pageNo)
+//查询日记内容
+function queryDiary($id)
 {
     $con = new dsqli();
-    $startPoint = ($pageNo -1 ) * $pageCount;
     $con->set_charset('utf8');
     $response = '';
-    $result = $con->query(MSql::QueryDiaries($startPoint, $pageCount));
+    $result = $con->query(MSql::QueryDiaries($id));
     if ($result) {
         $response = new ResponseSuccess();
         $diaries =  $result->fetch_all(1); // 参数1会把字段名也读取出来
@@ -107,7 +110,7 @@ function addDiary($content,$category,$date){
 }
 
 
-// 搜索日记
+// 搜索，展示日记
 function searchDiary($category, $keyword, $pageCount, $pageNo){
     $startPoint = ($pageNo -1 ) * $pageCount;
     $con = new dsqli();

@@ -88,12 +88,12 @@ body{
   top: 0;
   left: 0;
   width: 100%;
-  background-color: @main-dark-gray;
+  background-color: @main-color;
   .navbar-btn{
     background-color: transparent;
     cursor: pointer;
     width: 55px;
-    height: 45px;
+    height: @nav-height;
     &:active{
       -webkit-border-radius: 50px;
       -moz-border-radius: 50px;
@@ -103,18 +103,18 @@ body{
     }
     img{
       display: block;
-      height: 45px;
+      height: @nav-height;
     }
   }
 
   .brand{
     margin: 0 auto;
-    height: 45px;
+    height: @nav-height;
     width: 80px;
     img{
       margin: 0 auto;
       display: block;
-      height: 45px;
+      height: @nav-height;
     }
   }
 }
@@ -132,7 +132,7 @@ body{
     font-weight: bold;
     text-align: left;
     padding: 0 20px;
-    color: @main-dark-gray;
+    color: @main-color;
     background-color: @main-light-gray;
     height: @list-header-height;
     line-height: @list-header-height;
@@ -221,7 +221,8 @@ body{
   resize: none;
   height: 120px;
   padding: 8px 10px;
-  font-size: 20px;
+  font-size: 1em
+;
 }
 .date-selector{
   font-size: 18px;
@@ -234,6 +235,8 @@ body{
     line-height: 40px;
   }
   .date{
+    width: 50%;
+    text-align: right;
     font-size: 18px;
     height: 40px;
     float: right;
@@ -291,10 +294,10 @@ body{
   z-index: 10;
   overflow: auto;
   position: fixed;
-  top: 45px;
+  top: @nav-height;
   left: 0;
   width: 100%;
-  background-color: @main-gray;
+  background-color: @menu-panel-color;
 }
 
 .menu-list-group{
@@ -324,7 +327,7 @@ body{
     transform: scaleY(0.5);
   }
   &:active{
-    background-color: lighten(@main-gray,10%);
+    background-color: lighten(@menu-panel-color,10%);
   }
 }
 
@@ -394,7 +397,7 @@ body{
 
 .reg-bg{
   position: relative;
-  background-color: @main-gray;
+  background-color: @menu-panel-color;
   width: 100%;
   height: 100%;
   padding: 25px;
@@ -419,7 +422,7 @@ body{
       -moz-box-sizing: border-box;
       box-sizing: border-box;
       height: @height-input;
-      background-color: @main-dark-gray;
+      background-color: @main-color;
       width: 100%;
       .border-radius(@radius);
       display: block;
@@ -518,12 +521,12 @@ body{
   top: 0;
   left: 0;
   width: 100%;
-  padding: 10px;
+  padding: 12px 0 8px;
   text-align: center;
-  background-color: rgba(255,255,255,0.2);
+  background-color: @main-color;
   h3{
     color: @main-orange;
-    line-height: 20px;
+    line-height: 25px;
     font-size: @size-note;
   }
 }

@@ -54,7 +54,7 @@
         <h3 class="title">标题日记</h3>
         <h4 class="subtitle">用一句话记录你最珍贵的时刻</h4>
         <div class="author">
-            <a href="" class="social-link">@十月ky</a>
+            <a href="http://weibo.com/kylebing" class="social-link">@十月ky</a>
             <a href="mailto:kylebing@163.com">kylebing@163.com</a>
         </div>
     </div>
@@ -149,12 +149,22 @@
         }
     });
 
-    /*    window.onload = () => {
+    // scrollTop 测试
+/*        window.onload = () => {
             window.onscroll = () => {
-                let lastTop = $('.list-item:last').offset().top;
-                let scrollTop = $('.content').scrollTop();
-                console.log(lastTop,scrollTop)
+                if (needLoadContent()){
+
+                } else {
+
+                }
             }
+        };
+
+        function needLoadContent() {
+            let lastOffsetTop = document.querySelector('.list-item:last-child').offsetTop;
+            let clientHeight = window.innerHeight;
+            let scrollTop = document.documentElement.scrollTop;
+            return (lastOffsetTop < clientHeight + scrollTop);
         }*/
 </script>
 
@@ -168,14 +178,7 @@
         </form>
     </div>
     <div class="diary-list-group">
-        <!--<h3 class="list-header">2017-09</h3>-->
-        <div class="list-content">
-            <diary-list-item
-                    v-for="diary in diaries"
-                    :key="diary.id"
-                    :diary="diary"
-            ></diary-list-item>
-        </div>
+
     </div>
 
     <button v-show="haveMore" @click.prevent="loadMore" class="load-more">加载更多</button>
@@ -184,23 +187,15 @@
 
 <script>
 
-    Vue.component('diary-list-item',{
-        props:['diary'],
-        template:'  <a :href="\'edit.php?id=\'+diary.id" class="list-item">\
-                        <i :class="[\'category\', \'bg-\'+diary.category]"></i>\
-                        <span class="date"> {{ parseInt(diary.date.slice(8,10)) }} </span>\
-                        <p class="detail"> {{ diary.content }} </p>\
-                    </a>'
-    });
-
     let pageNo = 1;
-    let PAGE_AMOUNT = 20;
+    let PAGE_AMOUNT = 30;
+
 
     function getDiaries() {
         let queryData = {
             "pageCount": PAGE_AMOUNT,
             "pageNo": pageNo,
-            "type": "query"
+            "type": "list"
         };
 
         if (getAuthorization()){
@@ -243,6 +238,44 @@
         created: function () {
             getDiaries()
         },
+        watch:{
+            diaries: function () {
+                diaries = this.diaries;
+                if (diaries.length > 0) {
+                    let html = `<h3 class="list-header">${diaries[0].date.substring(0,7)}</h3>
+                            <div class="list-content">`;
+                    let lastItem = diaries[0];
+                    for (let i = 1; i< diaries.length; i++){
+                        let currentDiary = diaries[i];
+
+                        let lastTime = lastItem.date.substring(0,7);
+                        let currentTime = currentDiary.date.substring(0,7);
+
+                        if (lastTime === currentTime){
+                            let template = `<a href="edit.html?diaryId=${currentDiary.id}" class="list-item">
+                                            <i class="category bg-${currentDiary.category}"></i>
+                                            <span class="date">${currentDiary.date.slice(8,10)}</span>
+                                            <p class="detail">${currentDiary.content } </p>
+                                        </a>`;
+                            html += template;
+                        } else {
+                            let template = `</div>
+                                        <h3 class="list-header">${currentDiary.date.substring(0,7)}</h3>
+                                        <div class="list-content">
+                                            <a href="edit.html?diaryId=${currentDiary.id}" class="list-item">
+                                                <i class="category bg-${currentDiary.category}"></i>
+                                                <span class="date">${currentDiary.date.slice(8, 10)}</span>
+                                                <p class="detail">${currentDiary.content} </p>
+                                            </a>`;
+                            html += template;
+                            lastItem = diaries[i];
+                        }
+                    }
+                    html+=`</div>`;
+                    document.querySelector('.diary-list-group').innerHTML = html;
+                }
+            }
+        },
         methods:{
             loadMore: function () {
                 getDiaries()
@@ -251,7 +284,10 @@
                 this.keyword = ''
             },
             searchConfirmed: function () {
+                // 初始化一些值
+
                 pageNo = 1;
+
                 let queryData = {
                     "keyword": this.keyword,
                     "pageCount": PAGE_AMOUNT,
@@ -264,28 +300,31 @@
                         url:URL.diaryOperation,
                         dataType:'json',
                         method:"GET",
-                        success:onSuccess,
+                        beforeSend:()=>{
+                            diaryApp.haveMore = true;
+                        },
+                        success:(data) => {
+                            if(data.success){
+                                diaryApp.diaries = [];
+                                diaryApp.diaries = diaryApp.diaries.concat(data.data);
+                                // 在后面判断获取的数据，小于1或小于每页的数量时，隐藏加载更多按钮
+                                if(data.data.length < 1 || data.data.length < PAGE_AMOUNT) {
+                                    diaryApp.haveMore = false;
+                                }
+                                pageNo++;
+                            } else {
+                                prompt(data.info);
+                            }
+                        },
                         error:(xhr) => {
                             console.log(xhr);
                         }
                     });
-                    function onSuccess(data) {
-                        if(data.success){
-                            diaryApp.diaries = [];
-                            diaryApp.diaries = diaryApp.diaries.concat(data.data);
-                            // 在后面判断获取的数据，小于1或小于每页的数量时，隐藏加载更多按钮
-                            if(data.data.length < 1 || data.data.length < PAGE_AMOUNT) {
-                                diaryApp.haveMore = false;
-                            }
-                            pageNo++;
-                        } else {
-                            prompt(data.info);
-                        }
-                    }
                 }
             }
         }
     });
+
 
 
 

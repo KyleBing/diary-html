@@ -27,17 +27,19 @@ let FrontURL = {
 };
 
 
+let cookieEmailName = 'diaryEmail';
+let cookieTokenName = 'diaryToken';
 
 // 设置cookie
 function setAuthorization(email, token) {
-    $.cookie('email',email,{expires: 7, path: '/'});
-    $.cookie('token',token,{expires: 7, path: '/'});
+    $.cookie(cookieEmailName,email,{expires: 7, path: '/'});
+    $.cookie(cookieTokenName,token,{expires: 7, path: '/'});
 }
 
 // 获取cookie
 function getAuthorization() {
-    let email = $.cookie('email');
-    let token = $.cookie('token');
+    let email = $.cookie(cookieEmailName);
+    let token = $.cookie(cookieTokenName);
     if (email === undefined || token === undefined){
         prompt('请先登录',()=>{location = FrontURL.login});
         return false;
@@ -51,12 +53,12 @@ function getAuthorization() {
 
 // 删除cookie
 function deleteAuthorization() {
-    $.removeCookie('email',{path: '/'});
-    $.removeCookie('token',{path: '/'});
+    $.removeCookie(cookieEmailName,{path: '/'});
+    $.removeCookie(cookieTokenName,{path: '/'});
 }
 
 
-function prompt(title, callback, timeout = 3){
+function prompt(title, callback = ()=>{}, timeout = 3){
     let template = ` <div class="prompt">
                         <h3>${title}</h3>
                     </div>`;
@@ -68,7 +70,6 @@ function prompt(title, callback, timeout = 3){
     },1000 * timeout);
 }
 
-/*
 let API = {
     getData: (url, queryData, onSuccess, onError, onComplate) => {
         let authorizationKey = getAuthorization();
@@ -115,4 +116,4 @@ let API = {
             location = FrontURL.login;
         }
     }
-};*/
+};

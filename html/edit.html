@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../lib/css/reset.css">
     <link rel="stylesheet" href="css/diary.css">
     <!--js-->
-    <script src="../../lib/js/vue_2.5.11.js"></script>
+    <script src="../../lib/js/vue_2.66.js"></script>
     <script src="../../lib/js/jquery-2.2.4.min.js"></script>
     <script src="../../lib/js/jquery.cookie%202.js"></script>
     <script src="js/diary.js"></script>
@@ -21,8 +21,8 @@
 
 
 <nav class="navbar clearfix" id="navbar">
-    <div @click="closeEditor"        class="navbar-btn left" > <img src="img/tabicon/close.png" alt="关闭"></div>
-    <div @click="confirmClicked"   class="navbar-btn right" ><img src="img/tabicon/confirm.png" alt="添加"></div>
+    <div @click="closeEditor"      class="navbar-btn left" > <img src="img/tabicon/close.png" alt="关闭"></div>
+    <div @click="confirmClicked"   class="navbar-btn right" ><img src="img/tabicon/confirm.png" alt="确定"></div>
     <div class="brand">
         <a href=".."><img src="img/logo.png" alt="日记"></a>
     </div>
@@ -34,10 +34,10 @@
     <textarea class="diary-editor" v-model.lazy="content"></textarea>
     <div class="date-selector">
         <label for="date" class="title">日期</label>
-        <input class="date" type="date" name="date" id="date" :value="date">
+        <input placeholder="选择时间" class="date" type="date" name="date" id="date" v-model="date">
     </div>
     <div class="category-selector">
-        <input type="radio" name="category" value="life"    id="category-diary" v-model="category" checked="checked">
+        <input type="radio" name="category" value="life"    id="category-diary" v-model="category">
         <label for="category-diary">生活</label>
         <input type="radio" name="category" value="study"   id="category-study" v-model="category">
         <label for="category-study">学习</label>
@@ -51,16 +51,12 @@
         <label for="category-others">其它</label>
 
     </div>
+    <div class="operation">
+        <a class="btn btn-action">删除</a>
+    </div>
 </div>
 
 <script>
-
-    // initial
-    $(function () { // document ready
-        getContent(diaryID);
-
-    });
-
 
     // Navbar
     let navbar = new Vue({
@@ -69,10 +65,49 @@
         },
         methods:{
             closeEditor:function () {
-                window.document.location = '.';
+                location = '.';
             },
             confirmClicked: function () {
-
+                let queryData = {
+                    diaryId: diaryEditor.id,
+                    diaryContent: diaryEditor.content,
+                    diaryCategory: diaryEditor.category,
+                    diaryDate: diaryEditor.date + ' 00:00:00'
+                };
+                if (diaryEditor.id === ''){
+                    queryData.type = 'add';
+                    $.ajax({
+                        data:queryData,
+                        method: 'POST',
+                        url: URL.diaryOperation,
+                        success:( data ) => {
+                            data = JSON.parse(data);
+                            if(data.success){
+                                diaryEditor.id = '';
+                                diaryEditor.content = '';
+                                diaryEditor.category = 'life';
+                            }
+                            prompt(data.info)
+                        },
+                        error: (xhr) => {
+                            console.log(xhr)
+                        }
+                    })
+                } else {
+                    queryData.type = 'modify';
+                    $.ajax({
+                        data:queryData,
+                        method: 'POST',
+                        url: URL.diaryOperation,
+                        success:( data ) => {
+                            data = JSON.parse(data);
+                            prompt(data.info)
+                        },
+                        error: (xhr) => {
+                            console.log(xhr)
+                        }
+                    })
+                }
             }
         }
     });
@@ -133,9 +168,35 @@
     let diaryEditor = new Vue({
         el: '#diaryEditor',
         data: {
+            id:"",
             content:"",
             date: "",
-            category: ""
+            category: "life"
+        },
+        created: function () {
+            let searchString = location.search;
+            if (searchString !== undefined){
+                let id = location.search.substring(location.search.lastIndexOf('=') + 1); // 获取id值
+                $.ajax({
+                    url: URL.diaryOperation,
+                    dataType: 'json',
+                    data: {
+                        'type': 'query',
+                        'diaryId': id
+                    },
+                    success: function (data) {
+                        if (data.success){
+                            let diary = data.data[0];
+                            diaryEditor.id = diary.id;
+                            diaryEditor.content = diary.content;
+                            diaryEditor.date = diary.date.substring(0,diary.date.indexOf(' '));
+                            diaryEditor.category = diary.category;
+                        }
+                    }
+                });
+            } else {
+
+            }
         }
     })
 </script>
