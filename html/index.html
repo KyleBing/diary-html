@@ -34,8 +34,9 @@
 <div class="menu-panel" id="menu-panel" v-show="menuPanelShowed" style="display: none;">
     <div class="menu-list-group" v-show="menuListShowed">
         <a class="menu-list-group-item" @click="referenceClicked">说明</a>
-        <a class="menu-list-group-item" @click="aboutClicked">关于</a>
         <a class="menu-list-group-item" @click="showSearchBar">搜索</a>
+        <a class="menu-list-group-item" @click="aboutClicked">关于</a>
+        <a class="menu-list-group-item" href="change_password.html">修改密码</a>
         <a class="menu-list-group-item" @click="logout">退出</a>
     </div>
 
@@ -178,7 +179,6 @@
         </form>
     </div>
     <div class="diary-list-group">
-
     </div>
 
     <button v-show="haveMore" @click.prevent="loadMore" class="load-more">加载更多</button>
@@ -191,13 +191,8 @@
     let PAGE_AMOUNT = 30;
 
 
-    function getDiaries() {
-        let queryData = {
-            "pageCount": PAGE_AMOUNT,
-            "pageNo": pageNo,
-            "type": "list"
-        };
 
+    function getDiaries(queryData) {
         if (getAuthorization()){
             $.ajax({
                 data:queryData,
@@ -215,15 +210,23 @@
                     // 在后面判断获取的数据，小于1或小于每页的数量时，隐藏加载更多按钮
                     if(data.data.length < 1 || data.data.length < PAGE_AMOUNT) {
                         diaryApp.haveMore = false;
+                    } else {
+                        diaryApp.haveMore = true;
                     }
                     pageNo++;
+                } else if (!data.logined){
+                    prompt(data.info,()=>{
+                        location = FrontURL.login;
+                    })
                 } else {
                     prompt(data.info);
                 }
+
             }
         }
 
     }
+
 
 
 // Diary
@@ -236,30 +239,41 @@
             keyword: ''
         },
         created: function () {
-            getDiaries()
+            let queryData = {
+                "pageCount": PAGE_AMOUNT,
+                "pageNo": pageNo,
+                "type": "list"
+            };
+            getDiaries(queryData)
         },
         watch:{
             diaries: function () {
                 diaries = this.diaries;
                 if (diaries.length > 0) {
-                    let html = `<h3 class="list-header">${diaries[0].date.substring(0,7)}</h3>
-                            <div class="list-content">`;
                     let lastItem = diaries[0];
-                    for (let i = 1; i< diaries.length; i++){
-                        let currentDiary = diaries[i];
+                    let html = `<h3 class="list-header">${lastItem.date.substring(0,7)}</h3>
+                                <div class="list-content">
+                                    <a href="edit.html?diaryId=${lastItem.id}" class="list-item">
+                                        <i class="category bg-${lastItem.category}"></i>
+                                        <span class="date">${lastItem.date.slice(8, 10)}</span>
+                                        <p class="detail">${lastItem.content} </p>
+                                    </a>`;
+                    if(diaries.length > 1){
+                        for (let i = 1; i< diaries.length; i++){
+                            let currentDiary = diaries[i];
 
-                        let lastTime = lastItem.date.substring(0,7);
-                        let currentTime = currentDiary.date.substring(0,7);
+                            let lastTime = lastItem.date.substring(0,7);
+                            let currentTime = currentDiary.date.substring(0,7);
 
-                        if (lastTime === currentTime){
-                            let template = `<a href="edit.html?diaryId=${currentDiary.id}" class="list-item">
-                                            <i class="category bg-${currentDiary.category}"></i>
-                                            <span class="date">${currentDiary.date.slice(8,10)}</span>
-                                            <p class="detail">${currentDiary.content } </p>
-                                        </a>`;
-                            html += template;
-                        } else {
-                            let template = `</div>
+                            if (lastTime === currentTime){
+                                let template = `<a href="edit.html?diaryId=${currentDiary.id}" class="list-item">
+                                                <i class="category bg-${currentDiary.category}"></i>
+                                                <span class="date">${currentDiary.date.slice(8,10)}</span>
+                                                <p class="detail">${currentDiary.content } </p>
+                                            </a>`;
+                                html += template;
+                            } else {
+                                let template = `</div>
                                         <h3 class="list-header">${currentDiary.date.substring(0,7)}</h3>
                                         <div class="list-content">
                                             <a href="edit.html?diaryId=${currentDiary.id}" class="list-item">
@@ -267,8 +281,9 @@
                                                 <span class="date">${currentDiary.date.slice(8, 10)}</span>
                                                 <p class="detail">${currentDiary.content} </p>
                                             </a>`;
-                            html += template;
-                            lastItem = diaries[i];
+                                html += template;
+                                lastItem = diaries[i];
+                            }
                         }
                     }
                     html+=`</div>`;
@@ -278,53 +293,30 @@
         },
         methods:{
             loadMore: function () {
-                getDiaries()
+                let queryData = {
+                    "pageCount": PAGE_AMOUNT,
+                    "pageNo": pageNo,
+                    "type": "list"
+                };
+                getDiaries(queryData)
             },
             clearSearchBar: function () {
                 this.keyword = ''
             },
             searchConfirmed: function () {
                 // 初始化一些值
-
                 pageNo = 1;
-
+                diaryApp.diaries = [];
                 let queryData = {
                     "keyword": this.keyword,
                     "pageCount": PAGE_AMOUNT,
                     "pageNo": pageNo,
                     "type": "search"
                 };
-                if (getAuthorization()){
-                    $.ajax({
-                        data:queryData,
-                        url:URL.diaryOperation,
-                        dataType:'json',
-                        method:"GET",
-                        beforeSend:()=>{
-                            diaryApp.haveMore = true;
-                        },
-                        success:(data) => {
-                            if(data.success){
-                                diaryApp.diaries = [];
-                                diaryApp.diaries = diaryApp.diaries.concat(data.data);
-                                // 在后面判断获取的数据，小于1或小于每页的数量时，隐藏加载更多按钮
-                                if(data.data.length < 1 || data.data.length < PAGE_AMOUNT) {
-                                    diaryApp.haveMore = false;
-                                }
-                                pageNo++;
-                            } else {
-                                prompt(data.info);
-                            }
-                        },
-                        error:(xhr) => {
-                            console.log(xhr);
-                        }
-                    });
-                }
+                getDiaries(queryData);
             }
         }
     });
-
 
 
 

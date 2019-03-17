@@ -39,6 +39,7 @@ if (checkLogin($_COOKIE['diaryEmail'],$_COOKIE['diaryToken'])){
     }
 } else {
     $response = new ResponseError('密码错误，请重新登录');
+    $response->setLogined(false);
     echo $response->toJson();
 }
 

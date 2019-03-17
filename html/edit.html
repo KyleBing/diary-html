@@ -126,9 +126,11 @@
                     prompt(data.info,()=>{
                         location = FrontURL.index
                     },1)
-                } else {
-                    prompt(data.info)
+                } else if (!data.logined){
+                    location = FrontURL.login;
                 }
+
+
             },
             error: function (xhr) {
                 console.log(xhr);
@@ -164,8 +166,11 @@
                                 diaryEditor.id = '';
                                 diaryEditor.content = '';
                                 diaryEditor.category = 'life';
+                            }if (!data.logined){
+                                location = FrontURL.login;
                             }
-                            prompt(data.info)
+                            prompt(data.info);
+
                         },
                         error: (xhr) => {
                             console.log(xhr)

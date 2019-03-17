@@ -70,6 +70,7 @@ function prompt(title, callback = ()=>{}, timeout = 3){
     },1000 * timeout);
 }
 
+
 let API = {
     getData: (url, queryData, onSuccess, onError, onComplate) => {
         let authorizationKey = getAuthorization();

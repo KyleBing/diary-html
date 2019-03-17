@@ -9,12 +9,13 @@
 
 // 验证是否已登录
 function checkLogin($email, $token){
-    $con = new mysqli(HOST,USER,PASSWORD,DATABASE,PORT);
+    $con = new dsqli();
     $result = $con->query(MSql::QueryUserPassword($email));
     if ($result) {
         if ($result->num_rows !== 0) { // 存在用户
             $row = $result->fetch_array();
             if ($token === $row['password']) {
+                $con->close();
                 return true;
             }
         }

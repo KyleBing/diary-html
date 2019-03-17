@@ -8,13 +8,14 @@
  */
 
 require "class/Response.php";
+require "common.php";
 require "class/MSql.php";
 
 
 define('INVITATION','kylebingooOO');
 
 
-switch ($_POST['type']){
+switch ($_REQUEST['type']){
     case 'insert':
         if (isset($_POST['invitation']) && $_POST['invitation'] == INVITATION){
             addNewUser($_POST['email'],$_POST['password']);
@@ -23,12 +24,17 @@ switch ($_POST['type']){
             echo $response->toJson();
         }
         break;
-
-    case 'update':
-        updatePassword($_POST['email'],$_POST['oldPassword'],$_POST['newPassword']);
-        break;
     case 'login':
         login($_POST['email'],$_POST['password']);
+        break;
+    case 'update':
+        if (checkLogin($_COOKIE['diaryEmail'],$_COOKIE['diaryToken'])){
+            updatePassword($_COOKIE['diaryEmail'],$_POST['oldPassword'],$_POST['newPassword']);
+        } else {
+            $response = new ResponseError('请先登录');
+            $response->setLogined(false);
+            echo $response->toJson();
+        }
         break;
     default:
         $response = new ResponseError('请求参数错误');
