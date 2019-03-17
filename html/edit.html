@@ -166,11 +166,13 @@
                                 diaryEditor.id = '';
                                 diaryEditor.content = '';
                                 diaryEditor.category = 'life';
-                            }if (!data.logined){
-                                location = FrontURL.login;
+                            } else if (!data.logined){
+                                prompt(data.info, () => {
+                                    location = FrontURL.login;
+                                })
+                            } else {
+                                prompt(data.info)
                             }
-                            prompt(data.info);
-
                         },
                         error: (xhr) => {
                             console.log(xhr)
@@ -206,7 +208,7 @@
         },
         created: function () {
             let searchString = location.search;
-            if (searchString !== undefined){
+            if (searchString !== undefined && searchString !== ''){
                 let id = location.search.substring(location.search.lastIndexOf('=') + 1); // 获取id值
                 $.ajax({
                     url: URL.diaryOperation,
@@ -226,7 +228,10 @@
                     }
                 });
             } else {
-
+                let now = new Date();
+                let day = now.getDate().toString().padStart(2,'0');
+                let month = (now.getMonth()+1).toString().padStart(2,'0');
+                this.date = `${now.getFullYear()}-${month}-${day}`;
             }
         }
     })
