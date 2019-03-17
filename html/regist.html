@@ -33,7 +33,7 @@
                    id="invitation" >
         </div>
         <div class="input-group">
-            <label for="email" :class="[(emailVerified || email.length<1)? '' : 'red']">{{ labelEmail }}</label>
+            <label for="email" :class="[(emailVerified || email.length < 1)? '' : 'red']">{{ labelEmail }}</label>
             <input v-model.lazy="email"
                    type="text"
                    name="email"
@@ -47,7 +47,7 @@
                     id="password1">
         </div>
         <div class="input-group">
-            <label for="password2" :class="[(passwordVerified || password2<1)? '' : 'red']">{{ labelCheckPassword }}</label>
+            <label for="password2" :class="[(passwordVerified || password2 < 1)? '' : 'red']">{{ labelCheckPassword }}</label>
             <input v-model="password2"
                    type="password"
                    name="password2"
@@ -120,18 +120,23 @@
                     function onSuccess(data) {
                         if(data.success){
                             setTimeout (()=> { location = FrontURL.login },2000)
+                        } else if (!data.logined) {
+                            prompt(`${data.info},正在前往登录`,()=>{
+                                location = FrontURL.login
+                            })
+                        } else {
+                            prompt(data.info);
                         }
-                        prompt(`${data.info},正在前往登录`);
                     }
                 }
             }
         },
         watch:{
             invitation: function ()  {
-                if (this.invitation.length < 1){
-                    this.labelEmail = "邀请码"
+                if (this.invitation.length > 0){
+                    this.labelInvitation = "邀请码"
                 } else {
-                    this.labelEmail = "邀请码不能为空"
+                    this.labelInvitation = "邀请码不能为空"
                 }
             },
             email: function ()  {
