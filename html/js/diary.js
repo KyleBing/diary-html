@@ -41,7 +41,7 @@ function getAuthorization() {
     let email = $.cookie(cookieEmailName);
     let token = $.cookie(cookieTokenName);
     if (email === undefined || token === undefined){
-        prompt('请先登录',()=>{location = FrontURL.login});
+        location = FrontURL.login;
         return false;
     } else {
         return {

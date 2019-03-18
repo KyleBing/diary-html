@@ -154,7 +154,7 @@ body {
   background-color: #fff;
 }
 .diary-list-group .list-header {
-  font-family: "SF UI Text";
+  font-family: "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", "Helvetica";
   font-size: 17px;
   font-weight: bold;
   text-align: left;
@@ -181,7 +181,7 @@ body {
   float: left;
 }
 .diary-list-group .list-item .date {
-  font-family: "SF UI Display";
+  font-family: "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", "Helvetica";
   width: 30px;
   float: left;
   line-height: 28px;
@@ -217,7 +217,6 @@ body {
   transform: scaleY(0.5);
 }
 .load-more {
-  border-color: #EFEFF4;
   border: 1px solid #8E8E93;
   display: block;
   height: 25px;

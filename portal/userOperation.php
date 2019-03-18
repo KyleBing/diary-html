@@ -15,6 +15,8 @@ require "class/MSql.php";
 define('INVITATION','kylebingooOO');
 
 
+// TODO: 多用户系统
+
 switch ($_REQUEST['type']){
     case 'insert':
         if (isset($_POST['invitation']) && $_POST['invitation'] == INVITATION){
