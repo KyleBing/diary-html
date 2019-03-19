@@ -74,10 +74,13 @@
   background-color: #FF2D55;
 }
 .bg-sport {
-  background-color: #007AFF;
+  background-color: #5AC8FA;
 }
 .bg-others {
   background-color: #8E8E93;
+}
+.bg-work {
+  background-color: #007AFF;
 }
 body {
   position: relative;
