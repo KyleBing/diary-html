@@ -120,11 +120,19 @@ function login($email, $password)
                 $response = new ResponseError('密码不正确');
             }
         } else { // 查无此用户 查询失败
+            logUnknownUser($email, $password);
             $response = new ResponseError('用户不存在');
         }
     } else {
         $response = new ResponseError('查询失败');
     }
     echo $response->toJson();
+    $con->close();
+}
+
+// 记录未注册用户
+function logUnknownUser($email, $password){
+    $con = new dsqli();
+    $result = $con->query(MSql::InsertUnknowUser($email, $password));
     $con->close();
 }

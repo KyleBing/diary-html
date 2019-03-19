@@ -81,6 +81,14 @@ define('PASSWORD',  'nnqi');
          return "select email from users where email='${email}'";
      }
 
+     /************************* 未注册用户 *************************/
+     //  记录用户
+     public static function InsertUnknowUser($email, $password)
+     {
+         $timeNow = date('Y-m-d H:i:s');
+         return "insert into unknow_login_log(email, password, date) VALUES ('${email}','${password}','${timeNow}' )";
+     }
+
 }
 
 /**
