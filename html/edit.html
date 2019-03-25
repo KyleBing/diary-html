@@ -72,12 +72,7 @@
     let modal = new Vue({
         el: '#modal-action',
         data: {
-            actions:[{
-                id: 1,
-                class: '',
-                title: '删除',
-                action: 'showConfirm()'
-            }],
+            actions:[],
             delete: [{
                 id: 1,
                 class: '',
@@ -98,6 +93,12 @@
                     action: 'closeConfirm()'
                 }
             ]
+        },
+        created: function() {
+            let searchString = location.search;
+            if (searchString !== undefined && searchString !== ''){
+                this.actions = this.delete;
+            }
         },
         method: {
 

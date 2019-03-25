@@ -119,7 +119,7 @@
                     });
                     function onSuccess(data) {
                         if(data.success){
-                            setTimeout (()=> { location = FrontURL.login },2000)
+                            prompt(data.info);
                         } else if (!data.logined) {
                             prompt(`${data.info},正在前往登录`,()=>{
                                 location = FrontURL.login
