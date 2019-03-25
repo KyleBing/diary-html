@@ -148,12 +148,18 @@
                 location = '.';
             },
             confirmClicked: function () {
+                if(diaryEditor.content.trim().length === 0) {
+                    diaryEditor.content = ''; // clear content
+                    prompt('内容未填写',()=>{},2);
+                    return;
+                }
                 let queryData = {
                     diaryId: diaryEditor.id,
                     diaryContent: diaryEditor.content,
                     diaryCategory: diaryEditor.category,
                     diaryDate: diaryEditor.date + ' 00:00:00'
                 };
+
                 if (diaryEditor.id === ''){
                     queryData.type = 'add';
                     $.ajax({
@@ -163,6 +169,7 @@
                         success:( data ) => {
                             data = JSON.parse(data);
                             if(data.success){
+                                prompt(data.info);
                                 diaryEditor.id = '';
                                 diaryEditor.content = '';
                                 diaryEditor.category = 'life';
