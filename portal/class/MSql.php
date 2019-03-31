@@ -146,5 +146,11 @@ class dsqli extends mysqli
     {
         parent::__construct(HOST, USER, PASSWORD, DATABASE, PORT);
     }
+
+    public function query($query, $resultmode = MYSQLI_STORE_RESULT)
+    {
+        parent::query("SET NAMES 'utf8'");
+        return parent::query($query, $resultmode);
+    }
 }
 

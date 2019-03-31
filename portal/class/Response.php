@@ -62,7 +62,7 @@ class ResponseError extends Response
 
     public function __construct(string $info = '请求失败')
     {
-        $this->info = $info;
+        parent::__construct($info);
     }
 
 
@@ -76,7 +76,7 @@ class ResponseSuccess extends Response
 
     public function __construct(string $info = '请求成功')
     {
-        $this->info = $info;
+        parent::__construct($info);
     }
 
     public function getData()
@@ -111,7 +111,7 @@ class ResponseLogin extends Response
 
     public function __construct(string $info = '登录成功')
     {
-        $this->info = $info;
+        parent::__construct($info);
     }
     public function getUid(): string
     {
