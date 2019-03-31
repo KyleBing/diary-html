@@ -38,6 +38,10 @@
         <a class="menu-list-group-item" @click="aboutClicked">关于</a>
         <a class="menu-list-group-item" href="change_password.html">修改密码</a>
         <a class="menu-list-group-item" @click="logout">退出</a>
+        <div class="user-info">
+            <span class="username">{{userInfo.username}}</span>
+            <span class="email">{{userInfo.email}}</span>
+        </div>
     </div>
 
     <!--reference-->
@@ -111,6 +115,7 @@
             menuListShowed:     true,       // menu list
             referenceShowed:    false,      // reference
             aboutShowed:        false,      // about
+            userInfo: getAuthorization()
         },
         watch:{
             secondMenuShowed: function () { // false all second panel when secondMenuShowed is false.

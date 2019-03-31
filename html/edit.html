@@ -126,7 +126,7 @@
                 if(data.success){
                     prompt(data.info,()=>{
                         location = FrontURL.index
-                    },1)
+                    })
                 } else if (!data.logined){
                     location = FrontURL.login;
                 }
@@ -151,7 +151,7 @@
             confirmClicked: function () {
                 if(diaryEditor.content.trim().length === 0) {
                     diaryEditor.content = ''; // clear content
-                    prompt('内容未填写',()=>{},2);
+                    prompt('内容未填写',()=>{});
                     return;
                 }
                 let queryData = {
