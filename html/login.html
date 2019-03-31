@@ -98,10 +98,13 @@
                 });
                 function onSuccess(data) {
                     if(data.success){
-                        setAuthorization(data.email, data.token);
-                        setTimeout (()=>{location = FrontURL.index},2000)
+                        setAuthorization(data.email, data.token, data.username, data.uid);
+                        prompt(data.info, ()=>{
+                            location = FrontURL.index
+                        })
+                    } else {
+                        prompt(data.info);
                     }
-                    prompt(data.info);
                 }
             }
         },

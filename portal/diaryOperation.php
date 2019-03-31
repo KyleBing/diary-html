@@ -11,26 +11,27 @@ require "class/Response.php";
 require "class/MSql.php";
 require "common.php";
 
+// 传 email 是为了避免，邮件正确，日记id不对的情况
 
-if (checkLogin($_COOKIE['diaryEmail'],$_COOKIE['diaryToken'])){
-    switch ($_REQUEST['type']){
+if (checkLogin($_COOKIE['diaryEmail'], $_COOKIE['diaryToken'])) {
+    switch ($_REQUEST['type']) {
         case 'query':
-            queryDiary($_GET['diaryId']);
+            queryDiary($_COOKIE['diaryUid'], $_GET['diaryId']);
             break;
         case 'modify':
-            updateDiary($_POST['diaryId'],$_POST['diaryContent'],$_POST['diaryCategory'],$_POST['diaryDate']);
+            updateDiary($_COOKIE['diaryUid'], $_POST['diaryId'], $_POST['diaryContent'], $_POST['diaryCategory'], $_POST['diaryDate']);
             break;
         case 'add':
-            addDiary($_POST['diaryContent'],$_POST['diaryCategory'],$_POST['diaryDate']);
+            addDiary($_COOKIE['diaryUid'], $_POST['diaryContent'], $_POST['diaryCategory'], $_POST['diaryDate']);
             break;
         case 'delete':
-            deleteDiary($_POST['diaryId']);
+            deleteDiary($_COOKIE['diaryUid'], $_POST['diaryId']);
             break;
         case 'search':
         case 'list':
             $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
             $category = isset($_GET['diaryCategory']) ? $_GET['diaryCategory'] : '';
-            searchDiary($category, $keyword, $_GET['pageCount'], $_GET['pageNo']);
+            searchDiary($_COOKIE['diaryUid'], $category, $keyword, $_GET['pageCount'], $_GET['pageNo']);
             break;
         default:
             $response = new ResponseError('请求参数错误');
@@ -44,16 +45,36 @@ if (checkLogin($_COOKIE['diaryEmail'],$_COOKIE['diaryToken'])){
 }
 
 
+
+// 搜索，展示日记
+function searchDiary($uid, $category, $keyword, $pageCount, $pageNo)
+{
+    $startPoint = ($pageNo - 1) * $pageCount;
+    $con = new dsqli();
+    $con->set_charset('utf8');
+    $response = '';
+    $result = $con->query(MSql::SearchDiaries($uid, $category, $keyword, $startPoint, $pageCount));
+    if ($result) {
+        $response = new ResponseSuccess();
+        $diaries = $result->fetch_all(1); // 参数1会把字段名也读取出来
+        $response->setData($diaries);
+    } else {
+        $response = new ResponseError();
+    }
+    echo $response->toJson();
+    $con->close();
+}
+
 //查询日记内容
-function queryDiary($id)
+function queryDiary($uid, $id)
 {
     $con = new dsqli();
     $con->set_charset('utf8');
     $response = '';
-    $result = $con->query(MSql::QueryDiaries($id));
+    $result = $con->query(MSql::QueryDiaries($uid, $id));
     if ($result) {
         $response = new ResponseSuccess();
-        $diaries =  $result->fetch_all(1); // 参数1会把字段名也读取出来
+        $diaries = $result->fetch_all(1); // 参数1会把字段名也读取出来
         $response->setData($diaries);
     } else {
         $response = new ResponseError();
@@ -64,11 +85,12 @@ function queryDiary($id)
 
 
 //修改
-function updateDiary($id,$content,$category,$date){
+function updateDiary($uid, $id, $content, $category, $date)
+{
     $con = new dsqli();
     $con->set_charset('utf8');
     $response = '';
-    $result = $con->query(MSql::UpdateDiary($id,$content,$category,$date));
+    $result = $con->query(MSql::UpdateDiary($uid, $id, $content, $category, $date));
     if ($result) {
         $response = new ResponseSuccess('修改成功');
     } else {
@@ -80,11 +102,12 @@ function updateDiary($id,$content,$category,$date){
 
 
 // 删除
-function deleteDiary($id){
+function deleteDiary($uid, $id)
+{
     $con = new dsqli();
     $con->set_charset('utf8');
     $response = '';
-    $result = $con->query(MSql::DeleteDiary($id));
+    $result = $con->query(MSql::DeleteDiary($uid, $id));
     if ($result) {
         $response = new ResponseSuccess('删除成功');
     } else {
@@ -96,11 +119,12 @@ function deleteDiary($id){
 
 
 // 添加
-function addDiary($content,$category,$date){
+function addDiary($uid, $content, $category, $date)
+{
     $con = new dsqli();
     $con->set_charset('utf8');
     $response = '';
-    $result = $con->query(MSql::AddDiary($content,$category,$date));
+    $result = $con->query(MSql::AddDiary($uid, $content, $category, $date));
     if ($result) {
         $response = new ResponseSuccess('添加成功');
     } else {
@@ -111,20 +135,3 @@ function addDiary($content,$category,$date){
 }
 
 
-// 搜索，展示日记
-function searchDiary($category, $keyword, $pageCount, $pageNo){
-    $startPoint = ($pageNo -1 ) * $pageCount;
-    $con = new dsqli();
-    $con->set_charset('utf8');
-    $response = '';
-    $result = $con->query(MSql::SearchDiaries($category, $keyword, $startPoint, $pageCount));
-    if ($result) {
-        $response = new ResponseSuccess();
-        $diaries =  $result->fetch_all(1); // 参数1会把字段名也读取出来
-        $response->setData($diaries);
-    } else {
-        $response = new ResponseError();
-    }
-    echo $response->toJson();
-    $con->close();
-}

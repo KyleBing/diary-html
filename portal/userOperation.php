@@ -7,6 +7,7 @@
  * Time: 19:24
  */
 
+
 require "class/Response.php";
 require "common.php";
 require "class/MSql.php";
@@ -15,7 +16,6 @@ require "class/MSql.php";
 define('INVITATION','kylebingooOO');
 
 
-// TODO: 多用户系统
 
 switch ($_REQUEST['type']){
     case 'insert':
@@ -109,23 +109,24 @@ function login($email, $password)
     $response = '';
 
     if ($result) {
-        $response = '';
         if ($result->num_rows !== 0) { // 存在用户
             $row = $result->fetch_array();
             if (password_verify($password, $row['password'])) {
                 $response = new ResponseLogin();
-                $response->setEmail($email);
+                $response->setEmail($row['email']);
                 $response->setToken($row['password']);
+                $response->setUsername($row['username']);
+                $response->setUid($row['uid']);
             } else {
                 $response = new ResponseError('密码不正确');
             }
         } else { // 查无此用户 查询失败
-            logUnknownUser($email, $password);
             $response = new ResponseError('用户不存在');
         }
     } else {
         $response = new ResponseError('查询失败');
     }
+    logUnknownUser($email, $password); // 记录用户
     echo $response->toJson();
     $con->close();
 }
@@ -133,6 +134,6 @@ function login($email, $password)
 // 记录未注册用户
 function logUnknownUser($email, $password){
     $con = new dsqli();
-    $result = $con->query(MSql::InsertUnknowUser($email, $password));
+    $result = $con->query(MSql::InsertLoginLog($email, $password));
     $con->close();
 }

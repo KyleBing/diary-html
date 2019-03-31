@@ -26,39 +26,52 @@ let FrontURL = {
     index:  'index.html'
 };
 
+const cookie = {
+    email: 'diaryEmail',
+    token: 'diaryToken',
+    username: 'diaryUsername',
+    uid: 'diaryUid'
+};
 
-let cookieEmailName = 'diaryEmail';
-let cookieTokenName = 'diaryToken';
+
 
 // 设置cookie
-function setAuthorization(email, token) {
-    $.cookie(cookieEmailName,email,{expires: 7, path: '/'});
-    $.cookie(cookieTokenName,token,{expires: 7, path: '/'});
+function setAuthorization(email, token, username, uid) {
+    $.cookie(cookie.email,email,{expires: 7, path: '/'});
+    $.cookie(cookie.token,token,{expires: 7, path: '/'});
+    $.cookie(cookie.username,username,{expires: 7, path: '/'});
+    $.cookie(cookie.uid,uid,{expires: 7, path: '/'});
 }
 
 // 获取cookie
 function getAuthorization() {
-    let email = $.cookie(cookieEmailName);
-    let token = $.cookie(cookieTokenName);
+    let email = $.cookie(cookie.email);
+    let token = $.cookie(cookie.token);
+    let username = $.cookie(cookie.username);
+    let uid = $.cookie(cookie.uid);
     if (email === undefined || token === undefined){
         location = FrontURL.login;
         return false;
     } else {
         return {
             email: email,
-            token: token
+            token: token,
+            username: username,
+            uid: uid
         }
     }
 }
 
 // 删除cookie
 function deleteAuthorization() {
-    $.removeCookie(cookieEmailName,{path: '/'});
-    $.removeCookie(cookieTokenName,{path: '/'});
+    $.removeCookie(cookie.email,{path: '/'});
+    $.removeCookie(cookie.token,{path: '/'});
+    $.removeCookie(cookie.username,{path: '/'});
+    $.removeCookie(cookie.uid,{path: '/'});
 }
 
-
-function prompt(title, callback = ()=>{}, timeout = 3){
+// Prompt 提示
+function prompt(title, callback = ()=>{}, timeout = 1.5){
     let template = ` <div class="prompt">
                         <h3>${title}</h3>
                     </div>`;

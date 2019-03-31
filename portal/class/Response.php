@@ -96,10 +96,31 @@ class ResponseLogin extends Response
     var $info = '';
     var $token = '';
     var $email = '';
+    var $uid = '';
+    var $username='';
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
 
     public function __construct(string $info = '登录成功')
     {
         $this->info = $info;
+    }
+    public function getUid(): string
+    {
+        return $this->uid;
+    }
+
+    public function setUid(string $uid): void
+    {
+        $this->uid = $uid;
     }
 
     public function getToken(): string
