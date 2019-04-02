@@ -23,7 +23,7 @@
 
 <nav class="navbar clearfix" id="navbar">
     <div @click="closeEditor"      class="navbar-btn left" > <img src="img/tabicon/close.png" alt="关闭"></div>
-    <div @click="confirmClicked"   class="navbar-btn right" ><img src="img/tabicon/confirm.png" alt="确定"></div>
+    <div @click="confirmClicked"  v-show="confirmBtnShow" class="navbar-btn right" ><img src="img/tabicon/confirm.png" alt="确定"></div>
     <div class="brand">
         <a href=".."><img src="img/logo.png" alt="日记"></a>
     </div>
@@ -144,6 +144,7 @@
     let navbar = new Vue({
         el:"#navbar",
         data:{
+            confirmBtnShow: true
         },
         methods:{
             closeEditor:function () {
@@ -168,6 +169,8 @@
                     queryData.type = 'modify';
                 }
 
+                this.confirmBtnShow = false;
+
                 $.ajax({
                     data:queryData,
                     method: 'POST',
@@ -175,6 +178,7 @@
                     success:(data) => {
                         data = JSON.parse(data);
                         if (data.success){
+                            navbar.confirmBtnShow = true;
                             prompt(data.info, ()=>{
                                 location = FrontURL.index
                             })
@@ -183,7 +187,8 @@
                                 location = FrontURL.login;
                             })
                         } else {
-                            prompt(data.info)
+                            prompt(data.info);
+                            navbar.confirmBtnShow = true;
                         }
                     },
                     error: (xhr) => {
