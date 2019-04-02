@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../lib/css/reset.css">
     <link rel="stylesheet" href="css/diary.css?v2.0">
     <!--js-->
-    <!--<script src="../../lib/js/vue_2.66.js"></script>--> <!--develop-->
+    <!--<script src="../../lib/js/vue_2.66.js"></script> &lt;!&ndash;develop&ndash;&gt;-->
     <script src="../../lib/js/vue.min.2.6.10.js"></script> <!--production-->
     <script src="../../lib/js/jquery-2.2.4.min.js"></script>
     <script src="../../lib/js/jquery.cookie.js"></script>
@@ -187,7 +187,7 @@
     <div class="diary-list-group">
     </div>
 
-    <button v-show="haveMore" @click.prevent="loadMore" class="load-more">加载更多</button>
+    <button v-show="haveMore" @click="loadMore"  class="load-more">加载更多</button>
 </div>
 
 
@@ -214,11 +214,7 @@
                 if(data.success){
                     diaryApp.diaries = diaryApp.diaries.concat(data.data);
                     // 在后面判断获取的数据，小于1或小于每页的数量时，隐藏加载更多按钮
-                    if(data.data.length < 1 || data.data.length < PAGE_AMOUNT) {
-                        diaryApp.haveMore = false;
-                    } else {
-                        diaryApp.haveMore = true;
-                    }
+                    diaryApp.haveMore = !(data.data.length < PAGE_AMOUNT);
                     pageNo++;
                 } else if (!data.logined){
                     prompt(data.info,()=>{
@@ -226,11 +222,10 @@
                     })
                 } else {
                     prompt(data.info);
+                    diaryApp.haveMore = true
                 }
-
             }
         }
-
     }
 
 
@@ -242,15 +237,10 @@
             searchBarShow: false,
             haveMore: true,
             diaries: [],
-            keyword: ''
+            keyword: '',
         },
-        created: function () {
-            let queryData = {
-                "pageCount": PAGE_AMOUNT,
-                "pageNo": pageNo,
-                "type": "list"
-            };
-            getDiaries(queryData)
+        mounted: function () {
+            this.loadMore();
         },
         watch:{
             diaries: function () {
@@ -294,12 +284,16 @@
                     }
                     html+=`</div>`;
                     document.querySelector('.diary-list-group').innerHTML = html;
+                } else {
+                    document.querySelector('.diary-list-group').innerHTML = ''
                 }
             }
         },
         methods:{
             loadMore: function () {
+                this.haveMore = false;
                 let queryData = {
+                    "keyword": this.keyword,
                     "pageCount": PAGE_AMOUNT,
                     "pageNo": pageNo,
                     "type": "list"
@@ -313,13 +307,7 @@
                 // 初始化一些值
                 pageNo = 1;
                 diaryApp.diaries = [];
-                let queryData = {
-                    "keyword": this.keyword,
-                    "pageCount": PAGE_AMOUNT,
-                    "pageNo": pageNo,
-                    "type": "search"
-                };
-                getDiaries(queryData);
+                this.loadMore();
             }
         }
     });
