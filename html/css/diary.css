@@ -201,7 +201,7 @@ body {
   line-height: 28px;
   display: block;
   font-size: 14px;
-  color: #000;
+  color: #373737;
   position: relative;
 }
 .diary-list-group .list-item .detail::after {
