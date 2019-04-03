@@ -172,16 +172,21 @@
                 this.confirmBtnShow = false;
 
                 $.ajax({
-                    data:queryData,
+                    data: queryData,
                     method: 'POST',
                     url: URL.diaryOperation,
                     success:(data) => {
                         data = JSON.parse(data);
                         if (data.success){
                             navbar.confirmBtnShow = true;
-                            prompt(data.info, ()=>{
-                                location = FrontURL.index
-                            })
+                            if (diaryEditor.id === ''){
+                                diaryEditor.content = '';
+                                prompt(data.info)
+                            } else {
+                                prompt(data.info, ()=>{
+                                    location = FrontURL.index
+                                })
+                            }
                         } else if (!data.logined){
                             prompt(data.info, () => {
                                 location = FrontURL.login;
