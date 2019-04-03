@@ -301,7 +301,10 @@
                 getDiaries(queryData)
             },
             clearSearchBar: function () {
-                this.keyword = ''
+                pageNo = 1;
+                diaryApp.diaries = [];
+                this.keyword = '';
+                this.loadMore();
             },
             searchConfirmed: function () {
                 // 初始化一些值

@@ -20,7 +20,7 @@ define('INVITATION','kylebingooOO');
 switch ($_REQUEST['type']){
     case 'insert':
         if (isset($_POST['invitation']) && $_POST['invitation'] == INVITATION){
-            addNewUser($_POST['email'], $_POST['password'], $_POST['usernmae']);
+            addNewUser($_POST['email'], $_POST['password'], $_POST['username']);
         } else {
             $response = new ResponseError('邀请码不正确');
             echo $response->toJson();
