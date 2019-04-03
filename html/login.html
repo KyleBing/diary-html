@@ -25,7 +25,7 @@
     <div class="logo">
         <img src="img/logo_big.png" alt="Diary Logo">
     </div>
-    <form action="../portal" id="regForm">
+    <form method="post" id="regForm" @submit.prevent="loginSubmit">
         <div class="input-group">
             <label for="email" :class="[(emailVerified || email.length<1)? '' : 'red']">{{ labelEmail }}</label>
             <input v-model.lazy="email"
@@ -43,8 +43,7 @@
 
         <button class="btn"
                 :class="verified ? 'btn-active' : 'btn-inactive'"
-                type="button"
-                @click.prevent="loginSubmit" >登录</button>
+                type="submit" >登录</button>
     </form>
     <div class="footer clearfix">
         <a href="regist.html" class="left">注册</a>
@@ -65,15 +64,10 @@
         },
         computed:{
             emailVerified: function ()  {
-                let emailRe = /^\w+@\w+\.\w+$/i;
-                return emailRe.test(this.email)
+                return /(\w|\d)+@(\w|\d)+\.\w+/i.test(this.email)
             },
             passwordVerified: function ()  {
-                if (this.password.length > 0){
-                    return true
-                } else {
-                    return false
-                }
+                return this.password.length > 0
             },
             verified: function ()  {
                 return this.emailVerified && this.passwordVerified
