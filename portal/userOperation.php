@@ -20,7 +20,7 @@ define('INVITATION','kylebingooOO');
 switch ($_REQUEST['type']){
     case 'insert':
         if (isset($_POST['invitation']) && $_POST['invitation'] == INVITATION){
-            addNewUser($_POST['email'],$_POST['password']);
+            addNewUser($_POST['email'], $_POST['password'], $_POST['usernmae']);
         } else {
             $response = new ResponseError('邀请码不正确');
             echo $response->toJson();
@@ -46,16 +46,14 @@ switch ($_REQUEST['type']){
 
 
 // 查询注册用户是否存在
-function addNewUser($email, $password){
+function addNewUser($email, $password, $username){
     $con = new dsqli();
     $result = $con->query(MSql::QueryEmailExitance($email));
     $response = '';
 
     if ($result){
         if ($result->num_rows === 0){ // 如果用户不存在，新建用户
-            $sql = MSql::InsetNewUser($email,$password);
-        $result = $con->query(MSql::InsetNewUser($email,password_hash($password,PASSWORD_DEFAULT)));
-
+        $result = $con->query(MSql::InsetNewUser($email, password_hash($password,PASSWORD_DEFAULT), $username));
             if ($result) {
                 $response = new ResponseSuccess('注册成功');
             } else {

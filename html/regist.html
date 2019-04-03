@@ -27,33 +27,39 @@
     </div>
     <form id="regForm">
         <div class="input-group">
-            <label for="invitation" :class="[(invitation.length > 0)? '' : 'red']">{{ labelInvitation }}</label>
-            <input v-model.lazy="invitation"
+            <label for="invitation" :class="{red: !invitationVerified}">{{ labelInvitation }}</label>
+            <input v-model="invitation"
                    type="text"
                    name="invitation"
                    id="invitation" >
         </div>
         <div class="input-group">
-            <label for="email" :class="[(emailVerified || email.length < 1)? '' : 'red']">{{ labelEmail }}</label>
+            <label for="email" :class="{red: !usernameVerified}">{{ labelUsername }}</label>
+            <input v-model="username"
+                   type="text"
+                   name="username"
+                   id="username" >
+        </div>
+        <div class="input-group">
+            <label for="email" :class="{red: !emailVerified}">{{ labelEmail }}</label>
             <input v-model.lazy="email"
                    type="text"
                    name="email"
                    id="email" >
         </div>
         <div class="input-group">
-            <label for="password1">密码</label>
+            <label for="password1" :class="{red: !password1Verified}">{{ labelPassword1 }}</label>
             <input  v-model.lzay="password1"
                     name="password1"
                     type="password"
                     id="password1">
         </div>
         <div class="input-group">
-            <label for="password2" :class="[(passwordVerified || password2 < 1)? '' : 'red']">{{ labelCheckPassword }}</label>
+            <label for="password2" :class="{red: !password2Verified}">{{ labelPassword2 }}</label>
             <input v-model="password2"
                    type="password"
                    name="password2"
-                   id="password2"
-                   class="focused">
+                   id="password2">
         </div>
 
         <button class="btn"
@@ -63,10 +69,7 @@
     </form>
     <div class="footer clearfix">
         <a href="login.html" class="left">登录</a>
-        <a href="findpassword.html" class="right">找回密码</a>
     </div>
-
-
 </div>
 
 
@@ -75,29 +78,26 @@
     var vm = new Vue({
         el: "#reg",
         data: {
-            labelInvitation:"邀请码",
-            labelEmail: "邮箱",
-            labelCheckPassword: "再次确认密码",
-            email: "",
-            password1: "",
-            password2: "",
-            invitation: ""
+            labelInvitation:'邀请码',
+            labelEmail: '邮箱',
+            labelPassword1: '密码',
+            labelPassword2: '再次确认密码',
+            labelUsername: '昵称',
+            username: '',
+            email: '',
+            password1: '',
+            password2: '',
+            invitation: '',
+            invitationVerified: false,
+            usernameVerified: false,
+            emailVerified: false,
+            password1Verified: false,
+            password2Verified: false
         },
         computed:{
-            emailVerified: function ()  {
-                let emailRe = /^\w+@\w+\.\w+$/i;
-                return emailRe.test(this.email)
-            },
-            passwordVerified: function ()  {
-                if (this.password1.length > 0 && this.password1 === this.password2){
-                    return true
-                } else {
-                    return false
-                }
-            },
             verified: function ()  {
-                return this.emailVerified && this.passwordVerified && this.invitation.length > 0;
-            }
+                return this.emailVerified && this.invitationVerified && this.usernameVerified && this.password1Verified && this.password2Verified;
+            },
         },
         methods:{
             regSubmit: function ()  {
@@ -135,23 +135,47 @@
         watch:{
             invitation: function ()  {
                 if (this.invitation.length > 0){
-                    this.labelInvitation = "邀请码"
+                    this.labelInvitation = "邀请码";
+                    this.invitationVerified = true
                 } else {
-                    this.labelInvitation = "邀请码不能为空"
+                    this.labelInvitation = "邀请码不能为空";
+                    this.invitationVerified = false
+                }
+            },
+            username:function(){
+                if(this.username.length > 0){
+                    this.labelUsername = "昵称";
+                    this.usernameVerified = true;
+                } else {
+                    this.labelUsername = "昵称不能为空";
+                    this.usernameVerified = false
                 }
             },
             email: function ()  {
-                if (this.emailVerified){
-                    this.labelEmail = "邮箱"
+                if (/(\w|\d)+@(\w|\d)+\.\w+/i.test(this.email)){
+                    this.labelEmail = "邮箱";
+                    this.emailVerified = true
                 } else {
-                    this.labelEmail = "输入的邮箱不正确，请重新输入"
+                    this.labelEmail = "输入的邮箱不正确，请重新输入";
+                    this.emailVerified = false
+                }
+            },
+            password1: function ()  {
+                if (this.password1.length > 0 ){
+                    this.labelPassword1 = "密码";
+                    this.password1Verified = true;
+                } else {
+                    this.labelPassword1 = "密码不能为空";
+                    this.password1Verified = false
                 }
             },
             password2: function ()  {
-                if (this.passwordVerified){
-                    this.labelCheckPassword = "再次确认密码"
+                if (this.password1 === this.password2 && this.password1Verified){
+                    this.labelPassword2 = "再次确认密码";
+                    this.password2Verified = true;
                 } else {
-                    this.labelCheckPassword = "两次密码不一致"
+                    this.labelPassword2 = "两次密码不一致";
+                    this.password2Verified = false
                 }
             }
         }

@@ -111,10 +111,10 @@ class MSql
     }
 
     //  新增用户
-    public static function InsetNewUser($email, $password)
+    public static function InsetNewUser($email, $password, $username)
     {
         $timeNow = date('Y-m-d H:i:s');
-        return "insert into users(email, password, register_time) VALUES ('${email}','${password}','${timeNow}' )";
+        return "insert into users(email, password, register_time, username) VALUES ('${email}','${password}','${timeNow}','${username}')";
     }
 
     // 查询用户是否存在
