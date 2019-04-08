@@ -175,10 +175,14 @@ body {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  padding: 3px 10px;
+  padding: 5px 10px;
   display: block;
   border: 1px solid #EFEFF4;
   font-size: 1em;
+}
+.search-bar input:focus {
+  border-color: #FF9500;
+  box-shadow: 1px 1px 5px #00000011;
 }
 .search-bar .clear {
   color: #8E8E93;
@@ -186,11 +190,11 @@ body {
   line-height: 20px;
   text-align: center;
   cursor: pointer;
-  top: 12px;
+  top: 14px;
   height: 20px;
   width: 20px;
   position: absolute;
-  right: 10px;
+  right: 14px;
   display: block;
 }
 .navbar {
@@ -348,8 +352,7 @@ body {
   resize: none;
   height: 120px;
   padding: 8px 10px;
-  font-size: 1em
-;
+  font-size: 1em;
 }
 .date-selector {
   font-size: 18px;
