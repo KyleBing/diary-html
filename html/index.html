@@ -267,17 +267,17 @@
                             let lastItemDay = lastItem.date.substring(8,10);
                             let currentItemMonth = currentDiary.date.substring(0,7);
                             let currentItemDay = currentDiary.date.substring(8,10);
+                            let template = '';
 
                             if (lastItemMonth === currentItemMonth){
                                 let date =  (lastItemDay === currentItemDay)? '': currentDiary.date.slice(8,10);
-                                let template = `<a href="edit.html?diaryId=${currentDiary.id}" class="list-item">
+                                template = `<a href="edit.html?diaryId=${currentDiary.id}" class="list-item">
                                                 <i class="category bg-${currentDiary.category}"></i>
                                                 <span class="date">${date}</span>
                                                 <p class="detail">${currentDiary.content } </p>
                                             </a>`;
-                                html += template;
                             } else {
-                                let template = `</div>
+                                template = `</div>
                                         <h3 class="list-header">${currentDiary.date.substring(0,7)}</h3>
                                         <div class="list-content">
                                             <a href="edit.html?diaryId=${currentDiary.id}" class="list-item">
@@ -285,9 +285,9 @@
                                                 <span class="date">${currentDiary.date.slice(8, 10)}</span>
                                                 <p class="detail">${currentDiary.content} </p>
                                             </a>`;
-                                html += template;
-                                lastItem = diaries[i];
                             }
+                            html += template;
+                            lastItem = diaries[i];
                         }
                     }
                     html+=`</div>`;
