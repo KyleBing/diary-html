@@ -5,10 +5,10 @@
   float: right;
 }
 .hidden {
-  visibility: hidden;
+  display: none;
 }
 .show {
-  visibility: visible;
+  display: block;
 }
 .user-select {
   -webkit-user-select: none;

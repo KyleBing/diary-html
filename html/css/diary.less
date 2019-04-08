@@ -25,12 +25,14 @@
 
 
 
-.bg-life { .bg-orange }
-.bg-study { .bg-green }
-.bg-bigevent { .bg-magenta }
-.bg-sport { .bg-syan }
-.bg-others { .bg-gray }
-.bg-work { .bg-blue }
+.bg-life      { .bg-orange }
+.bg-study     { .bg-green }
+.bg-bigevent  { .bg-red }
+.bg-sport     { .bg-yellow }
+.bg-others    { .bg-purple }
+.bg-work      { .bg-blue }
+.bg-game      { .bg-syan }
+.bg-film      { .bg-magenta }
 // FUNCITONS
 
 .border-radius(@corner){
@@ -385,12 +387,14 @@ body{
     background-color: #fff;
   }
 
-  #category-diary + label     {color: @main-orange;}
   #category-study + label     {color: @green;}
+  #category-game + label      {color: @syan;}
   #category-work + label      {color: @blue;}
-  #category-sport + label     {color: @syan;}
-  #category-bigevent + label  {color: @magenta;}
-  #category-others + label    {color: @gray;}
+  #category-others + label    {color: @purple;}
+  #category-sport + label     {color: @yellow;}
+  #category-diary + label     {color: @main-orange;}
+  #category-bigevent + label  {color: @red;}
+  #category-film + label      {color: @magenta;}
 }
 
 
@@ -499,6 +503,8 @@ body{
       &.reference-red{.bg-red}
       &.reference-yellow{.bg-yellow}
       &.reference-magenta{.bg-magenta}
+      &.reference-purple{.bg-purple}
+      &.reference-syan{.bg-syan}
     }
     &:nth-child(2n+0) {
       margin-right: 0;
@@ -520,6 +526,7 @@ body{
   }
   .subtitle{
     font-weight: normal;
+    color: @gray;
   }
   .author{
     width: 100%;

@@ -48,29 +48,40 @@
     <!--reference-->
     <ul class="reference" v-show="referenceShowed" style="display: none;">
         <li class="list-group-item">
-            <input v-model="categories" @change="refreshContent" class="hidden" type="checkbox" id="category-life" value="life">
-            <label class="reference-orange" for="category-life">生活</label>
+            <input v-model="categories" class="hidden" type="checkbox" id="category-game" value="game">
+            <label class="reference-syan" for="category-game">游戏</label>
         </li>
         <li class="list-group-item">
-            <input v-model="categories" @change="refreshContent" class="hidden" type="checkbox" id="category-study" value="study">
+            <input v-model="categories" class="hidden" type="checkbox" id="category-study" value="study">
             <label class="reference-green" for="category-study">学习</label>
         </li>
         <li class="list-group-item">
-            <input v-model="categories" @change="refreshContent" class="hidden" type="checkbox" id="category-work" value="work">
+            <input v-model="categories" class="hidden" type="checkbox" id="category-work" value="work">
             <label class="reference-blue" for="category-work">工作</label>
         </li>
         <li class="list-group-item">
-            <input v-model="categories" @change="refreshContent" class="hidden" type="checkbox" id="category-bitevent" value="bigevent">
-            <label class="reference-red" for="category-bitevent">大事</label>
-        </li>
-        <li class="list-group-item">
-            <input v-model="categories" @change="refreshContent" class="hidden" type="checkbox" id="category-sport" value="sport">
+            <input v-model="categories" class="hidden" type="checkbox" id="category-sport" value="sport">
             <label class="reference-yellow" for="category-sport">运动</label>
         </li>
         <li class="list-group-item">
-            <input v-model="categories" @change="refreshContent" class="hidden" type="checkbox" id="category-other" value="other">
-            <label class="reference-magenta" for="category-other">其它</label>
+            <input v-model="categories" class="hidden" type="checkbox" id="category-other" value="other">
+            <label class="reference-purple" for="category-other">其它</label>
         </li>
+        <li class="list-group-item">
+            <input v-model="categories" class="hidden" type="checkbox" id="category-life" value="life">
+            <label class="reference-orange" for="category-life">生活</label>
+        </li>
+        <li class="list-group-item">
+            <input v-model="categories" class="hidden" type="checkbox" id="category-film" value="film">
+            <label class="reference-magenta" for="category-film">电影</label>
+        </li>
+        <li class="list-group-item">
+            <input v-model="categories" class="hidden" type="checkbox" id="category-bitevent" value="bigevent">
+            <label class="reference-red" for="category-bitevent">大事</label>
+        </li>
+
+
+
     </ul>
 
 
@@ -107,6 +118,15 @@
             },
             closeMenu: function () {
                 if (menu.secondMenuShowed){
+                    if (menu.referenceShowed){  // 去掉这个条件恢复正常模式，现在是从 reference 直接进 index 列表
+                        menu.menuListShowed = true;
+                        menu.secondMenuShowed = false;
+                        menu.referenceShowed = false;
+                        this.btnClose = false;
+                        this.btnMenu = true;
+                        this.btnAdd = true;
+                        menu.menuPanelShowed = false;
+                    }
                     menu.menuListShowed = true;
                     menu.secondMenuShowed = false;
                 } else {
@@ -118,7 +138,7 @@
 
             },
             addClicked: function () {
-                location = 'edit.html';
+                location = FrontURL.edit;
             },
             confirmClicked: function () {
 
@@ -150,9 +170,10 @@
                     navbar.btnAdd = false;
                 }
             },
-            categories: function () {
+            referenceShowed: function () {
                 // console.log(this.categories);
                 $.cookie(cookie.category,JSON.stringify(this.categories), cookie.options);
+                diaryApp.freshLoad(); // 关闭 reference 页面的时候初始化载入内容
             }
 
         },

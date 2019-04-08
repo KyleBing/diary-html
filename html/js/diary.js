@@ -23,10 +23,11 @@ let URL = {
 
 let FrontURL = {
     login:  'login.html',
-    index:  'index.html'
+    index:  'index.html',
+    edit:   'edit.html'
 };
 
-const categories = ['life','study','work','sport','bigevent','other'];
+const categories = ['life','study','work','sport','game','film','bigevent','other'];
 const cookie = {
     email: 'diaryEmail',
     token: 'diaryToken',
@@ -35,7 +36,6 @@ const cookie = {
     category: 'diaryCategories',
     options: {expires: 7, path: '/'}
 };
-
 
 
 // 设置cookie

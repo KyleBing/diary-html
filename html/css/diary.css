@@ -5,10 +5,10 @@
   float: right;
 }
 .hidden {
-  visibility: hidden;
+  display: none;
 }
 .show {
-  visibility: visible;
+  display: block;
 }
 .user-select {
   -webkit-user-select: none;
@@ -38,7 +38,7 @@
   background-color: #8E8E93;
 }
 .bg-magenta {
-  background-color: #FF2D55;
+  background-color: #FF2D70;
 }
 .bg-red {
   background-color: #FF3B30;
@@ -65,7 +65,7 @@
   color: #8E8E93 !important;
 }
 .magenta {
-  color: #FF2D55 !important;
+  color: #FF2D70 !important;
 }
 .red {
   color: #FF3B30 !important;
@@ -77,16 +77,22 @@
   background-color: #4CD964;
 }
 .bg-bigevent {
-  background-color: #FF2D55;
+  background-color: #FF3B30;
 }
 .bg-sport {
-  background-color: #5AC8FA;
+  background-color: #FFCC00;
 }
 .bg-others {
-  background-color: #8E8E93;
+  background-color: #5856D6;
 }
 .bg-work {
   background-color: #007AFF;
+}
+.bg-game {
+  background-color: #5AC8FA;
+}
+.bg-film {
+  background-color: #FF2D70;
 }
 body {
   position: relative;
@@ -414,23 +420,29 @@ body {
   border: 1px solid #9B9B9B;
   background-color: #fff;
 }
-.category-selector #category-diary + label {
-  color: #FF9500;
-}
 .category-selector #category-study + label {
   color: #4CD964;
+}
+.category-selector #category-game + label {
+  color: #5AC8FA;
 }
 .category-selector #category-work + label {
   color: #007AFF;
 }
+.category-selector #category-others + label {
+  color: #5856D6;
+}
 .category-selector #category-sport + label {
-  color: #5AC8FA;
+  color: #FFCC00;
+}
+.category-selector #category-diary + label {
+  color: #FF9500;
 }
 .category-selector #category-bigevent + label {
-  color: #FF2D55;
+  color: #FF3B30;
 }
-.category-selector #category-others + label {
-  color: #8E8E93;
+.category-selector #category-film + label {
+  color: #FF2D70;
 }
 .menu-panel {
   z-index: 10;
@@ -541,7 +553,13 @@ body {
   background-color: #FFCC00;
 }
 .reference .list-group-item input[type=checkbox]:checked + label.reference-magenta {
-  background-color: #FF2D55;
+  background-color: #FF2D70;
+}
+.reference .list-group-item input[type=checkbox]:checked + label.reference-purple {
+  background-color: #5856D6;
+}
+.reference .list-group-item input[type=checkbox]:checked + label.reference-syan {
+  background-color: #5AC8FA;
 }
 .reference .list-group-item:nth-child(2n+0) {
   margin-right: 0;
@@ -561,6 +579,7 @@ body {
 }
 .about .subtitle {
   font-weight: normal;
+  color: #8E8E93;
 }
 .about .author {
   width: 100%;
