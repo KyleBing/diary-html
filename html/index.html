@@ -157,22 +157,23 @@
     });
 
     // scrollTop 测试
-/*        window.onload = () => {
-            window.onscroll = () => {
-                if (needLoadContent()){
-
-                } else {
-
-                }
+    window.onload = () => {
+        window.onscroll = () => {
+            if (needLoadContent() && diaryApp.haveMore){
+                diaryApp.loadMore();
             }
-        };
+        }
+    };
 
-        function needLoadContent() {
-            let lastOffsetTop = document.querySelector('.list-item:last-child').offsetTop;
-            let clientHeight = window.innerHeight;
-            let scrollTop = document.documentElement.scrollTop;
-            return (lastOffsetTop < clientHeight + scrollTop);
-        }*/
+    // 下划自动加载内容
+    function needLoadContent() {
+        let lastOffsetTop = document.querySelector('.list-content:last-child .list-item:last-child').offsetTop;
+        let clientHeight = window.innerHeight;
+        let scrollTop = document.documentElement.scrollTop;
+        console.clear();
+        console.log(`${lastOffsetTop} | ${clientHeight} | ${scrollTop}`);
+        return (lastOffsetTop < clientHeight + scrollTop);
+    }
 </script>
 
 
