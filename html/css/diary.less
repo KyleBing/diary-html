@@ -463,26 +463,44 @@ body{
 
 @reference-list-item-height: 40px;
 
-.reference{
+.reference {
   padding: 30px;
-  &::after{
+
+  &::after {
     .clearfix;
   }
-  .list-group-item{
-    margin-bottom: 20px;
-    font-size: 20px;
+
+  .list-group-item {
+    display: block;
     text-align: center;
     width: 40%;
     margin-right: 20%;
-    color: #ffffff;
-    display: block;
-    line-height: @reference-list-item-height;
-    height: @reference-list-item-height;
     float: left;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    &:nth-child(2n+0){
+    input[type=checkbox] + label {
+      .user-select();
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+      font-size: 20px;
+      color: #ffffff;
+      line-height: @reference-list-item-height;
+      height: @reference-list-item-height;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      border: 1px dashed @gray;
+
+    }
+    input[type=checkbox]:checked + label {
+      border: none;
+      &.reference-orange{.bg-orange}
+      &.reference-green{.bg-green}
+      &.reference-blue{.bg-blue}
+      &.reference-red{.bg-red}
+      &.reference-yellow{.bg-yellow}
+      &.reference-magenta{.bg-magenta}
+    }
+    &:nth-child(2n+0) {
       margin-right: 0;
     }
   }

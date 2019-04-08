@@ -93,6 +93,7 @@
                 function onSuccess(data) {
                     if(data.success){
                         setAuthorization(data.email, data.token, data.username, data.uid);
+                        $.cookie(cookie.category,JSON.stringify(categories), cookie.options)
                         prompt(data.info, ()=>{
                             location = FrontURL.index
                         })

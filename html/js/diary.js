@@ -26,21 +26,24 @@ let FrontURL = {
     index:  'index.html'
 };
 
+const categories = ['life','study','work','sport','bigevent','other'];
 const cookie = {
     email: 'diaryEmail',
     token: 'diaryToken',
     username: 'diaryUsername',
-    uid: 'diaryUid'
+    uid: 'diaryUid',
+    category: 'diaryCategories',
+    options: {expires: 7, path: '/'}
 };
 
 
 
 // 设置cookie
 function setAuthorization(email, token, username, uid) {
-    $.cookie(cookie.email,email,{expires: 7, path: '/'});
-    $.cookie(cookie.token,token,{expires: 7, path: '/'});
-    $.cookie(cookie.username,username,{expires: 7, path: '/'});
-    $.cookie(cookie.uid,uid,{expires: 7, path: '/'});
+    $.cookie(cookie.email,email,cookie.options);
+    $.cookie(cookie.token,token,cookie.options);
+    $.cookie(cookie.username,username,cookie.options);
+    $.cookie(cookie.uid,uid,cookie.options);
 }
 
 // 获取cookie
@@ -131,3 +134,5 @@ let API = {
         }
     }
 };
+
+

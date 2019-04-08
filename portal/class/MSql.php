@@ -49,15 +49,26 @@ class MSql
     /************************* 日记操作 *************************/
 
     // 搜索日记
-    public static function SearchDiaries($uid, $category, $keyword, $startPoint, $pageCount)
+    public static function SearchDiaries($uid, $categories, $keyword, $startPoint, $pageCount)
     {
-        return "SELECT *
+        $categoryStr = '';
+        if (count($categories) > 0) {
+            for($i=0; $i<count($categories); $i++){
+                $template = " or category='${categories[$i]}'";
+                $categoryStr .= $template;
+            }
+            $categoryStr = substr($categoryStr,4);
+        } else {
+            $categoryStr = "category = ''";
+        }
+        $sql = "SELECT *
                   from diaries 
                   where uid='${uid}' 
-                  and category like '%${category}%' 
+                  and (${categoryStr})
                   and content like '%${keyword}%' 
                   order by date desc  
                   limit $startPoint, $pageCount";
+        return $sql;
     }
 
     // 添加日记

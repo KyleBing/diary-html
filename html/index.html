@@ -47,11 +47,30 @@
 
     <!--reference-->
     <ul class="reference" v-show="referenceShowed" style="display: none;">
-        <li class="list-group-item bg-orange">生活</li>
-        <li class="list-group-item bg-green">学习</li>
-        <li class="list-group-item bg-red">大事</li>
-        <li class="list-group-item bg-yellow">运动</li>
-        <li class="list-group-item bg-magenta">其它</li>
+        <li class="list-group-item">
+            <input v-model="categories" @change="refreshContent" class="hidden" type="checkbox" id="category-life" value="life">
+            <label class="reference-orange" for="category-life">生活</label>
+        </li>
+        <li class="list-group-item">
+            <input v-model="categories" @change="refreshContent" class="hidden" type="checkbox" id="category-study" value="study">
+            <label class="reference-green" for="category-study">学习</label>
+        </li>
+        <li class="list-group-item">
+            <input v-model="categories" @change="refreshContent" class="hidden" type="checkbox" id="category-work" value="work">
+            <label class="reference-blue" for="category-work">工作</label>
+        </li>
+        <li class="list-group-item">
+            <input v-model="categories" @change="refreshContent" class="hidden" type="checkbox" id="category-bitevent" value="bigevent">
+            <label class="reference-red" for="category-bitevent">大事</label>
+        </li>
+        <li class="list-group-item">
+            <input v-model="categories" @change="refreshContent" class="hidden" type="checkbox" id="category-sport" value="sport">
+            <label class="reference-yellow" for="category-sport">运动</label>
+        </li>
+        <li class="list-group-item">
+            <input v-model="categories" @change="refreshContent" class="hidden" type="checkbox" id="category-other" value="other">
+            <label class="reference-magenta" for="category-other">其它</label>
+        </li>
     </ul>
 
 
@@ -116,7 +135,8 @@
             menuListShowed:     true,       // menu list
             referenceShowed:    false,      // reference
             aboutShowed:        false,      // about
-            userInfo: getAuthorization()
+            userInfo: getAuthorization(),
+            categories: []
         },
         watch:{
             secondMenuShowed: function () { // false all second panel when secondMenuShowed is false.
@@ -129,7 +149,12 @@
                 if(this.menuPanelShowed){
                     navbar.btnAdd = false;
                 }
+            },
+            categories: function () {
+                // console.log(this.categories);
+                $.cookie(cookie.category,JSON.stringify(this.categories), cookie.options);
             }
+
         },
         methods:{
             referenceClicked: function () {
@@ -151,10 +176,19 @@
             },
             logout: function(){
                 deleteAuthorization();
+                $.removeCookie(cookie.category,{path: '/'});
                 location = FrontURL.login;
+            },
+            refreshContent: function () {
+                diaryApp.freshLoad();
             }
+        },
+        created: function () {
+            this.categories = JSON.parse($.cookie(cookie.category));
         }
     });
+
+
 
 
 </script>
@@ -165,7 +199,7 @@
     <div class="search-bar" v-show="searchBarShow">
         <form @submit.prevent="searchConfirmed">
             <input id="keyword" type="text" placeholder="搜索内容" v-model="keyword">
-            <span v-show="keyword.length > 0" @click="clearSearchBar" class="clear">✕</span>
+            <span v-show="keyword.length > 0" @click="freshLoad" class="clear">✕</span>
         </form>
     </div>
     <div class="diary-list-group">
@@ -312,11 +346,12 @@
                     "keyword": this.keyword,
                     "pageCount": PAGE_AMOUNT,
                     "pageNo": pageNo,
-                    "type": "list"
+                    "type": "list",
+                    "category": menu.categories
                 };
                 getDiaries(queryData)
             },
-            clearSearchBar: function () {
+            freshLoad: function () {
                 pageNo = 1;
                 diaryApp.diaries = [];
                 this.keyword = '';

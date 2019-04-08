@@ -10,6 +10,12 @@
 .show {
   visibility: visible;
 }
+.user-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .bg-orange {
   background-color: #FF9500;
 }
@@ -493,19 +499,49 @@ body {
   visibility: hidden;
 }
 .reference .list-group-item {
-  margin-bottom: 20px;
-  font-size: 20px;
+  display: block;
   text-align: center;
   width: 40%;
   margin-right: 20%;
-  color: #ffffff;
+  float: left;
+}
+.reference .list-group-item input[type=checkbox] + label {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 100%;
   display: block;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #ffffff;
   line-height: 40px;
   height: 40px;
-  float: left;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  border: 1px dashed #8E8E93;
+}
+.reference .list-group-item input[type=checkbox]:checked + label {
+  border: none;
+}
+.reference .list-group-item input[type=checkbox]:checked + label.reference-orange {
+  background-color: #FF9500;
+}
+.reference .list-group-item input[type=checkbox]:checked + label.reference-green {
+  background-color: #4CD964;
+}
+.reference .list-group-item input[type=checkbox]:checked + label.reference-blue {
+  background-color: #007AFF;
+}
+.reference .list-group-item input[type=checkbox]:checked + label.reference-red {
+  background-color: #FF3B30;
+}
+.reference .list-group-item input[type=checkbox]:checked + label.reference-yellow {
+  background-color: #FFCC00;
+}
+.reference .list-group-item input[type=checkbox]:checked + label.reference-magenta {
+  background-color: #FF2D55;
 }
 .reference .list-group-item:nth-child(2n+0) {
   margin-right: 0;
