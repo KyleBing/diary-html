@@ -141,7 +141,6 @@
                 location = FrontURL.edit;
             },
             confirmClicked: function () {
-
             }
         }
     });
@@ -318,7 +317,7 @@
                                 <div class="list-content">
                                     <a href="edit.html?diaryId=${lastItem.id}" class="list-item">
                                         <i class="category bg-${lastItem.category}"></i>
-                                        <span class="date">${lastItem.date.slice(8, 10)}</span>
+                                        <span class="date">${Number(lastItem.date.slice(8, 10))}</span>
                                         <p class="detail">${lastItem.content} </p>
                                     </a>`;
                     if(diaries.length > 1){
@@ -326,13 +325,13 @@
                             let currentDiary = diaries[i];
 
                             let lastItemMonth = lastItem.date.substring(0,7);
-                            let lastItemDay = lastItem.date.substring(8,10);
+                            let lastItemDay = Number(lastItem.date.substring(8,10));
                             let currentItemMonth = currentDiary.date.substring(0,7);
-                            let currentItemDay = currentDiary.date.substring(8,10);
+                            let currentItemDay = Number(currentDiary.date.substring(8,10));
                             let template = '';
 
                             if (lastItemMonth === currentItemMonth){
-                                let date =  (lastItemDay === currentItemDay)? '': currentDiary.date.slice(8,10);
+                                let date =  (lastItemDay === currentItemDay)? '': currentItemDay;
                                 template = `<a href="edit.html?diaryId=${currentDiary.id}" class="list-item">
                                                 <i class="category bg-${currentDiary.category}"></i>
                                                 <span class="date">${date}</span>
@@ -344,7 +343,7 @@
                                         <div class="list-content">
                                             <a href="edit.html?diaryId=${currentDiary.id}" class="list-item">
                                                 <i class="category bg-${currentDiary.category}"></i>
-                                                <span class="date">${currentDiary.date.slice(8, 10)}</span>
+                                                <span class="date">${currentItemDay}</span>
                                                 <p class="detail">${currentDiary.content} </p>
                                             </a>`;
                             }

@@ -248,12 +248,13 @@ body {
   background-color: #fff;
 }
 .diary-list-group .list-header {
+  text-shadow: 1px 1px 0 #00000022;
   font-family: "SF UI display", "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", "Helvetica";
   font-size: 16px;
   font-weight: bold;
   text-align: left;
   padding: 0 20px;
-  color: #373737;
+  color: black;
   background-color: #EFEFF4;
   height: 30px;
   line-height: 30px;
@@ -278,10 +279,11 @@ body {
   font-family: "SF UI display", "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", "Helvetica";
   width: 30px;
   float: left;
+  text-align: left;
   line-height: 28px;
   font-size: 14px;
   font-weight: bold;
-  color: #9B9B9B;
+  color: black;
   padding-left: 10px;
 }
 .diary-list-group .list-item .detail {
@@ -292,7 +294,7 @@ body {
   line-height: 28px;
   display: block;
   font-size: 14px;
-  color: #373737;
+  color: black;
   position: relative;
 }
 .diary-list-group .list-item .detail::after {
