@@ -156,24 +156,7 @@
         }
     });
 
-    // scrollTop 测试
-    window.onload = () => {
-        window.onscroll = () => {
-            if (needLoadContent() && diaryApp.haveMore){
-                diaryApp.loadMore();
-            }
-        }
-    };
 
-    // 下划自动加载内容
-    function needLoadContent() {
-        let lastOffsetTop = document.querySelector('.list-content:last-child .list-item:last-child').offsetTop;
-        let clientHeight = window.innerHeight;
-        let scrollTop = document.documentElement.scrollTop;
-        console.clear();
-        console.log(`${lastOffsetTop} | ${clientHeight} | ${scrollTop}`);
-        return (lastOffsetTop < clientHeight + scrollTop);
-    }
 </script>
 
 
@@ -188,7 +171,12 @@
     <div class="diary-list-group">
     </div>
 
-    <button v-show="haveMore" @click="loadMore"  class="load-more">加载更多</button>
+    <div v-show="isLoading" class="loading">
+        <div class="loading-1 loading-item"></div>
+        <div class="loading-2 loading-item"></div>
+        <div class="loading-3 loading-item"></div>
+        <div class="loading-4 loading-item"></div>
+    </div>
 </div>
 
 
@@ -197,7 +185,21 @@
     let pageNo = 1;
     let PAGE_AMOUNT = 30;
 
+    window.onload = () => {
+        window.onscroll = () => {
+            if (needLoadContent() && diaryApp.haveMore){
+                diaryApp.loadMore();
+            }
+        }
+    };
 
+    // 判断是否加载内容
+    function needLoadContent() {
+        let lastOffsetTop = document.querySelector('.list-content:last-child .list-item:last-child').offsetTop;
+        let clientHeight = window.innerHeight;
+        let scrollTop = document.documentElement.scrollTop;
+        return (lastOffsetTop < clientHeight + scrollTop);
+    }
 
     function getDiaries(queryData) {
         if (getAuthorization()){
@@ -212,6 +214,7 @@
                 }
             });
             function onSuccess(data) {
+                diaryApp.isLoading = false;
                 if(data.success){
                     diaryApp.diaries = diaryApp.diaries.concat(data.data);
                     // 在后面判断获取的数据，小于1或小于每页的数量时，隐藏加载更多按钮
@@ -237,6 +240,7 @@
         data: {
             searchBarShow: false,
             haveMore: true,
+            isLoading: true,
             diaries: [],
             keyword: '',
         },
@@ -296,6 +300,7 @@
         methods:{
             loadMore: function () {
                 this.haveMore = false;
+                this.isLoading = true;
                 let queryData = {
                     "keyword": this.keyword,
                     "pageCount": PAGE_AMOUNT,
@@ -318,7 +323,6 @@
             }
         }
     });
-
 
 
 </script>
