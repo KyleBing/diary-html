@@ -197,7 +197,9 @@
     function needLoadContent() {
         let lastOffsetTop = document.querySelector('.list-content:last-child .list-item:last-child').offsetTop;
         let clientHeight = window.innerHeight;
-        let scrollTop = document.documentElement.scrollTop;
+        let scrollTop = document.scrollingElement.scrollTop;
+        // console.clear();
+        // console.log(`${lastOffsetTop} | ${clientHeight} | ${scrollTop}`);
         return (lastOffsetTop < clientHeight + scrollTop);
     }
 
