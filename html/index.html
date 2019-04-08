@@ -259,13 +259,16 @@
                         for (let i = 1; i< diaries.length; i++){
                             let currentDiary = diaries[i];
 
-                            let lastTime = lastItem.date.substring(0,7);
-                            let currentTime = currentDiary.date.substring(0,7);
+                            let lastItemMonth = lastItem.date.substring(0,7);
+                            let lastItemDay = lastItem.date.substring(8,10);
+                            let currentItemMonth = currentDiary.date.substring(0,7);
+                            let currentItemDay = currentDiary.date.substring(8,10);
 
-                            if (lastTime === currentTime){
+                            if (lastItemMonth === currentItemMonth){
+                                let date =  (lastItemDay === currentItemDay)? '': currentDiary.date.slice(8,10);
                                 let template = `<a href="edit.html?diaryId=${currentDiary.id}" class="list-item">
                                                 <i class="category bg-${currentDiary.category}"></i>
-                                                <span class="date">${currentDiary.date.slice(8,10)}</span>
+                                                <span class="date">${date}</span>
                                                 <p class="detail">${currentDiary.content } </p>
                                             </a>`;
                                 html += template;
