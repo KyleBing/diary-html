@@ -171,11 +171,16 @@
     <div class="diary-list-group">
     </div>
 
+    <!--加载动画-->
     <div v-show="isLoading" class="loading">
         <div class="loading-1 loading-item"></div>
         <div class="loading-2 loading-item"></div>
         <div class="loading-3 loading-item"></div>
         <div class="loading-4 loading-item"></div>
+    </div>
+
+    <div v-show="!isLoading&&!haveMore" class="end-of-diary">
+        <p><img src="img/EOF.png" alt="EOF"></p>
     </div>
 </div>
 
