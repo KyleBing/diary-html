@@ -326,8 +326,6 @@ body{
 
 //NEW
 
-
-
 .diary-editor{
   display: block;
   width: 100%;
@@ -347,6 +345,7 @@ body{
     line-height: 40px;
   }
   .date{
+    background-color: transparent;
     width: 50%;
     text-align: right;
     font-size: 18px;
@@ -365,6 +364,7 @@ body{
     display: none;
   }
   input[id^=category-] + label{
+    .user-select();
     display: block;
     font-weight: bold;
     width: 16.8%;
@@ -451,15 +451,15 @@ body{
   margin-top: 100px;
   text-align: center;
   .username{
-    font-size: 1.5em;
-    line-height: 1.5em;
+    font-size: 20px;
+    line-height: 30px;
     display: block;
     font-weight: bold;
     color: #ffffffdd;
   }
   .email{
-    font-size: 1em;
-    line-height: 1.2em;
+    font-size: 16px;
+    line-height: 20px;
     display: block;
     color: #ffffff55;
   }

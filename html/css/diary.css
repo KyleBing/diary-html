@@ -380,6 +380,7 @@ body {
   line-height: 40px;
 }
 .date-selector .date {
+  background-color: transparent;
   width: 50%;
   text-align: right;
   font-size: 18px;
@@ -400,6 +401,10 @@ body {
   display: none;
 }
 .category-selector input[id^=category-] + label {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   display: block;
   font-weight: bold;
   width: 16.8%;
@@ -491,15 +496,15 @@ body {
   text-align: center;
 }
 .user-info .username {
-  font-size: 1.5em;
-  line-height: 1.5em;
+  font-size: 20px;
+  line-height: 30px;
   display: block;
   font-weight: bold;
   color: #ffffffdd;
 }
 .user-info .email {
-  font-size: 1em;
-  line-height: 1.2em;
+  font-size: 16px;
+  line-height: 20px;
   display: block;
   color: #ffffff55;
 }
