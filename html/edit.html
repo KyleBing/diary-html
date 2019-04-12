@@ -131,7 +131,7 @@
             data: queryData,
             success: function (data) {
                 if (data.success) {
-                    prompt(data.info, () => {
+                    popMessage(promptType.success, data.info, () => {
                         location = FrontURL.index
                     }, 1) // 删除成功后等待时间不要太长
                 } else if (!data.logined) {
@@ -157,7 +157,7 @@
             confirmClicked: function () {
                 if(diaryEditor.content.trim().length === 0) {
                     diaryEditor.content = ''; // clear content
-                    prompt('内容未填写',()=>{});
+                    popMessage(promptType.warning, '内容未填写',()=>{});
                     return;
                 }
                 let queryData = {
@@ -183,20 +183,20 @@
                         data = JSON.parse(data);
                         if (data.success){
                             navbar.confirmBtnShow = true;
-                            if (diaryEditor.id === ''){
+                            if (diaryEditor.id === ''){         // 新建日记
                                 diaryEditor.content = '';
-                                prompt(data.info)
-                            } else {
-                                prompt(data.info, ()=>{
+                                popMessage(promptType.success, data.info)
+                            } else {                            // 编辑日记
+                                popMessage(promptType.success, data.info, ()=>{
                                     location = FrontURL.index
                                 })
                             }
-                        } else if (!data.logined){
-                            prompt(data.info, () => {
+                        } else if (!data.logined){ // 未登录
+                            popMessage(promptType.default, data.info, () => {
                                 location = FrontURL.login;
                             })
                         } else {
-                            prompt(data.info);
+                            popMessage(promptType.default, data.info);
                             navbar.confirmBtnShow = true;
                         }
                     },

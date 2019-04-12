@@ -91,14 +91,14 @@
                     }
                 });
                 function onSuccess(data) {
-                    if(data.success){
+                    if(data.success){ // 登录成功
                         setAuthorization(data.email, data.token, data.username, data.uid);
                         $.cookie(cookie.category,JSON.stringify(categories), cookie.options)
-                        prompt(data.info, ()=>{
+                        popMessage(promptType.success, data.info, ()=>{
                             location = FrontURL.index
                         })
-                    } else {
-                        prompt(data.info);
+                    } else { // 登录失败
+                        popMessage(promptType.warning, data.info);
                     }
                 }
             }

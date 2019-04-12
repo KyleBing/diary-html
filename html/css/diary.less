@@ -421,6 +421,7 @@ body{
 }
 
 .menu-list-group-item{
+  .user-select();
   cursor: pointer;
   display: block;
   position: relative;
@@ -670,7 +671,8 @@ body{
     }
   }
 }
-.prompt{
+
+.popMessage{
   z-index: 1000;
   position: fixed;
   top: 0;
@@ -680,8 +682,11 @@ body{
   text-align: center;
   background-color: @main-color;
   h3{
-    color: @main-orange;
     line-height: 25px;
     font-size: @size-note;
   }
+  &-default { h3{color: white;} }
+  &-warning { h3{color: @main-orange;} }
+  &-success { h3{color: @green;} }
+  &-danger  { h3{color: @red;} }
 }

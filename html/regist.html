@@ -120,12 +120,12 @@
                         }
                     });
                     function onSuccess(data) {
-                        if(data.success){
-                            prompt(`${data.info}，正在前往登录`,()=>{
+                        if(data.success){ // 注册成功
+                            popMessage(promptType.success, `${data.info}，正在前往登录`,()=>{
                                 location = FrontURL.login
                             })
-                        } else {
-                            prompt(data.info);
+                        } else { // 注册失败
+                            popMessage(promptType.warning, data.info);
                         }
                     }
                 }

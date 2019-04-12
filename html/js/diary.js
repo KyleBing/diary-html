@@ -73,15 +73,24 @@ function deleteAuthorization() {
     $.removeCookie(cookie.uid,{path: '/'});
 }
 
+
+const promptType = {
+    success:    "success",
+    warning:    "warning",
+    danger:     "danger",
+    default:    "default"
+};
+
 // Prompt 提示
-function prompt(title, callback = ()=>{}, timeout = 1.5){
-    let template = ` <div class="prompt">
+function popMessage(type, title, callback = ()=>{}, timeout = 1.5){
+    var popClass = 'popMessage-'+type;
+    let template = ` <div class="popMessage ${popClass}">
                         <h3>${title}</h3>
                     </div>`;
     $('body').append(template);
 
     setTimeout(() => {
-        $('.prompt').remove();
+        $('.popMessage').remove();
         callback();
     },1000 * timeout);
 }

@@ -466,6 +466,10 @@ body {
   padding: 30px 40px;
 }
 .menu-list-group-item {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   cursor: pointer;
   display: block;
   position: relative;
@@ -731,7 +735,7 @@ body {
 .alert button:active {
   background-color: #EFEFF4;
 }
-.prompt {
+.popMessage {
   z-index: 1000;
   position: fixed;
   top: 0;
@@ -741,8 +745,19 @@ body {
   text-align: center;
   background-color: #373737;
 }
-.prompt h3 {
-  color: #FF9500;
+.popMessage h3 {
   line-height: 25px;
   font-size: 14px;
+}
+.popMessage-default h3 {
+  color: white;
+}
+.popMessage-warning h3 {
+  color: #FF9500;
+}
+.popMessage-success h3 {
+  color: #4CD964;
+}
+.popMessage-danger h3 {
+  color: #FF3B30;
 }
