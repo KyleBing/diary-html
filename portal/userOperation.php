@@ -7,15 +7,9 @@
  * Time: 19:24
  */
 
-
 require "class/Response.php";
 require "common.php";
 require "class/MSql.php";
-
-
-define('INVITATION','kylebingooOO');
-
-
 
 switch ($_REQUEST['type']){
     case 'insert':
@@ -63,7 +57,7 @@ function addNewUser($email, $password, $username){
             $response =  new ResponseError('用户已存在');
         }
     } else {
-        $response = new ResponseError('查询失败');
+        $response = new ResponseError('系统错误');
     }
     echo $response->toJson();
     $con->close();
@@ -92,7 +86,7 @@ function updatePassword($email, $oldPassword, $newPassword){
             $response =  new ResponseError('用户不存在');
         }
     } else {
-        $response = new ResponseError('查询失败');
+        $response = new ResponseError('系统错误');
     }
     echo $response->toJson();
     $con->close();
@@ -115,6 +109,7 @@ function login($email, $password)
                 $response->setToken($row['password']);
                 $response->setUsername($row['username']);
                 $response->setUid($row['uid']);
+                logUnknownUser($email); // 记录用户登录
             } else {
                 $response = new ResponseError('密码不正确');
             }
@@ -122,16 +117,16 @@ function login($email, $password)
             $response = new ResponseError('用户不存在');
         }
     } else {
-        $response = new ResponseError('查询失败');
+        $response = new ResponseError('系统错误');
     }
-    logUnknownUser($email, $password); // 记录用户
+
     echo $response->toJson();
     $con->close();
 }
 
-// 记录未注册用户
-function logUnknownUser($email, $password){
+// 记录用户登录时间
+function logUnknownUser($email){
     $con = new dsqli();
-    $result = $con->query(MSql::InsertLoginLog($email, $password));
+    $result = $con->query(MSql::InsertLoginLog($email));
     $con->close();
 }

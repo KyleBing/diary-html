@@ -7,43 +7,39 @@
  * Time: 18:00
  */
 
+require "config.php";
+
 date_default_timezone_set('Asia/Shanghai');
 
-define('HOST', 'localhost');
-define('PORT', '3306');
-define('DATABASE', 'diary');
-define('USER', 'root');
-define('PASSWORD', 'nnqi');
 
 class MSql
 {
 
     public static $CREATEDIARIES = "CREATE TABLE `diaries` (
-                                  `id` int(11) NOT NULL AUTO_INCREMENT,
-                                  `create_date` datetime NOT NULL,
-                                  `content` varchar(255) NOT NULL,
-                                  `action` enum('add','update','delete','synced') NOT NULL DEFAULT 'add',
-                                  `category` enum('life','study','work','sport','bigevent','others') NOT NULL DEFAULT 'life',
-                                  `modify_date` datetime DEFAULT NULL,
-                                  `date` datetime NOT NULL,
-                                  PRIMARY KEY (`id`)
-                                ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;";
+                                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                                      `create_date` datetime NOT NULL,
+                                      `content` varchar(255) NOT NULL,
+                                      `category` enum('life','study','film','game','work','sport','bigevent','other') NOT NULL DEFAULT 'life',
+                                      `modify_date` datetime DEFAULT NULL,
+                                      `date` datetime NOT NULL,
+                                      `uid` int(11) NOT NULL,
+                                      PRIMARY KEY (`id`)
+                                    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
     public static $CREATELOGINLOG = "CREATE TABLE `login_log` (
-                                  `id` int(11) NOT NULL AUTO_INCREMENT,
-                                  `date` datetime NOT NULL,
-                                  `email` varchar(50) NOT NULL,
-                                  `password` varchar(30) NOT NULL,
-                                  PRIMARY KEY (`id`)
-                                ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;";
+                                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                                      `date` datetime NOT NULL,
+                                      `email` varchar(50) NOT NULL,
+                                      PRIMARY KEY (`id`)
+                                    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
     public static $CREATEUSERS = "CREATE TABLE `users` (
-                                  `uid` int(11) NOT NULL AUTO_INCREMENT,
-                                  `email` varchar(50) NOT NULL,
-                                  `password` varchar(100) NOT NULL,
-                                  `last_visit_time` datetime DEFAULT NULL,
-                                  `name` varchar(50) DEFAULT NULL,
-                                  `register_time` datetime DEFAULT NULL,
-                                  PRIMARY KEY (`uid`,`email`)
-                                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;";
+                                      `uid` int(11) NOT NULL AUTO_INCREMENT,
+                                      `email` varchar(50) NOT NULL,
+                                      `password` varchar(100) NOT NULL,
+                                      `last_visit_time` datetime DEFAULT NULL,
+                                      `username` varchar(50) DEFAULT NULL,
+                                      `register_time` datetime DEFAULT NULL,
+                                      PRIMARY KEY (`uid`,`email`)
+                                    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
 
 
     /************************* 日记操作 *************************/
@@ -136,10 +132,10 @@ class MSql
 
     /************************* 未注册用户 *************************/
     //  记录用户
-    public static function InsertLoginLog($email, $password)
+    public static function InsertLoginLog($email)
     {
         $timeNow = date('Y-m-d H:i:s');
-        return "insert into login_log(email, password, date) VALUES ('${email}','${password}','${timeNow}' )";
+        return "insert into login_log(email, password, date) VALUES ('${email}',${timeNow}' )";
     }
 
 }
