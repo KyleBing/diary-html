@@ -1,6 +1,9 @@
-# 标题日记 Diary
+![intro](https://github.com/KyleBing/diary/blob/master/github/intro.png?raw=true)
 
 线上访问地址： https://kylebing.cn/diary
+
+
+## 标题日记 - Diary
 
 > “ 用一句话记录你最珍贵的时刻 ”
 
@@ -9,9 +12,7 @@
 
 ## 界面
 
-![intro]()
-
-![content]()
+![content](https://github.com/KyleBing/diary/blob/master/github/content.png?raw=true)
 
 
 ## 用到的技术和库
