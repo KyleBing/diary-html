@@ -10,6 +10,17 @@
 标题日记的设计初忠：能通过日记浏览过去的时间，让时间一目了然。
 
 
+## 目录结构
+
+```bash
+├── github          # github 用到的图片等
+├── html            # 前端
+└── portal          # 后台
+```
+
+
+
+
 ## 界面
 
 ![content](https://github.com/KyleBing/diary/blob/master/github/content.png?raw=true)
