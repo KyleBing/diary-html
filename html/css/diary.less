@@ -480,8 +480,6 @@ body{
   .list-group-item {
     display: block;
     text-align: center;
-    width: 40%;
-    margin-right: 20%;
     float: left;
     input[type=checkbox] + label {
       .user-select();
@@ -509,7 +507,30 @@ body{
       &.reference-purple{.bg-purple}
       &.reference-syan{.bg-syan}
     }
-    &:nth-child(2n+0) {
+  }
+}
+
+@cols-md: 5;
+@gaps-md: 5%;
+
+@cols-sm: 2;
+@gaps-sm: 20%;
+
+@media screen and (min-width: 765px){
+  .list-group-item{
+    margin-right: @gaps-md;
+    width: (100% - @gaps-md * (@cols-md - 1))/@cols-md;
+    &:nth-child(@{cols-md}n+0) {
+      margin-right: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 765px){
+  .list-group-item{
+    margin-right: @gaps-sm;
+    width: (100% - @gaps-sm * (@cols-sm - 1))/@cols-sm;
+    &:nth-child(@{cols-sm}n+0) {
       margin-right: 0;
     }
   }
