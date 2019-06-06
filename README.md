@@ -1,9 +1,8 @@
-> 近期 Bandwagon（搬瓦工） 服务器遭墙，暂时无法访问。
 
 
 ![intro](https://github.com/KyleBing/diary/blob/master/github/intro.png?raw=true)
 
-线上访问地址： https://kylebing.cn/diary
+线上访问地址： http://kylebing.cn/diary
 
 
 ## 标题日记 - Diary
