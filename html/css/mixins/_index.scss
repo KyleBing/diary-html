@@ -1,55 +1,101 @@
 
-.loading{
-  height: $load-box-height;
-  margin: 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .loading-item{
-    height: $load-box-height;
-    width: 3px;
-    margin-right: 5px;
+.list-content{
+  background-color: #fff;
+}
+
+.diary-list-group{
+  .list-header{
+    text-shadow: 1px 1px 0 #00000022;
+    font-family: $font-family;
+    font-size: $list-header-font-size;
+    font-weight: bold;
+    text-align: left;
+    padding: 0 20px;
+    color: black;
+    background-color: $main-light-gray;
+    height: $list-header-height;
+    line-height: $list-header-height;
+  }
+  .list-item{
+    display: block;
+    height: $list-item-height;
     &:last-child{
-      margin-right: 0;
+      .detail{
+        border: 0;
+      }
+    }
+    &:hover{
+      background-color: $color-list-selected;
+    }
+    .category{
+      width: 5px;
+      height: $list-item-height;
+      display: block;
+      float: left;
+    }
+    .date{
+      font-family: $font-family;
+      width: 30px;
+      float: left;
+      text-align: left;
+      line-height: $list-item-height;
+      font-size: $list-item-font-size;
+      font-weight: bold;
+      color: black;
+      padding-left: 10px;
+
+    }
+    .detail{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-left: 40px;
+      line-height: $list-item-height;
+      display: block;
+      font-size: $list-item-font-size;
+      color: black;
+      position: relative;
+      &::after{
+        bottom: 0;
+        left: 0;
+        content: '';
+        display: block;
+        width: 100%;
+        position: absolute;
+        border-bottom: 1px solid $main-light-gray;
+        transform-origin: 0 100%;
+        -webkit-transform: scaleY(0.5);
+        -moz-transform: scaleY(0.5);
+        -ms-transform: scaleY(0.5);
+        -o-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+      }
     }
   }
-  &-1{
-    -webkit-animation: load-frame 1s infinite linear 0s;
-    -o-animation: load-frame 1s infinite linear 0s;
-    animation: load-frame 1s infinite linear 0s;
-    background-color: $red;
-  }
-  &-2{
-    -webkit-animation: load-frame 1s infinite linear 0.25s;
-    -o-animation: load-frame 1s infinite linear 0.25s;
-    animation: load-frame 1s infinite linear 0.25s;
-    background-color: $main-orange;
-  }
-  &-3{
-    -webkit-animation: load-frame 1s infinite linear 0.5s;
-    -o-animation: load-frame 1s infinite linear 0.5s;
-    animation: load-frame 1s infinite linear 0.5s;
-    background-color: $main-color;
-  }
-  &-4{
-    -webkit-animation: load-frame 1s infinite linear 0.75s;
-    -o-animation: load-frame 1s infinite linear 0.75s;
-    animation: load-frame 1s infinite linear 0.75s;
-    background-color: $green;
+}
+
+.load-more {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: white;
+  border: 1px solid lighten($gray, 10%);
+  display: block;
+  line-height: 30px;
+  font-size: $list-item-font-size;
+  text-align: center;
+  width: 40%;
+  margin: 20px auto 30px;
+  @include border-radius(5px);
+
+  &:active{
+    color: $main-color;
+    border-color: $main-color;
   }
 }
 
-@keyframes load-frame {
-  0% {height: $load-box-height;}
-  50% {height: $load-box-height * 0.25;}
-  100% {height: $load-box-height;}
-}
 
-@-webkit-keyframes load-frame {
-  0% {height: $load-box-height;}
-  50% {height: $load-box-height * 0.25;}
-  100% {height: $load-box-height;}
-}
 
 
 .end-of-diary{
