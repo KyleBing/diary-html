@@ -1,58 +1,24 @@
 @import "reset";
 @import "variables";
-@import "common-style";
+@import "mixin";
+@import "common";
 
 
-.bg-orange  { background-color: @main-orange; }
-.bg-yellow  { background-color: @yellow; }
-.bg-green   { background-color: @green; }
-.bg-blue    { background-color: @blue; }
-.bg-syan    { background-color: @syan; }
-.bg-purple  { background-color: @purple; }
-.bg-gray    { background-color: @gray; }
-.bg-magenta { background-color: @magenta; }
-.bg-red     { background-color: @red; }
-
-.orange  { color: @main-orange !important; }
-.yellow  { color: @yellow !important; }
-.green   { color: @green !important; }
-.blue    { color: @blue !important; }
-.syan    { color: @syan !important; }
-.purple  { color: @purple !important; }
-.gray    { color: @gray !important; }
-.magenta { color: @magenta !important; }
-.red     { color: @red !important; }
-
-
-
-.bg-life      { .bg-orange }
-.bg-study     { .bg-green }
-.bg-bigevent  { .bg-red }
-.bg-sport     { .bg-yellow }
-.bg-others    { .bg-purple }
-.bg-work      { .bg-blue }
-.bg-game      { .bg-syan }
-.bg-film      { .bg-magenta }
-// FUNCITONS
-
-.border-radius(@corner){
-  -webkit-border-radius: @corner;
-  -moz-border-radius: @corner;
-  border-radius: @corner;
-}
-.clearfix(){
-  content: '';
-  display: block;
-  clear: both;
-  visibility: hidden;
-}
+.bg-life      { @include bg-orange }
+.bg-study     { @include bg-green }
+.bg-bigevent  { @include bg-red }
+.bg-sport     { @include bg-yellow }
+.bg-others    { @include bg-purple }
+.bg-work      { @include bg-blue }
+.bg-game      { @include bg-syan }
+.bg-film      { @include bg-magenta }
 
 
 
 //FRAME
 body{
   position: relative;
-  background-color: @main-light-gray;
+  background-color: $main-light-gray;
 }
 .container{
   padding: 45px 0;
@@ -60,16 +26,16 @@ body{
 }
 
 
-@load-box-height: 30px;
+$load-box-height: 30px;
 
 .loading{
-  height: @load-box-height;
+  height: $load-box-height;
   margin: 20px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   .loading-item{
-    height: @load-box-height;
+    height: $load-box-height;
     width: 3px;
     margin-right: 5px;
     &:last-child{
@@ -80,38 +46,38 @@ body{
     -webkit-animation: load-frame 1s infinite linear 0s;
     -o-animation: load-frame 1s infinite linear 0s;
     animation: load-frame 1s infinite linear 0s;
-    background-color: @red;
+    background-color: $red;
   }
   &-2{
     -webkit-animation: load-frame 1s infinite linear 0.25s;
     -o-animation: load-frame 1s infinite linear 0.25s;
     animation: load-frame 1s infinite linear 0.25s;
-    background-color: @main-orange;
+    background-color: $main-orange;
   }
   &-3{
     -webkit-animation: load-frame 1s infinite linear 0.5s;
     -o-animation: load-frame 1s infinite linear 0.5s;
     animation: load-frame 1s infinite linear 0.5s;
-    background-color: @main-color;
+    background-color: $main-color;
   }
   &-4{
     -webkit-animation: load-frame 1s infinite linear 0.75s;
     -o-animation: load-frame 1s infinite linear 0.75s;
     animation: load-frame 1s infinite linear 0.75s;
-    background-color: @green;
+    background-color: $green;
   }
 }
 
 @keyframes load-frame {
-  0% {height: @load-box-height;}
-  50% {height: @load-box-height * 0.25;}
-  100% {height: @load-box-height;}
+  0% {height: $load-box-height;}
+  50% {height: $load-box-height * 0.25;}
+  100% {height: $load-box-height;}
 }
 
 @-webkit-keyframes load-frame {
-  0% {height: @load-box-height;}
-  50% {height: @load-box-height * 0.25;}
-  100% {height: @load-box-height;}
+  0% {height: $load-box-height;}
+  50% {height: $load-box-height * 0.25;}
+  100% {height: $load-box-height;}
 }
 
 
@@ -136,18 +102,18 @@ body{
   input{
     width: 100%;
     line-height: 25px;
-    .border-radius(@radius);
+    @include border-radius($radius);
     padding: 5px 10px;
     display: block;
-    border: 1px solid @main-light-gray;
+    border: 1px solid $main-light-gray;
     font-size: 1em;
     &:focus{
-      border-color: @main-orange;
+      border-color: $main-orange;
       box-shadow: 1px 1px 5px #00000011;
     }
   }
   .clear{
-    color: @gray;
+    color: $gray;
     font-size: 20px;
     line-height: 20px;
     text-align: center;
@@ -166,12 +132,12 @@ body{
   top: 0;
   left: 0;
   width: 100%;
-  background-color: @main-color;
+  background-color: $main-color;
   .navbar-btn{
     background-color: transparent;
     cursor: pointer;
     width: 55px;
-    height: @nav-height;
+    height: $nav-height;
     &:active{
       -webkit-border-radius: 50px;
       -moz-border-radius: 50px;
@@ -181,18 +147,18 @@ body{
     }
     img{
       display: block;
-      height: @nav-height;
+      height: $nav-height;
     }
   }
 
   .brand{
     margin: 0 auto;
-    height: @nav-height;
+    height: $nav-height;
     width: 80px;
     img{
       margin: 0 auto;
       display: block;
-      height: @nav-height;
+      height: $nav-height;
     }
   }
 }
@@ -206,40 +172,40 @@ body{
 .diary-list-group{
   .list-header{
     text-shadow: 1px 1px 0 #00000022;
-    font-family: @font-family;
-    font-size: @list-header-font-size;
+    font-family: $font-family;
+    font-size: $list-header-font-size;
     font-weight: bold;
     text-align: left;
     padding: 0 20px;
     color: black;
-    background-color: @main-light-gray;
-    height: @list-header-height;
-    line-height: @list-header-height;
+    background-color: $main-light-gray;
+    height: $list-header-height;
+    line-height: $list-header-height;
   }
   .list-item{
     display: block;
-    height: @list-item-height;
+    height: $list-item-height;
     &:last-child{
       .detail{
         border: 0;
       }
     }
     &:hover{
-      background-color: @color-list-selected;
+      background-color: $color-list-selected;
     }
     .category{
       width: 5px;
-      height: @list-item-height;
+      height: $list-item-height;
       display: block;
       float: left;
     }
     .date{
-      font-family: @font-family;
+      font-family: $font-family;
       width: 30px;
       float: left;
       text-align: left;
-      line-height: @list-item-height;
-      font-size: @list-item-font-size;
+      line-height: $list-item-height;
+      font-size: $list-item-font-size;
       font-weight: bold;
       color: black;
       padding-left: 10px;
@@ -250,9 +216,9 @@ body{
       text-overflow: ellipsis;
       white-space: nowrap;
       margin-left: 40px;
-      line-height: @list-item-height;
+      line-height: $list-item-height;
       display: block;
-      font-size: @list-item-font-size;
+      font-size: $list-item-font-size;
       color: black;
       position: relative;
       &::after{
@@ -262,7 +228,7 @@ body{
         display: block;
         width: 100%;
         position: absolute;
-        border-bottom: 1px solid @main-light-gray;
+        border-bottom: 1px solid $main-light-gray;
         transform-origin: 0 100%;
         -webkit-transform: scaleY(0.5);
         -moz-transform: scaleY(0.5);
@@ -280,18 +246,18 @@ body{
   -ms-user-select: none;
   user-select: none;
   background-color: white;
-  border: 1px solid lighten(@gray, 10%);
+  border: 1px solid lighten($gray, 10%);
   display: block;
   line-height: 30px;
-  font-size: @list-item-font-size;
+  font-size: $list-item-font-size;
   text-align: center;
   width: 40%;
   margin: 20px auto 30px;
-  .border-radius(5px);
+  @include border-radius(5px);
 
   &:active{
-    color: @main-color;
-    border-color: @main-color;
+    color: $main-color;
+    border-color: $main-color;
   }
 }
 
@@ -311,8 +277,8 @@ body{
   display: block;
   line-height: 45px;
   text-align: center;
-  border-bottom: 1px solid @main-light-gray;
-  &:nth-child(last){
+  border-bottom: 1px solid $main-light-gray;
+  &:last-child{
     border: none;
   }
   &:hover{
@@ -339,9 +305,9 @@ body{
   padding: 0 10px;
   background-color: #fff;
   height: 40px;
-  border-top: 1px solid @main-light-gray;
+  border-top: 1px solid $main-light-gray;
   .title{
-    color: @color-date;
+    color: $color-date;
     line-height: 40px;
   }
   .date{
@@ -358,13 +324,13 @@ body{
 .category-selector{
   padding: 15px 24px;
   &::after{
-    .clearfix;
+    @include clearfix;
   }
   input[id^=category-] {
     display: none;
   }
   input[id^=category-] + label{
-    .user-select();
+    @include unselectable;
     display: block;
     font-weight: bold;
     width: 16.8%;
@@ -385,33 +351,33 @@ body{
 
   }
   input[id^=category-]:checked + label{
-    border: 1px solid @color-date;
+    border: 1px solid $color-date;
     background-color: #fff;
   }
 
-  #category-study + label     {color: @green;}
-  #category-game + label      {color: @syan;}
-  #category-work + label      {color: @blue;}
-  #category-others + label    {color: @purple;}
-  #category-sport + label     {color: @yellow;}
-  #category-diary + label     {color: @main-orange;}
-  #category-bigevent + label  {color: @red;}
-  #category-film + label      {color: @magenta;}
+  #category-study + label     {color: $green;}
+  #category-game + label      {color: $syan;}
+  #category-work + label      {color: $blue;}
+  #category-others + label    {color: $purple;}
+  #category-sport + label     {color: $yellow;}
+  #category-diary + label     {color: $main-orange;}
+  #category-bigevent + label  {color: $red;}
+  #category-film + label      {color: $magenta;}
 }
 
 
 //MENU
-@menu-list-height: 45px;
+$menu-list-height: 45px;
 
 
 .menu-panel{
   z-index: 10;
   overflow: auto;
   position: fixed;
-  top: @nav-height;
+  top: $nav-height;
   left: 0;
   width: 100%;
-  background-color: @menu-panel-color;
+  background-color: $menu-panel-color;
 }
 
 .menu-list-group{
@@ -421,13 +387,13 @@ body{
 }
 
 .menu-list-group-item{
-  .user-select();
+  @include unselectable;
   cursor: pointer;
   display: block;
   position: relative;
   font-size: 20px;
-  height: @menu-list-height;
-  line-height: @menu-list-height;
+  height: $menu-list-height;
+  line-height: $menu-list-height;
   padding: 0 15px;
     color: #ffffff;
   &::after{
@@ -436,14 +402,14 @@ body{
     left: 0;
     content: '';
     display: block;
-    background-color: @gray;
+    background-color: $gray;
     height: 1px;
     position: absolute;
     transform-origin: 0 100%;
     transform: scaleY(0.5);
   }
   &:active{
-    background-color: lighten(@menu-panel-color,10%);
+    background-color: lighten($menu-panel-color,10%);
   }
 }
 
@@ -468,13 +434,13 @@ body{
 
 //REFERENCE
 
-@reference-list-item-height: 40px;
+$reference-list-item-height: 40px;
 
 .reference {
   padding: 30px;
 
   &::after {
-    .clearfix;
+    @include clearfix;
   }
 
   .list-group-item {
@@ -482,45 +448,45 @@ body{
     text-align: center;
     float: left;
     input[type=checkbox] + label {
-      .user-select();
+      @include unselectable;
       width: 100%;
       display: block;
       margin-bottom: 20px;
       font-size: 20px;
       color: #ffffff;
-      line-height: @reference-list-item-height;
-      height: @reference-list-item-height;
+      line-height: $reference-list-item-height;
+      height: $reference-list-item-height;
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
-      border: 1px dashed @gray;
+      border: 1px dashed $gray;
 
     }
     input[type=checkbox]:checked + label {
       border: none;
-      &.reference-orange{.bg-orange}
-      &.reference-green{.bg-green}
-      &.reference-blue{.bg-blue}
-      &.reference-red{.bg-red}
-      &.reference-yellow{.bg-yellow}
-      &.reference-magenta{.bg-magenta}
-      &.reference-purple{.bg-purple}
-      &.reference-syan{.bg-syan}
+      &.reference-orange{@include bg-orange}
+      &.reference-green{@include bg-green}
+      &.reference-blue{@include bg-blue}
+      &.reference-red{@include bg-red}
+      &.reference-yellow{@include bg-yellow}
+      &.reference-magenta{@include bg-magenta}
+      &.reference-purple{@include bg-purple}
+      &.reference-syan{@include bg-syan}
     }
   }
 }
 
-@cols-md: 5;
-@gaps-md: 5%;
+$cols-md: 5;
+$gaps-md: 5%;
 
-@cols-sm: 2;
-@gaps-sm: 20%;
+$cols-sm: 2;
+$gaps-sm: 20%;
 
 @media screen and (min-width: 765px){
   .list-group-item{
-    margin-right: @gaps-md;
-    width: (100% - @gaps-md * (@cols-md - 1))/@cols-md;
-    &:nth-child(@{cols-md}n+0) {
+    margin-right: $gaps-md;
+    width: (100% - $gaps-md * ($cols-md - 1))/$cols-md;
+    &:nth-child(#{$cols-md}n+0) {
       margin-right: 0;
     }
   }
@@ -528,9 +494,9 @@ body{
 
 @media screen and (max-width: 765px){
   .list-group-item{
-    margin-right: @gaps-sm;
-    width: (100% - @gaps-sm * (@cols-sm - 1))/@cols-sm;
-    &:nth-child(@{cols-sm}n+0) {
+    margin-right: $gaps-sm;
+    width: (100% - $gaps-sm * ($cols-sm - 1))/$cols-sm;
+    &:nth-child(#{$cols-sm}n+0) {
       margin-right: 0;
     }
   }
@@ -540,7 +506,7 @@ body{
   position: relative;
   height: 100%;
   text-align: center;
-  color: @main-light-gray;
+  color: $main-light-gray;
   padding-top: 60px;
   .title{
     font-size: 20px;
@@ -550,7 +516,7 @@ body{
   }
   .subtitle{
     font-weight: normal;
-    color: @gray;
+    color: $gray;
   }
   .author{
     width: 100%;
@@ -559,10 +525,10 @@ body{
     a{
       display: block;
       line-height: 20px;
-      font-size: @size-note;
+      font-size: $size-note;
       height: 20px;
       &:link,&:hover,&:active,&:visited{
-        color: @main-light-gray;
+        color: $main-light-gray;
       }
     }
 
@@ -574,7 +540,7 @@ body{
 
 .reg-bg{
   position: relative;
-  background-color: @menu-panel-color;
+  background-color: $menu-panel-color;
   width: 100%;
   height: 100%;
   padding: 25px;
@@ -591,24 +557,24 @@ body{
     label{
       display: block;
       line-height: 200%;
-      font-size: @size-note;
-      color: @main-light-gray;
+      font-size: $size-note;
+      color: $main-light-gray;
     }
     input{
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
-      height: @height-input;
-      background-color: @main-color;
+      height: $height-input;
+      background-color: $main-color;
       width: 100%;
-      .border-radius(@radius);
+      @include border-radius($radius);
       display: block;
       padding: 8px 15px;
-      font-size: @size-big;
+      font-size: $size-big;
       color: white;
       font-weight: bold;
       &:focus{
-        border: 1px solid @main-orange;
+        border: 1px solid $main-orange;
       }
     }
   }
@@ -616,29 +582,29 @@ body{
     margin-top: 40px;
     text-align: center;
     width: 100%;
-    height: @height-input;
+    height: $height-input;
     display: block;
     font-weight: bold;
-    font-size: @size-big;
-    color: @main-light-gray;
-    .border-radius(@radius);
+    font-size: $size-big;
+    color: $main-light-gray;
+    @include border-radius($radius);
   }
   .btn-active{
-    background-color: @main-orange;
+    background-color: $main-orange;
     &:hover{
-      background-color: darken(@main-orange,5%);
+      background-color: darken($main-orange,5%);
     }
   }
   .btn-inactive{
-    color: @gray;
-    border: 1px solid @gray;
+    color: $gray;
+    border: 1px solid $gray;
     background-color: transparent;
   }
   .footer{
     padding: 20px 0 0;
     a{
-      font-size: @size-note;
-      color: @main-light-gray;
+      font-size: $size-note;
+      color: $main-light-gray;
       &:hover,&:active,&:visited{
         color: white;
       }
@@ -661,19 +627,19 @@ body{
   z-index: 100;
   position: absolute;
   padding-top: 25px;
-  .border-radius(15px);
+  @include border-radius(15px);
   h3{
     padding: 0 30px;
     line-height: 100%;
     text-align: center;
     margin-bottom: 10px;
-    font-size: @size-big;
+    font-size: $size-big;
   }
   p{
     padding: 0 30px 20px;
     text-align: center;
     line-height: 120%;
-    font-size: @size-note;
+    font-size: $size-note;
   }
   button{
     font-weight: bold;
@@ -684,11 +650,11 @@ body{
     padding: 0 30px;
     display: block;
     height: 45px;
-    font-size: @size-big;
-    //border-top: 1px solid @main-light-gray;
-    background-color: @main-light-gray;
+    font-size: $size-big;
+    //border-top: 1px solid $main-light-gray;
+    background-color: $main-light-gray;
     &:hover, &:active{
-      background-color: @main-light-gray;
+      background-color: $main-light-gray;
     }
   }
 }
@@ -701,13 +667,13 @@ body{
   width: 100%;
   padding: 12px 0 8px;
   text-align: center;
-  background-color: @main-color;
+  background-color: $main-color;
   h3{
     line-height: 25px;
-    font-size: @size-note;
+    font-size: $size-note;
   }
   &-default { h3{color: white;} }
-  &-warning { h3{color: @main-orange;} }
-  &-success { h3{color: @green;} }
-  &-danger  { h3{color: @red;} }
+  &-warning { h3{color: $main-orange;} }
+  &-success { h3{color: $green;} }
+  &-danger  { h3{color: $red;} }
 }
