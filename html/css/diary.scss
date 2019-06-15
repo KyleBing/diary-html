@@ -11,17 +11,14 @@
 .bg-game      { @include bg-syan }
 .bg-film      { @include bg-magenta }
 
+.body-normal{background-color: $main-light-gray;}
+.body-white{background-color: white;}
 
 //FRAME
 body{
   position: relative;
-  background-color: $main-light-gray;
 }
 .container{
   padding: 45px 0;
   width: 100%;
 }
-
-
-
-

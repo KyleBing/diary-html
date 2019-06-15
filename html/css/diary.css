@@ -696,31 +696,31 @@ tt {
   height: 45px;
 }
 
-.reg-bg {
+.body-regist {
   position: relative;
   background-color: #4A4A4A;
   width: 100%;
   height: 100%;
   padding: 25px;
 }
-.reg-bg .logo {
+.body-regist .logo {
   padding: 30px 0;
 }
-.reg-bg .logo img {
+.body-regist .logo img {
   height: 4rem;
   display: block;
   margin: 0 auto;
 }
-.reg-bg .input-group {
+.body-regist .input-group {
   margin-bottom: 15px;
 }
-.reg-bg .input-group label {
+.body-regist .input-group label {
   display: block;
   line-height: 200%;
   font-size: 14px;
   color: #EFEFF4;
 }
-.reg-bg .input-group input {
+.body-regist .input-group input {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -736,10 +736,10 @@ tt {
   color: white;
   font-weight: bold;
 }
-.reg-bg .input-group input:focus {
-  border: 1px solid #FF9500;
+.body-regist .input-group input:focus {
+  border: 2px solid #FF9500;
 }
-.reg-bg .btn {
+.body-regist .btn {
   margin-top: 40px;
   text-align: center;
   width: 100%;
@@ -752,31 +752,31 @@ tt {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.reg-bg .btn-active {
+.body-regist .btn-active {
   background-color: #FF9500;
 }
-.reg-bg .btn-active:hover {
+.body-regist .btn-active:hover {
   background-color: #e68600;
 }
-.reg-bg .btn-inactive {
+.body-regist .btn-inactive {
   color: #8E8E93;
   border: 1px solid #8E8E93;
   background-color: transparent;
 }
-.reg-bg .footer {
+.body-regist .footer {
   padding: 20px 0 0;
 }
-.reg-bg .footer a {
+.body-regist .footer a {
   font-size: 14px;
   color: #EFEFF4;
 }
-.reg-bg .footer a:hover, .reg-bg .footer a:active, .reg-bg .footer a:visited {
+.body-regist .footer a:hover, .body-regist .footer a:active, .body-regist .footer a:visited {
   color: white;
 }
-.reg-bg .footer .left {
+.body-regist .footer .left {
   float: left;
 }
-.reg-bg .footer .right {
+.body-regist .footer .right {
   float: right;
 }
 
@@ -812,9 +812,16 @@ tt {
   background-color: #FF2D70;
 }
 
+.body-normal {
+  background-color: #EFEFF4;
+}
+
+.body-white {
+  background-color: white;
+}
+
 body {
   position: relative;
-  background-color: #EFEFF4;
 }
 
 .container {

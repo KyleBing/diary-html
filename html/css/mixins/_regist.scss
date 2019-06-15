@@ -1,7 +1,7 @@
 
 // Register
 
-.reg-bg{
+.body-regist{
   position: relative;
   background-color: $menu-panel-color;
   width: 100%;
@@ -37,7 +37,7 @@
       color: white;
       font-weight: bold;
       &:focus{
-        border: 1px solid $main-orange;
+        border: 2px solid $main-orange;
       }
     }
   }

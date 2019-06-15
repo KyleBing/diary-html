@@ -15,56 +15,23 @@
     <link rel="shortcut icon" href="img/logo.png" type="image/png">
     <link rel="apple-touch-icon" href="img/touch-icon.png">
 
-    <title>日记</title>
+    <title>日记详情</title>
 </head>
-<body class="body-normal">
-
+<body class="body-white">
 
 <nav class="navbar clearfix" id="navbar">
-    <div @click="closeEditor"      class="navbar-btn left" > <img src="img/tabicon/back.png" alt="关闭"></div>
-    <div @click="confirmClicked"  v-show="confirmBtnShow" class="navbar-btn right" ><img src="img/tabicon/confirm.png" alt="确定"></div>
+    <div @click="closeEditor"      class="navbar-btn left" > <img src="img/tabicon/back.png" alt="返回"></div>
+    <div @click="confirmClicked"  v-show="confirmBtnShow" class="navbar-btn right" ><img src="img/tabicon/edit.png" alt="编辑"></div>
     <div class="brand">
         <a href=".."><img src="img/logo.png" alt="日记"></a>
     </div>
 </nav>
 
 
-<div class="container" id="diaryEditor">
+<div class="container" id="diaryDetail">
 
-    <textarea class="diary-editor" v-model.lazy="content"></textarea>
-    <div class="date-selector">
-        <label for="date" class="title">日期</label>
-        <input placeholder="选择时间" class="date" type="date" name="date" id="date" v-model="date">
-    </div>
-    <div class="category-selector">
-        <input type="radio" name="category" value="life"    id="category-diary" v-model="category">
-        <label for="category-diary">生活</label>
-        <input type="radio" name="category" value="study"   id="category-study" v-model="category">
-        <label for="category-study">学习</label>
-        <input type="radio" name="category" value="work"    id="category-work" v-model="category">
-        <label for="category-work">工作</label>
-        <input type="radio" name="category" value="game"    id="category-game" v-model="category">
-        <label for="category-game">游戏</label>
-        <input type="radio" name="category" value="film"    id="category-film" v-model="category">
-        <label for="category-film">电影</label>
-        <input type="radio" name="category" value="sport"   id="category-sport" v-model="category">
-        <label for="category-sport">运动</label>
-        <input type="radio" name="category" value="bigevent" id="category-bigevent" v-model="category">
-        <label for="category-bigevent">大事</label>
-        <input type="radio" name="category" value="others"  id="category-others" v-model="category">
-        <label for="category-others">其它</label>
-
-    </div>
 </div>
 
-
-<div class="action-list-group" id="modal-action">
-    <action-list-item
-            v-for="action in actions"
-            v-bind:action="action"
-            v-bind:key="action.id"
-    ></action-list-item>
-</div>
 
 <script>
 
@@ -151,7 +118,7 @@
         },
         methods:{
             closeEditor:function () {
-                history.back();
+                location = '.';
             },
             confirmClicked: function () {
                 if(diaryEditor.content.trim().length === 0) {
