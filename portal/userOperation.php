@@ -74,7 +74,7 @@ function updatePassword($email, $oldPassword, $newPassword){
         if ($result->num_rows !== 0){ // 存在用户
             $row = $result->fetch_array();
             if (password_verify($oldPassword, $row['password'])){
-                if ($con->query(MSql::UpdateUserPassword($email,password_hash($newPassword,PASSWORD_DEFAULT))) === true){
+                if ($con->query(MSql::UpdateUserPassword($email, password_hash($newPassword, PASSWORD_DEFAULT))) === true) {
                     $response = new ResponseSuccess('密码修改成功');
                 } else {
                     $response = new ResponseError('修改密码失败');
