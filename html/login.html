@@ -53,7 +53,17 @@
 
 
 <script>
-    var vm = new Vue({
+
+    // 如果已经登录，跳到主页
+    window.onload = () => {
+      if (getAuthorization()) {
+          popMessage(promptType.default, '您已经登录，正在跳转...',()=>{
+              location = FrontURL.index;
+          })
+      }
+    };
+
+    let vm = new Vue({
         el: "#login",
         data: {
             labelEmail: "邮箱",
