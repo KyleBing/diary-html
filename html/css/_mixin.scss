@@ -1,40 +1,9 @@
-@mixin bg-orange  { background-color: $main-orange; }
-@mixin bg-yellow  { background-color: $yellow; }
-@mixin bg-green   { background-color: $green; }
-@mixin bg-blue    { background-color: $blue; }
-@mixin bg-syan    { background-color: $syan; }
-@mixin bg-purple  { background-color: $purple; }
-@mixin bg-gray    { background-color: $gray; }
-@mixin bg-magenta { background-color: $magenta; }
-@mixin bg-red     { background-color: $red; }
 
-@mixin orange  { color: $main-orange !important; }
-@mixin yellow  { color: $yellow !important; }
-@mixin green   { color: $green !important; }
-@mixin blue    { color: $blue !important; }
-@mixin syan    { color: $syan !important; }
-@mixin purple  { color: $purple !important; }
-@mixin gray    { color: $gray !important; }
-@mixin magenta { color: $magenta !important; }
-@mixin red     { color: $red !important; }
-
-
-// mixin
- @mixin border-radius($corner){
-  -webkit-border-radius: $corner;
-  -moz-border-radius: $corner;
-  border-radius: $corner;
-}
-@mixin clearfix(){
-  content: '';
-  display: block;
-  clear: both;
-  visibility: hidden;
-}
-
-@mixin unselectable{
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
+@import "mixins/common";
+@import "mixins/alert";
+@import "mixins/detail";
+@import "mixins/edit";
+@import "mixins/index";
+@import "mixins/menu";
+@import "mixins/navbar";
+@import "mixins/regist";

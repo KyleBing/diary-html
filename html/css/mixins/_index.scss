@@ -1,0 +1,99 @@
+
+.loading{
+  height: $load-box-height;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .loading-item{
+    height: $load-box-height;
+    width: 3px;
+    margin-right: 5px;
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+  &-1{
+    -webkit-animation: load-frame 1s infinite linear 0s;
+    -o-animation: load-frame 1s infinite linear 0s;
+    animation: load-frame 1s infinite linear 0s;
+    background-color: $red;
+  }
+  &-2{
+    -webkit-animation: load-frame 1s infinite linear 0.25s;
+    -o-animation: load-frame 1s infinite linear 0.25s;
+    animation: load-frame 1s infinite linear 0.25s;
+    background-color: $main-orange;
+  }
+  &-3{
+    -webkit-animation: load-frame 1s infinite linear 0.5s;
+    -o-animation: load-frame 1s infinite linear 0.5s;
+    animation: load-frame 1s infinite linear 0.5s;
+    background-color: $main-color;
+  }
+  &-4{
+    -webkit-animation: load-frame 1s infinite linear 0.75s;
+    -o-animation: load-frame 1s infinite linear 0.75s;
+    animation: load-frame 1s infinite linear 0.75s;
+    background-color: $green;
+  }
+}
+
+@keyframes load-frame {
+  0% {height: $load-box-height;}
+  50% {height: $load-box-height * 0.25;}
+  100% {height: $load-box-height;}
+}
+
+@-webkit-keyframes load-frame {
+  0% {height: $load-box-height;}
+  50% {height: $load-box-height * 0.25;}
+  100% {height: $load-box-height;}
+}
+
+
+.end-of-diary{
+  -webkit-box-shadow: 1px 2px 4px #00000012;
+  -moz-box-shadow: 1px 2px 4px #00000012;
+  box-shadow: 1px 2px 4px #00000012;
+  background-color: white;
+  -webkit-border-radius: 0 0 15px 15px;
+  -moz-border-radius: 0 0 15px 15px;
+  border-radius: 0 0 15px 15px;
+  text-align: center;
+  padding: 20px 0 10px;
+  img{
+    height: 45px;
+  }
+}
+
+.search-bar{
+  position: relative;
+  padding: 5px;
+  input{
+    width: 100%;
+    line-height: 25px;
+    @include border-radius($radius);
+    padding: 5px 10px;
+    display: block;
+    border: 1px solid $main-light-gray;
+    font-size: 1em;
+    &:focus{
+      border-color: $main-orange;
+      box-shadow: 1px 1px 5px #00000011;
+    }
+  }
+  .clear{
+    color: $gray;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+    top: 14px;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    right: 14px;
+    display: block;
+  }
+}

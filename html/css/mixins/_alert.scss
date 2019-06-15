@@ -1,0 +1,60 @@
+
+// Alert
+.alert{
+  width: 70%;
+  background-color: #fff;
+  top: 35%;
+  left: 15%;
+  z-index: 100;
+  position: absolute;
+  padding-top: 25px;
+  @include border-radius(15px);
+  h3{
+    padding: 0 30px;
+    line-height: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: $size-big;
+  }
+  p{
+    padding: 0 30px 20px;
+    text-align: center;
+    line-height: 120%;
+    font-size: $size-note;
+  }
+  button{
+    font-weight: bold;
+    -webkit-border-radius: 0 0 15px 15px;
+    -moz-border-radius: 0 0 15px 15px;
+    border-radius: 0 0 15px 15px;
+    width: 100%;
+    padding: 0 30px;
+    display: block;
+    height: 45px;
+    font-size: $size-big;
+    //border-top: 1px solid $main-light-gray;
+    background-color: $main-light-gray;
+    &:hover, &:active{
+      background-color: $main-light-gray;
+    }
+  }
+}
+
+.popMessage{
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px 0 8px;
+  text-align: center;
+  background-color: $main-color;
+  h3{
+    line-height: 25px;
+    font-size: $size-note;
+  }
+  &-default { h3{color: white;} }
+  &-warning { h3{color: $main-orange;} }
+  &-success { h3{color: $green;} }
+  &-danger  { h3{color: $red;} }
+}

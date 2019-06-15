@@ -1,0 +1,104 @@
+
+//NEW
+
+.diary-editor{
+  display: block;
+  width: 100%;
+  resize: none;
+  height: 120px;
+  padding: 8px 10px;
+  font-size: 1em;
+}
+.date-selector{
+  font-size: 18px;
+  padding: 0 10px;
+  background-color: #fff;
+  height: 40px;
+  border-top: 1px solid $main-light-gray;
+  .title{
+    color: $color-date;
+    line-height: 40px;
+  }
+  .date{
+    background-color: transparent;
+    width: 50%;
+    text-align: right;
+    font-size: 18px;
+    height: 40px;
+    float: right;
+    line-height: 40px;
+  }
+}
+
+.category-selector{
+  padding: 15px 24px;
+  &::after{
+    @include clearfix;
+  }
+  input[id^=category-] {
+    display: none;
+  }
+  input[id^=category-] + label{
+    @include unselectable;
+    display: block;
+    font-weight: bold;
+    width: 16.8%;
+    margin-right: 4%;
+    margin-bottom: 15px;
+    cursor: pointer;
+    float: left;
+    font-size: 16px;
+    height: 30px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 30px;
+    &:nth-child(5n+0){
+      margin-right: 0;
+    }
+
+  }
+  input[id^=category-]:checked + label{
+    border: 1px solid $color-date;
+    background-color: #fff;
+  }
+
+  #category-study + label     {color: $green;}
+  #category-game + label      {color: $syan;}
+  #category-work + label      {color: $blue;}
+  #category-others + label    {color: $purple;}
+  #category-sport + label     {color: $yellow;}
+  #category-diary + label     {color: $main-orange;}
+  #category-bigevent + label  {color: $red;}
+  #category-film + label      {color: $magenta;}
+}
+
+.action-list-group{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.action-list-item{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: #ffffff;
+  cursor: pointer;
+  display: block;
+  line-height: 45px;
+  text-align: center;
+  border-bottom: 1px solid $main-light-gray;
+  &:last-child{
+    border: none;
+  }
+  &:hover{
+    background-color: darken(#fff,10%);
+  }
+  &:active{
+    background-color: darken(#fff,15%);
+  }
+}
+
