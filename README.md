@@ -1,3 +1,4 @@
+# 域名备案中，最迟 7月5日可访问
 
 
 ![intro](https://github.com/KyleBing/diary/blob/master/github/intro.png?raw=true)
