@@ -162,7 +162,7 @@ tt {
 }
 
 .diary-detail {
-  padding: 45px 20px;
+  padding: 45px 0;
 }
 @media screen and (min-width: 765px) {
   .diary-detail {
@@ -172,7 +172,8 @@ tt {
 }
 
 .diary-meta {
-  padding: 20px 0;
+  background-color: #eeeeee;
+  padding: 10px;
   display: flex;
   justify-content: space-around;
 }
@@ -191,7 +192,7 @@ tt {
 
 .diary-title {
   border-top: 1px solid #E5E5EA;
-  padding: 20px 0;
+  padding: 20px;
 }
 .diary-title h2 {
   font-weight: normal;
@@ -320,7 +321,13 @@ tt {
   line-height: 1.6;
   font-size: 1rem;
   border-top: 1px solid #E5E5EA;
-  padding-top: 20px;
+  padding: 20px;
+}
+
+textarea:focus {
+  -webkit-box-shadow: inset 1px 1px 5px #00000022;
+  -moz-box-shadow: inset 1px 1px 5px #00000022;
+  box-shadow: inset 1px 1px 5px #00000022;
 }
 
 .diary-editor-title {
@@ -329,7 +336,8 @@ tt {
   resize: none;
   height: 100px;
   padding: 8px 10px;
-  font-size: 1em;
+  font-size: 1.1em;
+  border-bottom: 1px solid #EFEFF4;
 }
 
 .diary-editor-content {
@@ -339,7 +347,7 @@ tt {
   height: 120px;
   padding: 8px 10px;
   font-size: 1em;
-  border-top: 1px solid #EFEFF4;
+  border-bottom: 1px solid #EFEFF4;
 }
 
 .input-group {
@@ -348,7 +356,7 @@ tt {
   padding: 0 10px;
   background-color: #fff;
   height: 40px;
-  border-top: 1px solid #EFEFF4;
+  border-bottom: 1px solid #EFEFF4;
 }
 .input-group label {
   width: 50%;
@@ -367,13 +375,10 @@ tt {
   padding: 5px 10px;
 }
 
-.weather-selector, .category-selector {
+.category-selector {
   padding: 15px 20px 5px;
   background-color: white;
-  border-top: 1px solid #EFEFF4;
-}
-
-.category-selector {
+  border-bottom: 1px solid #EFEFF4;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -471,6 +476,9 @@ tt {
 
 .weather-selector {
   display: flex;
+  padding: 15px 20px;
+  background-color: white;
+  border-bottom: 1px solid #EFEFF4;
 }
 .weather-selector input[id^=weather-] + label {
   flex-grow: 1;
@@ -486,7 +494,6 @@ tt {
   display: block;
   font-weight: bold;
   width: 12.5%;
-  margin-bottom: 15px;
   cursor: pointer;
 }
 .weather-selector input[id^=weather-] + label img {

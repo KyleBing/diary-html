@@ -31,6 +31,8 @@
 
 <div class="container" id="diaryEditor">
 
+
+
     <textarea id="diary-editor-title" class="diary-editor-title" placeholder="一句话，概括你的一天" v-model.lazy="title"></textarea>
     <textarea v-show="contentEditorShowed" id="diary-editor-content" class="diary-editor-content" placeholder="日记详细内容，如果你有很多要写的" v-model.lazy="content"></textarea>
 
@@ -80,6 +82,7 @@
         <input type="radio" name="weather" value="snow" id="weather-snow" v-model="weather">
         <label for="weather-snow">        </label>
     </div>
+
 </div>
 
 

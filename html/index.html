@@ -316,7 +316,6 @@
                     if(diaries.length > 1){
                         for (let i = 1; i< diaries.length; i++){
                             let currentDiary = diaries[i];
-
                             let lastItemMonth = lastItem.date.substring(0,7);
                             let lastItemDay = Number(lastItem.date.substring(8,10));
                             let currentItemMonth = currentDiary.date.substring(0,7);
@@ -371,23 +370,28 @@
         }
     });
 
+    // 列表模板
     function currentItemHtml(item, date) {
         let hascontentHtml = '';
-        let herf = '';
+        let weatherHtml = item.weather? `<img class="icon" src="img/weather/${item.weather}.png" alt="${item.weather}">`: '';
+        let href = '';
+
         if (item.content){
-            hascontentHtml = `<img class="icon" src="img/content.png" alt="hascontent">`
-            herf = `detail.html?diaryId=${item.id}`
+            hascontentHtml = `<img class="icon" src="img/content.png" alt="hascontent">`;
+            href = `detail.html?diaryId=${item.id}`
         } else {
             hascontentHtml = '';
-            herf = `edit.html?diaryId=${item.id}`
+            href = `edit.html?diaryId=${item.id}`
         }
-        return `<a href="${herf}" class="list-item">
+
+
+        return `<a href="${href}" class="list-item">
                     <i class="category bg-${item.category}"></i>
                     <span class="date">${date}</span>
                     <div class="detail">
                         <p class="title">${item.title}</p>
                         ${hascontentHtml}
-                        <img class="icon" src="img/weather/${item.weather}.png" alt="${item.weather}">
+                        ${weatherHtml}
                     </div>
                 </a>`;
     }
