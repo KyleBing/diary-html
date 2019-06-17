@@ -1,7 +1,7 @@
 $meta-height: 30px;
 
 .diary-detail{
-  padding: $nav-height + 10px 20px;
+  padding: $nav-height 20px;
   @media screen and (min-width:$width-seprator){
     max-width: $width-seprator - 100px;
     margin: 0 auto;
@@ -9,7 +9,7 @@ $meta-height: 30px;
 }
 
 .diary-meta{
-  padding: 10px 0 15px;
+  padding: 20px 0;
   display: flex;
   justify-content: space-around;
   .weather{
@@ -22,7 +22,6 @@ $meta-height: 30px;
     line-height: $meta-height;
     font-size: 1.1rem;
   }
-
   .date{
     line-height: $meta-height;
     color: $color-text-date;
@@ -46,6 +45,7 @@ $meta-height: 30px;
   border: 1px solid $color;
   font-weight: bold;
   color: $color;
+  @include border-radius(20px)
 }
 
 .detail-category-life     {@include detail-category-template($main-orange)}

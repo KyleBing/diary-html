@@ -162,7 +162,7 @@ tt {
 }
 
 .diary-detail {
-  padding: 55px 20px;
+  padding: 45px 20px;
 }
 @media screen and (min-width: 765px) {
   .diary-detail {
@@ -172,7 +172,7 @@ tt {
 }
 
 .diary-meta {
-  padding: 10px 0 15px;
+  padding: 20px 0;
   display: flex;
   justify-content: space-around;
 }
@@ -206,6 +206,9 @@ tt {
   border: 1px solid #FF9500;
   font-weight: bold;
   color: #FF9500;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
 }
 
 .detail-category-study {
@@ -216,6 +219,9 @@ tt {
   border: 1px solid #4CD964;
   font-weight: bold;
   color: #4CD964;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
 }
 
 .detail-category-game {
@@ -226,6 +232,9 @@ tt {
   border: 1px solid #5AC8FA;
   font-weight: bold;
   color: #5AC8FA;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
 }
 
 .detail-category-work {
@@ -236,6 +245,9 @@ tt {
   border: 1px solid #007AFF;
   font-weight: bold;
   color: #007AFF;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
 }
 
 .detail-category-others {
@@ -246,6 +258,9 @@ tt {
   border: 1px solid #5856D6;
   font-weight: bold;
   color: #5856D6;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
 }
 
 .detail-category-sport {
@@ -256,6 +271,9 @@ tt {
   border: 1px solid #FFCC00;
   font-weight: bold;
   color: #FFCC00;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
 }
 
 .detail-category-diary {
@@ -266,6 +284,9 @@ tt {
   border: 1px solid #FF9500;
   font-weight: bold;
   color: #FF9500;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
 }
 
 .detail-category-bigevent {
@@ -276,6 +297,9 @@ tt {
   border: 1px solid #FF3B30;
   font-weight: bold;
   color: #FF3B30;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
 }
 
 .detail-category-film {
@@ -286,6 +310,9 @@ tt {
   border: 1px solid #FF2D70;
   font-weight: bold;
   color: #FF2D70;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
 }
 
 .diary-content {

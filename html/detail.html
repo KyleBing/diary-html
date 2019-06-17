@@ -20,8 +20,8 @@
 <body class="body-white">
 
 <nav class="navbar clearfix" id="navbar">
-    <div @click="closeEditor"      class="navbar-btn left" > <img src="img/tabicon/back.png" alt="返回"></div>
-    <div @click="confirmClicked"  v-show="confirmBtnShow" class="navbar-btn right" ><img src="img/tabicon/edit.png" alt="编辑"></div>
+    <div @click="goBack" class="navbar-btn left" > <img src="img/tabicon/back.png" alt="返回"></div>
+    <div @click="editBtnClicked"  v-show="confirmBtnShow" class="navbar-btn right" ><img src="img/tabicon/edit.png" alt="编辑"></div>
     <div class="brand">
         <a href=".."><img src="img/logo.png" alt="日记"></a>
     </div>
@@ -30,10 +30,7 @@
 <div class="diary-detail" id="diaryDetail">
     <!--META-->
     <div class="diary-meta">
-        <div class="weather"><img src="img/weather/cloudy_active.png" alt="多云"></div>
-        <div class="temperature"><span>23</span>℃</div>
-        <div class="detail-category-life"><span>生活</span></div>
-        <div class="date">2019年06月17日</div>
+
     </div>
 
     <!--TITLE-->
@@ -53,185 +50,92 @@
 </div>
 
 
+</body>
+</html>
+
 <script>
+    window.onload = () => {
+        loadDiary();
 
-    Vue.component('action-list-item', {
-        props: ['action'],
-        template: `<a :onclick="action.action" class="action-list-item" :class="action.class">{{action.title}}</a>`
-    });
-
-    let modal = new Vue({
-        el: '#modal-action',
-        data: {
-            actions:[],
-            delete: [{
-                id: 1,
-                class: '',
-                title: '删除',
-                action: 'showConfirm()'
-            }],
-            confirm: [
-                {
-                    id: 1,
-                    class:'red',
-                    title: '确定',
-                    action: 'deleteCurrentDiary()'
-                },
-                {
-                    id: 2,
-                    class: '',
-                    title: '取消',
-                    action: 'closeConfirm()'
-                }
-            ]
-        },
-        created: function() {
-            let searchString = location.search;
-            if (searchString !== undefined && searchString !== ''){
-                this.actions = this.delete;
-            }
-        },
-        method: {
-
-        }
-
-    });
-
-    function showConfirm () {
-        modal.actions = modal.confirm;
-    }
-
-    function closeConfirm () {
-        modal.actions = modal.delete;
-    }
-
-    function deleteCurrentDiary() {
-        let queryData = {
-            diaryId: diaryEditor.id,
-            type: 'delete'
-        };
-        $.ajax({
-            url: URL.diaryOperation,
-            dataType: 'json',
-            method: 'POST',
-            data: queryData,
-            success: function (data) {
-                if (data.success) {
-                    popMessage(promptType.success, data.info, () => {
-                        location = FrontURL.index
-                    }, 1) // 删除成功后等待时间不要太长
-                } else if (!data.logined) {
-                    location = FrontURL.login;
-                }
-            },
-            error: function (xhr) {
-                console.log(xhr);
-            }
-        })
-    }
+    };
 
     // Navbar
     let navbar = new Vue({
         el:"#navbar",
         data:{
+            href: '',
             confirmBtnShow: true
         },
         methods:{
-            closeEditor:function () {
-                location = '.';
+            goBack:function () {
+                history.back();
             },
-            confirmClicked: function () {
-                if(diaryEditor.content.trim().length === 0) {
-                    diaryEditor.content = ''; // clear content
-                    popMessage(promptType.warning, '内容未填写',()=>{});
-                    return;
-                }
-                let queryData = {
-                    diaryId: diaryEditor.id,
-                    diaryContent: diaryEditor.content,
-                    diaryCategory: diaryEditor.category,
-                    diaryDate: diaryEditor.date + ' 00:00:00'
-                };
-
-                if (diaryEditor.id === ''){
-                    queryData.type = 'add';
-                } else {
-                    queryData.type = 'modify';
-                }
-
-                this.confirmBtnShow = false;
-
-                $.ajax({
-                    data: queryData,
-                    method: 'POST',
-                    url: URL.diaryOperation,
-                    success:(data) => {
-                        data = JSON.parse(data);
-                        if (data.success){
-                            navbar.confirmBtnShow = true;
-                            if (diaryEditor.id === ''){         // 新建日记
-                                diaryEditor.content = '';
-                                popMessage(promptType.success, data.info)
-                            } else {                            // 编辑日记
-                                popMessage(promptType.success, data.info, ()=>{
-                                    location = FrontURL.index
-                                })
-                            }
-                        } else if (!data.logined){ // 未登录
-                            popMessage(promptType.default, data.info, () => {
-                                location = FrontURL.login;
-                            })
-                        } else {
-                            popMessage(promptType.default, data.info);
-                            navbar.confirmBtnShow = true;
-                        }
-                    },
-                    error: (xhr) => {
-                        console.log(xhr)
-                    }
-                })
+            editBtnClicked: function () {
+                location = this.href
             }
         }
     });
+    const WEATHER = {
+        sunny: {title: 'sunny', name: '晴'},
+        cloudy: {title: 'cloudy', name: '多云'},
+        overcast: {title: 'overcast', name: '阴'},
+        sprinkle: {title: 'sprinkle', name: '小雨'},
+        rain: {title: 'rain', name: '雨'},
+        thunderstorm: {title: 'thunderstorm', name: '暴雨'},
+        snow: {title: 'snow', name: '雪'},
+        fog: {title: 'fog', name: '雾'}
+    };
+    const CATEGORIES = {
+        life: '生活',
+        study: '学习',
+        film: '电影',
+        game: '游戏',
+        work: '工作',
+        sport: '运动',
+        bigevent: '大事',
+        other: '其它',
+    };
 
+    function loadDiary() {
+        let searchString = location.search;
+        navbar.href = 'edit.html' + searchString;
 
-    let diaryEditor = new Vue({
-        el: '#diaryEditor',
-        data: {
-            id:"",
-            content:"",
-            date: "",
-            category: "life"
-        },
-        created: function () {
-            let searchString = location.search;
-            if (searchString !== undefined && searchString !== ''){
-                let id = location.search.substring(location.search.lastIndexOf('=') + 1); // 获取id值
-                $.ajax({
-                    url: URL.diaryOperation,
-                    dataType: 'json',
-                    data: {
-                        'type': 'query',
-                        'diaryId': id
-                    },
-                    success: function (data) {
-                        if (data.success){
-                            let diary = data.data[0];
-                            diaryEditor.id = diary.id;
-                            diaryEditor.content = diary.content;
-                            diaryEditor.date = diary.date.substring(0,diary.date.indexOf(' '));
-                            diaryEditor.category = diary.category;
-                        }
+        if (searchString !== undefined && searchString !== '') {
+            let id = location.search.substring(location.search.lastIndexOf('=') + 1); // 获取id值
+            $.ajax({
+                url: URL.diaryOperation,
+                dataType: 'json',
+                data: {
+                    'type': 'query',
+                    'diaryId': id
+                },
+                success: function (data) {
+                    if (data.success) {
+                        let diary = data.data[0];
+                        let temperatureHtml = diary.temperature? `<div class="temperature"><span>${diary.temperature}</span>℃</div>`: '';
+                        let metaHtml = `<div class="weather"><img src="img/weather/${diary.weather}_active.png" alt="${WEATHER[diary.weather].name}"></div>
+                                        ${temperatureHtml}
+                                        <div class="detail-category-${diary.category}"><span>${CATEGORIES[diary.category]}</span></div>
+                                        <div class="date">${formateDate(diary.date)}</div>`;
+                        $('.diary-meta').html(metaHtml);
+                        $('.diary-title h2').text(diary.title);
+                        $('.diary-content p').html(diary.content.replace(/\n/g, '<br>'));
                     }
-                });
-            } else {
-                let now = new Date();
-                let day = now.getDate().toString().padStart(2,'0');
-                let month = (now.getMonth()+1).toString().padStart(2,'0');
-                this.date = `${now.getFullYear()}-${month}-${day}`;
-            }
+                }
+            });
+        } else {
+            let now = new Date();
+            let day = now.getDate().toString().padStart(2, '0');
+            let month = (now.getMonth() + 1).toString().padStart(2, '0');
+            this.date = `${now.getFullYear()}-${month}-${day}`;
         }
-    })
+    }
+
+    function formateDate(dateString){
+        let year = dateString.substring(0,4);
+        let month = dateString.substring(5,7);
+        let day = dateString.substring(8,10);
+        return `${year}年${month}月${day}日`
+    }
+
 </script>
-</body>
-</html>
