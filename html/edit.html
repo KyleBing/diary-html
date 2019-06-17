@@ -31,11 +31,18 @@
 
 <div class="container" id="diaryEditor">
 
-    <textarea class="diary-editor" v-model.lazy="content"></textarea>
-    <div class="date-selector">
-        <label for="date" class="title">日期</label>
+    <textarea class="diary-editor-title" placeholder="标题日记内容，一句话" v-model.lazy="title"></textarea>
+    <textarea class="diary-editor-content" placeholder="日记详细内容，如果你有很多要写的" v-model.lazy="content"></textarea>
+
+    <div class="input-group">
+        <label for="date">日期</label>
         <input placeholder="选择时间" class="date" type="date" name="date" id="date" v-model="date">
     </div>
+    <div class="input-group">
+        <label for="date">气温 ℃</label>
+        <input placeholder="26" class="temperature" type="number" name="temperature" id="temperature" v-model="temperature">
+    </div>
+
     <div class="category-selector">
         <input type="radio" name="category" value="life"    id="category-diary" v-model="category">
         <label for="category-diary">生活</label>
@@ -53,7 +60,25 @@
         <label for="category-bigevent">大事</label>
         <input type="radio" name="category" value="others"  id="category-others" v-model="category">
         <label for="category-others">其它</label>
+    </div>
 
+    <div class="weather-selector">
+        <input type="radio" name="weather" value="sunny"    id="weather-sunny" v-model="weather">
+        <label for="weather-sunny">       </label>
+        <input type="radio" name="weather" value="cloudy"   id="weather-cloudy" v-model="weather">
+        <label for="weather-cloudy">      </label>
+        <input type="radio" name="weather" value="overcast"    id="weather-overcast" v-model="weather">
+        <label for="weather-overcast">    </label>
+        <input type="radio" name="weather" value="fog"    id="weather-fog" v-model="weather">
+        <label for="weather-fog">         </label>
+        <input type="radio" name="weather" value="spinkle"    id="weather-spinkle" v-model="weather">
+        <label for="weather-spinkle">     </label>
+        <input type="radio" name="weather" value="rain"    id="weather-rain" v-model="weather">
+        <label for="weather-rain">        </label>
+        <input type="radio" name="weather" value="thunderstorm"   id="weather-thunerstorm" v-model="weather">
+        <label for="weather-thunerstorm"> </label>
+        <input type="radio" name="weather" value="snow" id="weather-snow" v-model="weather">
+        <label for="weather-snow">        </label>
     </div>
 </div>
 
@@ -70,7 +95,7 @@
 
     Vue.component('action-list-item', {
         props: ['action'],
-        template: `<a :onclick="action.action" class="action-list-item" :class="action.class">{{action.title}}</a>`
+        template: `<div :onclick="action.action" class="action-list-item" :class="action.class">{{action.title}}</div>`
     });
 
     let modal = new Vue({
@@ -87,7 +112,7 @@
                 {
                     id: 1,
                     class:'red',
-                    title: '确定',
+                    title: '确定删除',
                     action: 'deleteCurrentDiary()'
                 },
                 {
@@ -212,9 +237,12 @@
         el: '#diaryEditor',
         data: {
             id:"",
+            title: "",
             content:"",
             date: "",
-            category: "life"
+            category: "life",
+            temperature: 26,
+            weather: "sunny"
         },
         created: function () {
             let searchString = location.search;

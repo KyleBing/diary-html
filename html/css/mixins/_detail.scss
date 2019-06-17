@@ -31,7 +31,7 @@ $meta-height: 30px;
 }
 
 .diary-title{
-  border-top: 1px solid $main-light-gray;
+  border-top: 1px solid $color-seperator;
   padding: 20px 0;
   h2{
     font-weight: normal;
@@ -64,7 +64,7 @@ $meta-height: 30px;
   color: $main-bg-color;
   line-height: 1.6;
   font-size: 1rem;
-  border-top: 1px solid $main-light-gray;
+  border-top: 1px solid $color-seperator;
   padding-top: 20px;
 
 }

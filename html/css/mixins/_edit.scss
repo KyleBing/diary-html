@@ -1,67 +1,94 @@
-
 //NEW
-
-.diary-editor{
+.diary-editor-title{
   display: block;
   width: 100%;
   resize: none;
-  height: 120px;
+  height: 60px;
+  padding: 8px 10px;
+  font-size: 1em;
+  border-bottom: 1px solid $color-seperator;
+}
+
+.diary-editor-content{
+  display: block;
+  width: 100%;
+  resize: none;
+  height: 150px;
   padding: 8px 10px;
   font-size: 1em;
 }
-.date-selector{
+.input-group{
+  display: flex;
   font-size: 18px;
   padding: 0 10px;
   background-color: #fff;
   height: 40px;
-  border-top: 1px solid $main-light-gray;
-  .title{
+  border-top: 1px solid $color-seperator;
+  label{
     color: $color-text-date;
     line-height: 40px;
   }
-  .date{
-    background-color: transparent;
-    width: 50%;
+  input{
     text-align: right;
+    flex-grow: 1;
+    background-color: transparent;
     font-size: 18px;
     height: 40px;
-    float: right;
     line-height: 40px;
+  }
+  .temperature{
+    padding: 5px 10px;
   }
 }
 
+.weather-selector, .category-selector {
+  padding: 15px 20px 5px;
+  background-color: white;
+  //@include border-radius(5px);
+  border-top: 1px solid $color-seperator;
+}
+
 .category-selector{
-  padding: 15px 24px;
-  &::after{
-    @include clearfix;
-  }
-  input[id^=category-] {
-    display: none;
-  }
+  $gaps: 4%;
+  $cols: 5;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+
   input[id^=category-] + label{
+    flex-shrink: 0;
     @include unselectable;
     display: block;
     font-weight: bold;
-    width: 16.8%;
-    margin-right: 4%;
-    margin-bottom: 15px;
+    width: (100 - ($cols - 1) * $gaps) / $cols;
+    margin-bottom: 10px;
+    margin-right: $gaps;
     cursor: pointer;
-    float: left;
     font-size: 16px;
     height: 30px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    text-align: center;
     line-height: 30px;
-    &:nth-child(5n+0){
+    @include border-radius(5px);
+    text-align: center;
+
+    &:nth-child(#{$cols}n+0){
       margin-right: 0;
     }
-
   }
-  input[id^=category-]:checked + label{
-    border: 1px solid $color-text-date;
-    background-color: #fff;
+
+  @media screen and (min-width:$width-seprator){
+    flex-flow: row nowrap;
+    justify-content: space-around;
+
+    label{
+      flex-grow: 1;
+      flex-shrink: 1 !important;
+      margin-right: 0 !important;
+    }
+  }
+
+  @mixin category-item-template($color) {
+    background-color: $color;
+    color: white;
   }
 
   #category-study + label     {color: $green;}
@@ -72,7 +99,90 @@
   #category-diary + label     {color: $main-orange;}
   #category-bigevent + label  {color: $red;}
   #category-film + label      {color: $magenta;}
+
+  #category-study:checked + label     { @include category-item-template($green)}
+  #category-game:checked + label      { @include category-item-template($syan)}
+  #category-work:checked + label      { @include category-item-template($blue)}
+  #category-others:checked + label    { @include category-item-template($purple)}
+  #category-sport:checked + label     { @include category-item-template($yellow)}
+  #category-diary:checked + label     { @include category-item-template($main-orange)}
+  #category-bigevent:checked + label  { @include category-item-template($red)}
+  #category-film:checked + label      { @include category-item-template($magenta)}
 }
+
+
+.weather-selector{
+  display: flex;
+  $gaps: 5%;
+  $cols: 6;
+  input[id^=weather-] + label {
+    flex-grow: 1;
+    flex-shrink: 0;
+    background: center center no-repeat;
+    -webkit-background-size: contain;
+    background-size: contain;
+    height: 30px;
+    @include unselectable;
+    display: block;
+    font-weight: bold;
+    width: (100 - ($cols - 1) * $gaps) / $cols;
+    margin-bottom: 15px;
+    cursor: pointer;
+    img{
+      margin: 0 auto;
+      height: 30px;
+      display: block;
+    }
+    &:nth-child(#{$cols}n+0) {
+      margin-right: 0;
+    }
+  }
+
+  @mixin weather-item-template($color) {
+    background-color: $color;
+    color: white;
+  }
+
+  #weather-sunny + label        {
+    background-image: url(../img/weather/sunny.png)}
+  #weather-cloudy + label       {
+    background-image: url(../img/weather/cloudy.png)}
+  #weather-overcast + label     {
+    background-image: url(../img/weather/overcast.png)}
+  #weather-fog + label          {
+    background-image: url(../img/weather/fog.png)}
+  #weather-spinkle + label      {
+    background-image: url(../img/weather/sprinkle.png)}
+  #weather-rain + label         {
+    background-image: url(../img/weather/rain.png)}
+  #weather-thunerstorm + label  {
+    background-image: url(../img/weather/thunderstorm.png)}
+  #weather-snow + label         {
+    background-image: url(../img/weather/snow.png)}
+
+  #weather-sunny:checked + label        {
+    background-image: url(../img/weather/sunny_active.png)}
+  #weather-cloudy:checked + label       {
+    background-image: url(../img/weather/cloudy_active.png)}
+  #weather-overcast:checked + label     {
+    background-image: url(../img/weather/overcast_active.png)}
+  #weather-fog:checked + label          {
+    background-image: url(../img/weather/fog_active.png)}
+  #weather-spinkle:checked + label      {
+    background-image: url(../img/weather/sprinkle_active.png)}
+  #weather-rain:checked + label         {
+    background-image: url(../img/weather/rain_active.png)}
+  #weather-thunerstorm:checked + label  {
+    background-image: url(../img/weather/thunderstorm_active.png)}
+  #weather-snow:checked + label         {
+    background-image: url(../img/weather/snow_active.png)}
+}
+
+// 隐藏所有 Input
+input[id^=category-], input[id^=weather-]{
+  display: none;
+}
+
 
 .action-list-group{
   position: fixed;
@@ -90,12 +200,12 @@
   display: block;
   line-height: 45px;
   text-align: center;
-  border-bottom: 1px solid $main-light-gray;
+  border-bottom: 1px solid $color-seperator;
   &:last-child{
     border: none;
   }
   &:hover{
-    background-color: darken(#fff,10%);
+    background-color: darken(#fff,5%);
   }
   &:active{
     background-color: darken(#fff,15%);
