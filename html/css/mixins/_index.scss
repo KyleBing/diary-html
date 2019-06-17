@@ -18,6 +18,7 @@
   }
   .list-item{
     display: block;
+    flex-flow: row nowrap;
     height: $list-item-height;
     &:last-child{
       .detail{
@@ -28,33 +29,45 @@
       background-color: $color-list-selected;
     }
     .category{
+      float: left;
       width: 5px;
       height: $list-item-height;
       display: block;
-      float: left;
     }
     .date{
-      font-family: $font-family;
-      width: 30px;
       float: left;
-      text-align: left;
+      width: 25px;
+      padding: 0 5px;
+      flex-shrink: 0;
+      text-align: center;
       line-height: $list-item-height;
       font-size: $list-item-font-size;
       font-weight: bold;
       color: black;
-      padding-left: 10px;
-
     }
     .detail{
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      margin-left: 40px;
-      line-height: $list-item-height;
-      display: block;
-      font-size: $list-item-font-size;
-      color: black;
       position: relative;
+      display: flex;
+      padding-right: 8px;
+      margin-left: 35px;
+      .title{
+        flex-grow: 1;
+        flex-shrink: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: $list-item-height;
+        display: block;
+        font-size: $list-item-font-size;
+        color: black;
+      }
+      .icon{
+        flex-shrink: 0;
+        padding: 4px 0;
+        height: $list-item-height;
+        width: $list-item-height - 4 * 2;
+        display: block;
+      }
       &::after{
         bottom: 0;
         left: 0;
@@ -71,6 +84,7 @@
         transform: scaleY(0.5);
       }
     }
+
   }
 }
 

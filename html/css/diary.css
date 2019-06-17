@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   border: 0;
-  font-family: "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", "Helvetica", sans-serif;
+  font-family: "SF UI Display", "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", "Helvetica", sans-serif;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -187,7 +187,6 @@ tt {
 .diary-meta .date {
   line-height: 30px;
   color: #9B9B9B;
-  font-family: "SF UI Display", SF UI display, PingFang SC, Microsoft Yahei UI, Microsoft Yahei, Helvetica, sans-serif;
 }
 
 .diary-title {
@@ -558,7 +557,7 @@ input[id^=category-], input[id^=weather-] {
 
 .diary-list-group .list-header {
   text-shadow: 1px 1px 0 #00000022;
-  font-family: "SF UI display", "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", "Helvetica", sans-serif;
+  font-family: "SF UI Display", "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", "Helvetica", sans-serif;
   font-size: 16px;
   font-weight: bold;
   text-align: left;
@@ -570,6 +569,7 @@ input[id^=category-], input[id^=weather-] {
 }
 .diary-list-group .list-item {
   display: block;
+  flex-flow: row nowrap;
   height: 28px;
 }
 .diary-list-group .list-item:last-child .detail {
@@ -579,32 +579,45 @@ input[id^=category-], input[id^=weather-] {
   background-color: #FFF0D1;
 }
 .diary-list-group .list-item .category {
+  float: left;
   width: 5px;
   height: 28px;
   display: block;
-  float: left;
 }
 .diary-list-group .list-item .date {
-  font-family: "SF UI display", "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", "Helvetica", sans-serif;
-  width: 30px;
   float: left;
-  text-align: left;
+  width: 25px;
+  padding: 0 5px;
+  flex-shrink: 0;
+  text-align: center;
   line-height: 28px;
   font-size: 14px;
   font-weight: bold;
   color: black;
-  padding-left: 10px;
 }
 .diary-list-group .list-item .detail {
+  position: relative;
+  display: flex;
+  padding-right: 8px;
+  margin-left: 35px;
+}
+.diary-list-group .list-item .detail .title {
+  flex-grow: 1;
+  flex-shrink: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-left: 40px;
   line-height: 28px;
   display: block;
   font-size: 14px;
   color: black;
-  position: relative;
+}
+.diary-list-group .list-item .detail .icon {
+  flex-shrink: 0;
+  padding: 4px 0;
+  height: 28px;
+  width: 20px;
+  display: block;
 }
 .diary-list-group .list-item .detail::after {
   bottom: 0;

@@ -312,12 +312,7 @@
                 if (diaries.length > 0) {
                     let lastItem = diaries[0];
                     let html = `<h3 class="list-header">${lastItem.date.substring(0,7)}</h3>
-                                <div class="list-content">
-                                    <a href="edit.html?diaryId=${lastItem.id}" class="list-item">
-                                        <i class="category bg-${lastItem.category}"></i>
-                                        <span class="date">${Number(lastItem.date.slice(8, 10))}</span>
-                                        <p class="detail">${lastItem.content} </p>
-                                    </a>`;
+                                <div class="list-content">` + currentItemHtml(lastItem, Number(lastItem.date.slice(8, 10)));
                     if(diaries.length > 1){
                         for (let i = 1; i< diaries.length; i++){
                             let currentDiary = diaries[i];
@@ -330,20 +325,11 @@
 
                             if (lastItemMonth === currentItemMonth){
                                 let date =  (lastItemDay === currentItemDay)? '': currentItemDay;
-                                template = `<a href="edit.html?diaryId=${currentDiary.id}" class="list-item">
-                                                <i class="category bg-${currentDiary.category}"></i>
-                                                <span class="date">${date}</span>
-                                                <p class="detail">${currentDiary.content } </p>
-                                            </a>`;
+                                template = currentItemHtml(currentDiary, date);
                             } else {
                                 template = `</div>
                                         <h3 class="list-header">${currentDiary.date.substring(0,7)}</h3>
-                                        <div class="list-content">
-                                            <a href="edit.html?diaryId=${currentDiary.id}" class="list-item">
-                                                <i class="category bg-${currentDiary.category}"></i>
-                                                <span class="date">${currentItemDay}</span>
-                                                <p class="detail">${currentDiary.content} </p>
-                                            </a>`;
+                                        <div class="list-content">` + currentItemHtml(currentDiary, currentItemDay);
                             }
                             html += template;
                             lastItem = diaries[i];
@@ -380,10 +366,31 @@
                 pageNo = 1;
                 diaryApp.diaries = [];
                 this.loadMore();
-            }
+            },
+
         }
     });
 
+    function currentItemHtml(item, date) {
+        let hascontentHtml = '';
+        let herf = '';
+        if (item.content){
+            hascontentHtml = `<img class="icon" src="img/content.png" alt="hascontent">`
+            herf = `detail.html?diaryId=${item.id}`
+        } else {
+            hascontentHtml = '';
+            herf = `edit.html?diaryId=${item.id}`
+        }
+        return `<a href="${herf}" class="list-item">
+                    <i class="category bg-${item.category}"></i>
+                    <span class="date">${date}</span>
+                    <div class="detail">
+                        <p class="title">${item.title}</p>
+                        ${hascontentHtml}
+                        <img class="icon" src="img/weather/${item.weather}.png" alt="${item.weather}">
+                    </div>
+                </a>`;
+    }
 
 </script>
 </body>
