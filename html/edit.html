@@ -218,7 +218,7 @@
                                 popMessage(promptType.success, data.info)
                             } else {                            // 编辑日记
                                 popMessage(promptType.success, data.info, ()=>{
-                                    location = FrontURL.index
+                                    history.back()
                                 })
                             }
                         } else if (!data.logined){ // 未登录

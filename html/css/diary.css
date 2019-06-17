@@ -708,8 +708,9 @@ input[id^=category-], input[id^=weather-] {
 }
 
 .search-bar {
+  background-color: #E5E5EA;
   position: relative;
-  padding: 5px;
+  padding: 8px 10px;
 }
 .search-bar input {
   width: 100%;

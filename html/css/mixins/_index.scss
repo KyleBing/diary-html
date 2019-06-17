@@ -123,8 +123,9 @@
 }
 
 .search-bar{
+  background-color: $color-searchbar-bg;
   position: relative;
-  padding: 5px;
+  padding: 8px 10px;
   input{
     width: 100%;
     line-height: 25px;
