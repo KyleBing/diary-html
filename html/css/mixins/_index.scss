@@ -75,10 +75,7 @@
 }
 
 .load-more {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  @include unselectable;
   background-color: white;
   border: 1px solid lighten($gray, 10%);
   display: block;
@@ -90,8 +87,8 @@
   @include border-radius(5px);
 
   &:active{
-    color: $main-color;
-    border-color: $main-color;
+    color: $main-bg-color;
+    border-color: $main-bg-color;
   }
 }
 
@@ -99,9 +96,7 @@
 
 
 .end-of-diary{
-  -webkit-box-shadow: 1px 2px 4px #00000012;
-  -moz-box-shadow: 1px 2px 4px #00000012;
-  box-shadow: 1px 2px 4px #00000012;
+  @include box-shadow(1px 2px 4px #00000012);
   background-color: white;
   -webkit-border-radius: 0 0 15px 15px;
   -moz-border-radius: 0 0 15px 15px;

@@ -1,0 +1,70 @@
+$meta-height: 30px;
+
+.diary-detail{
+  padding: $nav-height + 10px 20px;
+  @media screen and (min-width:$width-seprator){
+    max-width: $width-seprator - 100px;
+    margin: 0 auto;
+  }
+}
+
+.diary-meta{
+  padding: 10px 0 15px;
+  display: flex;
+  justify-content: space-around;
+  .weather{
+    img{
+      height: $meta-height;
+      display: block;
+    }
+  }
+  .temperature{
+    line-height: $meta-height;
+    font-size: 1.1rem;
+  }
+
+  .date{
+    line-height: $meta-height;
+    color: $color-text-date;
+    font-family: "SF UI Display", #{$font-family};
+  }
+}
+
+.diary-title{
+  border-top: 1px solid $main-light-gray;
+  padding: 20px 0;
+  h2{
+    font-weight: normal;
+    font-size: 1.1rem;
+  }
+}
+
+@mixin detail-category-template($color){
+  font-size: .8rem;
+  text-align: center;
+  margin: 3px 0;
+  padding: 2px 10px;
+  border: 1px solid $color;
+  font-weight: bold;
+  color: $color;
+}
+
+.detail-category-life     {@include detail-category-template($main-orange)}
+.detail-category-study    {@include detail-category-template($green)}
+.detail-category-game     {@include detail-category-template($syan)}
+.detail-category-work     {@include detail-category-template($blue)}
+.detail-category-others   {@include detail-category-template($purple)}
+.detail-category-sport    {@include detail-category-template($yellow)}
+.detail-category-diary    {@include detail-category-template($main-orange)}
+.detail-category-bigevent {@include detail-category-template($red)}
+.detail-category-film     {@include detail-category-template($magenta)}
+
+
+.diary-content{
+  color: $main-bg-color;
+  line-height: 1.6;
+  font-size: 1rem;
+  border-top: 1px solid $main-light-gray;
+  padding-top: 20px;
+
+}

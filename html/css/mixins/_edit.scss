@@ -16,7 +16,7 @@
   height: 40px;
   border-top: 1px solid $main-light-gray;
   .title{
-    color: $color-date;
+    color: $color-text-date;
     line-height: 40px;
   }
   .date{
@@ -60,7 +60,7 @@
 
   }
   input[id^=category-]:checked + label{
-    border: 1px solid $color-date;
+    border: 1px solid $color-text-date;
     background-color: #fff;
   }
 

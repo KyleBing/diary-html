@@ -10,9 +10,9 @@ $yellow:        #FFCC00;
 $gray:          #8E8E93;
 
 $color-list-selected: #FFF0D1;
-$main-color:          #373737;
+$main-bg-color:       #373737;
 $main-light-gray:     #EFEFF4;
-$color-date:          #9B9B9B;
+$color-text-date:     #9B9B9B;
 $menu-panel-color:    #4A4A4A;
 
 
@@ -29,8 +29,8 @@ $height-input:48px;
 $radius:5px;
 
 $nav-height: 45px;
-
 $font-family: "SF UI display", "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", "Helvetica", sans-serif;
-
-
 $load-box-height: 30px;
+
+// Grid
+$width-seprator: 765px;

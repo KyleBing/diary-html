@@ -116,7 +116,7 @@ $gaps-md: 5%;
 $cols-sm: 2;
 $gaps-sm: 20%;
 
-@media screen and (min-width: 765px){
+@media screen and (min-width: $width-seprator){
   .list-group-item{
     margin-right: $gaps-md;
     width: (100% - $gaps-md * ($cols-md - 1))/$cols-md;
@@ -126,7 +126,7 @@ $gaps-sm: 20%;
   }
 }
 
-@media screen and (max-width: 765px){
+@media screen and (max-width: $width-seprator){
   .list-group-item{
     margin-right: $gaps-sm;
     width: (100% - $gaps-sm * ($cols-sm - 1))/$cols-sm;
