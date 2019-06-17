@@ -61,18 +61,18 @@ class MSql
                   from diaries 
                   where uid='${uid}' 
                   and (${categoryStr})
-                  and content like '%${keyword}%' 
+                  and title like '%${keyword}%' 
                   order by date desc  
                   limit $startPoint, $pageCount";
         return $sql;
     }
 
     // 添加日记
-    public static function AddDiary($uid, $content, $category, $date)
+    public static function AddDiary($uid, $title, $content, $category, $weather, $temperature, $date)
     {
         $timeNow = date('Y-m-d H:i:s');
-        return "INSERT into diaries(content,category,create_date,modify_date,date,uid)
-                VALUES('${content}','${category}','${timeNow}','${timeNow}','${date}','${uid}')";
+        return "INSERT into diaries(title,content,category,weather,temperature,create_date,modify_date,date,uid)
+                VALUES('${title}','${content}','${category}','${weather}','${temperature}','${timeNow}','${timeNow}','${date}','${uid}')";
     }
 
     // 删除日记
@@ -84,15 +84,19 @@ class MSql
     }
 
     // 更新日记
-    public static function UpdateDiary($uid, $id, $content, $category, $date)
+    public static function UpdateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $date)
     {
         $timeNow = date('Y-m-d H:i:s');
-        return "update diaries 
+        $sql =  "update diaries 
                 set diaries.modify_date='${timeNow}', 
                   diaries.date='${date}', 
                   diaries.category='${category}',
-                  diaries.content='${content}'
+                  diaries.title='${title}',
+                  diaries.content='${content}',
+                  diaries.weather='${weather}',
+                  diaries.temperature='${temperature}'
                 WHERE id='${id}' and uid='${uid}'";
+        return $sql;
     }
 
     // 查询日记内容

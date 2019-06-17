@@ -19,10 +19,10 @@ if (checkLogin($_COOKIE['diaryEmail'], $_COOKIE['diaryToken'])) {
             queryDiary($_COOKIE['diaryUid'], $_GET['diaryId']);
             break;
         case 'modify':
-            updateDiary($_COOKIE['diaryUid'], $_POST['diaryId'], $_POST['diaryContent'], $_POST['diaryCategory'], $_POST['diaryDate']);
+            updateDiary($_COOKIE['diaryUid'], $_POST['diaryId'], $_POST['diaryTitle'], $_POST['diaryContent'], $_POST['diaryCategory'], $_POST['diaryWeather'], $_POST['diaryTemperature'], $_POST['diaryDate']);
             break;
         case 'add':
-            addDiary($_COOKIE['diaryUid'], $_POST['diaryContent'], $_POST['diaryCategory'], $_POST['diaryDate']);
+            addDiary($_COOKIE['diaryUid'], $_POST['diaryTitle'], $_POST['diaryContent'], $_POST['diaryCategory'], $_POST['diaryWeather'], $_POST['diaryTemperature'], $_POST['diaryDate']);
             break;
         case 'delete':
             deleteDiary($_COOKIE['diaryUid'], $_POST['diaryId']);
@@ -85,12 +85,12 @@ function queryDiary($uid, $id)
 
 
 //修改
-function updateDiary($uid, $id, $content, $category, $date)
+function updateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $date)
 {
     $con = new dsqli();
     $con->set_charset('utf8');
     $response = '';
-    $result = $con->query(MSql::UpdateDiary($uid, $id, $content, $category, $date));
+    $result = $con->query(MSql::UpdateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $date));
     if ($result) {
         $response = new ResponseSuccess('修改成功');
     } else {
@@ -119,12 +119,12 @@ function deleteDiary($uid, $id)
 
 
 // 添加
-function addDiary($uid, $content, $category, $date)
+function addDiary($uid, $title, $content, $category, $weather, $temperature, $date)
 {
     $con = new dsqli();
     $con->set_charset('utf8');
     $response = '';
-    $result = $con->query(MSql::AddDiary($uid, $content, $category, $date));
+    $result = $con->query(MSql::AddDiary($uid, $title, $content, $category, $weather, $temperature, $date));
     if ($result) {
         $response = new ResponseSuccess('添加成功');
     } else {
