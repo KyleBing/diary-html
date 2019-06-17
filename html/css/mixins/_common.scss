@@ -1,7 +1,7 @@
-.left   {float: left;}
-.right  {float: right;}
-.hidden {display: none;}
-.show   {display: block;}
+.left   {float: left !important;}
+.right  {float: right !important;}
+.hidden {display: none !important;}
+.show   {display: block !important;}
 
 @mixin bg-orange  { background-color: $main-orange; }
 @mixin bg-yellow  { background-color: $yellow; }

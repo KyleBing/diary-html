@@ -78,19 +78,19 @@ tt {
 }
 
 .left {
-  float: left;
+  float: left !important;
 }
 
 .right {
-  float: right;
+  float: right !important;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .show {
-  display: block;
+  display: block !important;
 }
 
 .alert {
@@ -300,19 +300,19 @@ tt {
   display: block;
   width: 100%;
   resize: none;
-  height: 60px;
+  height: 100px;
   padding: 8px 10px;
   font-size: 1em;
-  border-bottom: 1px solid #E5E5EA;
 }
 
 .diary-editor-content {
   display: block;
   width: 100%;
   resize: none;
-  height: 150px;
+  height: 120px;
   padding: 8px 10px;
   font-size: 1em;
+  border-top: 1px solid #EFEFF4;
 }
 
 .input-group {
@@ -321,15 +321,16 @@ tt {
   padding: 0 10px;
   background-color: #fff;
   height: 40px;
-  border-top: 1px solid #E5E5EA;
+  border-top: 1px solid #EFEFF4;
 }
 .input-group label {
+  width: 50%;
   color: #9B9B9B;
   line-height: 40px;
 }
 .input-group input {
+  width: 50%;
   text-align: right;
-  flex-grow: 1;
   background-color: transparent;
   font-size: 18px;
   height: 40px;
@@ -342,7 +343,7 @@ tt {
 .weather-selector, .category-selector {
   padding: 15px 20px 5px;
   background-color: white;
-  border-top: 1px solid #E5E5EA;
+  border-top: 1px solid #EFEFF4;
 }
 
 .category-selector {
@@ -539,7 +540,7 @@ input[id^=category-], input[id^=weather-] {
   display: block;
   line-height: 45px;
   text-align: center;
-  border-bottom: 1px solid #E5E5EA;
+  border-bottom: 1px solid #EFEFF4;
 }
 .action-list-item:last-child {
   border: none;

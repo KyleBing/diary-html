@@ -24,15 +24,15 @@
     <div @click="closeEditor"      class="navbar-btn left" > <img src="img/tabicon/back.png" alt="关闭"></div>
     <div @click="confirmClicked"  v-show="confirmBtnShow" class="navbar-btn right" ><img src="img/tabicon/confirm.png" alt="确定"></div>
     <div class="brand">
-        <a href=".."><img src="img/logo.png" alt="日记"></a>
+        <a @click="showContentEditor"><img src="img/logo.png" alt="日记"></a>
     </div>
 </nav>
 
 
 <div class="container" id="diaryEditor">
 
-    <textarea class="diary-editor-title" placeholder="标题日记内容，一句话" v-model.lazy="title"></textarea>
-    <textarea class="diary-editor-content" placeholder="日记详细内容，如果你有很多要写的" v-model.lazy="content"></textarea>
+    <textarea id="diary-editor-title" class="diary-editor-title" placeholder="一句话，概括你的一天" v-model.lazy="title"></textarea>
+    <textarea v-show="contentEditorShowed" id="diary-editor-content" class="diary-editor-content" placeholder="日记详细内容，如果你有很多要写的" v-model.lazy="content"></textarea>
 
     <div class="input-group">
         <label for="date">日期</label>
@@ -40,7 +40,7 @@
     </div>
     <div class="input-group">
         <label for="date">气温 ℃</label>
-        <input placeholder="26" class="temperature" type="number" name="temperature" id="temperature" v-model="temperature">
+        <input placeholder="--" class="temperature" type="number" name="temperature" id="temperature" v-model="temperature">
     </div>
 
     <div class="category-selector">
@@ -179,15 +179,18 @@
                 history.back();
             },
             confirmClicked: function () {
-                if(diaryEditor.content.trim().length === 0) {
-                    diaryEditor.content = ''; // clear content
+                if(diaryEditor.title.trim().length === 0) {
+                    diaryEditor.title = ''; // clear content
                     popMessage(promptType.warning, '内容未填写',()=>{});
                     return;
                 }
                 let queryData = {
                     diaryId: diaryEditor.id,
-                    diaryContent: diaryEditor.content,
+                    diaryTitle: diaryEditor.title,
+                    diaryContent: diaryEditor.content? diaryEditor.content: null ,
                     diaryCategory: diaryEditor.category,
+                    diaryTemperature: diaryEditor.temperature,
+                    diaryWeather: diaryEditor.weather,
                     diaryDate: diaryEditor.date + ' 00:00:00'
                 };
 
@@ -228,6 +231,9 @@
                         console.log(xhr)
                     }
                 })
+            },
+            showContentEditor: function () {
+                diaryEditor.contentEditorShowed = !diaryEditor.contentEditorShowed;
             }
         }
     });
@@ -236,6 +242,7 @@
     let diaryEditor = new Vue({
         el: '#diaryEditor',
         data: {
+            contentEditorShowed: false,
             id:"",
             title: "",
             content:"",
@@ -259,10 +266,18 @@
                         if (data.success){
                             let diary = data.data[0];
                             diaryEditor.id = diary.id;
+                            diaryEditor.title = diary.title;
                             diaryEditor.content = diary.content;
                             diaryEditor.date = diary.date.substring(0,diary.date.indexOf(' '));
                             diaryEditor.category = diary.category;
+                            diaryEditor.temperature = diary.temperature;
+                            diaryEditor.weather = diary.weather;
+
+                            if(diary.content){
+                                diaryEditor.contentEditorShowed = true;
+                            }
                         }
+
                     }
                 });
             } else {
