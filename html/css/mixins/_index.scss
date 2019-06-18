@@ -30,13 +30,13 @@
     }
     .category{
       float: left;
-      width: 5px;
+      width: $index-category-width;
       height: $list-item-height;
       display: block;
     }
     .date{
       float: left;
-      width: 25px;
+      width: $index-date-width;
       padding: 0 5px;
       flex-shrink: 0;
       text-align: center;

@@ -335,7 +335,7 @@ textarea:focus {
   width: 100%;
   resize: none;
   height: 100px;
-  padding: 8px 10px;
+  padding: 15px;
   font-size: 1.1em;
   border-bottom: 1px solid #EFEFF4;
 }
@@ -345,7 +345,7 @@ textarea:focus {
   width: 100%;
   resize: none;
   height: 120px;
-  padding: 8px 10px;
+  padding: 15px;
   font-size: 1em;
   border-bottom: 1px solid #EFEFF4;
 }
@@ -615,7 +615,7 @@ input[id^=category-], input[id^=weather-] {
 }
 .diary-list-group .list-item .category {
   float: left;
-  width: 5px;
+  width: 3px;
   height: 28px;
   display: block;
 }
@@ -828,8 +828,8 @@ input[id^=category-], input[id^=weather-] {
   display: block;
   position: relative;
   font-size: 20px;
-  height: 45px;
-  line-height: 45px;
+  height: 50px;
+  line-height: 50px;
   padding: 0 15px;
   color: #ffffff;
 }
