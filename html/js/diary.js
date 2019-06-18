@@ -53,7 +53,9 @@ function getAuthorization() {
     let username = $.cookie(cookie.username);
     let uid = $.cookie(cookie.uid);
     if (email === undefined || token === undefined){
-        location = FrontURL.login;
+        if (location.pathname.indexOf('login.html') < 0){
+            location = FrontURL.login;
+        }
         return false;
     } else {
         return {

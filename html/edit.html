@@ -36,11 +36,11 @@
     <textarea id="diary-editor-title" class="diary-editor-title" placeholder="一句话，概括你的一天" v-model.lazy="title"></textarea>
     <textarea v-show="contentEditorShowed" id="diary-editor-content" class="diary-editor-content" placeholder="日记详细内容，如果你有很多要写的" v-model.lazy="content"></textarea>
 
-    <div class="input-group">
+    <div class="diary-input-group">
         <label for="date">日期</label>
         <input placeholder="选择时间" class="date" type="date" name="date" id="date" v-model="date">
     </div>
-    <div class="input-group">
+    <div class="diary-input-group">
         <label for="date">气温 ℃</label>
         <input placeholder="--" class="temperature" type="number" name="temperature" id="temperature" v-model="temperature">
     </div>
