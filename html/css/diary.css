@@ -628,7 +628,7 @@ input[id^=category-], input[id^=weather-] {
   line-height: 28px;
   font-size: 14px;
   font-weight: bold;
-  color: black;
+  color: #232323;
 }
 .diary-list-group .list-item .detail {
   position: relative;
@@ -645,7 +645,7 @@ input[id^=category-], input[id^=weather-] {
   line-height: 28px;
   display: block;
   font-size: 14px;
-  color: black;
+  color: #232323;
 }
 .diary-list-group .list-item .detail .icon {
   flex-shrink: 0;
@@ -974,7 +974,7 @@ input[id^=category-], input[id^=weather-] {
   height: 20px;
 }
 .about .author a:link, .about .author a:hover, .about .author a:active, .about .author a:visited {
-  color: #EFEFF4;
+  color: #8E8E93;
 }
 
 .navbar {

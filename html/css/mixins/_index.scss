@@ -43,7 +43,7 @@
       line-height: $list-item-height;
       font-size: $list-item-font-size;
       font-weight: bold;
-      color: black;
+      color: $color-diary-date;
     }
     .detail{
       position: relative;
@@ -59,7 +59,7 @@
         line-height: $list-item-height;
         display: block;
         font-size: $list-item-font-size;
-        color: black;
+        color: $color-diary-title;
       }
       .icon{
         flex-shrink: 0;
