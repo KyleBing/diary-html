@@ -3,7 +3,6 @@ $meta-height: 30px;
 .diary-detail{
   padding: $nav-height 0;
   @media screen and (min-width:$width-seprator){
-    max-width: $width-seprator - 100px;
     margin: 0 auto;
   }
 }
@@ -30,8 +29,9 @@ $meta-height: 30px;
 }
 
 .diary-title{
-  border-top: 1px solid $color-seperator;
-  padding: 20px;
+  border-bottom: 1px solid $color-seperator;
+  padding: 20px 0;
+  margin: 0 20px;
   h2{
     font-weight: normal;
     font-size: 1.1rem;
@@ -64,7 +64,6 @@ $meta-height: 30px;
   color: $main-bg-color;
   line-height: 1.6;
   font-size: 1rem;
-  border-top: 1px solid $color-seperator;
   padding: 20px;
 
 }
