@@ -214,6 +214,7 @@
                         if (data.success){
                             navbar.confirmBtnShow = true;
                             if (diaryEditor.id === ''){         // 新建日记
+                                diaryEditor.title = '';
                                 diaryEditor.content = '';
                                 popMessage(promptType.success, data.info)
                             } else {                            // 编辑日记
@@ -251,7 +252,7 @@
             content:"",
             date: "",
             category: "life",
-            temperature: 26,
+            temperature: '',
             weather: "sunny"
         },
         created: function () {
