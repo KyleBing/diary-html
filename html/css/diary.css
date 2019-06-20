@@ -590,7 +590,8 @@ input[id^=category-], input[id^=weather-] {
 }
 
 .diary-list-group .list-header {
-  text-shadow: 1px 1px 0 #00000022;
+  border-top: 1px solid #E5E5EA;
+  border-bottom: 1px solid #E5E5EA;
   font-family: "SF UI Display", "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", "Helvetica", sans-serif;
   font-size: 20px;
   font-weight: bold;

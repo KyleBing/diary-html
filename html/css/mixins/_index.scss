@@ -5,7 +5,8 @@
 
 .diary-list-group{
   .list-header{
-    text-shadow: 1px 1px 0 #00000022;
+    border-top: 1px solid $color-seperator;
+    border-bottom: 1px solid $color-seperator;
     font-family: $font-family;
     font-size: $list-header-font-size;
     font-weight: bold;
