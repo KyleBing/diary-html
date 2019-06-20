@@ -241,7 +241,7 @@
     window.onload = () => {
         // 滚动监听
         window.onscroll = () => {
-            if (needLoadContent() && diaryApp.haveMore){
+            if (diaryApp.haveMore && needLoadContent()){
                 diaryApp.loadMore();
             }
         };
@@ -275,6 +275,9 @@
                     diaryApp.diaries = diaryApp.diaries.concat(data.data);
                     // 在后面判断获取的数据，小于1或小于每页的数量时，隐藏加载更多按钮
                     diaryApp.haveMore = !(data.data.length < PAGE_AMOUNT);
+                    if (!diaryApp.haveMore){
+                        window.onscroll = null; // 日记全部加载完毕后，去掉 scroll 事件
+                    }
                     pageNo++;
                 } else if (!data.logined){ // 未登录
                     popMessage(PopMessageType.warning, data.info,()=>{
