@@ -25,7 +25,7 @@
     <div v-show="btnAdd"      @click="addClicked"       class="navbar-btn right">                       <img src="img/tabicon/add.png" alt="添加"></div>
     <div v-show="btnConfirm"  @click="confirmClicked"   class="navbar-btn right" style="display: none;"><img src="img/tabicon/confirm.png" alt="添加"></div>
     <div class="brand">
-        <a href=".."><img src="img/logo.png" alt="日记"></a>
+        <a onclick="toggleLogo(this)"><img src="img/logo.png" alt="日记"></a>
     </div>
 </nav>
 
@@ -239,11 +239,12 @@
     let PAGE_AMOUNT = 30;
 
     window.onload = () => {
+        // 滚动监听
         window.onscroll = () => {
             if (needLoadContent() && diaryApp.haveMore){
                 diaryApp.loadMore();
             }
-        }
+        };
     };
 
     // 判断是否加载内容
@@ -309,7 +310,7 @@
                 diaries = this.diaries;
                 if (diaries.length > 0) {
                     let lastItem = diaries[0];
-                    let html = `<h3 class="list-header">${lastItem.date.substring(0,7)}</h3>
+                    let html = `<h3 onclick="toggleMonthContent(this)" class="list-header">${lastItem.date.substring(0,7)}</h3>
                                 <div class="list-content">` + currentItemHtml(lastItem, Number(lastItem.date.slice(8, 10)));
                     if(diaries.length > 1){
                         for (let i = 1; i< diaries.length; i++){
@@ -325,7 +326,7 @@
                                 template = currentItemHtml(currentDiary, date);
                             } else {
                                 template = `</div>
-                                        <h3 class="list-header">${currentDiary.date.substring(0,7)}</h3>
+                                        <h3 onclick="toggleMonthContent(this)" class="list-header">${currentDiary.date.substring(0,7)}</h3>
                                         <div class="list-content">` + currentItemHtml(currentDiary, currentItemDay);
                             }
                             html += template;
@@ -383,7 +384,7 @@
             href = `detail.html?diaryId=${item.id}`
         } else {
             hascontentHtml = '';
-            href = `edit.html?diaryId=${item.id}`
+            href = `detail.html?diaryId=${item.id}`
         }
 
 
@@ -396,6 +397,27 @@
                         ${weatherHtml}
                     </div>
                 </a>`;
+    }
+
+    // logo 点击切换图标
+    function toggleLogo(logo) {
+        const LOGO = {
+            open: 'img/logo.png',
+            close: 'img/logo_close.png'
+        };
+        let img = $(logo).children('img');
+        let currentSrc = img.attr('src');
+        if (currentSrc === LOGO.open){
+            img.attr('src', LOGO.close);
+            $('.list-content').slideUp()
+        } else {
+            img.attr('src', LOGO.open);
+            $('.list-content').slideDown()
+        }
+    }
+
+    function toggleMonthContent(header){
+        $(header).next().slideToggle();
     }
 
 </script>

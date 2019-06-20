@@ -1003,6 +1003,7 @@ input[id^=category-], input[id^=weather-] {
   height: 45px;
 }
 .navbar .brand {
+  cursor: pointer;
   margin: 0 auto;
   height: 45px;
   width: 80px;
