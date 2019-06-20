@@ -186,7 +186,7 @@ tt {
 }
 .diary-meta .date {
   line-height: 30px;
-  color: #9B9B9B;
+  color: #373737;
 }
 
 .diary-title {
@@ -205,11 +205,11 @@ tt {
   margin: 3px 0;
   padding: 2px 10px;
   border: 1px solid #FF9500;
-  font-weight: bold;
-  color: #FF9500;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  color: white;
+  background-color: #FF9500;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .detail-category-study {
@@ -218,11 +218,11 @@ tt {
   margin: 3px 0;
   padding: 2px 10px;
   border: 1px solid #4CD964;
-  font-weight: bold;
-  color: #4CD964;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  color: white;
+  background-color: #4CD964;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .detail-category-game {
@@ -231,11 +231,11 @@ tt {
   margin: 3px 0;
   padding: 2px 10px;
   border: 1px solid #5AC8FA;
-  font-weight: bold;
-  color: #5AC8FA;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  color: white;
+  background-color: #5AC8FA;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .detail-category-work {
@@ -244,11 +244,11 @@ tt {
   margin: 3px 0;
   padding: 2px 10px;
   border: 1px solid #007AFF;
-  font-weight: bold;
-  color: #007AFF;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  color: white;
+  background-color: #007AFF;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .detail-category-others {
@@ -257,11 +257,11 @@ tt {
   margin: 3px 0;
   padding: 2px 10px;
   border: 1px solid #5856D6;
-  font-weight: bold;
-  color: #5856D6;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  color: white;
+  background-color: #5856D6;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .detail-category-sport {
@@ -270,11 +270,11 @@ tt {
   margin: 3px 0;
   padding: 2px 10px;
   border: 1px solid #FFCC00;
-  font-weight: bold;
-  color: #FFCC00;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  color: white;
+  background-color: #FFCC00;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .detail-category-diary {
@@ -283,11 +283,11 @@ tt {
   margin: 3px 0;
   padding: 2px 10px;
   border: 1px solid #FF9500;
-  font-weight: bold;
-  color: #FF9500;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  color: white;
+  background-color: #FF9500;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .detail-category-bigevent {
@@ -296,11 +296,11 @@ tt {
   margin: 3px 0;
   padding: 2px 10px;
   border: 1px solid #FF3B30;
-  font-weight: bold;
-  color: #FF3B30;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  color: white;
+  background-color: #FF3B30;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .detail-category-film {
@@ -309,11 +309,11 @@ tt {
   margin: 3px 0;
   padding: 2px 10px;
   border: 1px solid #FF2D70;
-  font-weight: bold;
-  color: #FF2D70;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  color: white;
+  background-color: #FF2D70;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .diary-content {
@@ -592,14 +592,14 @@ input[id^=category-], input[id^=weather-] {
 .diary-list-group .list-header {
   text-shadow: 1px 1px 0 #00000022;
   font-family: "SF UI Display", "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", "Helvetica", sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   text-align: left;
   padding: 0 20px;
   color: black;
   background-color: #EFEFF4;
-  height: 30px;
-  line-height: 30px;
+  height: 40px;
+  line-height: 40px;
 }
 .diary-list-group .list-item {
   display: block;

@@ -29,16 +29,16 @@
 
 <div class="diary-detail" id="diaryDetail">
     <!--META-->
-    <div class="diary-meta">
-
-    </div>
+    <div class="diary-meta"></div>
     <!--TITLE-->
     <div class="diary-title">
         <h2></h2>
     </div>
 
     <!--CONTENT-->
-    <div class="diary-content"><p></p></div>
+    <div class="diary-content">
+        <p></p>
+    </div>
 </div>
 
 
@@ -103,12 +103,12 @@
                 success: function (data) {
                     if (data.success) {
                         let diary = data.data[0];
-                        let temperatureHtml = diary.temperature? `<div class="temperature"><span>${diary.temperature}</span>℃</div>`: '';
+                        let temperatureHtml = Number(diary.temperature)? `<div class="temperature"><span>${diary.temperature}</span>℃</div>`: '';
                         let weatherHtml = diary.weather? `<div class="weather"><img src="img/weather/${diary.weather}_active.png" alt="${WEATHER[diary.weather].name}"></div>`: '';
-                        let metaHtml = `${weatherHtml}
+                        let metaHtml = `<div class="date">${formateDate(diary.date)}</div>
+                                        ${weatherHtml}
                                         ${temperatureHtml}
-                                        <div class="detail-category-${diary.category}"><span>${CATEGORIES[diary.category]}</span></div>
-                                        <div class="date">${formateDate(diary.date)}</div>`;
+                                        <div class="detail-category-${diary.category}"><span>${CATEGORIES[diary.category]}</span></div>`;
                         $('.diary-meta').html(metaHtml);
                         $('.diary-title h2').text(diary.title);
                         $('.diary-content p').html(diary.content.replace(/\n/g, '<br>'));
@@ -128,10 +128,13 @@
     }
 
     function formateDate(dateString){
-        let year = dateString.substring(0,4);
-        let month = dateString.substring(5,7);
-        let day = dateString.substring(8,10);
-        return `${year}年${month}月${day}日`
+        let year = Number(dateString.substring(0,4));
+        let month = Number(dateString.substring(5,7));
+        let day = Number(dateString.substring(8,10));
+        let date = new Date(year, month - 1, day);
+        let week = date.getDay();
+        // return `${year}.${month}.${day} ${WEEKDAY[week]}`
+        return `${year}年${month}月${day}日 ${WEEKDAY[week]}`
     }
 
 </script>

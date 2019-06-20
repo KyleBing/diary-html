@@ -24,7 +24,7 @@ $meta-height: 30px;
   }
   .date{
     line-height: $meta-height;
-    color: $color-text-date;
+    color: $main-bg-color;
   }
 }
 
@@ -44,9 +44,10 @@ $meta-height: 30px;
   margin: 3px 0;
   padding: 2px 10px;
   border: 1px solid $color;
-  font-weight: bold;
-  color: $color;
-  @include border-radius(20px)
+  color: white;
+  background-color: $color;
+  @include border-radius(5px)
+
 }
 
 .detail-category-life     {@include detail-category-template($main-orange)}
