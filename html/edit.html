@@ -24,7 +24,7 @@
     <div @click="closeEditor"      class="navbar-btn left" > <img src="img/tabicon/back.png" alt="关闭"></div>
     <div @click="confirmClicked"  v-show="confirmBtnShow" class="navbar-btn right" ><img src="img/tabicon/confirm.png" alt="确定"></div>
     <div class="brand">
-        <a @click="showContentEditor"><img src="img/logo.png" alt="日记"></a>
+        <a @click="showContentEditor"><img src="img/logo_title.png" alt="日记"></a>
     </div>
 </nav>
 
@@ -254,6 +254,15 @@
             category: "life",
             temperature: '',
             weather: "sunny"
+        },
+        watch:{
+            contentEditorShowed: function () {
+                if(this.contentEditorShowed){
+                    $('.brand img').attr('src','img/logo_content.png');
+                } else {
+                    $('.brand img').attr('src','img/logo_title.png');
+                }
+            }
         },
         created: function () {
             let searchString = location.search;
