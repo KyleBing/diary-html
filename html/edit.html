@@ -158,7 +158,7 @@
             data: queryData,
             success: function (data) {
                 if (data.success) {
-                    popMessage(promptType.success, data.info, () => {
+                    popMessage(PopMessageType.success, data.info, () => {
                         location = FrontURL.index
                     }, 1) // 删除成功后等待时间不要太长
                 } else if (!data.logined) {
@@ -184,7 +184,7 @@
             confirmClicked: function () {
                 if(diaryEditor.title.trim().length === 0) {
                     diaryEditor.title = ''; // clear content
-                    popMessage(promptType.warning, '内容未填写',()=>{});
+                    popMessage(PopMessageType.warning, '内容未填写',()=>{});
                     return;
                 }
                 let queryData = {
@@ -216,18 +216,18 @@
                             if (diaryEditor.id === ''){         // 新建日记
                                 diaryEditor.title = '';
                                 diaryEditor.content = '';
-                                popMessage(promptType.success, data.info)
+                                popMessage(PopMessageType.success, data.info)
                             } else {                            // 编辑日记
-                                popMessage(promptType.success, data.info, ()=>{
+                                popMessage(PopMessageType.success, data.info, ()=>{
                                     history.back()
                                 })
                             }
                         } else if (!data.logined){ // 未登录
-                            popMessage(promptType.default, data.info, () => {
+                            popMessage(PopMessageType.default, data.info, () => {
                                 location = FrontURL.login;
                             })
                         } else {
-                            popMessage(promptType.default, data.info);
+                            popMessage(PopMessageType.default, data.info);
                             navbar.confirmBtnShow = true;
                         }
                     },

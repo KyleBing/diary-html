@@ -29,7 +29,7 @@
 
 ## 用到的技术和库
 
-- `javascript ES6` `jQuery.js` `Vue.js` `jQuery.cookie.js`
+- `javascript ES6` `jQuery.js` `Vue.js` `jQuery.COOKIE.js`
 - `php`
 - `css3` + `html`
 

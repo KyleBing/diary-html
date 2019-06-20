@@ -28,30 +28,31 @@ let FrontURL = {
 };
 
 const categories = ['life','study','work','sport','game','film','bigevent','other'];
-const cookie = {
+const COOKIE = {
     email: 'diaryEmail',
     token: 'diaryToken',
     username: 'diaryUsername',
     uid: 'diaryUid',
     category: 'diaryCategories',
+    keyword: 'keyword',
     options: {expires: 7, path: '/'}
 };
 
 
 // 设置cookie
 function setAuthorization(email, token, username, uid) {
-    $.cookie(cookie.email,email,cookie.options);
-    $.cookie(cookie.token,token,cookie.options);
-    $.cookie(cookie.username,username,cookie.options);
-    $.cookie(cookie.uid,uid,cookie.options);
+    $.cookie(COOKIE.email,email,COOKIE.options);
+    $.cookie(COOKIE.token,token,COOKIE.options);
+    $.cookie(COOKIE.username,username,COOKIE.options);
+    $.cookie(COOKIE.uid,uid,COOKIE.options);
 }
 
 // 获取cookie
 function getAuthorization() {
-    let email = $.cookie(cookie.email);
-    let token = $.cookie(cookie.token);
-    let username = $.cookie(cookie.username);
-    let uid = $.cookie(cookie.uid);
+    let email = $.cookie(COOKIE.email);
+    let token = $.cookie(COOKIE.token);
+    let username = $.cookie(COOKIE.username);
+    let uid = $.cookie(COOKIE.uid);
     if (email === undefined || token === undefined){
         if (location.pathname.indexOf('login.html') < 0){
             location = FrontURL.login;
@@ -69,14 +70,14 @@ function getAuthorization() {
 
 // 删除cookie
 function deleteAuthorization() {
-    $.removeCookie(cookie.email,{path: '/'});
-    $.removeCookie(cookie.token,{path: '/'});
-    $.removeCookie(cookie.username,{path: '/'});
-    $.removeCookie(cookie.uid,{path: '/'});
+    $.removeCookie(COOKIE.email,{path: '/'});
+    $.removeCookie(COOKIE.token,{path: '/'});
+    $.removeCookie(COOKIE.username,{path: '/'});
+    $.removeCookie(COOKIE.uid,{path: '/'});
 }
 
 
-const promptType = {
+const PopMessageType = {
     success:    "success",
     warning:    "warning",
     danger:     "danger",

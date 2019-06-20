@@ -32,21 +32,13 @@
     <div class="diary-meta">
 
     </div>
-
     <!--TITLE-->
     <div class="diary-title">
-        <h2>下午去济南奥体中心看了下，空旷，大，废弃即视感</h2>
+        <h2></h2>
     </div>
 
     <!--CONTENT-->
-    <div class="diary-content">
-        <p>
-            现在想到出去干活应聘的事就慌得慌，可能是我在家待了太久的原因，快一年了。 <br>
-            今天把简历用ai做了一遍。 <br>
-            <br>
-            后天准备去北京，心里没底，昨晚没有睡好，就好像睡着了，心里还在不停的胡思乱想，就最近几天特别特别的浮躁，心里慌得慌。要疯的感觉。
-        </p>
-    </div>
+    <div class="diary-content"><p></p></div>
 </div>
 
 
@@ -56,7 +48,6 @@
 <script>
     window.onload = () => {
         loadDiary();
-
     };
 
     // Navbar
@@ -121,6 +112,10 @@
                         $('.diary-meta').html(metaHtml);
                         $('.diary-title h2').text(diary.title);
                         $('.diary-content p').html(diary.content.replace(/\n/g, '<br>'));
+                    } else if (!data.logined) {
+                        popMessage(PopMessageType.warning, data.info, () => {
+                            location = FrontURL.login
+                        })
                     }
                 }
             });

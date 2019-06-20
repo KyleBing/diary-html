@@ -132,7 +132,7 @@
     @include border-radius($radius);
     padding: 5px 10px;
     display: block;
-    border: 1px solid $main-light-gray;
+    border: 1px solid $color-seperator;
     font-size: 1em;
     &:focus{
       border-color: $main-orange;

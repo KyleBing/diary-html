@@ -56,7 +56,7 @@
     // 如果已经登录，跳到主页
     window.onload = () => {
       if (getAuthorization()) {
-          popMessage(promptType.default, '您已经登录，正在跳转...',()=>{
+          popMessage(PopMessageType.default, '您已经登录，正在跳转...',()=>{
               location = FrontURL.index;
           })
       }
@@ -101,12 +101,12 @@
                 function onSuccess(data) {
                     if(data.success){ // 登录成功
                         setAuthorization(data.email, data.token, data.username, data.uid);
-                        $.cookie(cookie.category,JSON.stringify(categories), cookie.options)
-                        popMessage(promptType.success, data.info, ()=>{
+                        $.cookie(COOKIE.category,JSON.stringify(categories), COOKIE.options)
+                        popMessage(PopMessageType.success, data.info, ()=>{
                             location = FrontURL.index
                         })
                     } else { // 登录失败
-                        popMessage(promptType.warning, data.info);
+                        popMessage(PopMessageType.warning, data.info);
                     }
                 }
             }

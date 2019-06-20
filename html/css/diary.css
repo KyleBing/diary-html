@@ -719,7 +719,7 @@ input[id^=category-], input[id^=weather-] {
   border-radius: 5px;
   padding: 5px 10px;
   display: block;
-  border: 1px solid #EFEFF4;
+  border: 1px solid #E5E5EA;
   font-size: 1em;
 }
 .search-bar input:focus {

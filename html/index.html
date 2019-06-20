@@ -6,7 +6,7 @@
     <!--css-->
     <link rel="stylesheet" href="css/diary.css?v4.0">
     <!--js-->
-<!--    <script src="js/vue_2.66.js"></script> develop-->
+<!--    <script src="js/vue_2.66.js"></script> &lt;!&ndash;develop&ndash;&gt;-->
     <script src="js/vue.min.2.6.10.js"></script> <!--production-->
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
@@ -32,8 +32,8 @@
 <!--MENU-->
 <div class="menu-panel" id="menu-panel" v-show="menuPanelShowed" style="display: none;">
     <div class="menu-list-group" v-show="menuListShowed">
-        <a class="menu-list-group-item" @click="referenceClicked">类别</a>
         <a class="menu-list-group-item" @click="showSearchBar">搜索</a>
+        <a class="menu-list-group-item" @click="referenceClicked">类别</a>
         <a class="menu-list-group-item" @click="aboutClicked">关于</a>
         <a class="menu-list-group-item" href="change_password.html">修改密码</a>
         <a class="menu-list-group-item" @click="logout">退出</a>
@@ -169,7 +169,7 @@
             },
             referenceShowed: function () {
                 // console.log(this.categories);
-                $.cookie(cookie.category,JSON.stringify(this.categories), cookie.options);
+                $.cookie(COOKIE.category,JSON.stringify(this.categories), COOKIE.options);
                 diaryApp.freshLoad(); // 关闭 reference 页面的时候初始化载入内容
             }
 
@@ -190,11 +190,12 @@
             showSearchBar: function () {
                 diaryApp.searchBarShow = true;
                 navbar.closeMenu();
+                document.scrollingElement.scrollTo(0,0); // 定位到最上方
                 $('#keyword').focus();
             },
             logout: function(){
                 deleteAuthorization();
-                $.removeCookie(cookie.category,{path: '/'});
+                $.removeCookie(COOKIE.category,{path: '/'});
                 location = FrontURL.login;
             },
             refreshContent: function () {
@@ -202,15 +203,10 @@
             }
         },
         created: function () {
-            this.categories = JSON.parse($.cookie(cookie.category));
+            this.categories = JSON.parse($.cookie(COOKIE.category));
         }
     });
-
-
-
-
 </script>
-
 
 
 <div class="container" id="diaryApp">
@@ -280,11 +276,11 @@
                     diaryApp.haveMore = !(data.data.length < PAGE_AMOUNT);
                     pageNo++;
                 } else if (!data.logined){ // 未登录
-                    popMessage(promptType.warning, data.info,()=>{
+                    popMessage(PopMessageType.warning, data.info,()=>{
                         location = FrontURL.login;
                     })
                 } else { // 其它情况
-                    popMessage(promptType.danger, data.info);
+                    popMessage(PopMessageType.danger, data.info);
                     diaryApp.haveMore = true
                 }
             }
@@ -304,6 +300,8 @@
             keyword: '',
         },
         mounted: function () {
+            // init
+            this.keyword =  $.cookie(COOKIE.keyword)?  $.cookie(COOKIE.keyword): '';
             this.loadMore();
         },
         watch:{
@@ -343,6 +341,7 @@
         },
         methods:{
             loadMore: function () {
+                this.searchBarShow = !!this.keyword;
                 this.haveMore = false;
                 this.isLoading = true;
                 let queryData = {
@@ -358,6 +357,7 @@
                 pageNo = 1;
                 diaryApp.diaries = [];
                 this.keyword = '';
+                $.cookie(COOKIE.keyword, this.keyword, COOKIE.options)
                 this.loadMore();
             },
             searchConfirmed: function () {
@@ -365,6 +365,8 @@
                 pageNo = 1;
                 diaryApp.diaries = [];
                 this.loadMore();
+                // 存储关键字
+                $.cookie(COOKIE.keyword, this.keyword, COOKIE.options)
             },
 
         }
