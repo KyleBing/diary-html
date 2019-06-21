@@ -240,12 +240,16 @@
 
     window.onload = () => {
         // 滚动监听
+        addScrollEvent();
+    };
+
+    function addScrollEvent() {
         window.onscroll = () => {
             if (diaryApp.haveMore && needLoadContent()){
                 diaryApp.loadMore();
             }
         };
-    };
+    }
 
     // 判断是否加载内容
     function needLoadContent() {
@@ -365,6 +369,8 @@
                 this.loadMore();
             },
             searchConfirmed: function () {
+                window.onscroll = null; // 去掉现有scroll
+                addScrollEvent();       // 添加 scroll 事件
                 // 初始化一些值
                 pageNo = 1;
                 diaryApp.diaries = [];

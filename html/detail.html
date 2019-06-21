@@ -103,7 +103,7 @@
                 success: function (data) {
                     if (data.success) {
                         let diary = data.data[0];
-                        let temperatureHtml = Number(diary.temperature)? `<div class="temperature"><span>${diary.temperature}</span>℃</div>`: '';
+                        let temperatureHtml = diary.temperature === '-273'? '' :  `<div class="temperature"><span>${diary.temperature}</span>℃</div>`;
                         let weatherHtml = diary.weather? `<div class="weather"><img src="img/weather/${diary.weather}_active.png" alt="${WEATHER[diary.weather].name}"></div>`: '';
                         let metaHtml = `<div class="date">${formateDate(diary.date)}</div>
                                         ${weatherHtml}

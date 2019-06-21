@@ -192,7 +192,7 @@
                     diaryTitle: diaryEditor.title,
                     diaryContent: diaryEditor.content? diaryEditor.content: null ,
                     diaryCategory: diaryEditor.category,
-                    diaryTemperature: diaryEditor.temperature,
+                    diaryTemperature: diaryEditor.temperature === ''? -273 : diaryEditor.temperature,
                     diaryWeather: diaryEditor.weather,
                     diaryDate: diaryEditor.date + ' 00:00:00'
                 };
@@ -283,7 +283,7 @@
                             diaryEditor.content = diary.content;
                             diaryEditor.date = diary.date.substring(0,diary.date.indexOf(' '));
                             diaryEditor.category = diary.category;
-                            diaryEditor.temperature = diary.temperature;
+                            diaryEditor.temperature = diary.temperature === '-273'? '': diary.temperature ;
                             diaryEditor.weather = diary.weather;
 
                             if(diary.content){
