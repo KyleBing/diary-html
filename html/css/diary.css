@@ -1085,6 +1085,7 @@ input[id^=category-], input[id^=weather-] {
   padding: 20px 0 0;
 }
 .body-regist .footer a {
+  cursor: pointer;
   font-size: 14px;
   color: #EFEFF4;
 }

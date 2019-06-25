@@ -66,6 +66,7 @@
   .footer{
     padding: 20px 0 0;
     a{
+      cursor: pointer;
       font-size: $size-note;
       color: $main-light-gray;
       &:hover,&:active,&:visited{
