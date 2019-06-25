@@ -324,9 +324,9 @@ tt {
 }
 
 textarea:focus {
-  -webkit-box-shadow: inset 1px 1px 5px #00000022;
-  -moz-box-shadow: inset 1px 1px 5px #00000022;
-  box-shadow: inset 1px 1px 5px #00000022;
+  -webkit-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
 
 .diary-editor-title {
@@ -693,9 +693,9 @@ input[id^=category-], input[id^=weather-] {
 }
 
 .end-of-diary {
-  -webkit-box-shadow: 1px 2px 4px #00000012;
-  -moz-box-shadow: 1px 2px 4px #00000012;
-  box-shadow: 1px 2px 4px #00000012;
+  -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.12);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.12);
   background-color: white;
   -webkit-border-radius: 0 0 15px 15px;
   -moz-border-radius: 0 0 15px 15px;
@@ -725,7 +725,7 @@ input[id^=category-], input[id^=weather-] {
 }
 .search-bar input:focus {
   border-color: #FF9500;
-  box-shadow: 1px 1px 5px #00000011;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 .search-bar .clear {
   color: #8E8E93;
@@ -850,7 +850,7 @@ input[id^=category-], input[id^=weather-] {
 }
 
 .user-info {
-  text-shadow: 1px 2px 3px #00000022;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
   margin-top: 100px;
   text-align: center;
 }
@@ -859,13 +859,13 @@ input[id^=category-], input[id^=weather-] {
   line-height: 30px;
   display: block;
   font-weight: bold;
-  color: #ffffffdd;
+  color: rgba(255, 255, 255, 0.8);
 }
 .user-info .email {
   font-size: 16px;
   line-height: 20px;
   display: block;
-  color: #ffffff55;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .reference {

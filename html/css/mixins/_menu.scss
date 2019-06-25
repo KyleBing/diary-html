@@ -47,7 +47,7 @@ $menu-list-height: 50px;
 }
 
 .user-info{
-  text-shadow: 1px 2px 3px #00000022;
+  text-shadow: 1px 2px 3px rgba(0,0,0,0.2);
   margin-top: 100px;
   text-align: center;
   .username{
@@ -55,13 +55,13 @@ $menu-list-height: 50px;
     line-height: 30px;
     display: block;
     font-weight: bold;
-    color: #ffffffdd;
+    color: rgba(255,255,255,0.8);
   }
   .email{
     font-size: 16px;
     line-height: 20px;
     display: block;
-    color: #ffffff55;
+    color: rgba(255,255,255,0.5);
   }
 }
 
