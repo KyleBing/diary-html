@@ -68,7 +68,7 @@
             labelEmail: "邮箱",
             labelCheckPassword: "再次确认密码",
             email: "",
-            password: ""
+            password: "",
         },
         computed:{
             emailVerified: function ()  {
@@ -101,7 +101,7 @@
                 function onSuccess(data) {
                     if(data.success){ // 登录成功
                         setAuthorization(data.email, data.token, data.username, data.uid);
-                        $.cookie(COOKIE.category,JSON.stringify(categories), COOKIE.options)
+                        $.cookie(COOKIE.category,JSON.stringify(categories), COOKIE.options);
                         popMessage(PopMessageType.success, data.info, ()=>{
                             location = FrontURL.index
                         })

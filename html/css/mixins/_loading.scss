@@ -43,13 +43,13 @@
 }
 
 @keyframes load-frame {
-  0% {height: $load-box-height;}
-  50% {height: $load-box-height * 0.25;}
-  100% {height: $load-box-height;}
+  0% {height: $load-box-height * .25;}
+  50% {height: $load-box-height * 1;}
+  100% {height: $load-box-height * .25;}
 }
 
 @-webkit-keyframes load-frame {
-  0% {height: $load-box-height;}
-  50% {height: $load-box-height * 0.25;}
-  100% {height: $load-box-height;}
+  0% {height: $load-box-height * .25;}
+  50% {height: $load-box-height * 1;}
+  100% {height: $load-box-height * .25;}
 }
