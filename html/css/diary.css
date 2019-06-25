@@ -749,7 +749,6 @@ input[id^=category-], input[id^=weather-] {
   justify-content: center;
 }
 .loading .loading-item {
-  height: 30px;
   width: 3px;
   margin-right: 5px;
 }
@@ -757,24 +756,28 @@ input[id^=category-], input[id^=weather-] {
   margin-right: 0;
 }
 .loading-1 {
+  height: 30px;
   -webkit-animation: load-frame 1s infinite linear 0s;
   -o-animation: load-frame 1s infinite linear 0s;
   animation: load-frame 1s infinite linear 0s;
   background-color: #FF3B30;
 }
 .loading-2 {
+  height: 15px;
   -webkit-animation: load-frame 1s infinite linear 0.25s;
   -o-animation: load-frame 1s infinite linear 0.25s;
   animation: load-frame 1s infinite linear 0.25s;
   background-color: #FF9500;
 }
 .loading-3 {
+  height: 7.5px;
   -webkit-animation: load-frame 1s infinite linear 0.5s;
   -o-animation: load-frame 1s infinite linear 0.5s;
   animation: load-frame 1s infinite linear 0.5s;
   background-color: #373737;
 }
 .loading-4 {
+  height: 15px;
   -webkit-animation: load-frame 1s infinite linear 0.75s;
   -o-animation: load-frame 1s infinite linear 0.75s;
   animation: load-frame 1s infinite linear 0.75s;

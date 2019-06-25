@@ -6,7 +6,6 @@
   align-items: center;
   justify-content: center;
   .loading-item{
-    height: $load-box-height;
     width: 3px;
     margin-right: 5px;
     &:last-child{
@@ -14,24 +13,28 @@
     }
   }
   &-1{
+    height: $load-box-height * 1;
     -webkit-animation: load-frame 1s infinite linear 0s;
     -o-animation: load-frame 1s infinite linear 0s;
     animation: load-frame 1s infinite linear 0s;
     background-color: $red;
   }
   &-2{
+    height: $load-box-height * 0.5;
     -webkit-animation: load-frame 1s infinite linear 0.25s;
     -o-animation: load-frame 1s infinite linear 0.25s;
     animation: load-frame 1s infinite linear 0.25s;
     background-color: $main-orange;
   }
   &-3{
+    height: $load-box-height * 0.25;
     -webkit-animation: load-frame 1s infinite linear 0.5s;
     -o-animation: load-frame 1s infinite linear 0.5s;
     animation: load-frame 1s infinite linear 0.5s;
     background-color: $main-bg-color;
   }
   &-4{
+    height: $load-box-height * .5;
     -webkit-animation: load-frame 1s infinite linear 0.75s;
     -o-animation: load-frame 1s infinite linear 0.75s;
     animation: load-frame 1s infinite linear 0.75s;
