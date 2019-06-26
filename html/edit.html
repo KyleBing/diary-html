@@ -219,7 +219,7 @@
                                 popMessage(PopMessageType.success, data.info)
                             } else {                            // 编辑日记
                                 popMessage(PopMessageType.success, data.info, ()=>{
-                                    history.back()
+                                    location = 'detail.html' + location.search;
                                 })
                             }
                         } else if (!data.logined){ // 未登录

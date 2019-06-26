@@ -95,7 +95,8 @@
         },
         computed:{
             verified: function ()  {
-                return this.emailVerified && this.invitationVerified && this.usernameVerified && this.password1Verified && this.password2Verified;
+                // return this.emailVerified && this.invitationVerified && this.usernameVerified && this.password1Verified && this.password2Verified;
+                return this.emailVerified && this.usernameVerified && this.password1Verified && this.password2Verified;
             },
         },
         methods:{
