@@ -515,7 +515,7 @@ textarea:focus {
 .weather-selector #weather-fog + label {
   background-image: url(../img/weather/fog.png);
 }
-.weather-selector #weather-spinkle + label {
+.weather-selector #weather-sprinkle + label {
   background-image: url(../img/weather/sprinkle.png);
 }
 .weather-selector #weather-rain + label {
@@ -539,7 +539,7 @@ textarea:focus {
 .weather-selector #weather-fog:checked + label {
   background-image: url(../img/weather/fog_active.png);
 }
-.weather-selector #weather-spinkle:checked + label {
+.weather-selector #weather-sprinkle:checked + label {
   background-image: url(../img/weather/sprinkle_active.png);
 }
 .weather-selector #weather-rain:checked + label {
