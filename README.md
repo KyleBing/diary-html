@@ -1,10 +1,8 @@
-# 域名备案中，最迟 7月5日可访问
+
+线上访问地址： [http://kylebing.cn/diary](http://kylebing.cn/diary)
 
 
 ![intro](https://github.com/KyleBing/diary/blob/master/github/intro.png?raw=true)
-
-
-线上访问地址： [http://kylebing.cn/diary](http://kylebing.cn/diary)
 
 ![qr](https://github.com/KyleBing/diary/blob/master/github/page-qr.png?raw=true)
 
