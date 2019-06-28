@@ -3,8 +3,10 @@
 
 ![intro](https://github.com/KyleBing/diary/blob/master/github/intro.png?raw=true)
 
-线上访问地址： http://kylebing.cn/diary
 
+线上访问地址： [http://kylebing.cn/diary](http://kylebing.cn/diary)
+
+![qr](https://github.com/KyleBing/diary/blob/master/github/page-qr.png?raw=true)
 
 ## 标题日记 - Diary
 
@@ -24,7 +26,12 @@
 
 ## 界面
 
-![content](https://github.com/KyleBing/diary/blob/master/github/content.png?raw=true)
+![login](https://github.com/KyleBing/diary/blob/master/github/page-login.png?raw=true)
+![menu](https://github.com/KyleBing/diary/blob/master/github/page-menu.png?raw=true)
+![category](https://github.com/KyleBing/diary/blob/master/github/page-category.png?raw=true)
+![index](https://github.com/KyleBing/diary/blob/master/github/page-index.png?raw=true)
+![detail](https://github.com/KyleBing/diary/blob/master/github/page-detail.png?raw=true)
+![edit](https://github.com/KyleBing/diary/blob/master/github/page-edit.png?raw=true)
 
 
 ## 用到的技术和库
