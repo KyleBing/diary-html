@@ -202,6 +202,10 @@
                     popMessage(PopMessageType.warning, '内容未填写',()=>{});
                     return;
                 }
+                if ($('#date').val().trim().length === 0){
+                    popMessage(PopMessageType.warning, '日期未填写',()=>{});
+                    return;
+                }
                 let queryData = {
                     diaryId: diaryEditor.id,
                     diaryTitle: diaryEditor.title,
@@ -265,7 +269,6 @@
             id:"",
             title: "",
             content:"",
-            date: "",
             category: "life",
             temperature: '',
             weather: "sunny"
@@ -279,7 +282,7 @@
                 }
             }
         },
-        created: function () {
+        mounted: function () {
             let searchString = location.search;
             // 编辑日记
             if (searchString !== undefined && searchString !== ''){
@@ -312,7 +315,8 @@
             } else {
                 // 新建日记
                 let now = new Date();
-                $('#date').val(`${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}`);
+                let dateString = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}`;
+                $('#date').val(dateString);
             }
         }
     })
