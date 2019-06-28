@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--css-->
     <link rel="stylesheet" href="css/diary.css?v5.2.1">
+    <link rel="stylesheet" href="plugins/datetimepicker/jquery.datetimepicker.min.css">
     <!--js-->
     <!--<script src="js/vue_2.66.js"></script>--> <!--develop-->
     <script src="js/vue.min.2.6.10.js"></script> <!--production-->
     <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="plugins/datetimepicker/moment.js"></script>
+    <script src="plugins/datetimepicker/jquery.datetimepicker.full.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
     <script src="js/diary.js?v5.0.0"></script>
 
@@ -38,7 +41,7 @@
 
     <div class="diary-input-group">
         <label for="date">日期</label>
-        <input placeholder="选择时间" class="date" type="date" name="date" id="date" v-model="date">
+        <input readonly placeholder="选择时间" class="date" type="text" name="date" id="date">
     </div>
     <div class="diary-input-group">
         <label for="temperature">气温 ℃</label>
@@ -96,6 +99,18 @@
 
 <script>
 
+    // 日期控件初始化
+    $(() => {
+        $.datetimepicker.setLocale('ch');
+        $('#date').datetimepicker({
+            datepicker: true,       // 是否可选日期
+            timepicker: true,       // 是否可选时间
+            format: 'Y-m-d H:i',    // 定义输出时间格式 2019-06-28 16:00
+        });
+    });
+
+
+    // vue
     Vue.component('action-list-item', {
         props: ['action'],
         template: `<div :onclick="action.action" class="action-list-item" :class="action.class">{{action.title}}</div>`
@@ -194,7 +209,7 @@
                     diaryCategory: diaryEditor.category,
                     diaryTemperature: diaryEditor.temperature === ''? -273 : diaryEditor.temperature,
                     diaryWeather: diaryEditor.weather,
-                    diaryDate: diaryEditor.date + ' 00:00:00'
+                    diaryDate: $("#date").val()
                 };
 
                 if (diaryEditor.id === ''){
@@ -266,6 +281,7 @@
         },
         created: function () {
             let searchString = location.search;
+            // 编辑日记
             if (searchString !== undefined && searchString !== ''){
                 let id = location.search.substring(location.search.lastIndexOf('=') + 1); // 获取id值
                 $.ajax({
@@ -281,7 +297,7 @@
                             diaryEditor.id = diary.id;
                             diaryEditor.title = diary.title;
                             diaryEditor.content = diary.content;
-                            diaryEditor.date = diary.date.substring(0,diary.date.indexOf(' '));
+                            $('#date').val(diary.date.substring(0,16));
                             diaryEditor.category = diary.category;
                             diaryEditor.temperature = diary.temperature === '-273'? '': diary.temperature ;
                             diaryEditor.weather = diary.weather;
@@ -294,10 +310,9 @@
                     }
                 });
             } else {
+                // 新建日记
                 let now = new Date();
-                let day = now.getDate().toString().padStart(2,'0');
-                let month = (now.getMonth()+1).toString().padStart(2,'0');
-                this.date = `${now.getFullYear()}-${month}-${day}`;
+                this.date = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}`;
             }
         }
     })
