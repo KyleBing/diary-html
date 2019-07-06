@@ -309,13 +309,16 @@
                                 diaryEditor.contentEditorShowed = true;
                             }
                         }
-
                     }
                 });
             } else {
                 // 新建日记
                 let now = new Date();
-                let dateString = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}`;
+                let month = (now.getMonth() + 1).toString().padStart(2, '00');
+                let day = now.getDate().toString().padStart(2, '00');
+                let hour = now.getHours().toString().padStart(2, '00');
+                let minutes = now.getMinutes().toString().padStart(2, '00');
+                let dateString = `${now.getFullYear()}-${month}-${day} ${hour}:${minutes}`;
                 $('#date').val(dateString);
             }
         }

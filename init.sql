@@ -11,21 +11,11 @@
  Target Server Version : 50560
  File Encoding         : 65001
 
- Date: 28/06/2019 17:43:42
+ Date: 05/07/2019 08:59:39
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for category
--- ----------------------------
-DROP TABLE IF EXISTS `category`;
-CREATE TABLE `category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for diaries
@@ -43,19 +33,7 @@ CREATE TABLE `diaries` (
   `modify_date` datetime DEFAULT NULL COMMENT '编辑日期',
   `uid` int(11) NOT NULL COMMENT '用户id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=327 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for login_log
--- ----------------------------
-DROP TABLE IF EXISTS `login_log`;
-CREATE TABLE `login_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` datetime NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=344 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for users
@@ -69,6 +47,6 @@ CREATE TABLE `users` (
   `username` varchar(50) DEFAULT NULL,
   `register_time` datetime DEFAULT NULL,
   PRIMARY KEY (`uid`,`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
