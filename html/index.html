@@ -77,9 +77,6 @@
             <input v-model="categories" class="hidden" type="checkbox" id="category-bitevent" value="bigevent">
             <label class="reference-red" for="category-bitevent">大事</label>
         </li>
-
-
-
     </ul>
 
 
@@ -396,7 +393,6 @@
             hascontentHtml = '';
             href = `detail.html?diaryId=${item.id}`
         }
-
 
         return `<a href="${href}" class="list-item">
                     <i class="category bg-${item.category}"></i>

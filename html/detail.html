@@ -59,7 +59,7 @@
         },
         methods:{
             goBack:function () {
-                location = '.'; // 返回主列表
+                history.back(); // 返回主列表
             },
             editBtnClicked: function () {
                 location = this.href
