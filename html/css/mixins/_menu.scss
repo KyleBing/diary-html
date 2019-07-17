@@ -105,6 +105,8 @@ $reference-list-item-height: 40px;
       &.reference-magenta{@include bg-magenta}
       &.reference-purple{@include bg-purple}
       &.reference-syan{@include bg-syan}
+
+      &.reference-gray{@include bg-gray}
     }
   }
 }
