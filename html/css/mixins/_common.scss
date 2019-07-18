@@ -12,6 +12,7 @@
 @mixin bg-gray    { background-color: $gray; }
 @mixin bg-magenta { background-color: $magenta; }
 @mixin bg-red     { background-color: $red; }
+@mixin bg-grass   { background-color: $green-grass; }
 
 @mixin orange  { color: $main-orange !important; }
 @mixin yellow  { color: $yellow !important; }
@@ -22,6 +23,7 @@
 @mixin gray    { color: $gray !important; }
 @mixin magenta { color: $magenta !important; }
 @mixin red     { color: $red !important; }
+@mixin grass   { color: $green-grass !important; }
 
 
 // mixin

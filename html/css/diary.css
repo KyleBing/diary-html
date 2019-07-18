@@ -896,7 +896,6 @@ input[id^=category-], input[id^=weather-] {
   font-size: 20px;
   color: #ffffff;
   line-height: 40px;
-  height: 40px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -934,6 +933,10 @@ input[id^=category-], input[id^=weather-] {
 }
 
 @media screen and (min-width: 765px) {
+  .toggle-btn {
+    width: 40%;
+  }
+
   .list-group-item {
     margin-right: 5%;
     width: 16%;
@@ -949,6 +952,10 @@ input[id^=category-], input[id^=weather-] {
   }
   .list-group-item:nth-child(2n+0) {
     margin-right: 0;
+  }
+
+  .toggle-btn {
+    width: 100%;
   }
 }
 .about {

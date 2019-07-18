@@ -45,6 +45,7 @@
 
     <!--reference-->
     <ul class="reference" v-show="referenceShowed" style="display: none;">
+
         <li class="list-group-item">
             <input v-model="categories" class="hidden" type="checkbox" id="category-game" value="game">
             <label class="reference-syan" for="category-game">游戏</label>
@@ -77,10 +78,12 @@
             <input v-model="categories" class="hidden" type="checkbox" id="category-bitevent" value="bigevent">
             <label class="reference-red" for="category-bitevent">大事</label>
         </li>
-        <li class="list-group-item">
+
+        <li class="list-group-item toggle-btn">
             <input checked v-on:click="toggleCategorySelect" class="hidden" type="checkbox" id="category-all">
             <label for="category-all" class="reference-gray">全选</label>
         </li>
+
 
 
     </ul>

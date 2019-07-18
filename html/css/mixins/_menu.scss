@@ -88,7 +88,6 @@ $reference-list-item-height: 40px;
       font-size: 20px;
       color: #ffffff;
       line-height: $reference-list-item-height;
-      height: $reference-list-item-height;
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
@@ -105,7 +104,6 @@ $reference-list-item-height: 40px;
       &.reference-magenta{@include bg-magenta}
       &.reference-purple{@include bg-purple}
       &.reference-syan{@include bg-syan}
-
       &.reference-gray{@include bg-gray}
     }
   }
@@ -118,6 +116,9 @@ $cols-sm: 2;
 $gaps-sm: 20%;
 
 @media screen and (min-width: $width-seprator){
+  .toggle-btn{
+    width: (100% - $gaps-sm * ($cols-sm - 1))/$cols-sm;
+  }
   .list-group-item{
     margin-right: $gaps-md;
     width: (100% - $gaps-md * ($cols-md - 1))/$cols-md;
@@ -125,6 +126,7 @@ $gaps-sm: 20%;
       margin-right: 0;
     }
   }
+
 }
 
 @media screen and (max-width: $width-seprator){
@@ -134,6 +136,9 @@ $gaps-sm: 20%;
     &:nth-child(#{$cols-sm}n+0) {
       margin-right: 0;
     }
+  }
+  .toggle-btn{
+    width: 100%;
   }
 }
 
