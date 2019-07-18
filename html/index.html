@@ -80,8 +80,8 @@
         </li>
 
         <li class="list-group-item toggle-btn">
-            <input :checked="selectAllChecked" @click="toggleCategorySelect" class="hidden" type="checkbox" id="category-all">
-            <label for="category-all" class="reference-gray">全选</label>
+            <input :checked="showSelectAllBtn" @click="toggleCategorySelect" class="hidden" type="checkbox" id="category-all">
+            <label for="category-all" class="reference-grass">{{ showSelectAllBtn? '全选': '全不选' }}</label>
         </li>
 
 
@@ -219,7 +219,7 @@
         },
         computed: {
             // 全选按钮随类别数组变化而变化
-            selectAllChecked: function () {
+            showSelectAllBtn: function () {
                 return !this.categories.length
             }
         },

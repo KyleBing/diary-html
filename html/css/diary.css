@@ -937,6 +937,10 @@ input[id^=category-], input[id^=weather-] {
   background-color: #8E8E93;
   border-color: #8E8E93;
 }
+.reference .list-group-item input[type=checkbox]:checked + label.reference-grass {
+  background-color: #8bc34a;
+  border-color: #8bc34a;
+}
 
 @media screen and (min-width: 765px) {
   .toggle-btn {

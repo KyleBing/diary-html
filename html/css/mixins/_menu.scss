@@ -104,6 +104,7 @@ $reference-list-item-height: 40px;
       &.reference-purple    {@include bg-purple;  border-color: $purple;}
       &.reference-syan      {@include bg-syan;    border-color: $syan;}
       &.reference-gray      {@include bg-gray;    border-color: $gray;}
+      &.reference-grass     {@include bg-grass;    border-color: $green-grass;}
     }
   }
 }
