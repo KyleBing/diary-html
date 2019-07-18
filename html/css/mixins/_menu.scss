@@ -95,16 +95,15 @@ $reference-list-item-height: 40px;
 
     }
     input[type=checkbox]:checked + label {
-      border: none;
-      &.reference-orange{@include bg-orange}
-      &.reference-green{@include bg-green}
-      &.reference-blue{@include bg-blue}
-      &.reference-red{@include bg-red}
-      &.reference-yellow{@include bg-yellow}
-      &.reference-magenta{@include bg-magenta}
-      &.reference-purple{@include bg-purple}
-      &.reference-syan{@include bg-syan}
-      &.reference-gray{@include bg-gray}
+      &.reference-orange    {@include bg-orange;  border-color: $main-orange;}
+      &.reference-green     {@include bg-green;   border-color: $green;}
+      &.reference-blue      {@include bg-blue;    border-color: $blue;}
+      &.reference-red       {@include bg-red;     border-color: $red;}
+      &.reference-yellow    {@include bg-yellow;  border-color: $yellow;}
+      &.reference-magenta   {@include bg-magenta; border-color: $magenta;}
+      &.reference-purple    {@include bg-purple;  border-color: $purple;}
+      &.reference-syan      {@include bg-syan;    border-color: $syan;}
+      &.reference-gray      {@include bg-gray;    border-color: $gray;}
     }
   }
 }
