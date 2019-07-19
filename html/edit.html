@@ -238,7 +238,7 @@
                                 popMessage(PopMessageType.success, data.info)
                             } else {                            // 编辑日记
                                 popMessage(PopMessageType.success, data.info, ()=>{
-                                    location = 'detail.html' + location.search;
+                                    history.back();
                                 })
                             }
                         } else if (!data.logined){ // 未登录
