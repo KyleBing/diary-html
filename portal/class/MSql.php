@@ -61,7 +61,7 @@ class MSql
                   from diaries 
                   where uid='${uid}' 
                   and (${categoryStr})
-                  and title like '%${keyword}%' 
+                  and ( title like '%${keyword}%' or content like '%${keyword}%')
                   order by date desc  
                   limit $startPoint, $pageCount";
         return $sql;

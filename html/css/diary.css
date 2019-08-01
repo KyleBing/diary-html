@@ -425,7 +425,7 @@ textarea:focus {
 .category-selector #category-work + label {
   color: #007AFF;
 }
-.category-selector #category-others + label {
+.category-selector #category-other + label {
   color: #5856D6;
 }
 .category-selector #category-sport + label {
@@ -452,7 +452,7 @@ textarea:focus {
   background-color: #007AFF;
   color: white;
 }
-.category-selector #category-others:checked + label {
+.category-selector #category-other:checked + label {
   background-color: #5856D6;
   color: white;
 }
@@ -1138,7 +1138,7 @@ input[id^=category-], input[id^=weather-] {
   background-color: #FFCC00;
 }
 
-.bg-others {
+.bg-other {
   background-color: #5856D6;
 }
 

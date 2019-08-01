@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--css-->
-    <link rel="stylesheet" href="css/diary.css?v5.2.1">
+    <link rel="stylesheet" href="css/diary.css?v=5.3.2">
     <link rel="stylesheet" href="plugins/datetimepicker/jquery.datetimepicker.min.css">
     <!--js-->
     <!--<script src="js/vue_2.66.js"></script>--> <!--develop-->
@@ -63,8 +63,8 @@
         <label for="category-sport">运动</label>
         <input type="radio" name="category" value="bigevent" id="category-bigevent" v-model="category">
         <label for="category-bigevent">大事</label>
-        <input type="radio" name="category" value="others"  id="category-others" v-model="category">
-        <label for="category-others">其它</label>
+        <input type="radio" name="category" value="other"  id="category-other" v-model="category">
+        <label for="category-other">其它</label>
     </div>
 
     <div class="weather-selector">
@@ -304,7 +304,6 @@
                             diaryEditor.category = diary.category;
                             diaryEditor.temperature = diary.temperature === '-273'? '': diary.temperature ;
                             diaryEditor.weather = diary.weather;
-
                             if(diary.content){
                                 diaryEditor.contentEditorShowed = true;
                             }
