@@ -300,6 +300,7 @@
             function onSuccess(data) {
                 diaryApp.isLoading = false;
                 if(data.success){ // 成功获取数据
+                    setAuthorization(getAuthorization().email, getAuthorization().token, getAuthorization().username, getAuthorization().uid); // 刷新 cookie 过期时间
                     diaryApp.diaries = diaryApp.diaries.concat(data.data);
                     // 在后面判断获取的数据，小于1或小于每页的数量时，隐藏加载更多按钮
                     diaryApp.haveMore = !(data.data.length < PAGE_AMOUNT);
