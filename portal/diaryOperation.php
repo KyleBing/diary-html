@@ -126,9 +126,9 @@ function addDiary($uid, $title, $content, $category, $weather, $temperature, $da
     $response = '';
     $result = $con->query(MSql::AddDiary($uid, $title, $content, $category, $weather, $temperature, $date));
     if ($result) {
-        $response = new ResponseSuccess('添加成功');
+        $response = new ResponseSuccess('保存成功');
     } else {
-        $response = new ResponseError('添加失败');
+        $response = new ResponseError('保存失败');
     }
     echo $response->toJson();
     $con->close();
