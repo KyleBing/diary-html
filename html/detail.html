@@ -12,18 +12,18 @@
     <script src="js/jquery.cookie.js"></script>
     <script src="js/diary.js?v3.2.0"></script>
 
-    <link rel="shortcut icon" href="img/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="img/touch-icon.png">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/appicon-apple.png">
 
     <title>日记 - 查看</title>
 </head>
 <body class="body-white">
 
 <nav class="navbar clearfix" id="navbar">
-    <div @click="goBack" class="navbar-btn left" > <img src="img/tabicon/back.png" alt="返回"></div>
-    <div @click="editBtnClicked"  v-show="confirmBtnShow" class="navbar-btn right" ><img src="img/tabicon/edit.png" alt="编辑"></div>
+    <div @click="goBack" class="navbar-btn left" > <img src="img/tabicon/back.svg" alt="返回"></div>
+    <div @click="editBtnClicked"  v-show="confirmBtnShow" class="navbar-btn right" ><img src="img/tabicon/edit.svg" alt="编辑"></div>
     <div class="brand">
-        <a href=".."><img src="img/logo.png" alt="日记"></a>
+        <a href=".."><img src="img/logo.svg" alt="日记"></a>
     </div>
 </nav>
 
@@ -104,7 +104,7 @@
                     if (data.success) {
                         let diary = data.data[0];
                         let temperatureHtml = diary.temperature === '-273'? '' :  `<div class="temperature"><span>${diary.temperature}</span>℃</div>`;
-                        let weatherHtml = diary.weather? `<div class="weather"><img src="img/weather/${diary.weather}_active.png" alt="${WEATHER[diary.weather].name}"></div>`: '';
+                        let weatherHtml = diary.weather? `<div class="weather"><img src="img/weather/${diary.weather}_active.svg" alt="${WEATHER[diary.weather].name}"></div>`: '';
                         let metaHtml = `<div class="date">${formateDate(diary.date)}</div>
                                         ${weatherHtml}
                                         ${temperatureHtml}

@@ -504,52 +504,52 @@ textarea:focus {
   margin-right: 0;
 }
 .weather-selector #weather-sunny + label {
-  background-image: url(../img/weather/sunny.png);
+  background-image: url(../img/weather/sunny.svg);
 }
 .weather-selector #weather-cloudy + label {
-  background-image: url(../img/weather/cloudy.png);
+  background-image: url(../img/weather/cloudy.svg);
 }
 .weather-selector #weather-overcast + label {
-  background-image: url(../img/weather/overcast.png);
+  background-image: url(../img/weather/overcast.svg);
 }
 .weather-selector #weather-fog + label {
-  background-image: url(../img/weather/fog.png);
+  background-image: url(../img/weather/fog.svg);
 }
 .weather-selector #weather-sprinkle + label {
-  background-image: url(../img/weather/sprinkle.png);
+  background-image: url(../img/weather/sprinkle.svg);
 }
 .weather-selector #weather-rain + label {
-  background-image: url(../img/weather/rain.png);
+  background-image: url(../img/weather/rain.svg);
 }
 .weather-selector #weather-thunerstorm + label {
-  background-image: url(../img/weather/thunderstorm.png);
+  background-image: url(../img/weather/thunderstorm.svg);
 }
 .weather-selector #weather-snow + label {
-  background-image: url(../img/weather/snow.png);
+  background-image: url(../img/weather/snow.svg);
 }
 .weather-selector #weather-sunny:checked + label {
-  background-image: url(../img/weather/sunny_active.png);
+  background-image: url(../img/weather/sunny_active.svg);
 }
 .weather-selector #weather-cloudy:checked + label {
-  background-image: url(../img/weather/cloudy_active.png);
+  background-image: url(../img/weather/cloudy_active.svg);
 }
 .weather-selector #weather-overcast:checked + label {
-  background-image: url(../img/weather/overcast_active.png);
+  background-image: url(../img/weather/overcast_active.svg);
 }
 .weather-selector #weather-fog:checked + label {
-  background-image: url(../img/weather/fog_active.png);
+  background-image: url(../img/weather/fog_active.svg);
 }
 .weather-selector #weather-sprinkle:checked + label {
-  background-image: url(../img/weather/sprinkle_active.png);
+  background-image: url(../img/weather/sprinkle_active.svg);
 }
 .weather-selector #weather-rain:checked + label {
-  background-image: url(../img/weather/rain_active.png);
+  background-image: url(../img/weather/rain_active.svg);
 }
 .weather-selector #weather-thunerstorm:checked + label {
-  background-image: url(../img/weather/thunderstorm_active.png);
+  background-image: url(../img/weather/thunderstorm_active.svg);
 }
 .weather-selector #weather-snow:checked + label {
-  background-image: url(../img/weather/snow_active.png);
+  background-image: url(../img/weather/snow_active.svg);
 }
 
 input[id^=category-], input[id^=weather-] {
@@ -1048,7 +1048,7 @@ input[id^=category-], input[id^=weather-] {
   padding: 30px 0;
 }
 .body-regist .logo img {
-  height: 4rem;
+  height: 150px;
   display: block;
   margin: 0 auto;
 }

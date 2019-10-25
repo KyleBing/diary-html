@@ -150,23 +150,23 @@ textarea{
     color: white;
   }
 
-  #weather-sunny + label        {background-image: url(../img/weather/sunny.png)}
-  #weather-cloudy + label       {background-image: url(../img/weather/cloudy.png)}
-  #weather-overcast + label     {background-image: url(../img/weather/overcast.png)}
-  #weather-fog + label          {background-image: url(../img/weather/fog.png)}
-  #weather-sprinkle + label      {background-image: url(../img/weather/sprinkle.png)}
-  #weather-rain + label         {background-image: url(../img/weather/rain.png)}
-  #weather-thunerstorm + label  {background-image: url(../img/weather/thunderstorm.png)}
-  #weather-snow + label         {background-image: url(../img/weather/snow.png)}
+  #weather-sunny + label        {background-image: url(../img/weather/sunny.svg)}
+  #weather-cloudy + label       {background-image: url(../img/weather/cloudy.svg)}
+  #weather-overcast + label     {background-image: url(../img/weather/overcast.svg)}
+  #weather-fog + label          {background-image: url(../img/weather/fog.svg)}
+  #weather-sprinkle + label      {background-image: url(../img/weather/sprinkle.svg)}
+  #weather-rain + label         {background-image: url(../img/weather/rain.svg)}
+  #weather-thunerstorm + label  {background-image: url(../img/weather/thunderstorm.svg)}
+  #weather-snow + label         {background-image: url(../img/weather/snow.svg)}
 
-  #weather-sunny:checked + label        {background-image: url(../img/weather/sunny_active.png)}
-  #weather-cloudy:checked + label       {background-image: url(../img/weather/cloudy_active.png)}
-  #weather-overcast:checked + label     {background-image: url(../img/weather/overcast_active.png)}
-  #weather-fog:checked + label          {background-image: url(../img/weather/fog_active.png)}
-  #weather-sprinkle:checked + label      {background-image: url(../img/weather/sprinkle_active.png)}
-  #weather-rain:checked + label         {background-image: url(../img/weather/rain_active.png)}
-  #weather-thunerstorm:checked + label  {background-image: url(../img/weather/thunderstorm_active.png)}
-  #weather-snow:checked + label         {background-image: url(../img/weather/snow_active.png)}
+  #weather-sunny:checked + label        {background-image: url(../img/weather/sunny_active.svg)}
+  #weather-cloudy:checked + label       {background-image: url(../img/weather/cloudy_active.svg)}
+  #weather-overcast:checked + label     {background-image: url(../img/weather/overcast_active.svg)}
+  #weather-fog:checked + label          {background-image: url(../img/weather/fog_active.svg)}
+  #weather-sprinkle:checked + label      {background-image: url(../img/weather/sprinkle_active.svg)}
+  #weather-rain:checked + label         {background-image: url(../img/weather/rain_active.svg)}
+  #weather-thunerstorm:checked + label  {background-image: url(../img/weather/thunderstorm_active.svg)}
+  #weather-snow:checked + label         {background-image: url(../img/weather/snow_active.svg)}
 }
 
 // 隐藏所有 Input

@@ -15,20 +15,20 @@
     <script src="js/jquery.cookie.js"></script>
     <script src="js/diary.js?v5.0.0"></script>
 
-    <link rel="shortcut icon" href="img/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="img/touch-icon.png">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/appicon-apple.png">
 
     <title>日记</title>
 </head>
 <body class="body-normal">
 
 <nav class="navbar clearfix" id="navbar">
-    <div v-show="btnMenu"     @click="showMenu"         class="navbar-btn left">                        <img src="img/tabicon/menu.png" alt="菜单"></div>
-    <div v-show="btnClose"    @click="closeMenu"        class="navbar-btn left" style="display: none;"> <img src="img/tabicon/close.png" alt="关闭"></div>
-    <div v-show="btnAdd"      @click="addClicked"       class="navbar-btn right">                       <img src="img/tabicon/add.png" alt="添加"></div>
-    <div v-show="btnConfirm"  @click="confirmClicked"   class="navbar-btn right" style="display: none;"><img src="img/tabicon/confirm.png" alt="添加"></div>
+    <div v-show="btnMenu"     @click="showMenu"         class="navbar-btn left">                        <img src="img/tabicon/menu.svg" alt="菜单"></div>
+    <div v-show="btnClose"    @click="closeMenu"        class="navbar-btn left" style="display: none;"> <img src="img/tabicon/close.svg" alt="关闭"></div>
+    <div v-show="btnAdd"      @click="addClicked"       class="navbar-btn right">                       <img src="img/tabicon/add.svg" alt="添加"></div>
+    <div v-show="btnConfirm"  @click="confirmClicked"   class="navbar-btn right" style="display: none;"><img src="img/tabicon/done.svg" alt="添加"></div>
     <div class="brand">
-        <a onclick="toggleLogo(this)"><img src="img/logo.png" alt="日记"></a>
+        <a onclick="toggleLogo(this)"><img src="img/logo.svg" alt="日记"></a>
     </div>
 </nav>
 
@@ -252,7 +252,7 @@
     </div>
 
     <div v-show="!isLoading&&!haveMore" class="end-of-diary">
-        <p><img src="img/EOF.png" alt="EOF"></p>
+        <p><img src="img/EOF.svg" alt="EOF"></p>
     </div>
 </div>
 
@@ -410,11 +410,11 @@
     // 列表模板
     function currentItemHtml(item, date) {
         let hascontentHtml = '';
-        let weatherHtml = item.weather? `<img class="icon" src="img/weather/${item.weather}.png" alt="${item.weather}">`: '';
+        let weatherHtml = item.weather? `<img class="icon" src="img/weather/${item.weather}.svg" alt="${item.weather}">`: '';
         let href = '';
 
         if (item.content){
-            hascontentHtml = `<img class="icon" src="img/content.png" alt="hascontent">`;
+            hascontentHtml = `<img class="icon" src="img/content.svg" alt="hascontent">`;
             href = `detail.html?diaryId=${item.id}`
         } else {
             hascontentHtml = '';
@@ -435,8 +435,8 @@
     // logo 点击切换图标
     function toggleLogo(logo) {
         const LOGO = {
-            open: 'img/logo.png',
-            close: 'img/logo_close.png'
+            open: 'img/logo.svg',
+            close: 'img/logo_close.svg'
         };
         let img = $(logo).children('img');
         let currentSrc = img.attr('src');

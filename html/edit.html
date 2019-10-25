@@ -15,8 +15,8 @@
     <script src="js/jquery.cookie.js"></script>
     <script src="js/diary.js?v5.0.0"></script>
 
-    <link rel="shortcut icon" href="img/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="img/touch-icon.png">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/appicon-apple.png">
 
     <title>日记 - 编辑</title>
 </head>
@@ -24,11 +24,11 @@
 
 
 <nav class="navbar clearfix" id="navbar">
-    <div @click="closeEditor"      class="navbar-btn left" > <img src="img/tabicon/back.png" alt="关闭"></div>
-    <div @click="createNewBtnClicked"   v-show="createNewBtnShow"   class="navbar-btn right" ><img src="img/tabicon/add.png" alt="新建"></div>
-    <div @click="saveBtnClicked"        v-show="saveBtnShow"        class="navbar-btn right" ><img src="img/tabicon/confirm.png" alt="保存"></div>
+    <div @click="closeEditor"      class="navbar-btn left" > <img src="img/tabicon/back.svg" alt="关闭"></div>
+    <div @click="createNewBtnClicked"   v-show="createNewBtnShow"   class="navbar-btn right" ><img src="img/tabicon/add.svg" alt="新建"></div>
+    <div @click="saveBtnClicked"        v-show="saveBtnShow"        class="navbar-btn right" ><img src="img/tabicon/done.svg" alt="保存"></div>
     <div class="brand">
-        <a @click="showContentEditor"><img src="img/logo_title.png" alt="日记"></a>
+        <a @click="showContentEditor"><img src="img/logo_title.svg" alt="日记"></a>
     </div>
 </nav>
 
@@ -277,9 +277,9 @@
         watch:{
             contentEditorShowed: function () {
                 if(this.contentEditorShowed){
-                    $('.brand img').attr('src','img/logo_content.png');
+                    $('.brand img').attr('src','img/logo_content.svg');
                 } else {
-                    $('.brand img').attr('src','img/logo_title.png');
+                    $('.brand img').attr('src','img/logo_title.svg');
                 }
             }
         },
