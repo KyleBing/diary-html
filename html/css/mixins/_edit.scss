@@ -51,6 +51,8 @@ textarea{
 }
 
 .category-selector{
+  @include border-radius(10px);
+  margin: 8px;
   $gaps: 4%;
   $cols: 5;
   padding: 15px 15px 5px;
@@ -117,6 +119,8 @@ textarea{
 
 
 .weather-selector{
+  @include border-radius(10px);
+  margin: 8px;
   display: flex;
   $gaps: 5%;
   $cols: 6;
