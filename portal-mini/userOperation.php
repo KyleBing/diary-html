@@ -11,7 +11,7 @@ require "class/Response.php";
 require "common.php";
 require "class/MSql.php";
 
-switch ($_REQUEST['type']){
+switch ($_POST['type']){
     case 'insert':
         if (isset($_POST['invitation']) && $_POST['invitation'] == INVITATION){
             addNewUser($_POST['email'], $_POST['password'], $_POST['username']);
@@ -24,8 +24,8 @@ switch ($_REQUEST['type']){
         login($_POST['email'],$_POST['password']);
         break;
     case 'update':
-        if (checkLogin($_COOKIE['diaryEmail'],$_COOKIE['diaryToken'])){
-            updatePassword($_COOKIE['diaryEmail'],$_POST['oldPassword'],$_POST['newPassword']);
+        if (checkLogin($_POST['email'],$_POST['token'])){
+            updatePassword($_POST['email'],$_POST['oldPassword'],$_POST['newPassword']);
         } else {
             $response = new ResponseError('请先登录');
             $response->setLogined(false);

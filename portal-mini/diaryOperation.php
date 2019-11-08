@@ -13,25 +13,26 @@ require "common.php";
 
 // 传 email 是为了避免，邮件正确，日记id不对的情况
 
-if (checkLogin($_COOKIE['diaryEmail'], $_COOKIE['diaryToken'])) {
-    switch ($_REQUEST['type']) {
+if (checkLogin($_POST['email'], $_POST['token'])) {
+    switch ($_POST['type']) {
         case 'query':
-            queryDiary($_COOKIE['diaryUid'], $_GET['diaryId']);
+            queryDiary($_POST['uid'], $_POST['id']);
             break;
         case 'modify':
-            updateDiary($_COOKIE['diaryUid'], $_POST['diaryId'], $_POST['diaryTitle'], $_POST['diaryContent'], $_POST['diaryCategory'], $_POST['diaryWeather'], $_POST['diaryTemperature'], $_POST['diaryDate']);
+            updateDiary($_POST['uid'], $_POST['id'], $_POST['diaryTitle'], $_POST['diaryContent'], $_POST['diaryCategory'], $_POST['diaryWeather'], $_POST['diaryTemperature'], $_POST['diaryDate']);
             break;
         case 'add':
-            addDiary($_COOKIE['diaryUid'], $_POST['diaryTitle'], $_POST['diaryContent'], $_POST['diaryCategory'], $_POST['diaryWeather'], $_POST['diaryTemperature'], $_POST['diaryDate']);
+            addDiary($_POST['uid'], $_POST['diaryTitle'], $_POST['diaryContent'], $_POST['diaryCategory'], $_POST['diaryWeather'], $_POST['diaryTemperature'], $_POST['diaryDate']);
             break;
         case 'delete':
-            deleteDiary($_COOKIE['diaryUid'], $_POST['diaryId']);
+            deleteDiary($_POST['uid'], $_POST['id']);
             break;
         case 'search':
         case 'list':
-            $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
-            $categories = isset($_COOKIE['diaryCategories']) ? json_decode($_COOKIE['diaryCategories']) : '';
-            searchDiary($_COOKIE['diaryUid'], $categories, $keyword, $_GET['pageCount'], $_GET['pageNo']);
+            $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : '';
+            $categories = isset($_POST['categories']) ? $_POST['categories'] : '';
+            $categories = explode(',', $categories);
+            searchDiary($_POST['uid'], $categories, $keyword, $_POST['pageCount'], $_POST['pageNo']);
             break;
         default:
             $response = new ResponseError('请求参数错误');
