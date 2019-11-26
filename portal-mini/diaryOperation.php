@@ -19,10 +19,10 @@ if (checkLogin($_POST['email'], $_POST['token'])) {
             queryDiary($_POST['uid'], $_POST['id']);
             break;
         case 'modify':
-            updateDiary($_POST['uid'], $_POST['id'], $_POST['diaryTitle'], $_POST['diaryContent'], $_POST['diaryCategory'], $_POST['diaryWeather'], $_POST['diaryTemperature'], $_POST['diaryDate']);
+            updateDiary($_POST['uid'], $_POST['id'], $_POST['title'], $_POST['content'], $_POST['category'], $_POST['weather'], $_POST['temperature'], $_POST['date']);
             break;
         case 'add':
-            addDiary($_POST['uid'], $_POST['diaryTitle'], $_POST['diaryContent'], $_POST['diaryCategory'], $_POST['diaryWeather'], $_POST['diaryTemperature'], $_POST['diaryDate']);
+            addDiary($_POST['uid'], $_POST['title'], $_POST['content'], $_POST['category'], $_POST['weather'], $_POST['temperature'], $_POST['date']);
             break;
         case 'delete':
             deleteDiary($_POST['uid'], $_POST['id']);

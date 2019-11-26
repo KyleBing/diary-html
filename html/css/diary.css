@@ -342,7 +342,7 @@ textarea:focus {
 .diary-editor-content {
   display: block;
   width: 100%;
-  resize: none;
+  resize: vertical;
   height: 120px;
   padding: 15px;
   font-size: 1em;
