@@ -35,8 +35,6 @@
 
 <div class="container" id="diaryEditor">
 
-
-
     <textarea id="diary-editor-title" class="diary-editor-title" placeholder="一句话，概括你的一天" v-model.lazy="title"></textarea>
     <textarea v-show="contentEditorShowed" id="diary-editor-content" class="diary-editor-content" placeholder="日记详细内容，如果你有很多要写的" v-model.lazy="content"></textarea>
 
@@ -70,21 +68,21 @@
 
     <div class="weather-selector">
         <input type="radio" name="weather" value="sunny"    id="weather-sunny" v-model="weather">
-        <label for="weather-sunny">       </label>
+        <label for="weather-sunny"></label>
         <input type="radio" name="weather" value="cloudy"   id="weather-cloudy" v-model="weather">
-        <label for="weather-cloudy">      </label>
+        <label for="weather-cloudy"></label>
         <input type="radio" name="weather" value="overcast"    id="weather-overcast" v-model="weather">
-        <label for="weather-overcast">    </label>
+        <label for="weather-overcast"></label>
         <input type="radio" name="weather" value="fog"    id="weather-fog" v-model="weather">
-        <label for="weather-fog">         </label>
+        <label for="weather-fog"></label>
         <input type="radio" name="weather" value="sprinkle"    id="weather-sprinkle" v-model="weather">
-        <label for="weather-sprinkle">     </label>
+        <label for="weather-sprinkle"></label>
         <input type="radio" name="weather" value="rain"    id="weather-rain" v-model="weather">
-        <label for="weather-rain">        </label>
+        <label for="weather-rain"></label>
         <input type="radio" name="weather" value="thunderstorm"   id="weather-thunerstorm" v-model="weather">
-        <label for="weather-thunerstorm"> </label>
+        <label for="weather-thunerstorm"></label>
         <input type="radio" name="weather" value="snow" id="weather-snow" v-model="weather">
-        <label for="weather-snow">        </label>
+        <label for="weather-snow"></label>
     </div>
 
 </div>
@@ -94,8 +92,8 @@
     <action-list-item
             v-for="action in actions"
             v-bind:action="action"
-            v-bind:key="action.id"
-    ></action-list-item>
+            v-bind:key="action.id">
+    </action-list-item>
 </div>
 
 <script>
@@ -142,7 +140,7 @@
                 }
             ]
         },
-        created: function() {
+        created() {
             let searchString = location.search;
             if (searchString !== undefined && searchString !== ''){
                 this.actions = this.delete;
@@ -172,7 +170,7 @@
             dataType: 'json',
             method: 'POST',
             data: queryData,
-            success: function (data) {
+            success: data => {
                 if (data.success) {
                     popMessage(PopMessageType.success, data.info, () => {
                         location = FrontURL.index
@@ -181,7 +179,7 @@
                     location = FrontURL.login;
                 }
             },
-            error: function (xhr) {
+            error: xhr => {
                 console.log(xhr);
             }
         })
@@ -196,10 +194,10 @@
             btnSwitchDelay: 2,
         },
         methods:{
-            closeEditor:function () {
+            closeEditor() {
                 history.back();
             },
-            saveBtnClicked: function () {
+            saveBtnClicked() {
                 if(diaryEditor.title.trim().length === 0) {
                     diaryEditor.title = ''; // clear content
                     popMessage(PopMessageType.warning, '内容未填写',()=>{});
@@ -225,15 +223,15 @@
                     queryData.type = 'modify';
                 }
 
-
                 $.ajax({
                     data: queryData,
                     method: 'POST',
+                    dataType: 'json',
                     url: URL.diaryOperation,
                     success:(data) => {
-                        data = JSON.parse(data);
                         if (data.success){
                             popMessage(PopMessageType.success, data.info); // 提示
+
                         } else if (!data.logined){ // 未登录
                             popMessage(PopMessageType.default, data.info, () => {
                                 location = FrontURL.login;
@@ -248,7 +246,7 @@
                     }
                 })
             },
-            createNewBtnClicked: function(){
+            createNewBtnClicked() {
                 diaryEditor.title = '';
                 diaryEditor.content = '';
                 diaryEditor.id = '';
@@ -256,7 +254,7 @@
                 diaryEditor.temperature = '';
                 diaryEditor.weather = "sunny";
             },
-            showContentEditor: function () {
+            showContentEditor() {
                 diaryEditor.contentEditorShowed = !diaryEditor.contentEditorShowed;
             }
         }
@@ -275,7 +273,7 @@
             weather: "sunny"
         },
         watch:{
-            contentEditorShowed: function () {
+            contentEditorShowed() {
                 if(this.contentEditorShowed){
                     $('.brand img').attr('src','img/logo_content.svg');
                 } else {
@@ -283,7 +281,7 @@
                 }
             }
         },
-        mounted: function () {
+        mounted() {
             let searchString = location.search;
             // 编辑日记
             if (searchString !== undefined && searchString !== ''){
@@ -295,7 +293,7 @@
                         'type': 'query',
                         'diaryId': id
                     },
-                    success: function (data) {
+                    success: data => {
                         if (data.success){
                             let diary = data.data[0];
                             diaryEditor.id = diary.id;

@@ -127,6 +127,10 @@ function addDiary($uid, $title, $content, $category, $weather, $temperature, $da
     $result = $con->query(MSql::AddDiary($uid, $title, $content, $category, $weather, $temperature, $date));
     if ($result) {
         $response = new ResponseSuccess('保存成功');
+        $queryResult = $con->query('select * from diaries where id=LAST_INSERT_ID()');
+        if ($queryResult){
+            $response->setData($queryResult->fetch_all(1));
+        }
     } else {
         $response = new ResponseError('保存失败');
     }
