@@ -31,7 +31,7 @@
     -webkit-animation: load-frame 1s infinite linear 0.5s;
     -o-animation: load-frame 1s infinite linear 0.5s;
     animation: load-frame 1s infinite linear 0.5s;
-    background-color: $main-bg-color;
+    background-color: $bg-main;
   }
   &-4{
     height: $load-box-height * .5;

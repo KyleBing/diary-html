@@ -10,7 +10,7 @@ $menu-list-height: 50px;
   top: $nav-height;
   left: 0;
   width: 100%;
-  background-color: $menu-panel-color;
+  background-color: $bg-menu;
 }
 
 .menu-list-group{
@@ -42,7 +42,7 @@ $menu-list-height: 50px;
     transform: scaleY(0.5);
   }
   &:active{
-    background-color: lighten($menu-panel-color,10%);
+    background-color: lighten($bg-menu,10%);
   }
 }
 
@@ -146,7 +146,7 @@ $gaps-sm: 20%;
   position: relative;
   height: 100%;
   text-align: center;
-  color: $main-light-gray;
+  color: $bg-light;
   padding-top: 60px;
   .title{
     font-size: 20px;

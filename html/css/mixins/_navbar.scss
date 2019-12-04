@@ -1,11 +1,11 @@
 
 .navbar{
-  z-index: 999;
+  z-index: $z-navbar;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: $main-bg-color;
+  background-color: $bg-main;
   .navbar-btn{
     background-color: transparent;
     cursor: pointer;

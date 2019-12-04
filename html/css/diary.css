@@ -343,7 +343,7 @@ textarea:focus {
   display: block;
   width: 100%;
   resize: vertical;
-  height: 120px;
+  height: 220px;
   padding: 15px;
   font-size: 1em;
   border-bottom: 1px solid #EFEFF4;
@@ -562,35 +562,6 @@ textarea:focus {
 
 input[id^=category-], input[id^=weather-] {
   display: none;
-}
-
-.action-list-group {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.action-list-item {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background: #ffffff;
-  cursor: pointer;
-  display: block;
-  line-height: 45px;
-  text-align: center;
-  border-bottom: 1px solid #EFEFF4;
-}
-.action-list-item:last-child {
-  border: none;
-}
-.action-list-item:hover {
-  background-color: #f2f2f2;
-}
-.action-list-item:active {
-  background-color: #d9d9d9;
 }
 
 .list-content {
@@ -1009,7 +980,7 @@ input[id^=category-], input[id^=weather-] {
 }
 
 .navbar {
-  z-index: 999;
+  z-index: 200;
   position: fixed;
   top: 0;
   left: 0;
@@ -1128,6 +1099,69 @@ input[id^=category-], input[id^=weather-] {
 }
 .body-regist .footer .right {
   float: right;
+}
+
+#toast {
+  z-index: 300;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+}
+
+.toast {
+  overflow: hidden;
+  z-index: 500;
+  position: fixed;
+  border: 1px solid #4A4A4A;
+  background-color: #373737;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  width: 240px;
+  left: 50%;
+  margin-left: -120px;
+  margin-top: -50px;
+  top: 50%;
+  color: #FF9500;
+}
+.toast-header {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 20px;
+  text-align: center;
+}
+.toast-body {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.toast-footer {
+  border-top: 1px solid #4A4A4A;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.toast-footer div {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  text-align: center;
+  padding: 10px;
+  flex-grow: 1;
+  display: block;
+}
+.toast-footer div:active {
+  background-color: #4A4A4A;
+}
+.toast-footer .btn-confirm {
+  border-left: 1px solid #4A4A4A;
 }
 
 .bg-life {

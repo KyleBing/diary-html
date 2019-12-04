@@ -2,7 +2,7 @@
 // Register
 .body-regist{
   position: relative;
-  background-color: $menu-panel-color;
+  background-color: $bg-menu;
   width: 100%;
   height: 100%;
   padding: 25px;
@@ -20,14 +20,14 @@
       display: block;
       line-height: 200%;
       font-size: $size-note;
-      color: $main-light-gray;
+      color: $bg-light;
     }
     input{
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
       height: $height-input;
-      background-color: $main-bg-color;
+      background-color: $bg-main;
       width: 100%;
       @include border-radius($radius);
       display: block;
@@ -48,7 +48,7 @@
     display: block;
     font-weight: bold;
     font-size: $size-big;
-    color: $main-light-gray;
+    color: $bg-light;
     @include border-radius($radius);
   }
   .btn-active{
@@ -67,7 +67,7 @@
     a{
       cursor: pointer;
       font-size: $size-note;
-      color: $main-light-gray;
+      color: $bg-light;
       &:hover,&:active,&:visited{
         color: white;
       }

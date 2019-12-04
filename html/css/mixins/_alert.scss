@@ -32,10 +32,10 @@
     display: block;
     height: 45px;
     font-size: $size-big;
-    //border-top: 1px solid $main-light-gray;
-    background-color: $main-light-gray;
+    //border-top: 1px solid $bg-light;
+    background-color: $bg-light;
     &:hover, &:active{
-      background-color: $main-light-gray;
+      background-color: $bg-light;
     }
   }
 }
@@ -48,7 +48,7 @@
   width: 100%;
   padding: 12px 0 8px;
   text-align: center;
-  background-color: $main-bg-color;
+  background-color: $bg-main;
   h3{
     line-height: 25px;
     font-size: $size-note;

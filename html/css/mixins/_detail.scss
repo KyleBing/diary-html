@@ -24,12 +24,12 @@ $meta-height: 30px;
   }
   .date{
     line-height: $meta-height;
-    color: $main-bg-color;
+    color: $bg-main;
   }
 }
 
 .diary-title{
-  border-bottom: 1px solid $color-seperator;
+  border-bottom: 1px solid $color-border;
   padding: 20px 0;
   margin: 0 20px;
   h2{
@@ -62,7 +62,7 @@ $meta-height: 30px;
 
 
 .diary-content{
-  color: $main-bg-color;
+  color: $bg-main;
   line-height: 1.6;
   font-size: 1rem;
   padding: 20px;

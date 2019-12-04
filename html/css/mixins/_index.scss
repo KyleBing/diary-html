@@ -5,15 +5,15 @@
 
 .diary-list-group{
   .list-header{
-    border-top: 1px solid $color-seperator;
-    border-bottom: 1px solid $color-seperator;
+    border-top: 1px solid $color-border;
+    border-bottom: 1px solid $color-border;
     font-family: $font-family;
-    font-size: $list-header-font-size;
+    font-size: $font-size-list-header;
     font-weight: bold;
     text-align: left;
     padding: 0 20px;
     color: black;
-    background-color: $main-light-gray;
+    background-color: $bg-light;
     height: $list-header-height;
     line-height: $list-header-height;
   }
@@ -27,7 +27,7 @@
       }
     }
     &:hover{
-      background-color: $color-list-selected;
+      background-color: $bg-list-active;
     }
     .category{
       float: left;
@@ -42,7 +42,7 @@
       flex-shrink: 0;
       text-align: center;
       line-height: $list-item-height;
-      font-size: $list-item-font-size;
+      font-size: $font-size-list-item;
       font-weight: bold;
       color: $color-diary-date;
     }
@@ -59,7 +59,7 @@
         white-space: nowrap;
         line-height: $list-item-height;
         display: block;
-        font-size: $list-item-font-size;
+        font-size: $font-size-list-item;
         color: $color-diary-title;
       }
       .icon{
@@ -76,7 +76,7 @@
         display: block;
         width: 100%;
         position: absolute;
-        border-bottom: 1px solid $main-light-gray;
+        border-bottom: 1px solid $bg-light;
         transform-origin: 0 100%;
         -webkit-transform: scaleY(0.5);
         -moz-transform: scaleY(0.5);
@@ -95,15 +95,15 @@
   border: 1px solid lighten($gray, 10%);
   display: block;
   line-height: 30px;
-  font-size: $list-item-font-size;
+  font-size: $font-size-list-item;
   text-align: center;
   width: 40%;
   margin: 20px auto 30px;
   @include border-radius(5px);
 
   &:active{
-    color: $main-bg-color;
-    border-color: $main-bg-color;
+    color: $bg-main;
+    border-color: $bg-main;
   }
 }
 
@@ -133,7 +133,7 @@
     @include border-radius($radius);
     padding: 5px 10px;
     display: block;
-    border: 1px solid $color-seperator;
+    border: 1px solid $color-border;
     font-size: 1em;
     &:focus{
       border-color: $main-orange;

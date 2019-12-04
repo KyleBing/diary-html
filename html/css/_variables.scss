@@ -11,20 +11,21 @@ $gray:          #8E8E93;
 $green-grass:   #8bc34a;
 
 //index
-$color-list-selected: #FFF0D1;
-$main-bg-color:       #373737;
-$main-light-gray:     #EFEFF4;
-$color-text-date:     #9B9B9B;
-$menu-panel-color:    #4A4A4A;
-$color-seperator:     #E5E5EA;
+$bg-list-active:      #FFF0D1;
+$bg-light:            #EFEFF4;
+$color-date:          #9B9B9B;
+$color-border:        #E5E5EA;
+$bg-main:             #373737;
+$bg-menu:             #4A4A4A;
 
 $color-searchbar-bg:  #E5E5EA;
 
 
 $list-header-height: 40px;
-$list-header-font-size: 20px;
 $list-item-height: 28px;
-$list-item-font-size: 14px;
+
+$font-size-list-header: 20px;
+$font-size-list-item: 14px;
 
 $color-diary-title: #232323;
 $color-diary-date: #232323;
@@ -43,7 +44,12 @@ $load-box-height: 30px;
 // Grid
 $width-seprator: 765px;
 
-
 //index
 $index-category-width: 3px;
 $index-date-width: 25px;
+
+// z-index
+$z-toast: 500;
+$z-mask: 300;
+$z-navbar: 200;
+$z-header: 100;

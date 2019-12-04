@@ -1,0 +1,69 @@
+$toast-width: 240px;
+$toast-border-color: $bg-menu;
+
+#toast{
+  z-index: $z-mask;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+}
+
+.mask{
+
+}
+
+.toast{
+
+  overflow: hidden;
+  z-index: $z-toast;
+  position: fixed;
+  border: 1px solid $toast-border-color;
+  background-color: $bg-main;
+  @include border-radius(8px);
+  width: $toast-width;
+  left: 50%;
+  margin-left: -$toast-width/2;
+  margin-top: -50px;
+  top: 50%;
+  color: $main-orange;
+  &-header{
+    color: white;
+    font-weight: bold;
+    font-size: $font-size-list-header;
+    padding-top: 20px;
+    text-align: center;
+  }
+  &-body{
+    color: white;
+    font-size: $font-size-list-item;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  &-footer{
+    border-top: 1px solid $toast-border-color;
+    display: flex;
+    flex-flow: row nowrap;
+    div{
+      @include unselectable();
+      cursor: pointer;
+      text-align: center;
+      padding: 10px;
+      flex-grow: 1;
+      display: block;
+      &:active{
+        background-color: $toast-border-color;
+      }
+    }
+    .btn-cancel{
+
+    }
+    .btn-confirm{
+      border-left: 1px solid $toast-border-color;
+
+    }
+  }
+}
