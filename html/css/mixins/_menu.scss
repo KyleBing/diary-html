@@ -1,7 +1,5 @@
-
 //MENU
 $menu-list-height: 50px;
-
 
 .menu-panel{
   z-index: 10;
@@ -88,9 +86,7 @@ $reference-list-item-height: 40px;
       font-size: 20px;
       color: #ffffff;
       line-height: $reference-list-item-height;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
+      @include border-radius(5px);
       border: 1px dashed $gray;
 
     }

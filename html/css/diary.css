@@ -980,6 +980,7 @@ input[id^=category-], input[id^=weather-] {
 }
 
 .navbar {
+  padding: 0 5px 0 0;
   z-index: 200;
   position: fixed;
   top: 0;
@@ -987,22 +988,22 @@ input[id^=category-], input[id^=weather-] {
   width: 100%;
   background-color: #373737;
 }
-.navbar .navbar-btn {
+.navbar .navbar-btn-group {
+  display: flex;
+}
+.navbar .navbar-btn-group img {
+  display: block;
   background-color: transparent;
   cursor: pointer;
-  width: 55px;
+  width: 45px;
   height: 45px;
 }
-.navbar .navbar-btn:active {
+.navbar .navbar-btn-group img:active {
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px;
   background-color: rgba(255, 255, 255, 0.1);
   opacity: 0.8;
-}
-.navbar .navbar-btn img {
-  display: block;
-  height: 45px;
 }
 .navbar .brand {
   cursor: pointer;

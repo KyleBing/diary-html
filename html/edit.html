@@ -24,9 +24,11 @@
 
 
 <nav class="navbar clearfix" id="navbar">
-    <div @click="closeEditor"      class="navbar-btn left" > <img src="img/tabicon/back.svg" alt="关闭"></div>
-    <div @click="createNewBtnClicked"   v-show="createNewBtnShow"   class="navbar-btn right" ><img src="img/tabicon/add.svg" alt="新建"></div>
-    <div @click="saveBtnClicked"        v-show="saveBtnShow"        class="navbar-btn right" ><img src="img/tabicon/done.svg" alt="保存"></div>
+    <div @click="closeEditor"      class="navbar-btn-group left" > <img src="img/tabicon/back.svg" alt="关闭"></div>
+    <div class="navbar-btn-group right">
+        <img @click="createNewBtnClicked" v-show="createNewBtnShow" src="img/tabicon/add.svg" alt="新建">
+        <img @click="saveBtnClicked" v-show="saveBtnShow" src="img/tabicon/done.svg" alt="保存">
+    </div>
     <div class="brand">
         <a @click="showContentEditor"><img :src="logoImageUrl" alt="日记"></a>
     </div>

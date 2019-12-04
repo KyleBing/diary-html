@@ -20,9 +20,11 @@
 <body class="body-white">
 
 <nav class="navbar clearfix" id="navbar">
-    <div @click="goBack" class="navbar-btn left" > <img src="img/tabicon/back.svg" alt="返回"></div>
-    <div @click="editBtnClicked"  v-show="confirmBtnShow" class="navbar-btn right" ><img src="img/tabicon/edit.svg" alt="编辑"></div>
-    <div @click="deleteClicked"  class="navbar-btn right" ><img src="img/tabicon/delete.svg" alt="删除"></div>
+    <div @click="goBack" class="navbar-btn-group left" > <img src="img/tabicon/back.svg" alt="返回"></div>
+    <div class="navbar-btn-group right">
+        <img @click="deleteClicked" src="img/tabicon/delete.svg" alt="删除">
+        <img @click="editBtnClicked" v-show="confirmBtnShow" src="img/tabicon/edit.svg" alt="编辑">
+    </div>
     <div class="brand">
         <a href=".."><img src="img/logo.svg" alt="日记"></a>
     </div>

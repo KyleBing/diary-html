@@ -23,10 +23,14 @@
 <body class="body-normal">
 
 <nav class="navbar clearfix" id="navbar">
-    <div v-show="btnMenu"     @click="showMenu"         class="navbar-btn left">                        <img src="img/tabicon/menu.svg" alt="菜单"></div>
-    <div v-show="btnClose"    @click="closeMenu"        class="navbar-btn left" style="display: none;"> <img src="img/tabicon/close.svg" alt="关闭"></div>
-    <div v-show="btnAdd"      @click="addClicked"       class="navbar-btn right">                       <img src="img/tabicon/add.svg" alt="添加"></div>
-    <div v-show="btnConfirm"  @click="confirmClicked"   class="navbar-btn right" style="display: none;"><img src="img/tabicon/done.svg" alt="添加"></div>
+    <div class="navbar-btn-group left">
+        <img v-show="btnMenu" @click="showMenu" src="img/tabicon/menu.svg" alt="菜单">
+        <img v-show="btnClose" @click="closeMenu" src="img/tabicon/close.svg" alt="关闭">
+    </div>
+    <div class="navbar-btn-group right">
+        <img v-show="btnAdd" @click="addClicked" src="img/tabicon/add.svg" alt="添加">
+        <img v-show="btnConfirm" @click="confirmClicked" src="img/tabicon/done.svg" alt="添加">
+    </div>
     <div class="brand">
         <a onclick="toggleLogo(this)"><img src="img/logo.svg" alt="日记"></a>
     </div>

@@ -113,9 +113,7 @@
 .end-of-diary{
   @include box-shadow(1px 2px 4px rgba(0,0,0,0.12));
   background-color: white;
-  -webkit-border-radius: 0 0 15px 15px;
-  -moz-border-radius: 0 0 15px 15px;
-  border-radius: 0 0 15px 15px;
+  @include border-radius(0 0 15px 15px);
   text-align: center;
   padding: 20px 0 10px;
   img{
