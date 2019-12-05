@@ -989,6 +989,7 @@ input[id^=category-], input[id^=weather-] {
   display: flex;
 }
 .navbar .navbar-btn-group img {
+  padding: 3px;
   display: block;
   background-color: transparent;
   cursor: pointer;
