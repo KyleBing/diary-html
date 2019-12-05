@@ -1010,6 +1010,7 @@ input[id^=category-], input[id^=weather-] {
   width: 80px;
 }
 .navbar .brand img {
+  padding: 3px;
   margin: 0 auto;
   display: block;
   height: 45px;
