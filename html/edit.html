@@ -26,8 +26,8 @@
 <nav class="navbar clearfix" id="navbar">
     <div @click="closeEditor"      class="navbar-btn-group left" > <img src="img/tabicon/back.svg" alt="关闭"></div>
     <div class="navbar-btn-group right">
-        <img @click="createNewBtnClicked" v-show="createNewBtnShow" src="img/tabicon/add.svg" alt="新建">
-        <img @click="saveBtnClicked" v-show="saveBtnShow" src="img/tabicon/done.svg" alt="保存">
+        <img @click="createDiary" v-show="createNewBtnShow" src="img/tabicon/add.svg" alt="新建">
+        <img @click="saveDiary" v-show="saveBtnShow" src="img/tabicon/done.svg" alt="保存">
     </div>
     <div class="brand">
         <a @click="showContentEditor"><img :src="logoImageUrl" alt="日记"></a>
@@ -127,7 +127,7 @@
             closeEditor() {
                 history.back();
             },
-            saveBtnClicked() {
+            saveDiary() {
                 if(diaryEditor.title.trim().length === 0) {
                     diaryEditor.title = ''; // clear content
                     popMessage(PopMessageType.warning, '内容未填写', null);
@@ -179,7 +179,7 @@
                     }
                 })
             },
-            createNewBtnClicked() {
+            createDiary() {
                 diaryEditor.isNew = true;
                 diaryEditor.title = '';
                 diaryEditor.content = '';
@@ -233,8 +233,8 @@
                     url: URL.diaryOperation,
                     dataType: 'json',
                     data: {
-                        'type': 'query',
-                        'diaryId': that.id
+                        type: 'query',
+                        diaryId: that.id
                     },
                     success: data => {
                         if (data.success){
@@ -256,15 +256,6 @@
         },
     });
 
-    // 获取时间字符串: 年-月-日 时-分
-    function getTimeStringNow() {
-        let now = new Date();
-        let month = (now.getMonth() + 1).toString().padStart(2, '00');
-        let day = now.getDate().toString().padStart(2, '00');
-        let hour = now.getHours().toString().padStart(2, '00');
-        let minutes = now.getMinutes().toString().padStart(2, '00');
-        return `${now.getFullYear()}-${month}-${day} ${hour}:${minutes}`;
-    }
 </script>
 </body>
 </html>

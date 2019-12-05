@@ -14,42 +14,29 @@
   }
   &-1{
     height: $load-box-height * 1;
-    -webkit-animation: load-frame 1s infinite linear 0s;
-    -o-animation: load-frame 1s infinite linear 0s;
-    animation: load-frame 1s infinite linear 0s;
+    @include animation(load-frame-1 1s infinite linear 0s);
     background-color: $red;
   }
   &-2{
     height: $load-box-height * 0.5;
-    -webkit-animation: load-frame 1s infinite linear 0.25s;
-    -o-animation: load-frame 1s infinite linear 0.25s;
-    animation: load-frame 1s infinite linear 0.25s;
+    @include animation(load-frame-2 1s infinite linear 0s);
     background-color: $main-orange;
   }
   &-3{
     height: $load-box-height * 0.25;
-    -webkit-animation: load-frame 1s infinite linear 0.5s;
-    -o-animation: load-frame 1s infinite linear 0.5s;
-    animation: load-frame 1s infinite linear 0.5s;
+    @include animation(load-frame-1 1s infinite linear 0s);
     background-color: $bg-main;
   }
-  &-4{
-    height: $load-box-height * .5;
-    -webkit-animation: load-frame 1s infinite linear 0.75s;
-    -o-animation: load-frame 1s infinite linear 0.75s;
-    animation: load-frame 1s infinite linear 0.75s;
-    background-color: $green;
-  }
 }
 
-@keyframes load-frame {
-  0% {height: $load-box-height * .25;}
-  50% {height: $load-box-height * 1;}
-  100% {height: $load-box-height * .25;}
+@keyframes load-frame-1 {
+  0% {height: $load-box-height * .25}
+  50% {height: $load-box-height * 1}
+  100% {height: $load-box-height * .25}
 }
 
-@-webkit-keyframes load-frame {
-  0% {height: $load-box-height * .25;}
-  50% {height: $load-box-height * 1;}
-  100% {height: $load-box-height * .25;}
+@keyframes load-frame-2 {
+  0% {height: $load-box-height * 1}
+  50% {height: $load-box-height * .25}
+  100% {height: $load-box-height * 1}
 }

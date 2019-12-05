@@ -51,3 +51,9 @@
   -moz-box-shadow: $value;
   box-shadow: $value;
 }
+
+@mixin animation($value){
+  -webkit-animation: $value;
+  -o-animation: $value;
+  animation: $value;
+}
