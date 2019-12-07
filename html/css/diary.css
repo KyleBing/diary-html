@@ -1168,6 +1168,10 @@ input[id^=category-], input[id^=weather-] {
   background-color: white;
 }
 .article-header {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   text-align: center;
   display: flex;
   justify-content: space-between;

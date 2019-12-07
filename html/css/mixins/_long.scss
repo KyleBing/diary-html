@@ -3,6 +3,7 @@ $fz-article: 12px;
 .article{
   background-color: white;
   &-header{
+    @include unselectable();
     text-align: center;
     display: flex;
     justify-content: space-between;
