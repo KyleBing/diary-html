@@ -3,7 +3,7 @@
 .hidden {display: none !important;}
 .show   {display: block !important;}
 
-@mixin bg-orange  { background-color: $main-orange; }
+@mixin bg-orange  { background-color: $orange; }
 @mixin bg-yellow  { background-color: $yellow; }
 @mixin bg-green   { background-color: $green; }
 @mixin bg-blue    { background-color: $blue; }
@@ -12,9 +12,9 @@
 @mixin bg-gray    { background-color: $gray; }
 @mixin bg-magenta { background-color: $magenta; }
 @mixin bg-red     { background-color: $red; }
-@mixin bg-grass   { background-color: $green-grass; }
+@mixin bg-grass   { background-color: $grass; }
 
-@mixin orange  { color: $main-orange !important; }
+@mixin orange  { color: $orange !important; }
 @mixin yellow  { color: $yellow !important; }
 @mixin green   { color: $green !important; }
 @mixin blue    { color: $blue !important; }
@@ -23,11 +23,11 @@
 @mixin gray    { color: $gray !important; }
 @mixin magenta { color: $magenta !important; }
 @mixin red     { color: $red !important; }
-@mixin grass   { color: $green-grass !important; }
+@mixin grass   { color: $grass !important; }
 
 
 // mixin
-@mixin border-radius($corner){
+@mixin border-radius($corner:5px){
   -webkit-border-radius: $corner;
   -moz-border-radius: $corner;
   border-radius: $corner;

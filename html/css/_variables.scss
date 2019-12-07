@@ -5,51 +5,48 @@ $blue:          #007AFF;
 $purple:        #5856D6;
 $magenta:       #FF2D70;
 $red:           #FF3B30;
-$main-orange:   #FF9500;
+$orange:        #FF9500;
 $yellow:        #FFCC00;
 $gray:          #8E8E93;
-$green-grass:   #8bc34a;
+$grass:         #8bc34a;
 
-//index
+//background-color
 $bg-list-active:      #FFF0D1;
 $bg-light:            #EFEFF4;
-$color-date:          #9B9B9B;
-$color-border:        #E5E5EA;
-$bg-main:             #373737;
+$bg-navbar:           #373737;
 $bg-menu:             #4A4A4A;
+$bg-searchbar:        #E5E5EA;
 
-$color-searchbar-bg:  #E5E5EA;
+//border
+$color-border:        #E5E5EA;
 
+// font size
+$fz-list-header:      20px;
+$fz-list-content:     14px;
+$fz-note:             14px;
+$fz-big:              20px;
 
-$list-header-height: 40px;
-$list-item-height: 28px;
+// color text
+$color-text-label:      #9B9B9B;
+$color-text-content:    #373737;
+$color-text-title:      #232323;
+$color-text-date:       #232323;
 
-$font-size-list-header: 20px;
-$font-size-list-item: 14px;
+//height
+$height-header:       40px;
+$height-list:         28px;
+$height-loading:      30px;
+$height-navbar:       45px;
 
-$color-diary-title: #232323;
-$color-diary-date: #232323;
-
-// Register
-$size-note:14px;
-$size-big:20px;
-$size-text: 16px;
-$height-input:48px;
-$radius:5px;
-
-$nav-height: 45px;
-$font-family: "SF UI Display", "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", "Helvetica", sans-serif;
-$load-box-height: 30px;
+//width
+$width-category-sign:   3px;
+$width-index-date:      25px;
 
 // Grid
-$width-seprator: 765px;
-
-//index
-$index-category-width: 3px;
-$index-date-width: 25px;
+$grid-separate-width: 765px;
 
 // z-index
-$z-toast: 500;
-$z-mask: 300;
-$z-navbar: 200;
-$z-header: 100;
+$z-toast:     500;
+$z-mask:      300;
+$z-navbar:    200;
+$z-header:    100;

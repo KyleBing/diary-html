@@ -8,19 +8,19 @@
     border-top: 1px solid $color-border;
     border-bottom: 1px solid $color-border;
     font-family: $font-family;
-    font-size: $font-size-list-header;
+    font-size: $fz-list-header;
     font-weight: bold;
     text-align: left;
     padding: 0 20px;
     color: black;
     background-color: $bg-light;
-    height: $list-header-height;
-    line-height: $list-header-height;
+    height: $height-header;
+    line-height: $height-header;
   }
   .list-item{
     display: block;
     flex-flow: row nowrap;
-    height: $list-item-height;
+    height: $height-list;
     &:last-child{
       .detail{
         border: 0;
@@ -31,20 +31,20 @@
     }
     .category{
       float: left;
-      width: $index-category-width;
-      height: $list-item-height;
+      width: $width-category-sign;
+      height: $height-list;
       display: block;
     }
     .date{
       float: left;
-      width: $index-date-width;
+      width: $width-index-date;
       padding: 0 5px;
       flex-shrink: 0;
       text-align: center;
-      line-height: $list-item-height;
-      font-size: $font-size-list-item;
+      line-height: $height-list;
+      font-size: $fz-list-content;
       font-weight: bold;
-      color: $color-diary-date;
+      color: $color-text-date;
     }
     .detail{
       position: relative;
@@ -57,16 +57,16 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        line-height: $list-item-height;
+        line-height: $height-list;
         display: block;
-        font-size: $font-size-list-item;
-        color: $color-diary-title;
+        font-size: $fz-list-content;
+        color: $color-text-title;
       }
       .icon{
         flex-shrink: 0;
         padding: 4px 0;
-        height: $list-item-height;
-        width: $list-item-height - 4 * 2;
+        height: $height-list;
+        width: $height-list - 4 * 2;
         display: block;
       }
       &::after{
@@ -95,15 +95,15 @@
   border: 1px solid lighten($gray, 10%);
   display: block;
   line-height: 30px;
-  font-size: $font-size-list-item;
+  font-size: $fz-list-content;
   text-align: center;
   width: 40%;
   margin: 20px auto 30px;
   @include border-radius(5px);
 
   &:active{
-    color: $bg-main;
-    border-color: $bg-main;
+    color: $bg-navbar;
+    border-color: $bg-navbar;
   }
 }
 
@@ -122,19 +122,19 @@
 }
 
 .search-bar{
-  background-color: $color-searchbar-bg;
+  background-color: $bg-searchbar;
   position: relative;
   padding: 8px 10px;
   input{
     width: 100%;
     line-height: 25px;
-    @include border-radius($radius);
+    @include border-radius();
     padding: 5px 10px;
     display: block;
     border: 1px solid $color-border;
     font-size: 1em;
     &:focus{
-      border-color: $main-orange;
+      border-color: $orange;
       box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
     }
   }

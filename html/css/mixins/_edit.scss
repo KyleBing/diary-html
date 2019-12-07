@@ -36,7 +36,7 @@ textarea{
   label{
     @include unselectable();
     width: 50%;
-    color: $color-date;
+    color: $color-text-label;
     line-height: $height-input;
   }
   input{
@@ -84,7 +84,7 @@ textarea{
     }
   }
 
-  @media screen and (min-width:$width-seprator){
+  @media screen and (min-width: $grid-separate-width){
     flex-flow: row nowrap;
     justify-content: space-around;
 
@@ -105,7 +105,7 @@ textarea{
   #category-work + label      {color: $blue;}
   #category-other + label     {color: $purple;}
   #category-sport + label     {color: $yellow;}
-  #category-diary + label     {color: $main-orange;}
+  #category-diary + label     {color: $orange;}
   #category-bigevent + label  {color: $red;}
   #category-film + label      {color: $magenta;}
 
@@ -114,7 +114,7 @@ textarea{
   #category-work:checked + label      { @include category-item-template($blue)}
   #category-other:checked + label     { @include category-item-template($purple)}
   #category-sport:checked + label     { @include category-item-template($yellow)}
-  #category-diary:checked + label     { @include category-item-template($main-orange)}
+  #category-diary:checked + label     { @include category-item-template($orange)}
   #category-bigevent:checked + label  { @include category-item-template($red)}
   #category-film:checked + label      { @include category-item-template($magenta)}
 }

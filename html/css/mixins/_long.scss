@@ -1,14 +1,20 @@
-$fz-article: 12px;
+$fz-article: 13px;
+$fz-md-article: 14px;
 
 .article{
+  font-size: $fz-article;
   background-color: white;
+
   &-header{
+    color: $bg-navbar;
     @include unselectable();
     text-align: center;
     display: flex;
     justify-content: space-between;
-    padding: 5px 15px;
-    font-size: $fz-article;
+    padding: 6px 15px;
+    &:active{
+      transform: translateY(2px);
+    }
     .week{
       font-weight: bold;
     }
@@ -20,16 +26,17 @@ $fz-article: 12px;
     }
   }
   &-body{
-    font-size: $fz-article;
+    color: $bg-navbar;
+
     padding: 0 15px;
     .title{
       font-weight: bold;
-      line-height: 2;
-      padding: 5px 0;
+      line-height: 1.3;
+      padding: 10px 0;
     }
     .content {
-      padding-bottom: 10px;
-      color: $color-diary-title;
+      padding-bottom: 12px;
+      color: $bg-navbar;
       line-height: 1.5;
       p {
       }
@@ -37,20 +44,38 @@ $fz-article: 12px;
   }
 }
 
-.category-bg-study     {border-top: 1px solid $green; background-color: rgba($green, 0.06) ;}
-.category-bg-game      {border-top: 1px solid $syan; background-color: rgba($syan, 0.06) ;}
-.category-bg-work      {border-top: 1px solid $blue; background-color: rgba($blue, 0.06) ;}
-.category-bg-other     {border-top: 1px solid $purple; background-color: rgba($purple, 0.06) ;}
-.category-bg-sport     {border-top: 1px solid $yellow; background-color: rgba($yellow, 0.06) ;}
-.category-bg-life      {border-top: 1px solid $main-orange; background-color: rgba($main-orange, 0.06); }
-.category-bg-bigevent  {border-top: 1px solid $red; background-color: rgba($red, 0.06) ;}
-.category-bg-film      {border-top: 1px solid $magenta; background-color: rgba($magenta, 0.06) ;}
+//on pc
+@media (min-width: $grid-separate-width) {
+  .article{
+    font-size: $fz-md-article;
+    &-header{
+      padding: 8px 15px;
+    }
+    &-body{
+      padding: 0 15px;
+      .title{
+      }
+      .content{
+        padding-bottom: 15px;
+      }
+    }
+  }
+
+}
+.category-bg-study     {border-top: 0.5px solid $green; background-color: rgba($green, 0.06) ;}
+.category-bg-game      {border-top: 0.5px solid $syan; background-color: rgba($syan, 0.06) ;}
+.category-bg-work      {border-top: 0.5px solid $blue; background-color: rgba($blue, 0.06) ;}
+.category-bg-other     {border-top: 0.5px solid $purple; background-color: rgba($purple, 0.06) ;}
+.category-bg-sport     {border-top: 0.5px solid $yellow; background-color: rgba($yellow, 0.06) ;}
+.category-bg-life      {border-top: 0.5px solid $orange; background-color: rgba($orange, 0.06); }
+.category-bg-bigevent  {border-top: 0.5px solid $red; background-color: rgba($red, 0.06) ;}
+.category-bg-film      {border-top: 0.5px solid $magenta; background-color: rgba($magenta, 0.06) ;}
 
 .text-study     {color: $green;}
 .text-game      {color: $syan;}
 .text-work      {color: $blue;}
 .text-other     {color: $purple;}
 .text-sport     {color: $yellow;}
-.text-life      {color: $main-orange;}
+.text-life      {color: $orange;}
 .text-bigevent  {color: $red;}
 .text-film      {color: $magenta;}

@@ -5,7 +5,7 @@ $menu-list-height: 50px;
   z-index: 10;
   overflow: auto;
   position: fixed;
-  top: $nav-height;
+  top: $height-navbar;
   left: 0;
   width: 100%;
   background-color: $bg-menu;
@@ -91,7 +91,7 @@ $reference-list-item-height: 40px;
 
     }
     input[type=checkbox]:checked + label {
-      &.reference-orange    {@include bg-orange;  border-color: $main-orange;}
+      &.reference-orange    {@include bg-orange;  border-color: $orange;}
       &.reference-green     {@include bg-green;   border-color: $green;}
       &.reference-blue      {@include bg-blue;    border-color: $blue;}
       &.reference-red       {@include bg-red;     border-color: $red;}
@@ -100,7 +100,7 @@ $reference-list-item-height: 40px;
       &.reference-purple    {@include bg-purple;  border-color: $purple;}
       &.reference-syan      {@include bg-syan;    border-color: $syan;}
       &.reference-gray      {@include bg-gray;    border-color: $gray;}
-      &.reference-grass     {@include bg-grass;    border-color: $green-grass;}
+      &.reference-grass     {@include bg-grass;    border-color: $grass;}
     }
   }
 }
@@ -111,7 +111,7 @@ $gaps-md: 5%;
 $cols-sm: 2;
 $gaps-sm: 20%;
 
-@media screen and (min-width: $width-seprator){
+@media screen and (min-width: $grid-separate-width){
   .toggle-btn{
     width: (100% - $gaps-sm * ($cols-sm - 1))/$cols-sm;
   }
@@ -125,7 +125,7 @@ $gaps-sm: 20%;
 
 }
 
-@media screen and (max-width: $width-seprator){
+@media screen and (max-width: $grid-separate-width){
   .list-group-item{
     margin-right: $gaps-sm;
     width: (100% - $gaps-sm * ($cols-sm - 1))/$cols-sm;
@@ -161,7 +161,7 @@ $gaps-sm: 20%;
     a{
       display: block;
       line-height: 20px;
-      font-size: $size-note;
+      font-size: $fz-note;
       height: 20px;
       &:link,&:hover,&:active,&:visited{
         color: $gray;

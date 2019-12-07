@@ -14,13 +14,13 @@
     line-height: 100%;
     text-align: center;
     margin-bottom: 10px;
-    font-size: $size-big;
+    font-size: $fz-big;
   }
   p{
     padding: 0 30px 20px;
     text-align: center;
     line-height: 120%;
-    font-size: $size-note;
+    font-size: $fz-note;
   }
   button{
     font-weight: bold;
@@ -29,7 +29,7 @@
     padding: 0 30px;
     display: block;
     height: 45px;
-    font-size: $size-big;
+    font-size: $fz-big;
     //border-top: 1px solid $bg-light;
     background-color: $bg-light;
     &:hover, &:active{
@@ -46,13 +46,13 @@
   width: 100%;
   padding: 12px 0 8px;
   text-align: center;
-  background-color: $bg-main;
+  background-color: $bg-navbar;
   h3{
     line-height: 25px;
-    font-size: $size-note;
+    font-size: $fz-note;
   }
   &-default { h3{color: white;} }
-  &-warning { h3{color: $main-orange;} }
+  &-warning { h3{color: $orange;} }
   &-success { h3{color: $green;} }
   &-danger  { h3{color: $red;} }
 }

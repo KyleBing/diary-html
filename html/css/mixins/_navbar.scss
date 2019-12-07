@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: $bg-main;
+  background-color: $bg-navbar;
   .navbar-btn-group{
     display: flex;
     img{
@@ -14,8 +14,8 @@
       display: block;
       background-color: transparent;
       cursor: pointer;
-      width: $nav-height;
-      height: $nav-height;
+      width: $height-navbar;
+      height: $height-navbar;
       &:active{
         @include border-radius(50px);
         background-color: rgba(255,255,255,0.1);
@@ -27,13 +27,13 @@
   .brand{
     cursor: pointer;
     margin: 0 auto;
-    height: $nav-height;
+    height: $height-navbar;
     width: 80px;
     img{
       padding: 3px;
       margin: 0 auto;
       display: block;
-      height: $nav-height;
+      height: $height-navbar;
     }
   }
 }

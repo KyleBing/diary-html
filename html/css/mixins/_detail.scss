@@ -1,8 +1,8 @@
 $meta-height: 30px;
 
 .diary-detail{
-  padding: $nav-height 0;
-  @media screen and (min-width:$width-seprator){
+  padding: $height-navbar 0;
+  @media screen and (min-width: $grid-separate-width){
     margin: 0 auto;
   }
 }
@@ -24,7 +24,7 @@ $meta-height: 30px;
   }
   .date{
     line-height: $meta-height;
-    color: $bg-main;
+    color: $bg-navbar;
   }
 }
 
@@ -50,19 +50,19 @@ $meta-height: 30px;
 
 }
 
-.detail-category-life     {@include detail-category-template($main-orange)}
+.detail-category-life     {@include detail-category-template($orange)}
 .detail-category-study    {@include detail-category-template($green)}
 .detail-category-game     {@include detail-category-template($syan)}
 .detail-category-work     {@include detail-category-template($blue)}
 .detail-category-others   {@include detail-category-template($purple)}
 .detail-category-sport    {@include detail-category-template($yellow)}
-.detail-category-diary    {@include detail-category-template($main-orange)}
+.detail-category-diary    {@include detail-category-template($orange)}
 .detail-category-bigevent {@include detail-category-template($red)}
 .detail-category-film     {@include detail-category-template($magenta)}
 
 
 .diary-content{
-  color: $bg-main;
+  color: $bg-navbar;
   line-height: 1.6;
   font-size: 1rem;
   padding: 20px;

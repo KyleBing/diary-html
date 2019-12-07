@@ -21,24 +21,24 @@ $toast-border-color: $bg-menu;
   z-index: $z-toast;
   position: fixed;
   border: 1px solid $toast-border-color;
-  background-color: $bg-main;
+  background-color: $bg-navbar;
   @include border-radius(8px);
   width: $toast-width;
   left: 50%;
   margin-left: -$toast-width/2;
   margin-top: -50px;
   top: 50%;
-  color: $main-orange;
+  color: $orange;
   &-header{
     color: white;
     font-weight: bold;
-    font-size: $font-size-list-header;
+    font-size: $fz-list-header;
     padding-top: 20px;
     text-align: center;
   }
   &-body{
     color: white;
-    font-size: $font-size-list-item;
+    font-size: $fz-list-content;
     text-align: center;
     padding-bottom: 20px;
   }
