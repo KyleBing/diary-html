@@ -1,4 +1,4 @@
-$meta-height: 30px;
+$height-meta: 30px;
 
 .diary-detail{
   padding: $height-navbar 0;
@@ -14,16 +14,16 @@ $meta-height: 30px;
   justify-content: space-around;
   .weather{
     img{
-      height: $meta-height;
+      height: $height-meta;
       display: block;
     }
   }
   .temperature{
-    line-height: $meta-height;
+    line-height: $height-meta;
     font-size: 1.1rem;
   }
   .date{
-    line-height: $meta-height;
+    line-height: $height-meta;
     color: $bg-navbar;
   }
 }

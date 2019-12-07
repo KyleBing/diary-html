@@ -1,5 +1,5 @@
 //MENU
-$menu-list-height: 50px;
+$height-menu-list: 50px;
 
 .menu-panel{
   z-index: 10;
@@ -23,8 +23,8 @@ $menu-list-height: 50px;
   display: block;
   position: relative;
   font-size: 20px;
-  height: $menu-list-height;
-  line-height: $menu-list-height;
+  height: $height-menu-list;
+  line-height: $height-menu-list;
   padding: 0 15px;
   color: #ffffff;
   &::after{
