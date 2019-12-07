@@ -1195,42 +1195,42 @@ input[id^=category-], input[id^=weather-] {
   line-height: 1.5;
 }
 .category-bg-study {
-  border-top: 0.5px solid #4CD964;
+  border-top: 1px solid #4CD964;
   background-color: rgba(76, 217, 100, 0.06);
 }
 
 .category-bg-game {
-  border-top: 0.5px solid #5AC8FA;
+  border-top: 1px solid #5AC8FA;
   background-color: rgba(90, 200, 250, 0.06);
 }
 
 .category-bg-work {
-  border-top: 0.5px solid #007AFF;
+  border-top: 1px solid #007AFF;
   background-color: rgba(0, 122, 255, 0.06);
 }
 
 .category-bg-other {
-  border-top: 0.5px solid #5856D6;
+  border-top: 1px solid #5856D6;
   background-color: rgba(88, 86, 214, 0.06);
 }
 
 .category-bg-sport {
-  border-top: 0.5px solid #FFCC00;
+  border-top: 1px solid #FFCC00;
   background-color: rgba(255, 204, 0, 0.06);
 }
 
 .category-bg-life {
-  border-top: 0.5px solid #FF9500;
+  border-top: 1px solid #FF9500;
   background-color: rgba(255, 149, 0, 0.06);
 }
 
 .category-bg-bigevent {
-  border-top: 0.5px solid #FF3B30;
+  border-top: 1px solid #FF3B30;
   background-color: rgba(255, 59, 48, 0.06);
 }
 
 .category-bg-film {
-  border-top: 0.5px solid #FF2D70;
+  border-top: 1px solid #FF2D70;
   background-color: rgba(255, 45, 112, 0.06);
 }
 

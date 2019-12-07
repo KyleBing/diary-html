@@ -36,14 +36,14 @@ $fz-article: 12px;
   }
 }
 
-.category-bg-study     {border-top: 0.5px solid $green; background-color: rgba($green, 0.06) ;}
-.category-bg-game      {border-top: 0.5px solid $syan; background-color: rgba($syan, 0.06) ;}
-.category-bg-work      {border-top: 0.5px solid $blue; background-color: rgba($blue, 0.06) ;}
-.category-bg-other     {border-top: 0.5px solid $purple; background-color: rgba($purple, 0.06) ;}
-.category-bg-sport     {border-top: 0.5px solid $yellow; background-color: rgba($yellow, 0.06) ;}
-.category-bg-life      {border-top: 0.5px solid $main-orange; background-color: rgba($main-orange, 0.06); }
-.category-bg-bigevent  {border-top: 0.5px solid $red; background-color: rgba($red, 0.06) ;}
-.category-bg-film      {border-top: 0.5px solid $magenta; background-color: rgba($magenta, 0.06) ;}
+.category-bg-study     {border-top: 1px solid $green; background-color: rgba($green, 0.06) ;}
+.category-bg-game      {border-top: 1px solid $syan; background-color: rgba($syan, 0.06) ;}
+.category-bg-work      {border-top: 1px solid $blue; background-color: rgba($blue, 0.06) ;}
+.category-bg-other     {border-top: 1px solid $purple; background-color: rgba($purple, 0.06) ;}
+.category-bg-sport     {border-top: 1px solid $yellow; background-color: rgba($yellow, 0.06) ;}
+.category-bg-life      {border-top: 1px solid $main-orange; background-color: rgba($main-orange, 0.06); }
+.category-bg-bigevent  {border-top: 1px solid $red; background-color: rgba($red, 0.06) ;}
+.category-bg-film      {border-top: 1px solid $magenta; background-color: rgba($magenta, 0.06) ;}
 
 .text-study     {color: $green;}
 .text-game      {color: $syan;}
