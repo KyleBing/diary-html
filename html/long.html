@@ -32,7 +32,7 @@
         <img v-show="btnConfirm" @click="confirmClicked" src="img/tabicon/done.svg" alt="添加">
     </div>
     <div class="brand">
-        <a href="long.html"><img src="img/logo.svg" alt="日记"></a>
+        <a href="index.html"><img src="img/logo_content.svg" alt="日记"></a>
     </div>
 </nav>
 
@@ -245,6 +245,19 @@
         </form>
     </div>
     <div class="diary-list-group">
+       <!-- <div class="article">
+            <div class="article-header category-bg-life">
+                <div class="week">周五</div>
+                <div class="date">2019-12-07</div>
+                <div class="category">大事</div>
+            </div>
+            <div class="article-body">
+                <div class="title">测试小程序，修复问题</div>
+                <div class="content">
+
+                </div>
+            </div>
+        </div>-->
     </div>
 
     <!--加载动画-->
@@ -261,6 +274,27 @@
 
 
 <script>
+
+    const WEATHER = {
+        sunny: {title: 'sunny', name: '晴'},
+        cloudy: {title: 'cloudy', name: '多云'},
+        overcast: {title: 'overcast', name: '阴'},
+        sprinkle: {title: 'sprinkle', name: '小雨'},
+        rain: {title: 'rain', name: '雨'},
+        thunderstorm: {title: 'thunderstorm', name: '暴雨'},
+        snow: {title: 'snow', name: '雪'},
+        fog: {title: 'fog', name: '雾'}
+    };
+    const CATEGORIES = {
+        life: '生活',
+        study: '学习',
+        film: '电影',
+        game: '游戏',
+        work: '工作',
+        sport: '运动',
+        bigevent: '大事',
+        other: '其它',
+    };
 
     let pageNo = 1;
     let PAGE_AMOUNT = 50;
@@ -280,7 +314,7 @@
 
     // 判断是否加载内容
     function needLoadContent() {
-        let lastOffsetTop = document.querySelector('.list-content:last-child .list-item:last-child').offsetTop;
+        let lastOffsetTop = document.querySelector('.article:last-child .article-body').offsetTop;
         let clientHeight = window.innerHeight;
         let scrollTop = document.scrollingElement.scrollTop;
         // console.clear();
@@ -343,34 +377,31 @@
         watch:{
             diaries: function () {
                 diaries = this.diaries;
-                if (diaries.length > 0) {
-                    let lastItem = diaries[0];
-                    let html = `<h3 onclick="toggleMonthContent(this)" class="list-header">${lastItem.date.substring(0,7)}</h3>
-                                <div class="list-content">` + currentItemHtml(lastItem, Number(lastItem.date.slice(8, 10)));
-                    if(diaries.length > 1){
-                        for (let i = 1; i< diaries.length; i++){
-                            let currentDiary = diaries[i];
-                            let lastItemMonth = lastItem.date.substring(0,7);
-                            let lastItemDay = Number(lastItem.date.substring(8,10));
-                            let currentItemMonth = currentDiary.date.substring(0,7);
-                            let currentItemDay = Number(currentDiary.date.substring(8,10));
-                            let template = '';
-
-                            if (lastItemMonth === currentItemMonth){
-                                let date =  (lastItemDay === currentItemDay)? '': currentItemDay;
-                                template = currentItemHtml(currentDiary, date);
-                            } else {
-                                template = `</div>
-                                        <h3 onclick="toggleMonthContent(this)" class="list-header">${currentDiary.date.substring(0,7)}</h3>
-                                        <div class="list-content">` + currentItemHtml(currentDiary, currentItemDay);
-                            }
-                            html += template;
-                            lastItem = diaries[i];
+                if (diaries.length > 0) {{
+                    let html = '';
+                    diaries.forEach(item => {
+                        let contentHtml = '';
+                        if(item.content){
+                            contentHtml = `<div class="content">
+                                                ${item.content.replace(/\n/g, '<br/>')}
+                                            </div>`
                         }
-                    }
+                        let template = ` <div class="article">
+                                        <div class="article-header category-bg-${item.category}">
+                                            <div class="week">${formateDate(item.date).weekday}</div>
+                                            <div class="date">${formateDate(item.date).date}</div>
+                                            <div class="category text-${item.category}">${CATEGORIES[item.category]}</div>
+                                        </div>
+                                        <div class="article-body">
+                                            <div class="title">${item.title}</div>
+                                            ${contentHtml}
+                                        </div>
+                                    </div>`;
+                        html += template;
+                    });
                     html+=`</div>`;
                     document.querySelector('.diary-list-group').innerHTML = html;
-                } else {
+                }} else {
                     document.querySelector('.diary-list-group').innerHTML = ''
                 }
             }
@@ -410,31 +441,6 @@
         }
     });
 
-    // 列表模板
-    function currentItemHtml(item, date) {
-        let hascontentHtml = '';
-        let weatherHtml = item.weather? `<img class="icon" src="img/weather/${item.weather}.svg" alt="${item.weather}">`: '';
-        let href = '';
-
-        if (item.content){
-            hascontentHtml = `<img class="icon" src="img/content.svg" alt="hascontent">`;
-            href = `detail.html?diaryId=${item.id}`
-        } else {
-            hascontentHtml = '';
-            href = `detail.html?diaryId=${item.id}`
-        }
-
-        return `<a href="${href}" class="list-item">
-                    <i class="category bg-${item.category}"></i>
-                    <span class="date">${date}</span>
-                    <div class="detail">
-                        <p class="title">${item.title}</p>
-                        ${hascontentHtml}
-                        ${weatherHtml}
-                    </div>
-                </a>`;
-    }
-
     // logo 点击切换图标
     function toggleLogo(logo) {
         const LOGO = {
@@ -454,6 +460,19 @@
 
     function toggleMonthContent(header){
         $(header).next().slideToggle();
+    }
+
+
+    function formateDate(dateString){
+        let year = Number(dateString.substring(0,4));
+        let month = Number(dateString.substring(5,7));
+        let day = Number(dateString.substring(8,10));
+        let date = new Date(year, month - 1, day);
+        let week = date.getDay();
+        return {
+            weekday: WEEKDAY[week],
+            date:`${year}年${month}月${day}日`
+        }
     }
 
 </script>

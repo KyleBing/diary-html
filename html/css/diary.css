@@ -1164,6 +1164,108 @@ input[id^=category-], input[id^=weather-] {
   border-left: 1px solid #4A4A4A;
 }
 
+.article {
+  background-color: white;
+}
+.article-header {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 15px;
+  font-size: 12px;
+}
+.article-header .week {
+  font-weight: bold;
+}
+.article-header .category {
+  font-weight: bold;
+}
+.article-body {
+  font-size: 12px;
+  padding: 0 15px;
+}
+.article-body .title {
+  font-weight: bold;
+  line-height: 2;
+  padding: 5px 0;
+}
+.article-body .content {
+  padding-bottom: 10px;
+  color: #232323;
+  line-height: 1.5;
+}
+.category-bg-study {
+  border-top: 0.5px solid #4CD964;
+  background-color: rgba(76, 217, 100, 0.06);
+}
+
+.category-bg-game {
+  border-top: 0.5px solid #5AC8FA;
+  background-color: rgba(90, 200, 250, 0.06);
+}
+
+.category-bg-work {
+  border-top: 0.5px solid #007AFF;
+  background-color: rgba(0, 122, 255, 0.06);
+}
+
+.category-bg-other {
+  border-top: 0.5px solid #5856D6;
+  background-color: rgba(88, 86, 214, 0.06);
+}
+
+.category-bg-sport {
+  border-top: 0.5px solid #FFCC00;
+  background-color: rgba(255, 204, 0, 0.06);
+}
+
+.category-bg-life {
+  border-top: 0.5px solid #FF9500;
+  background-color: rgba(255, 149, 0, 0.06);
+}
+
+.category-bg-bigevent {
+  border-top: 0.5px solid #FF3B30;
+  background-color: rgba(255, 59, 48, 0.06);
+}
+
+.category-bg-film {
+  border-top: 0.5px solid #FF2D70;
+  background-color: rgba(255, 45, 112, 0.06);
+}
+
+.text-study {
+  color: #4CD964;
+}
+
+.text-game {
+  color: #5AC8FA;
+}
+
+.text-work {
+  color: #007AFF;
+}
+
+.text-other {
+  color: #5856D6;
+}
+
+.text-sport {
+  color: #FFCC00;
+}
+
+.text-life {
+  color: #FF9500;
+}
+
+.text-bigevent {
+  color: #FF3B30;
+}
+
+.text-film {
+  color: #FF2D70;
+}
+
 .bg-life {
   background-color: #FF9500;
 }
