@@ -568,6 +568,38 @@ input[id^=category-], input[id^=weather-] {
   display: none;
 }
 
+.bg-life {
+  background-color: #FF9500;
+}
+
+.bg-study {
+  background-color: #4CD964;
+}
+
+.bg-bigevent {
+  background-color: #FF3B30;
+}
+
+.bg-sport {
+  background-color: #FFCC00;
+}
+
+.bg-other {
+  background-color: #5856D6;
+}
+
+.bg-work {
+  background-color: #007AFF;
+}
+
+.bg-game {
+  background-color: #5AC8FA;
+}
+
+.bg-film {
+  background-color: #FF2D70;
+}
+
 .list-content {
   background-color: #fff;
 }
