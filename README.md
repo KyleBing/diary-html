@@ -1,4 +1,5 @@
 
+![intro](https://github.com/KyleBing/diary/blob/master/github/intro.png?raw=true)
 ![content](https://github.com/KyleBing/diary/blob/master/github/intro-content.png?raw=true)
 ![menu](https://github.com/KyleBing/diary/blob/master/github/intro-menu.png?raw=true)
 
@@ -7,10 +8,10 @@
 线上访问地址： [http://kylebing.cn/diary](http://kylebing.cn/diary)
 
 > 测试帐号： test@163.com
+>
 > 测试密码： test
 
 
-![intro](https://github.com/KyleBing/diary/blob/master/github/intro.png?raw=true)
 
 ## 标题日记 - Diary
 
