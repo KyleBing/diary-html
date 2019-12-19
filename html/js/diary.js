@@ -89,14 +89,23 @@ const PopMessageType = {
 // Prompt 提示
 function popMessage(type, title, callback = ()=>{}, timeout = 1.5){
     var popClass = 'popMessage-'+type;
-    let template = ` <div class="popMessage ${popClass}">
+    let template = ` <div class="popMessage animated slideInDown ${popClass}">
                         <h3>${title}</h3>
                     </div>`;
     $('body').append(template);
 
     setTimeout(() => {
-        $('.popMessage').remove();
-        callback();
+        $('.popMessage')
+            .removeClass('slideInDown')
+            .addClass('slideOutUp');
+        setTimeout(()=>{
+            $('.popMessage')
+                .hide()
+                .remove();
+        }, 500); // 对应 css 中的动画时间
+        if(callback){
+            callback()
+        }
     },1000 * timeout);
 }
 
@@ -149,15 +158,7 @@ let API = {
     }
 };
 
-const WEEKDAY = {
-    0: '周日',
-    1: '周一',
-    2: '周二',
-    3: '周三',
-    4: '周四',
-    5: '周五',
-    6: '周六',
-};
+const WEEKDAY = {0: '周日', 1: '周一', 2: '周二', 3: '周三', 4: '周四', 5: '周五', 6: '周六',};
 
 
 // 格式化时间，输出字符串
