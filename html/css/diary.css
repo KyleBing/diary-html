@@ -965,7 +965,7 @@ input[id^=category-], input[id^=weather-] {
   animation-duration: .51s; }
 
 .animated-fast {
-  animation-duration: .51s; }
+  animation-duration: .31s; }
 
 @-webkit-keyframes fadeIn {
   from {

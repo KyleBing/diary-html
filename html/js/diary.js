@@ -89,7 +89,7 @@ const PopMessageType = {
 // Prompt 提示
 function popMessage(type, title, callback = ()=>{}, timeout = 1.5){
     var popClass = 'popMessage-'+type;
-    let template = ` <div class="popMessage animated slideInDown ${popClass}">
+    let template = ` <div class="popMessage animated-fast slideInDown ${popClass}">
                         <h3>${title}</h3>
                     </div>`;
     $('body').append(template);
@@ -102,7 +102,7 @@ function popMessage(type, title, callback = ()=>{}, timeout = 1.5){
             $('.popMessage')
                 .hide()
                 .remove();
-        }, 500); // 对应 css 中的动画时间
+        }, 300); // 对应 css 中的动画时间
         if(callback){
             callback()
         }
