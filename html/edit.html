@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--css-->
-    <link rel="stylesheet" href="css/diary.css?v=5.8.2">
+    <link rel="stylesheet" href="css/diary.css?v=5.8.3">
     <link rel="stylesheet" href="plugins/datetimepicker/jquery.datetimepicker.min.css">
     <!--js-->
 <!--    <script src="js/vue_2.66.js"></script> &lt;!&ndash;develop&ndash;&gt;-->
@@ -13,7 +13,7 @@
     <script src="plugins/datetimepicker/moment.js"></script>
     <script src="plugins/datetimepicker/jquery.datetimepicker.full.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
-    <script src="js/diary.js?v=5.8.2"></script>
+    <script src="js/diary.js?v=5.8.3"></script>
 
     <link rel="shortcut icon" href="img/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="img/appicon-apple.png">
@@ -122,12 +122,23 @@
             saveBtnShow: true,
             createNewBtnShow: true,
             btnSwitchDelay: 2,
+            diaryHasSaved: false,
+        },
+        watch:{
+            diaryHasSaved: function () {
+                if(navbar.diaryHasSaved){
+                    navbar.logoImageUrl = diaryEditor.contentEditorShowed? 'img/logo_content_saved.svg': 'img/logo_title_saved.svg'
+                } else {
+                    navbar.logoImageUrl = diaryEditor.contentEditorShowed? 'img/logo_content.svg?v=5.8.3': 'img/logo_title.svg'
+                }
+            }
         },
         methods:{
             closeEditor() {
                 history.back();
             },
             saveDiary() {
+                let that = this;
                 if(diaryEditor.title.trim().length === 0) {
                     diaryEditor.title = ''; // clear content
                     popMessage(PopMessageType.warning, '内容未填写', null);
@@ -160,6 +171,7 @@
                     url: URL.diaryOperation,
                     success: res => {
                         if (res.success){
+                            that.diaryHasSaved = true;
                             popMessage(PopMessageType.success, res.info); // 提示
                             if(res.data){
                                 diaryEditor.isNew = false;
@@ -180,6 +192,7 @@
                 })
             },
             createDiary() {
+                this.diaryHasSaved = false;
                 diaryEditor.isNew = true;
                 diaryEditor.title = '';
                 diaryEditor.content = '';
@@ -211,7 +224,11 @@
         },
         watch:{
             contentEditorShowed() {
-                navbar.logoImageUrl = this.contentEditorShowed? 'img/logo_content.svg': 'img/logo_title.svg'
+                if(navbar.diaryHasSaved){
+                    navbar.logoImageUrl = this.contentEditorShowed? 'img/logo_content_saved.svg': 'img/logo_title_saved.svg'
+                } else {
+                    navbar.logoImageUrl = this.contentEditorShowed? 'img/logo_content.svg?v=5.8.3': 'img/logo_title.svg'
+                }
             }
         },
         mounted() {
