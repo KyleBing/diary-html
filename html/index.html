@@ -91,6 +91,11 @@
             <label for="category-all" class="reference-grass">{{ showSelectAllBtn? '全选': '全不选' }}</label>
         </li>
 
+        <li class="list-group-item toggle-btn">
+            <input checked @click="reverseCategorySelect" class="hidden" type="checkbox" id="category-reverse">
+            <label for="category-reverse" class="reference-grass">反选</label>
+        </li>
+
 
 
     </ul>
@@ -196,6 +201,13 @@
                 } else {
                     this.categories = ["life","study","work","sport","game","film","bigevent","other"]
                 }
+            },
+            reverseCategorySelect:function(){
+              let allCategories = ["life","study","work","sport","game","film","bigevent","other"];
+              this.categories.forEach(item => {
+                allCategories.splice(allCategories.indexOf(item),1)
+              });
+              this.categories = allCategories;
             },
             referenceClicked: function () {
                 this.menuListShowed = false;
