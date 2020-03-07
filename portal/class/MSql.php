@@ -71,8 +71,10 @@ class MSql
     public static function AddDiary($uid, $title, $content, $category, $weather, $temperature, $date)
     {
         $timeNow = date('Y-m-d H:i:s');
+        $parsed_title = addslashes($title);
+        $parsed_content = addslashes($content);
         return "INSERT into diaries(title,content,category,weather,temperature,create_date,modify_date,date,uid)
-                VALUES('${title}','${content}','${category}','${weather}','${temperature}','${timeNow}','${timeNow}','${date}','${uid}')";
+                VALUES('${parsed_title}','${parsed_content}','${category}','${weather}','${temperature}','${timeNow}','${timeNow}','${date}','${uid}')";
     }
 
     // 删除日记
@@ -87,12 +89,14 @@ class MSql
     public static function UpdateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $date)
     {
         $timeNow = date('Y-m-d H:i:s');
+        $parsed_title = addslashes($title);
+        $parsed_content = addslashes($content);
         $sql =  "update diaries 
                 set diaries.modify_date='${timeNow}', 
                   diaries.date='${date}', 
                   diaries.category='${category}',
-                  diaries.title='${title}',
-                  diaries.content='${content}',
+                  diaries.title='${parsed_title}',
+                  diaries.content='${parsed_content}',
                   diaries.weather='${weather}',
                   diaries.temperature='${temperature}'
                 WHERE id='${id}' and uid='${uid}'";
