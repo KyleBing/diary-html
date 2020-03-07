@@ -50,15 +50,16 @@ $height-meta: 30px;
 
 }
 
-.detail-category-life     {@include detail-category-template($orange)}
-.detail-category-study    {@include detail-category-template($green)}
-.detail-category-game     {@include detail-category-template($syan)}
-.detail-category-work     {@include detail-category-template($blue)}
-.detail-category-others   {@include detail-category-template($purple)}
-.detail-category-sport    {@include detail-category-template($yellow)}
-.detail-category-diary    {@include detail-category-template($orange)}
-.detail-category-bigevent {@include detail-category-template($red)}
-.detail-category-film     {@include detail-category-template($magenta)}
+.detail-category-life        {@include detail-category-template($orange)}
+.detail-category-study       {@include detail-category-template($green)}
+.detail-category-game        {@include detail-category-template($syan)}
+.detail-category-work        {@include detail-category-template($blue)}
+.detail-category-week        {@include detail-category-template($purple)}
+.detail-category-sport       {@include detail-category-template($yellow)}
+.detail-category-diary       {@include detail-category-template($orange)}
+.detail-category-bigevent    {@include detail-category-template($red)}
+.detail-category-film        {@include detail-category-template($magenta)}
+.detail-category-article     {@include detail-category-template($light-purple)}
 
 
 .diary-content{

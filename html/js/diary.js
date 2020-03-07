@@ -78,6 +78,7 @@ function deleteAuthorization() {
     $.removeCookie(COOKIE.uid,{path: '/'});
 }
 
+const AllCategories = ["life","study","work","sport","game","film","bigevent","week", "article"];
 
 const PopMessageType = {
     success:    "success",

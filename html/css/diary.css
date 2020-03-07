@@ -153,7 +153,7 @@ tt {
   -moz-border-radius: 5px;
   border-radius: 5px; }
 
-.detail-category-others {
+.detail-category-week {
   font-size: .8rem;
   text-align: center;
   margin: 3px 0;
@@ -209,6 +209,18 @@ tt {
   border: 1px solid #FF2D70;
   color: white;
   background-color: #FF2D70;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px; }
+
+.detail-category-article {
+  font-size: .8rem;
+  text-align: center;
+  margin: 3px 0;
+  padding: 2px 10px;
+  border: 1px solid #CC73E1;
+  color: white;
+  background-color: #CC73E1;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px; }
@@ -313,7 +325,7 @@ textarea:focus {
     color: #5AC8FA; }
   .category-selector #category-work + label {
     color: #007AFF; }
-  .category-selector #category-other + label {
+  .category-selector #category-week + label {
     color: #5856D6; }
   .category-selector #category-sport + label {
     color: #FFCC00; }
@@ -323,6 +335,8 @@ textarea:focus {
     color: #FF3B30; }
   .category-selector #category-film + label {
     color: #FF2D70; }
+  .category-selector #category-article + label {
+    color: #CC73E1; }
   .category-selector #category-study:checked + label {
     background-color: #4CD964;
     color: white; }
@@ -332,7 +346,7 @@ textarea:focus {
   .category-selector #category-work:checked + label {
     background-color: #007AFF;
     color: white; }
-  .category-selector #category-other:checked + label {
+  .category-selector #category-week:checked + label {
     background-color: #5856D6;
     color: white; }
   .category-selector #category-sport:checked + label {
@@ -346,6 +360,9 @@ textarea:focus {
     color: white; }
   .category-selector #category-film:checked + label {
     background-color: #FF2D70;
+    color: white; }
+  .category-selector #category-article:checked + label {
+    background-color: #CC73E1;
     color: white; }
 
 .weather-selector {
@@ -426,7 +443,7 @@ input[id^=category-], input[id^=weather-] {
 .bg-sport {
   background-color: #FFCC00; }
 
-.bg-other {
+.bg-week {
   background-color: #5856D6; }
 
 .bg-work {
@@ -437,6 +454,9 @@ input[id^=category-], input[id^=weather-] {
 
 .bg-film {
   background-color: #FF2D70; }
+
+.bg-article {
+  background-color: #CC73E1; }
 
 .list-content {
   background-color: #fff; }
@@ -731,6 +751,15 @@ input[id^=category-], input[id^=weather-] {
     .reference .list-group-item input[type=checkbox]:checked + label.reference-grass {
       background-color: #8bc34a;
       border-color: #8bc34a; }
+    .reference .list-group-item input[type=checkbox]:checked + label.reference-light-purple {
+      background-color: #CC73E1;
+      border-color: #CC73E1; }
+    .reference .list-group-item input[type=checkbox]:checked + label.reference-brown {
+      background-color: #A2845E;
+      border-color: #A2845E; }
+    .reference .list-group-item input[type=checkbox]:checked + label.reference-sky-blue {
+      background-color: #1BADF8;
+      border-color: #1BADF8; }
 
 @media screen and (min-width: 765px) {
   .toggle-btn {
