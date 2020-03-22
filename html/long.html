@@ -7,13 +7,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
     <!--css-->
-    <link rel="stylesheet" href="css/diary.css?v=5.9.0">
+    <link rel="stylesheet" href="css/diary.css?v=5.9.1">
     <!--js-->
 <!--    <script src="js/vue_2.66.js"></script> &lt;!&ndash;develop&ndash;&gt;-->
     <script src="js/vue.min.2.6.10.js"></script> <!--production-->
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
-    <script src="js/diary.js?v=5.9.0"></script>
+    <script src="js/diary.js?v=5.9.1"></script>
 
     <link rel="shortcut icon" href="img/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="img/appicon-apple.png">
@@ -32,7 +32,7 @@
         <img v-show="btnConfirm" @click="confirmClicked" src="img/tabicon/done.svg" alt="添加">
     </div>
     <div class="brand">
-        <a href="index.html"><img src="img/logo_content.svg?v=5.9.0" alt="日记"></a>
+        <a href="index.html"><img src="img/logo_content.svg?v=5.9.1" alt="日记"></a>
     </div>
 </nav>
 
@@ -70,8 +70,8 @@
             <label class="reference-yellow" for="category-sport">运动</label>
         </li>
         <li class="list-group-item">
-            <input v-model="categories" class="hidden" type="checkbox" id="category-other" value="other">
-            <label class="reference-purple" for="category-other">其它</label>
+            <input v-model="categories" class="hidden" type="checkbox" id="category-week" value="week">
+            <label class="reference-purple" for="category-week">周报</label>
         </li>
         <li class="list-group-item">
             <input v-model="categories" class="hidden" type="checkbox" id="category-life" value="life">
@@ -85,13 +85,20 @@
             <input v-model="categories" class="hidden" type="checkbox" id="category-bitevent" value="bigevent">
             <label class="reference-red" for="category-bitevent">大事</label>
         </li>
+        <li class="list-group-item">
+            <input v-model="categories" class="hidden" type="checkbox" id="category-article" value="article">
+            <label class="reference-light-purple" for="category-article">文章</label>
+        </li>
 
         <li class="list-group-item toggle-btn">
             <input :checked="showSelectAllBtn" @click="toggleCategorySelect" class="hidden" type="checkbox" id="category-all">
             <label for="category-all" class="reference-grass">{{ showSelectAllBtn? '全选': '全不选' }}</label>
         </li>
 
-
+        <li class="list-group-item toggle-btn">
+            <input checked @click="reverseCategorySelect" class="hidden" type="checkbox" id="category-reverse">
+            <label for="category-reverse" class="reference-grass">反选</label>
+        </li>
 
     </ul>
 
@@ -194,8 +201,14 @@
                 if(this.categories.length){
                     this.categories = [];
                 } else {
-                    this.categories = ["life","study","work","sport","game","film","bigevent","other"]
+                    this.categories = AllCategories
                 }
+            },
+            reverseCategorySelect:function(){
+              this.categories.forEach(item => {
+                AllCategories.splice(AllCategories.indexOf(item),1)
+              });
+              this.categories = AllCategories;
             },
             referenceClicked: function () {
                 this.menuListShowed = false;
@@ -245,19 +258,6 @@
         </form>
     </div>
     <div class="diary-list-group">
-       <!-- <div class="article">
-            <div class="article-header category-bg-life">
-                <div class="week">周五</div>
-                <div class="date">2019-12-07</div>
-                <div class="category">大事</div>
-            </div>
-            <div class="article-body">
-                <div class="title">测试小程序，修复问题</div>
-                <div class="content">
-
-                </div>
-            </div>
-        </div>-->
     </div>
 
     <!--加载动画-->
@@ -293,7 +293,8 @@
         work: '工作',
         sport: '运动',
         bigevent: '大事',
-        other: '其它',
+        article: '文章',
+        week: '周报',
     };
 
     let pageNo = 1;
@@ -337,7 +338,10 @@
             function onSuccess(data) {
                 diaryApp.isLoading = false;
                 if(data.success){ // 成功获取数据
-                    setAuthorization(getAuthorization().email, getAuthorization().token, getAuthorization().username, getAuthorization().uid); // 刷新 cookie 过期时间
+                    // 刷新 cookie 过期时间
+                    setAuthorization(getAuthorization().email, getAuthorization().token, getAuthorization().username, getAuthorization().uid);
+                    $.cookie(COOKIE.category, $.cookie(COOKIE.category), COOKIE.options);
+
                     diaryApp.diaries = diaryApp.diaries.concat(data.data);
                     // 在后面判断获取的数据，小于1或小于每页的数量时，隐藏加载更多按钮
                     diaryApp.haveMore = !(data.data.length < PAGE_AMOUNT);

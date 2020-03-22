@@ -1122,7 +1122,7 @@ input[id^=category-], input[id^=weather-] {
   border-top: 0.5px solid #007AFF;
   background-color: rgba(0, 122, 255, 0.06); }
 
-.category-bg-other {
+.category-bg-week {
   border-top: 0.5px solid #5856D6;
   background-color: rgba(88, 86, 214, 0.06); }
 
@@ -1142,6 +1142,10 @@ input[id^=category-], input[id^=weather-] {
   border-top: 0.5px solid #FF2D70;
   background-color: rgba(255, 45, 112, 0.06); }
 
+.category-bg-article {
+  border-top: 0.5px solid #CC73E1;
+  background-color: rgba(204, 115, 225, 0.06); }
+
 .text-study {
   color: #4CD964; }
 
@@ -1151,7 +1155,7 @@ input[id^=category-], input[id^=weather-] {
 .text-work {
   color: #007AFF; }
 
-.text-other {
+.text-week {
   color: #5856D6; }
 
 .text-sport {
@@ -1165,6 +1169,9 @@ input[id^=category-], input[id^=weather-] {
 
 .text-film {
   color: #FF2D70; }
+
+.text-article {
+  color: #CC73E1; }
 
 .body-normal {
   background-color: #EFEFF4; }
