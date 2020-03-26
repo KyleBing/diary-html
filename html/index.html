@@ -205,10 +205,11 @@
                 }
             },
             reverseCategorySelect:function(){
+              let tempCategories = [].concat(AllCategories);
               this.categories.forEach(item => {
-                AllCategories.splice(AllCategories.indexOf(item),1)
+                tempCategories.splice(tempCategories.indexOf(item),1)
               });
-              this.categories = AllCategories;
+              this.categories = tempCategories;
             },
             referenceClicked: function () {
                 this.menuListShowed = false;
