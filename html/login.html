@@ -46,6 +46,7 @@
     </form>
     <div class="footer clearfix">
         <a href="regist.html" class="left">注册</a>
+        <a @click="useTestAccount" class="right">使用体验账户</a>
     </div>
 </div>
 
@@ -109,6 +110,10 @@
                         popMessage(PopMessageType.warning, data.info);
                     }
                 }
+            },
+            useTestAccount: function () {
+                this.email = "test@163.com";
+                this.password = "test";
             }
         },
         watch:{
