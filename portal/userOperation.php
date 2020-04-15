@@ -63,13 +63,14 @@ function addNewUser($email, $password, $username){
     $con->close();
 }
 
-// 更新密码
+// 修改密码
 function updatePassword($email, $oldPassword, $newPassword){
     $con = new dsqli();
     $result = $con->query(MSql::QueryUserPassword($email));
     $response = '';
-
-    if ($result){
+    if ($email == "test@163.com") {
+        $response = new ResponseError('体验账户密码不可修改');
+    } else if ($result){
         $response = '';
         if ($result->num_rows !== 0){ // 存在用户
             $row = $result->fetch_array();
