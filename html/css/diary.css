@@ -175,7 +175,7 @@ textarea:focus {
   resize: none;
   height: 100px;
   padding: 15px;
-  font-size: 1.1em;
+  font-size: 1.1rem;
   border-bottom: 1px solid #EFEFF4; }
 
 .diary-editor-content {
@@ -184,7 +184,7 @@ textarea:focus {
   resize: vertical;
   height: 220px;
   padding: 15px;
-  font-size: 1em;
+  font-size: 1rem;
   border-bottom: 1px solid #EFEFF4; }
 
 .diary-input-group {
@@ -518,7 +518,7 @@ input[id^=category-], input[id^=weather-] {
     padding: 5px 10px;
     display: block;
     border: 1px solid #E5E5EA;
-    font-size: 1em; }
+    font-size: 1rem; }
     .search-bar input:focus {
       border-color: #FF9500;
       box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1); }
