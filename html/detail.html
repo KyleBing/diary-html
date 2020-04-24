@@ -34,7 +34,7 @@
     <!--META-->
     <div class="diary-meta">
         <div class="date">{{diary.date}}</div>
-            <div class="weather"><img :src="`img/weather/${diary.weather}_active.svg`" :alt="diary.weather"></div>
+            <div class="weather"><img v-if="diary.weather" :src="`img/weather/${diary.weather}_active.svg`" :alt="diary.weather"></div>
             <div class="temperature"><span>{{diary.temperature}}</span>℃</div>
         <div :class="[`detail-category-${diary.category}`, 'detail-category']"><span>{{diary.categoryName}}</span></div>
     </div>
@@ -65,9 +65,6 @@
 </html>
 
 <script>
-
-  let diaryId;
-
   let toast = new Vue({
     el: "#toast",
     data: {
@@ -117,38 +114,38 @@
       confirmBtnShow: true
     },
     methods: {
-      goBack: function () {
+      goBack() {
         history.back(); // 返回主列表
       },
-      editBtnClicked: function () {
+      editBtnClicked() {
         location = "./edit.html?id=" + vm.diary.id
       },
-      deleteClicked: function () {
+      deleteClicked() {
         toast.show();
       },
     }
   });
 
   const WEATHER = {
-    sunny: {title: 'sunny', name: '晴'},
-    cloudy: {title: 'cloudy', name: '多云'},
-    overcast: {title: 'overcast', name: '阴'},
-    sprinkle: {title: 'sprinkle', name: '小雨'},
-    rain: {title: 'rain', name: '雨'},
-    thunderstorm: {title: 'thunderstorm', name: '暴雨'},
-    snow: {title: 'snow', name: '雪'},
-    fog: {title: 'fog', name: '雾'}
+    sunny        : {title :'sunny', name        :'晴'},
+    cloudy       : {title :'cloudy', name       :'多云'},
+    overcast     : {title :'overcast', name     :'阴'},
+    sprinkle     : {title :'sprinkle', name     :'小雨'},
+    rain         : {title :'rain', name         :'雨'},
+    thunderstorm : {title :'thunderstorm', name :'暴雨'},
+    snow         : {title :'snow', name         :'雪'},
+    fog          : {title :'fog', name          :'雾'}
   };
   const CATEGORIES = {
-    life: '生活',
-    study: '学习',
-    film: '电影',
-    game: '游戏',
-    work: '工作',
-    sport: '运动',
-    bigevent: '大事',
-    week: '周报',
-    article: '文章',
+    life     :'生活',
+    study    :'学习',
+    film     :'电影',
+    game     :'游戏',
+    work     :'工作',
+    sport    :'运动',
+    bigevent :'大事',
+    week     :'周报',
+    article  :'文章',
   };
 
   let vm = new Vue({

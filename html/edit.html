@@ -37,8 +37,8 @@
 
 <div class="container" id="diaryEditor">
 
-    <textarea id="diary-editor-title" class="diary-editor-title" placeholder="一句话，概括你的一天" v-model.lazy="title"></textarea>
-    <textarea v-show="contentEditorShowed" id="diary-editor-content" class="diary-editor-content" placeholder="日记详细内容，如果你有很多要写的" v-model.lazy="content"></textarea>
+    <textarea id="diary-editor-title" class="diary-editor-title" placeholder="一句话，概括你的一天" v-model="title"></textarea>
+    <textarea v-show="contentEditorShowed" id="diary-editor-content" class="diary-editor-content" placeholder="日记详细内容，如果你有很多要写的" v-model="content"></textarea>
 
     <div class="diary-input-group">
         <label for="date">日期</label>
@@ -122,16 +122,6 @@
       saveBtnShow: true,
       createNewBtnShow: true,
       btnSwitchDelay: 2,
-      diaryHasSaved: false,
-    },
-    watch:{
-      diaryHasSaved: function () {
-        if(navbar.diaryHasSaved){
-          navbar.logoImageUrl = diaryEditor.contentEditorShowed? 'img/logo_content_saved.svg': 'img/logo_title_saved.svg'
-        } else {
-          navbar.logoImageUrl = diaryEditor.contentEditorShowed? 'img/logo_content.svg?v=5.9.2': 'img/logo_title.svg'
-        }
-      }
     },
     methods:{
       closeEditor() {
@@ -171,6 +161,10 @@
           url: URL.diaryOperation,
           success: res => {
             if (res.success){
+              // 成功后更新 origin 字符串
+              diaryEditor.titleOrigin = diaryEditor.title;
+              diaryEditor.contentOrigin = diaryEditor.content;
+
               that.diaryHasSaved = true;
               popMessage(PopMessageType.success, res.info); // 提示
               if(res.data){
@@ -192,7 +186,6 @@
         })
       },
       createDiary() {
-        this.diaryHasSaved = false;
         diaryEditor.isNew = true;
         diaryEditor.title = '';
         diaryEditor.content = '';
@@ -225,13 +218,30 @@
       weather: "sunny"
     },
     watch:{
-      contentEditorShowed() {
-        if(navbar.diaryHasSaved){
-          navbar.logoImageUrl = this.contentEditorShowed? 'img/logo_content_saved.svg': 'img/logo_title_saved.svg'
-        } else {
-          navbar.logoImageUrl = this.contentEditorShowed? 'img/logo_content.svg?v=5.9.2': 'img/logo_title.svg'
-        }
+      title: function () {
+        this.updateDiaryIcon();
+        console.log("title has changed")
+
       },
+      content: function () {
+        this.updateDiaryIcon();
+        console.log("content has changed")
+      },
+      contentEditorShowed: function () {
+        this.updateDiaryIcon();
+        console.log("content has show")
+
+      },
+    },
+
+    methods: {
+      updateDiaryIcon(){
+        if(diaryEditor.diaryHasChanged){
+          navbar.logoImageUrl = diaryEditor.contentEditorShowed? 'img/logo_content.svg': 'img/logo_title.svg'
+        } else {
+          navbar.logoImageUrl = diaryEditor.contentEditorShowed? 'img/logo_content_saved.svg': 'img/logo_title_saved.svg'
+        }
+      }
     },
     computed: {
       diaryHasChanged (){
