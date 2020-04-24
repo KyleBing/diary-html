@@ -364,6 +364,11 @@ textarea:focus {
   .category-selector #category-article:checked + label {
     background-color: #CC73E1;
     color: white; }
+  .category-selector #category-all + label {
+    color: #8bc34a; }
+  .category-selector #category-all:checked + label {
+    background-color: #8bc34a;
+    color: white; }
 
 .weather-selector {
   -webkit-border-radius: 10px;
@@ -457,6 +462,9 @@ input[id^=category-], input[id^=weather-] {
 
 .bg-article {
   background-color: #CC73E1; }
+
+.bg-all {
+  background-color: #8bc34a; }
 
 .list-content {
   background-color: #fff; }
@@ -721,45 +729,36 @@ input[id^=category-], input[id^=weather-] {
       -moz-border-radius: 5px;
       border-radius: 5px;
       border: 1px dashed #8E8E93; }
-    .reference .list-group-item input[type=checkbox]:checked + label.reference-orange {
+    .reference .list-group-item input[type=checkbox]:checked + label.reference-life {
       background-color: #FF9500;
       border-color: #FF9500; }
-    .reference .list-group-item input[type=checkbox]:checked + label.reference-green {
+    .reference .list-group-item input[type=checkbox]:checked + label.reference-study {
       background-color: #4CD964;
       border-color: #4CD964; }
-    .reference .list-group-item input[type=checkbox]:checked + label.reference-blue {
-      background-color: #007AFF;
-      border-color: #007AFF; }
-    .reference .list-group-item input[type=checkbox]:checked + label.reference-red {
+    .reference .list-group-item input[type=checkbox]:checked + label.reference-bigevent {
       background-color: #FF3B30;
       border-color: #FF3B30; }
-    .reference .list-group-item input[type=checkbox]:checked + label.reference-yellow {
+    .reference .list-group-item input[type=checkbox]:checked + label.reference-sport {
       background-color: #FFCC00;
       border-color: #FFCC00; }
-    .reference .list-group-item input[type=checkbox]:checked + label.reference-magenta {
-      background-color: #FF2D70;
-      border-color: #FF2D70; }
-    .reference .list-group-item input[type=checkbox]:checked + label.reference-purple {
+    .reference .list-group-item input[type=checkbox]:checked + label.reference-week {
       background-color: #5856D6;
       border-color: #5856D6; }
-    .reference .list-group-item input[type=checkbox]:checked + label.reference-syan {
+    .reference .list-group-item input[type=checkbox]:checked + label.reference-work {
+      background-color: #007AFF;
+      border-color: #007AFF; }
+    .reference .list-group-item input[type=checkbox]:checked + label.reference-game {
       background-color: #5AC8FA;
       border-color: #5AC8FA; }
-    .reference .list-group-item input[type=checkbox]:checked + label.reference-gray {
-      background-color: #8E8E93;
-      border-color: #8E8E93; }
-    .reference .list-group-item input[type=checkbox]:checked + label.reference-grass {
-      background-color: #8bc34a;
-      border-color: #8bc34a; }
-    .reference .list-group-item input[type=checkbox]:checked + label.reference-light-purple {
+    .reference .list-group-item input[type=checkbox]:checked + label.reference-film {
+      background-color: #FF2D70;
+      border-color: #FF2D70; }
+    .reference .list-group-item input[type=checkbox]:checked + label.reference-article {
       background-color: #CC73E1;
       border-color: #CC73E1; }
-    .reference .list-group-item input[type=checkbox]:checked + label.reference-brown {
-      background-color: #A2845E;
-      border-color: #A2845E; }
-    .reference .list-group-item input[type=checkbox]:checked + label.reference-sky-blue {
-      background-color: #1BADF8;
-      border-color: #1BADF8; }
+    .reference .list-group-item input[type=checkbox]:checked + label.reference-all {
+      background-color: #8bc34a;
+      border-color: #8bc34a; }
 
 @media screen and (min-width: 765px) {
   .toggle-btn {
@@ -1172,6 +1171,13 @@ input[id^=category-], input[id^=weather-] {
 
 .text-article {
   color: #CC73E1; }
+
+.category-bg-all {
+  border-top: 0.5px solid #8bc34a;
+  background-color: rgba(139, 195, 74, 0.06); }
+
+.text-all {
+  color: #8bc34a; }
 
 .body-normal {
   background-color: #EFEFF4; }
