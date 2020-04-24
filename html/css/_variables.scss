@@ -35,13 +35,13 @@ $color-text-content:    #373737;
 $color-text-title:      #232323;
 $color-text-date:       #232323;
 
-//height
+// height
 $height-header:       40px;
 $height-list:         28px;
 $height-loading:      30px;
 $height-navbar:       45px;
 
-//width
+// width
 $width-category-sign:   3px;
 $width-index-date:      25px;
 
@@ -65,7 +65,7 @@ $categories: (
   "game":     $cyan,
   "film":     $magenta,
   "article":  $light-purple,
-  "all":  $grass,
+  "all":      $grass,
 );
 
 $weathers: ("sunny", "cloudy", "overcast", "fog", "sprinkle", "rain", "thunderstorm", "snow",);

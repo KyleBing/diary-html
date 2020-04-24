@@ -3,37 +3,6 @@
 .hidden {display: none !important;}
 .show   {display: block !important;}
 
-
-
-@mixin bg-orange         { background-color: $orange; }
-@mixin bg-yellow         { background-color: $yellow; }
-@mixin bg-green          { background-color: $green; }
-@mixin bg-blue           { background-color: $blue; }
-@mixin bg-syan           { background-color: $cyan; }
-@mixin bg-purple         { background-color: $purple; }
-@mixin bg-gray           { background-color: $gray; }
-@mixin bg-magenta        { background-color: $magenta; }
-@mixin bg-red            { background-color: $red; }
-@mixin bg-grass          { background-color: $grass; }
-@mixin bg-light-purple   { background-color: $light-purple; }
-@mixin bg-brown          { background-color: $brown; }
-@mixin bg-sky-blue       { background-color: $sky-blue; }
-
-@mixin orange            { color: $orange !important; }
-@mixin yellow            { color: $yellow !important; }
-@mixin green             { color: $green !important; }
-@mixin blue              { color: $blue !important; }
-@mixin syan              { color: $cyan !important; }
-@mixin purple            { color: $purple !important; }
-@mixin gray              { color: $gray !important; }
-@mixin magenta           { color: $magenta !important; }
-@mixin red               { color: $red !important; }
-@mixin grass             { color: $grass !important; }
-@mixin light-purple      { color: $light-purple !important; }
-@mixin sky-blue          { color: $sky-blue !important; }
-@mixin brown             { color: $brown !important; }
-
-
 // box-shadow
 @mixin box-shadow($value){
   -webkit-box-shadow:  $value;
@@ -73,7 +42,6 @@
   transform: $value;
 }
 
-
 @mixin animation($value){
   -webkit-animation: $value;
   -o-animation: $value;
@@ -87,8 +55,6 @@
   -o-transition: $value;
   transition: $value;
 }
-
-
 
 @mixin linear-gradient($direct, $colors){
   background: linear-gradient($direct, $colors);

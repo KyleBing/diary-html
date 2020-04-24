@@ -56,11 +56,9 @@ $toast-border-color: $bg-menu;
       }
     }
     .btn-cancel{
-
     }
     .btn-confirm{
       border-left: 1px solid $toast-border-color;
-
     }
   }
 }
@@ -102,24 +100,15 @@ $toast-border-color: $bg-menu;
 
 
 @-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
+
 
 .fadeIn {
   -webkit-animation-name: fadeIn;
@@ -127,27 +116,21 @@ $toast-border-color: $bg-menu;
 }
 @-webkit-keyframes slideInUp {
   from {
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
+    @include transform(translate3d(0, 100%, 0));
     visibility: visible;
   }
-
   to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    @include transform(translate3d(0, 0, 0));
   }
 }
 
 @keyframes slideInUp {
   from {
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
+    @include transform(translate3d(0, 100%, 0));
     visibility: visible;
   }
-
   to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    @include transform(translate3d(0, 0, 0));
   }
 }
 
@@ -159,26 +142,22 @@ $toast-border-color: $bg-menu;
 
 @-webkit-keyframes slideOutUp {
   from {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    @include transform(translate3d(0, 0, 0));
   }
-
   to {
     visibility: hidden;
-    -webkit-transform: translate3d(0, -100%, 0);
+    @include transform(translate3d(0, -100%, 0));
     transform: translate3d(0, -100%, 0);
   }
 }
 
 @keyframes slideOutUp {
   from {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    @include transform(translate3d(0, 0, 0));
   }
-
   to {
     visibility: hidden;
-    -webkit-transform: translate3d(0, -100%, 0);
+    @include transform(translate3d(0, -100%, 0));
     transform: translate3d(0, -100%, 0);
   }
 }
@@ -191,27 +170,21 @@ $toast-border-color: $bg-menu;
 
 @-webkit-keyframes slideInDown {
   from {
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
+    @include transform(translate3d(0, -100%, 0));
     visibility: visible;
   }
-
   to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    @include transform(translate3d(0, 0, 0));
   }
 }
 
 @keyframes slideInDown {
   from {
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
+    @include transform(translate3d(0, -100%, 0));
     visibility: visible;
   }
-
   to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    @include transform(translate3d(0, 0, 0));
   }
 }
 
