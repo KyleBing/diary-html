@@ -1,9 +1,6 @@
-
 $(function () {
     // INIT
     setMenuHeight();
-
-
     // RESIZE
     $(window).resize(function () {
         setMenuHeight();
@@ -183,5 +180,26 @@ function dateFormatter (date, formatString) {
         }
     }
     return formatString;
+}
+
+/****************************
+ * 获取地址栏get数据
+ *
+ * @return 有值的时候返回一个包含所有参数的对象
+ * @return 无值的时候，返回 `false`
+ ****************************/
+function getSearchData(){
+    let searchString = location.search;
+    if (searchString){
+        let obj = {};
+        searchString = searchString.substring(1, searchString.length);
+        let tempArray = searchString.split('&');
+        tempArray.forEach(item => {
+            obj[item.split('=')[0]] = decodeURIComponent(item.split('=')[1]);
+        });
+        return obj;
+    } else {
+        return false;
+    }
 }
 

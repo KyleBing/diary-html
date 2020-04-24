@@ -105,131 +105,64 @@ tt {
     font-weight: normal;
     font-size: 1.1rem; }
 
-.detail-category-life {
+.detail-category {
   font-size: .8rem;
   text-align: center;
   margin: 3px 0;
   padding: 2px 10px;
-  border: 1px solid #FF9500;
   color: white;
-  background-color: #FF9500;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px; }
+
+.detail-category-life {
+  border: 1px solid #FF9500;
+  background-color: #FF9500; }
 
 .detail-category-study {
-  font-size: .8rem;
-  text-align: center;
-  margin: 3px 0;
-  padding: 2px 10px;
   border: 1px solid #4CD964;
-  color: white;
-  background-color: #4CD964;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px; }
-
-.detail-category-game {
-  font-size: .8rem;
-  text-align: center;
-  margin: 3px 0;
-  padding: 2px 10px;
-  border: 1px solid #5AC8FA;
-  color: white;
-  background-color: #5AC8FA;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px; }
-
-.detail-category-work {
-  font-size: .8rem;
-  text-align: center;
-  margin: 3px 0;
-  padding: 2px 10px;
-  border: 1px solid #007AFF;
-  color: white;
-  background-color: #007AFF;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px; }
-
-.detail-category-week {
-  font-size: .8rem;
-  text-align: center;
-  margin: 3px 0;
-  padding: 2px 10px;
-  border: 1px solid #5856D6;
-  color: white;
-  background-color: #5856D6;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px; }
-
-.detail-category-sport {
-  font-size: .8rem;
-  text-align: center;
-  margin: 3px 0;
-  padding: 2px 10px;
-  border: 1px solid #FFCC00;
-  color: white;
-  background-color: #FFCC00;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px; }
-
-.detail-category-diary {
-  font-size: .8rem;
-  text-align: center;
-  margin: 3px 0;
-  padding: 2px 10px;
-  border: 1px solid #FF9500;
-  color: white;
-  background-color: #FF9500;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px; }
+  background-color: #4CD964; }
 
 .detail-category-bigevent {
-  font-size: .8rem;
-  text-align: center;
-  margin: 3px 0;
-  padding: 2px 10px;
   border: 1px solid #FF3B30;
-  color: white;
-  background-color: #FF3B30;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px; }
+  background-color: #FF3B30; }
+
+.detail-category-sport {
+  border: 1px solid #FFCC00;
+  background-color: #FFCC00; }
+
+.detail-category-week {
+  border: 1px solid #5856D6;
+  background-color: #5856D6; }
+
+.detail-category-work {
+  border: 1px solid #007AFF;
+  background-color: #007AFF; }
+
+.detail-category-game {
+  border: 1px solid #5AC8FA;
+  background-color: #5AC8FA; }
 
 .detail-category-film {
-  font-size: .8rem;
-  text-align: center;
-  margin: 3px 0;
-  padding: 2px 10px;
   border: 1px solid #FF2D70;
-  color: white;
-  background-color: #FF2D70;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px; }
+  background-color: #FF2D70; }
 
 .detail-category-article {
-  font-size: .8rem;
-  text-align: center;
-  margin: 3px 0;
-  padding: 2px 10px;
   border: 1px solid #CC73E1;
-  color: white;
-  background-color: #CC73E1;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px; }
+  background-color: #CC73E1; }
+
+.detail-category-all {
+  border: 1px solid #8bc34a;
+  background-color: #8bc34a; }
 
 .diary-content {
   color: #373737;
   line-height: 1.6;
   font-size: 1rem;
   padding: 20px; }
+  .diary-content p {
+    margin-bottom: 15px;
+    line-height: 1.5; }
 
 textarea:focus {
   -webkit-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);

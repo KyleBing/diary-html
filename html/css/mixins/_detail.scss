@@ -38,34 +38,29 @@ $height-meta: 30px;
   }
 }
 
-@mixin detail-category-template($color){
+.detail-category{
   font-size: .8rem;
   text-align: center;
   margin: 3px 0;
   padding: 2px 10px;
-  border: 1px solid $color;
   color: white;
-  background-color: $color;
   @include border-radius(5px)
-
 }
 
-.detail-category-life        {@include detail-category-template($orange)}
-.detail-category-study       {@include detail-category-template($green)}
-.detail-category-game        {@include detail-category-template($cyan)}
-.detail-category-work        {@include detail-category-template($blue)}
-.detail-category-week        {@include detail-category-template($purple)}
-.detail-category-sport       {@include detail-category-template($yellow)}
-.detail-category-diary       {@include detail-category-template($orange)}
-.detail-category-bigevent    {@include detail-category-template($red)}
-.detail-category-film        {@include detail-category-template($magenta)}
-.detail-category-article     {@include detail-category-template($light-purple)}
-
+@each $name, $color in $categories {
+  .detail-category-#{$name}{
+    border: 1px solid $color;
+    background-color: $color;
+  }
+}
 
 .diary-content{
   color: $bg-navbar;
   line-height: 1.6;
   font-size: 1rem;
   padding: 20px;
-
+  p{
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
 }
