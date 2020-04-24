@@ -119,135 +119,135 @@
 
 <script>
 
-    // Navbar
-    let navbar = new Vue({
-        el:"#navbar",
-        data:{
-            btnClose: false,
-            btnMenu: true,
-            btnAdd: true,
-            btnConfirm: false
-        },
-        methods:{
+  // Navbar
+  let navbar = new Vue({
+    el:"#navbar",
+    data:{
+      btnClose: false,
+      btnMenu: true,
+      btnAdd: true,
+      btnConfirm: false
+    },
+    methods:{
 
-            showMenu: function () {
-                this.btnClose = true;
-                this.btnMenu = false;
-                // this.btnAdd = false;
-                menu.menuPanelShowed = true;
-            },
-            closeMenu: function () {
-                if (menu.secondMenuShowed){
-                    if (menu.referenceShowed){  // 去掉这个条件恢复正常模式，现在是从 reference 直接进 index 列表
-                        menu.menuListShowed = true;
-                        menu.secondMenuShowed = false;
-                        menu.referenceShowed = false;
-                        this.btnClose = false;
-                        this.btnMenu = true;
-                        this.btnAdd = true;
-                        menu.menuPanelShowed = false;
-                    }
-                    menu.menuListShowed = true;
-                    menu.secondMenuShowed = false;
-                } else {
-                    this.btnClose = false;
-                    this.btnMenu = true;
-                    this.btnAdd = true;
-                    menu.menuPanelShowed = false;
-                }
-
-            },
-            addClicked: function () {
-                location = FrontURL.edit;
-            },
-            confirmClicked: function () {
-            }
+      showMenu: function () {
+        this.btnClose = true;
+        this.btnMenu = false;
+        // this.btnAdd = false;
+        menu.menuPanelShowed = true;
+      },
+      closeMenu: function () {
+        if (menu.secondMenuShowed){
+          if (menu.referenceShowed){  // 去掉这个条件恢复正常模式，现在是从 reference 直接进 index 列表
+            menu.menuListShowed = true;
+            menu.secondMenuShowed = false;
+            menu.referenceShowed = false;
+            this.btnClose = false;
+            this.btnMenu = true;
+            this.btnAdd = true;
+            menu.menuPanelShowed = false;
+          }
+          menu.menuListShowed = true;
+          menu.secondMenuShowed = false;
+        } else {
+          this.btnClose = false;
+          this.btnMenu = true;
+          this.btnAdd = true;
+          menu.menuPanelShowed = false;
         }
-    });
 
-    // MenuPanel
-    let menu = new Vue({
-        el: "#menu-panel",
-        data:{
-            menuPanelShowed:    false,      // menu panel
-            secondMenuShowed:   false,      // second menu
-            menuListShowed:     true,       // menu list
-            referenceShowed:    false,      // reference
-            aboutShowed:        false,      // about
-            userInfo: getAuthorization(),
-            categories: []
-        },
-        watch:{
-            secondMenuShowed: function () { // false all second panel when secondMenuShowed is false.
-                if (!this.secondMenuShowed){
-                    this.referenceShowed = false;
-                    this.aboutShowed = false;
-                }
-            },
-            menuPanelShowed: function () {
-                if(this.menuPanelShowed){
-                    navbar.btnAdd = false;
-                }
-            },
-            referenceShowed: function () {
-                // console.log(this.categories);
-                $.cookie(COOKIE.category,JSON.stringify(this.categories), COOKIE.options);
-                diaryApp.freshLoad(); // 关闭 reference 页面的时候初始化载入内容
-            }
+      },
+      addClicked: function () {
+        location = FrontURL.edit;
+      },
+      confirmClicked: function () {
+      }
+    }
+  });
 
-        },
-        methods:{
-            toggleCategorySelect: function (){
-                if(this.categories.length){
-                    this.categories = [];
-                } else {
-                    this.categories = AllCategories
-                }
-            },
-            reverseCategorySelect:function(){
-              let tempCategories = [].concat(AllCategories);
-              this.categories.forEach(item => {
-                tempCategories.splice(tempCategories.indexOf(item),1)
-              });
-              this.categories = tempCategories;
-            },
-            referenceClicked: function () {
-                this.menuListShowed = false;
-                this.menuPanelShowed = true;
-                this.secondMenuShowed = true;
-                this.referenceShowed = true;
-            },
-            aboutClicked: function () {
-                this.menuListShowed = false;
-                this.menuPanelShowed = true;
-                this.secondMenuShowed = true;
-                this.aboutShowed = true;
-            },
-            showSearchBar: function () {
-                diaryApp.searchBarShow = true;
-                navbar.closeMenu();
-                document.scrollingElement.scrollTo(0,0); // 定位到最上方
-                $('#keyword').focus();
-            },
-            logout: function(){
-                deleteAuthorization();
-                $.removeCookie(COOKIE.category,{path: '/'});
-                location = FrontURL.login;
-            },
-            refreshContent: function () {
-                diaryApp.freshLoad();
-            }
-        },
-        computed: {
-            // 全选按钮随类别数组变化而变化
-            showSelectAllBtn: function () {
-                return !this.categories.length
-            }
-        },
-        created: function () {
-            this.categories = JSON.parse($.cookie(COOKIE.category));
+  // MenuPanel
+  let menu = new Vue({
+    el: "#menu-panel",
+    data:{
+      menuPanelShowed:    false,      // menu panel
+      secondMenuShowed:   false,      // second menu
+      menuListShowed:     true,       // menu list
+      referenceShowed:    false,      // reference
+      aboutShowed:        false,      // about
+      userInfo: getAuthorization(),
+      categories: []
+    },
+    watch:{
+      secondMenuShowed: function () { // false all second panel when secondMenuShowed is false.
+        if (!this.secondMenuShowed){
+          this.referenceShowed = false;
+          this.aboutShowed = false;
         }
-    });
+      },
+      menuPanelShowed: function () {
+        if(this.menuPanelShowed){
+          navbar.btnAdd = false;
+        }
+      },
+      referenceShowed: function () {
+        // console.log(this.categories);
+        $.cookie(COOKIE.category,JSON.stringify(this.categories), COOKIE.options);
+        diaryApp.freshLoad(); // 关闭 reference 页面的时候初始化载入内容
+      }
+
+    },
+    methods:{
+      toggleCategorySelect: function (){
+        if(this.categories.length){
+          this.categories = [];
+        } else {
+          this.categories = AllCategories
+        }
+      },
+      reverseCategorySelect:function(){
+        let tempCategories = [].concat(AllCategories);
+        this.categories.forEach(item => {
+          tempCategories.splice(tempCategories.indexOf(item),1)
+        });
+        this.categories = tempCategories;
+      },
+      referenceClicked: function () {
+        this.menuListShowed = false;
+        this.menuPanelShowed = true;
+        this.secondMenuShowed = true;
+        this.referenceShowed = true;
+      },
+      aboutClicked: function () {
+        this.menuListShowed = false;
+        this.menuPanelShowed = true;
+        this.secondMenuShowed = true;
+        this.aboutShowed = true;
+      },
+      showSearchBar: function () {
+        diaryApp.searchBarShow = true;
+        navbar.closeMenu();
+        document.scrollingElement.scrollTo(0,0); // 定位到最上方
+        $('#keyword').focus();
+      },
+      logout: function(){
+        deleteAuthorization();
+        $.removeCookie(COOKIE.category,{path: '/'});
+        location = FrontURL.login;
+      },
+      refreshContent: function () {
+        diaryApp.freshLoad();
+      }
+    },
+    computed: {
+      // 全选按钮随类别数组变化而变化
+      showSelectAllBtn: function () {
+        return !this.categories.length
+      }
+    },
+    created: function () {
+      this.categories = JSON.parse($.cookie(COOKIE.category));
+    }
+  });
 </script>
 
 

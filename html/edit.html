@@ -101,179 +101,192 @@
 </div>
 
 <script>
-
-    // 日期控件初始化
-    $(() => {
-        $.datetimepicker.setLocale('ch');
-        $('#date').datetimepicker({
-            datepicker: true,       // 是否可选日期
-            timepicker: true,       // 是否可选时间
-            format: 'Y-m-d H:i',    // 定义输出时间格式 2019-06-28 16:00
-            onClose: date => {
-                diaryEditor.date = dateFormatter(date, 'yyyy-MM-dd hh:mm');
-            }
-        });
+  // 日期控件初始化
+  $(() => {
+    $.datetimepicker.setLocale('ch');
+    $('#date').datetimepicker({
+      datepicker: true,       // 是否可选日期
+      timepicker: true,       // 是否可选时间
+      format: 'Y-m-d H:i',    // 定义输出时间格式 2019-06-28 16:00
+      onClose: date => {
+        diaryEditor.date = dateFormatter(date, 'yyyy-MM-dd hh:mm');
+      }
     });
+  });
 
-
-    // Navbar
-    let navbar = new Vue({
-        el:"#navbar",
-        data:{
-            logoImageUrl: 'img/logo_title.svg',
-            saveBtnShow: true,
-            createNewBtnShow: true,
-            btnSwitchDelay: 2,
-            diaryHasSaved: false,
-        },
-        watch:{
-            diaryHasSaved: function () {
-                if(navbar.diaryHasSaved){
-                    navbar.logoImageUrl = diaryEditor.contentEditorShowed? 'img/logo_content_saved.svg': 'img/logo_title_saved.svg'
-                } else {
-                    navbar.logoImageUrl = diaryEditor.contentEditorShowed? 'img/logo_content.svg?v=5.9.1': 'img/logo_title.svg'
-                }
-            }
-        },
-        methods:{
-            closeEditor() {
-                history.back();
-            },
-            saveDiary() {
-                let that = this;
-                if(diaryEditor.title.trim().length === 0) {
-                    diaryEditor.title = ''; // clear content
-                    popMessage(PopMessageType.warning, '内容未填写', null);
-                    return;
-                }
-                if(diaryEditor.date.trim().length === 0){
-                    popMessage(PopMessageType.warning, '日期未填写', null);
-                    return;
-                }
-
-                if(diaryEditor.temperature !== '' &&!/^-?\d{1,2}$/.test(diaryEditor.temperature)){
-                    popMessage(PopMessageType.warning, '温度格式不正确', null);
-                    return
-                }
-                let queryData = {
-                    diaryId: diaryEditor.id,
-                    diaryTitle: diaryEditor.title,
-                    diaryContent: diaryEditor.content? diaryEditor.content: null ,
-                    diaryCategory: diaryEditor.category,
-                    diaryTemperature: diaryEditor.temperature === ''? -273 : diaryEditor.temperature,
-                    diaryWeather: diaryEditor.weather,
-                    diaryDate: diaryEditor.date,
-                    type: diaryEditor.isNew? 'add': 'modify'
-                };
-
-                $.ajax({
-                    data: queryData,
-                    method: 'POST',
-                    dataType: 'json',
-                    url: URL.diaryOperation,
-                    success: res => {
-                        if (res.success){
-                            that.diaryHasSaved = true;
-                            popMessage(PopMessageType.success, res.info); // 提示
-                            if(res.data){
-                                diaryEditor.isNew = false;
-                                diaryEditor.id = res.data[0].id
-                            }
-                        } else if (!res.logined){ // 未登录
-                            popMessage(PopMessageType.default, res.info, () => {
-                                location = FrontURL.login;
-                            })
-                        } else {
-                            popMessage(PopMessageType.default, res.info);
-                            // navbar.createNewBtnShow = true;
-                        }
-                    },
-                    error: xhr => {
-                        console.log(xhr)
-                    }
-                })
-            },
-            createDiary() {
-                this.diaryHasSaved = false;
-                diaryEditor.isNew = true;
-                diaryEditor.title = '';
-                diaryEditor.content = '';
-                diaryEditor.id = '';
-                // diaryEditor.date = dateFormatter(new Date(), 'yyyy-MM-dd hh:mm');  // 日期不重置了，因为插件可以方便的定位到当前日期
-                diaryEditor.category = "life";
-                diaryEditor.temperature = '';
-                diaryEditor.weather = "sunny";
-            },
-            showContentEditor() {
-                diaryEditor.contentEditorShowed = !diaryEditor.contentEditorShowed;
-            }
+  // Navbar
+  let navbar = new Vue({
+    el:"#navbar",
+    data:{
+      logoImageUrl: 'img/logo_title.svg',
+      saveBtnShow: true,
+      createNewBtnShow: true,
+      btnSwitchDelay: 2,
+      diaryHasSaved: false,
+    },
+    watch:{
+      diaryHasSaved: function () {
+        if(navbar.diaryHasSaved){
+          navbar.logoImageUrl = diaryEditor.contentEditorShowed? 'img/logo_content_saved.svg': 'img/logo_title_saved.svg'
+        } else {
+          navbar.logoImageUrl = diaryEditor.contentEditorShowed? 'img/logo_content.svg?v=5.9.1': 'img/logo_title.svg'
         }
-    });
+      }
+    },
+    methods:{
+      closeEditor() {
+        history.back();
+      },
+      saveDiary() {
+        let that = this;
+        if(diaryEditor.title.trim().length === 0) {
+          diaryEditor.title = ''; // clear content
+          popMessage(PopMessageType.warning, '内容未填写', null);
+          return;
+        }
+        if(diaryEditor.date.trim().length === 0){
+          popMessage(PopMessageType.warning, '日期未填写', null);
+          return;
+        }
 
+        if(diaryEditor.temperature !== '' &&!/^-?\d{1,2}$/.test(diaryEditor.temperature)){
+          popMessage(PopMessageType.warning, '温度格式不正确', null);
+          return
+        }
+        let queryData = {
+          diaryId: diaryEditor.id,
+          diaryTitle: diaryEditor.title,
+          diaryContent: diaryEditor.content? diaryEditor.content: null ,
+          diaryCategory: diaryEditor.category,
+          diaryTemperature: diaryEditor.temperature === ''? -273 : diaryEditor.temperature,
+          diaryWeather: diaryEditor.weather,
+          diaryDate: diaryEditor.date,
+          type: diaryEditor.isNew? 'add': 'modify'
+        };
 
-    let diaryEditor = new Vue({
-        el: '#diaryEditor',
-        data: {
-            isNew: true,
-            contentEditorShowed: false,
-            id:"",
-            date: dateFormatter(new Date(), 'yyyy-MM-dd hh:mm'),
-            title: "",
-            content:"",
-            category: "life",
-            temperature: '',
-            weather: "sunny"
-        },
-        watch:{
-            contentEditorShowed() {
-                if(navbar.diaryHasSaved){
-                    navbar.logoImageUrl = this.contentEditorShowed? 'img/logo_content_saved.svg': 'img/logo_title_saved.svg'
-                } else {
-                    navbar.logoImageUrl = this.contentEditorShowed? 'img/logo_content.svg?v=5.9.1': 'img/logo_title.svg'
-                }
-            }
-        },
-        mounted() {
-            this.isNew = !Boolean(location.search);
-            if(this.isNew){
-                // 新建日记
-                this.id = '';
-                this.date = dateFormatter(new Date(), 'yyyy-MM-dd hh:mm');
-                this.title = '';
-                this.content = '';
-                this.category = 'life';
-                this.temperature = '';
-                this.weather = 'sunny'
+        $.ajax({
+          data: queryData,
+          method: 'POST',
+          dataType: 'json',
+          url: URL.diaryOperation,
+          success: res => {
+            if (res.success){
+              that.diaryHasSaved = true;
+              popMessage(PopMessageType.success, res.info); // 提示
+              if(res.data){
+                diaryEditor.isNew = false;
+                diaryEditor.id = res.data[0].id
+              }
+            } else if (!res.logined){ // 未登录
+              popMessage(PopMessageType.default, res.info, () => {
+                location = FrontURL.login;
+              })
             } else {
-                // 编辑日记
-                this.id = location.search.substring(location.search.lastIndexOf('=') + 1); // 获取id值
-                let that = this;
-                $.ajax({
-                    url: URL.diaryOperation,
-                    dataType: 'json',
-                    data: {
-                        type: 'query',
-                        diaryId: that.id
-                    },
-                    success: data => {
-                        if (data.success){
-                            let diary = data.data[0];
-                            diaryEditor.id = diary.id;
-                            diaryEditor.title = diary.title;
-                            diaryEditor.content = diary.content;
-                            diaryEditor.date = diary.date.substring(0,16);
-                            diaryEditor.category = diary.category;
-                            diaryEditor.temperature = diary.temperature === '-273'? '': diary.temperature ;
-                            diaryEditor.weather = diary.weather;
-                            if(diary.content){
-                                diaryEditor.contentEditorShowed = true;
-                            }
-                        }
-                    }
-                });
+              popMessage(PopMessageType.default, res.info);
+              // navbar.createNewBtnShow = true;
             }
-        },
-    });
+          },
+          error: xhr => {
+            console.log(xhr)
+          }
+        })
+      },
+      createDiary() {
+        this.diaryHasSaved = false;
+        diaryEditor.isNew = true;
+        diaryEditor.title = '';
+        diaryEditor.content = '';
+        diaryEditor.id = '';
+        // diaryEditor.date = dateFormatter(new Date(), 'yyyy-MM-dd hh:mm');  // 日期不重置了，因为插件可以方便的定位到当前日期
+        diaryEditor.category = "life";
+        diaryEditor.temperature = '';
+        diaryEditor.weather = "sunny";
+      },
+      showContentEditor() {
+        diaryEditor.contentEditorShowed = !diaryEditor.contentEditorShowed;
+      }
+    }
+  });
+
+
+  let diaryEditor = new Vue({
+    el: '#diaryEditor',
+    data: {
+      isNew: true,
+      contentEditorShowed: false,
+      id:"",
+      date: dateFormatter(new Date(), 'yyyy-MM-dd hh:mm'),
+      title: "",
+      titleOrigin: "",
+      content:"",
+      contentOrigin:"",
+      category: "life",
+      temperature: '',
+      weather: "sunny"
+    },
+    watch:{
+      contentEditorShowed() {
+        if(navbar.diaryHasSaved){
+          navbar.logoImageUrl = this.contentEditorShowed? 'img/logo_content_saved.svg': 'img/logo_title_saved.svg'
+        } else {
+          navbar.logoImageUrl = this.contentEditorShowed? 'img/logo_content.svg?v=5.9.1': 'img/logo_title.svg'
+        }
+      },
+    },
+    computed: {
+      diaryHasChanged (){
+        return this.title !== this.titleOrigin || this.content !== this.contentOrigin
+      }
+    },
+    mounted() {
+      // 标签关闭提醒
+      window.onbeforeunload = () => {
+        if (diaryEditor.diaryHasChanged){
+          return "日记内容已改变，显示提示框"
+        }
+      };
+      this.isNew = !Boolean(location.search);
+      if(this.isNew){
+        // 新建日记
+        this.id = '';
+        this.date = dateFormatter(new Date(), 'yyyy-MM-dd hh:mm');
+        this.title = '';
+        this.content = '';
+        this.category = 'life';
+        this.temperature = '';
+        this.weather = 'sunny'
+      } else {
+        // 编辑日记
+        this.id = location.search.substring(location.search.lastIndexOf('=') + 1); // 获取id值
+        let that = this;
+        $.ajax({
+          url: URL.diaryOperation,
+          dataType: 'json',
+          data: {
+            type: 'query',
+            diaryId: that.id
+          },
+          success: data => {
+            if (data.success){
+              let diary = data.data[0];
+              diaryEditor.id = diary.id;
+              diaryEditor.title = diary.title;
+              diaryEditor.titleOrigin = diary.title;
+              diaryEditor.content = diary.content;
+              diaryEditor.contentOrigin = diary.content;
+              diaryEditor.date = diary.date.substring(0,16);
+              diaryEditor.category = diary.category;
+              diaryEditor.temperature = diary.temperature === '-273'? '': diary.temperature ;
+              diaryEditor.weather = diary.weather;
+              if(diary.content){
+                diaryEditor.contentEditorShowed = true;
+              }
+            }
+          }
+        });
+      }
+    },
+  });
 
 </script>
 </body>

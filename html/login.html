@@ -54,78 +54,78 @@
 
 <script>
 
-    // 如果已经登录，跳到主页
-    window.onload = () => {
-      if (getAuthorization()) {
-          popMessage(PopMessageType.default, '您已经登录，正在跳转...',()=>{
-              location = FrontURL.index;
-          })
-      }
-    };
+  // 如果已经登录，跳到主页
+  window.onload = () => {
+    if (getAuthorization()) {
+      popMessage(PopMessageType.default, '您已经登录，正在跳转...',()=>{
+        location = FrontURL.index;
+      })
+    }
+  };
 
-    let vm = new Vue({
-        el: "#login",
-        data: {
-            labelEmail: "邮箱",
-            labelCheckPassword: "再次确认密码",
-            email: "",
-            password: "",
-        },
-        computed:{
-            emailVerified: function ()  {
-                return /(\w|\d)+@(\w|\d)+\.\w+/i.test(this.email)
-            },
-            passwordVerified: function ()  {
-                return this.password.length > 0
-            },
-            verified: function ()  {
-                return this.emailVerified && this.passwordVerified
-            }
-        },
-        methods:{
-            loginSubmit: function () {
-                let queryData = {
-                    "email": this.email,
-                    "password": this.password,
-                    "type":"login"
-                };
-                $.ajax({
-                    data:queryData,
-                    url:URL.userOperation,
-                    dataType:'json',
-                    method:"POST",
-                    success:onSuccess,
-                    error:(xhr) => {
-                        console.log(xhr);
-                    }
-                });
-                function onSuccess(data) {
-                    if(data.success){ // 登录成功
-                        setAuthorization(data.email, data.token, data.username, data.uid);
-                        $.cookie(COOKIE.category,JSON.stringify(categories), COOKIE.options);
-                        popMessage(PopMessageType.success, data.info, ()=>{
-                            location = FrontURL.index
-                        })
-                    } else { // 登录失败
-                        popMessage(PopMessageType.warning, data.info);
-                    }
-                }
-            },
-            useTestAccount: function () {
-                this.email = "test@163.com";
-                this.password = "test";
-            }
-        },
-        watch:{
-            email: function () {
-                if (this.emailVerified){
-                    this.labelEmail = "邮箱"
-                } else {
-                    this.labelEmail = "输入的邮箱不正确，请重新输入"
-                }
-            }
+  let vm = new Vue({
+    el: "#login",
+    data: {
+      labelEmail: "邮箱",
+      labelCheckPassword: "再次确认密码",
+      email: "",
+      password: "",
+    },
+    computed:{
+      emailVerified: function ()  {
+        return /(\w|\d)+@(\w|\d)+\.\w+/i.test(this.email)
+      },
+      passwordVerified: function ()  {
+        return this.password.length > 0
+      },
+      verified: function ()  {
+        return this.emailVerified && this.passwordVerified
+      }
+    },
+    methods:{
+      loginSubmit: function () {
+        let queryData = {
+          "email": this.email,
+          "password": this.password,
+          "type":"login"
+        };
+        $.ajax({
+          data:queryData,
+          url:URL.userOperation,
+          dataType:'json',
+          method:"POST",
+          success:onSuccess,
+          error:(xhr) => {
+            console.log(xhr);
+          }
+        });
+        function onSuccess(data) {
+          if(data.success){ // 登录成功
+            setAuthorization(data.email, data.token, data.username, data.uid);
+            $.cookie(COOKIE.category,JSON.stringify(categories), COOKIE.options);
+            popMessage(PopMessageType.success, data.info, ()=>{
+              location = FrontURL.index
+            })
+          } else { // 登录失败
+            popMessage(PopMessageType.warning, data.info);
+          }
         }
-    });
+      },
+      useTestAccount: function () {
+        this.email = "test@163.com";
+        this.password = "test";
+      }
+    },
+    watch:{
+      email: function () {
+        if (this.emailVerified){
+          this.labelEmail = "邮箱"
+        } else {
+          this.labelEmail = "输入的邮箱不正确，请重新输入"
+        }
+      }
+    }
+  });
 
 
 
