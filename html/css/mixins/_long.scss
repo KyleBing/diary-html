@@ -62,22 +62,13 @@ $fz-md-article: 14px;
   }
 
 }
-.category-bg-study     {border-top: 0.5px solid $green; background-color: rgba($green, 0.06) ;}
-.category-bg-game      {border-top: 0.5px solid $cyan; background-color: rgba($cyan, 0.06) ;}
-.category-bg-work      {border-top: 0.5px solid $blue; background-color: rgba($blue, 0.06) ;}
-.category-bg-week      {border-top: 0.5px solid $purple; background-color: rgba($purple, 0.06) ;}
-.category-bg-sport     {border-top: 0.5px solid $yellow; background-color: rgba($yellow, 0.06) ;}
-.category-bg-life      {border-top: 0.5px solid $orange; background-color: rgba($orange, 0.06); }
-.category-bg-bigevent  {border-top: 0.5px solid $red; background-color: rgba($red, 0.06) ;}
-.category-bg-film      {border-top: 0.5px solid $magenta; background-color: rgba($magenta, 0.06) ;}
-.category-bg-article   {border-top: 0.5px solid $light-purple; background-color: rgba($light-purple, 0.06) ;}
 
-.text-study     {color: $green;}
-.text-game      {color: $cyan;}
-.text-work      {color: $blue;}
-.text-week      {color: $purple;}
-.text-sport     {color: $yellow;}
-.text-life      {color: $orange;}
-.text-bigevent  {color: $red;}
-.text-film      {color: $magenta;}
-.text-article   {color: $light-purple;}
+@each $name, $color in $categories {
+  .category-bg-#{$name} {
+    border-top: 0.5px solid $color;
+    background-color: rgba($color, 0.06);
+  }
+  .text-#{$name} {
+    color: $color;
+  }
+}
