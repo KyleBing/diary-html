@@ -3,11 +3,13 @@
 .hidden {display: none !important;}
 .show   {display: block !important;}
 
+
+
 @mixin bg-orange         { background-color: $orange; }
 @mixin bg-yellow         { background-color: $yellow; }
 @mixin bg-green          { background-color: $green; }
 @mixin bg-blue           { background-color: $blue; }
-@mixin bg-syan           { background-color: $syan; }
+@mixin bg-syan           { background-color: $cyan; }
 @mixin bg-purple         { background-color: $purple; }
 @mixin bg-gray           { background-color: $gray; }
 @mixin bg-magenta        { background-color: $magenta; }
@@ -21,7 +23,7 @@
 @mixin yellow            { color: $yellow !important; }
 @mixin green             { color: $green !important; }
 @mixin blue              { color: $blue !important; }
-@mixin syan              { color: $syan !important; }
+@mixin syan              { color: $cyan !important; }
 @mixin purple            { color: $purple !important; }
 @mixin gray              { color: $gray !important; }
 @mixin magenta           { color: $magenta !important; }

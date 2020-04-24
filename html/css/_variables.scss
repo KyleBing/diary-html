@@ -1,6 +1,6 @@
 // Colors
 $green:         #4CD964;
-$syan:          #5AC8FA;
+$cyan:          #5AC8FA;
 $blue:          #007AFF;
 $purple:        #5856D6;
 $magenta:       #FF2D70;
@@ -53,3 +53,18 @@ $z-toast:     500;
 $z-mask:      300;
 $z-navbar:    200;
 $z-header:    100;
+
+
+$categories: (
+  "life":     $orange,
+  "study":    $green,
+  "bigevent": $red,
+  "sport":    $yellow,
+  "week":     $purple,
+  "work":     $blue,
+  "game":     $cyan,
+  "film":     $magenta,
+  "article":  $light-purple
+);
+
+$weathers: ("sunny", "cloudy", "overcast", "fog", "sprinkle", "rain", "thunderstorm", "snow",);

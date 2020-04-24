@@ -95,30 +95,15 @@ textarea{
     }
   }
 
-  @mixin category-item-template($color) {
-    background-color: $color;
-    color: white;
+  @each $name, $color in $categories {
+    #category-#{$name} + label{
+      color: $color;
+    }
+    #category-#{$name}:checked + label {
+      background-color: $color;
+      color: white;
+    }
   }
-
-  #category-study    + label         {color: $green;}
-  #category-game     + label         {color: $syan;}
-  #category-work     + label         {color: $blue;}
-  #category-week     + label         {color: $purple;}
-  #category-sport    + label         {color: $yellow;}
-  #category-diary    + label         {color: $orange;}
-  #category-bigevent + label         {color: $red;}
-  #category-film     + label         {color: $magenta;}
-  #category-article  + label         {color: $light-purple;}
-
-  #category-study:checked    + label         { @include category-item-template($green)}
-  #category-game:checked     + label         { @include category-item-template($syan)}
-  #category-work:checked     + label         { @include category-item-template($blue)}
-  #category-week:checked     + label         { @include category-item-template($purple)}
-  #category-sport:checked    + label         { @include category-item-template($yellow)}
-  #category-diary:checked    + label         { @include category-item-template($orange)}
-  #category-bigevent:checked + label         { @include category-item-template($red)}
-  #category-film:checked     + label         { @include category-item-template($magenta)}
-  #category-article:checked  + label         { @include category-item-template($light-purple)}
 }
 
 
@@ -158,23 +143,14 @@ textarea{
     color: white;
   }
 
-  #weather-sunny + label        {background-image: url(../img/weather/sunny.svg)}
-  #weather-cloudy + label       {background-image: url(../img/weather/cloudy.svg)}
-  #weather-overcast + label     {background-image: url(../img/weather/overcast.svg)}
-  #weather-fog + label          {background-image: url(../img/weather/fog.svg)}
-  #weather-sprinkle + label      {background-image: url(../img/weather/sprinkle.svg)}
-  #weather-rain + label         {background-image: url(../img/weather/rain.svg)}
-  #weather-thunerstorm + label  {background-image: url(../img/weather/thunderstorm.svg)}
-  #weather-snow + label         {background-image: url(../img/weather/snow.svg)}
-
-  #weather-sunny:checked + label        {background-image: url(../img/weather/sunny_active.svg)}
-  #weather-cloudy:checked + label       {background-image: url(../img/weather/cloudy_active.svg)}
-  #weather-overcast:checked + label     {background-image: url(../img/weather/overcast_active.svg)}
-  #weather-fog:checked + label          {background-image: url(../img/weather/fog_active.svg)}
-  #weather-sprinkle:checked + label      {background-image: url(../img/weather/sprinkle_active.svg)}
-  #weather-rain:checked + label         {background-image: url(../img/weather/rain_active.svg)}
-  #weather-thunerstorm:checked + label  {background-image: url(../img/weather/thunderstorm_active.svg)}
-  #weather-snow:checked + label         {background-image: url(../img/weather/snow_active.svg)}
+  @each $name in $weathers {
+    #weather-#{$name} + label {
+      background-image: url(../img/weather/#{$name}.svg)
+    }
+    #weather-#{$name}:checked + label {
+      background-image: url(../img/weather/#{$name}_active.svg)
+    }
+  }
 }
 
 // 隐藏所有 Input
