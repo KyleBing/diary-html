@@ -164,6 +164,7 @@
               // 成功后更新 origin 字符串
               diaryEditor.titleOrigin = diaryEditor.title;
               diaryEditor.contentOrigin = diaryEditor.content;
+              diaryEditor.updateDiaryIcon();
 
               that.diaryHasSaved = true;
               popMessage(PopMessageType.success, res.info); // 提示
@@ -188,9 +189,10 @@
       createDiary() {
         diaryEditor.isNew = true;
         diaryEditor.title = '';
+        diaryEditor.titleOrigin = '';
         diaryEditor.content = '';
+        diaryEditor.contentOrigin = '';
         diaryEditor.id = '';
-        // diaryEditor.date = dateFormatter(new Date(), 'yyyy-MM-dd hh:mm');  // 日期不重置了，因为插件可以方便的定位到当前日期
         diaryEditor.category = "life";
         diaryEditor.temperature = '';
         diaryEditor.weather = "sunny";
@@ -220,17 +222,12 @@
     watch:{
       title: function () {
         this.updateDiaryIcon();
-        console.log("title has changed")
-
       },
       content: function () {
         this.updateDiaryIcon();
-        console.log("content has changed")
       },
       contentEditorShowed: function () {
         this.updateDiaryIcon();
-        console.log("content has show")
-
       },
     },
 
@@ -267,14 +264,12 @@
         this.weather = 'sunny'
       } else {
         // 编辑日记
-        this.id = location.search.substring(location.search.lastIndexOf('=') + 1); // 获取id值
-        let that = this;
         $.ajax({
           url: URL.diaryOperation,
           dataType: 'json',
           data: {
             type: 'query',
-            diaryId: that.id
+            diaryId: getSearchData().id
           },
           success: data => {
             if (data.success){
