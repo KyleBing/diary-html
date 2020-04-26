@@ -80,7 +80,7 @@
       deleteCurrentDiary: function () {
         let that = this;
         let queryData = {
-          diaryId: diaryId,
+          diaryId: vm.diary.id,
           type: 'delete'
         };
         $.ajax({
