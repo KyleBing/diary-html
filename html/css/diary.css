@@ -161,6 +161,7 @@ tt {
   font-size: 1rem;
   padding: 20px; }
   .diary-content p {
+    font-family: "Consolas", "Monaco", sans-serif;
     margin-bottom: 15px;
     line-height: 1.5; }
 
@@ -179,6 +180,7 @@ textarea:focus {
   border-bottom: 1px solid #EFEFF4; }
 
 .diary-editor-content {
+  font-family: "Consolas", "Monaco", sans-serif;
   display: block;
   width: 100%;
   resize: vertical;
@@ -518,7 +520,7 @@ input[id^=category-], input[id^=weather-] {
     padding: 5px 10px;
     display: block;
     border: 1px solid #E5E5EA;
-    font-size: 1rem; }
+    font-size: 1em; }
     .search-bar input:focus {
       border-color: #FF9500;
       box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1); }
