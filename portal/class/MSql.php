@@ -138,12 +138,11 @@ class MSql
         return "select email from users where email='${email}'";
     }
 
-    /************************* 未注册用户 *************************/
-    //  记录用户
+    //  记录用户最后登录时间
     public static function InsertLoginLog($email)
     {
         $timeNow = date('Y-m-d H:i:s');
-        return "insert into login_log(email, password, date) VALUES ('${email}',${timeNow}' )";
+        return "update users set last_visit_time='${timeNow}' where email='${email}'";
     }
 
 }

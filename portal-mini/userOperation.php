@@ -109,7 +109,7 @@ function login($email, $password)
                 $response->setToken($row['password']);
                 $response->setUsername($row['username']);
                 $response->setUid($row['uid']);
-                logUnknownUser($email); // 记录用户登录
+                logLastLoginTime($email); // 记录用户登录
             } else {
                 $response = new ResponseError('密码不正确');
             }
@@ -125,7 +125,7 @@ function login($email, $password)
 }
 
 // 记录用户登录时间
-function logUnknownUser($email){
+function logLastLoginTime($email){
     $con = new dsqli();
     $result = $con->query(MSql::InsertLoginLog($email));
     $con->close();
