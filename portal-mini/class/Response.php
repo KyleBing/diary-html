@@ -112,6 +112,7 @@ class ResponseLogin extends Response
     public function __construct(string $info = '登录成功')
     {
         parent::__construct($info);
+        logLastLoginTime($_COOKIE['diaryEmail']); // 所有成功都记录最后请求时间
     }
     public function getUid(): string
     {
@@ -142,6 +143,12 @@ class ResponseLogin extends Response
     {
         $this->email = $email;
     }
+}
 
+// 记录用户登录时间
+function logLastLoginTime($email){
+    $con = new dsqli();
+    $result = $con->query(MSql::InsertLoginLog($email));
+    $con->close();
 }
 
