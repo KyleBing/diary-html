@@ -106,19 +106,15 @@ $gaps-md: 5%;
 $cols-sm: 2;
 $gaps-sm: 20%;
 
+// PC
 @media screen and (min-width: $grid-separate-width){
-  .toggle-btn{
-    width: (100% - $gaps-sm * ($cols-sm - 1))/$cols-sm;
-  }
   .list-group-item{
-    margin-right: $gaps-md;
-    width: (100% - $gaps-md * ($cols-md - 1))/$cols-md;
-    &:nth-child(#{$cols-md}n+0) {
-      margin-right: 0;
-    }
+    margin-right: 30px;
+    width: 120px;
   }
 }
 
+// Phone
 @media screen and (max-width: $grid-separate-width){
   .list-group-item{
     margin-right: $gaps-sm;
