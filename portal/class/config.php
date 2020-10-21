@@ -1,5 +1,5 @@
 <?php
-define('HOST',          'localhost');       // 数据库地址
+define('HOST',          '127.0.0.1');       // 数据库地址
 define('PORT',          '3306');            // 数据库端口
 define('DATABASE',      'diary');           // 数据库名
 define('USER',          '----');            // 数据库用户名
