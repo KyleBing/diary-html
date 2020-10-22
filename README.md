@@ -51,5 +51,7 @@
 
 
 
+## Vue 版本的前端页面
 
+新增 Vue 版的前端页面： [https://github.com/KyleBing/diary-vue](https://github.com/KyleBing/diary-vue)
 
