@@ -123,10 +123,3 @@ function login($email, $password)
     echo $response->toJson();
     $con->close();
 }
-
-// 记录用户登录时间
-function logLastLoginTime($email){
-    $con = new dsqli();
-    $result = $con->query(MSql::InsertLoginLog($email));
-    $con->close();
-}
