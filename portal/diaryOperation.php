@@ -57,7 +57,14 @@ function searchDiary($uid, $categories, $keyword, $pageCount, $pageNo)
     if ($result) {
         $response = new ResponseSuccess();
         $diaries = $result->fetch_all(1); // 参数1会把字段名也读取出来
-        $response->setData($diaries);
+        // 处理数据，把带 emoji 表情的数据解析出来
+        $decodedDiaries = array();
+        foreach ($diaries as $diary){
+            $diary['title'] = unicodeDecode($diary['title']);
+            $diary['content'] = unicodeDecode($diary['content']);
+            array_push($decodedDiaries, $diary);
+        }
+        $response->setData($decodedDiaries);
     } else {
         $response = new ResponseError();
     }
@@ -75,7 +82,14 @@ function queryDiary($uid, $id)
     if ($result) {
         $response = new ResponseSuccess();
         $diaries = $result->fetch_all(1); // 参数1会把字段名也读取出来
-        $response->setData($diaries);
+        // 处理数据，把带 emoji 表情的数据解析出来
+        $decodedDiaries = array();
+        foreach ($diaries as $diary){
+            $diary['title'] = unicodeDecode($diary['title']);
+            $diary['content'] = unicodeDecode($diary['content']);
+            array_push($decodedDiaries, $diary);
+        }
+        $response->setData($decodedDiaries);
     } else {
         $response = new ResponseError();
     }
@@ -90,6 +104,8 @@ function updateDiary($uid, $id, $title, $content, $category, $weather, $temperat
     $con = new dsqli();
     $con->set_charset('utf8');
     $response = '';
+    $title = unicodeEncode($title);
+    $content = unicodeEncode($content);
     $result = $con->query(MSql::UpdateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $temperature_outside, $date));
     $sql =  MSql::UpdateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $temperature_outside, $date);
     if ($result) {
@@ -125,6 +141,8 @@ function addDiary($uid, $title, $content, $category, $weather, $temperature, $te
     $con = new dsqli();
     $con->set_charset('utf8');
     $response = '';
+    $title = unicodeEncode($title);
+    $content = unicodeEncode($content);
     $result = $con->query(MSql::AddDiary($uid, $title, $content, $category, $weather, $temperature, $temperature_outside, $date));
     if ($result) {
         $response = new ResponseSuccess('保存成功');
@@ -139,4 +157,28 @@ function addDiary($uid, $title, $content, $category, $weather, $temperature, $te
     $con->close();
 }
 
+/*
+ * unicode -> text
+ */
+function unicodeEncode($str){
+    if(!is_string($str))return $str;
+    if(!$str || $str=='undefined')return '';
 
+    $text = json_encode($str);
+    $text = preg_replace_callback("/(\\\u[ed][0-9a-f]{3})/i",function($str){
+        return addslashes($str[0]);
+    },$text);
+    return json_decode($text);
+}
+
+/**
+ * text -> unicode
+ */
+function  unicodeDecode($str)
+{
+    $text = json_encode($str);
+    $text = preg_replace_callback('/\\\\\\\\/i', function ($str) {
+        return '\\';
+    }, $text);
+    return json_decode($text);
+}
