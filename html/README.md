@@ -1,5 +1,6 @@
-# 前端
+# 前端 - HTML 版
 
+> 已搁置，请查看最新版 vue 版： [https://github.com/KyleBing/diary-vue](https://github.com/KyleBing/diary-vue)
 
 ```bash
 ├── README.md               # 说明文档
