@@ -68,13 +68,13 @@ class MSql
     }
 
     // 添加日记
-    public static function AddDiary($uid, $title, $content, $category, $weather, $temperature, $temperature_outside, $date)
+    public static function AddDiary($uid, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $public)
     {
         $timeNow = date('Y-m-d H:i:s');
         $parsed_title = addslashes($title);
         $parsed_content = addslashes($content);
-        return "INSERT into diaries(title,content,category,weather,temperature,temperature_outside,create_date,modify_date,date,uid)
-                VALUES('${parsed_title}','${parsed_content}','${category}','${weather}','${temperature}','${temperature_outside}','${timeNow}','${timeNow}','${date}','${uid}')";
+        return "INSERT into diaries(title,content,category,weather,temperature,temperature_outside,create_date,modify_date,date,uid, public )
+                VALUES('${parsed_title}','${parsed_content}','${category}','${weather}','${temperature}','${temperature_outside}','${timeNow}','${timeNow}','${date}','${uid}','${public}')";
     }
 
     // 删除日记
@@ -86,7 +86,7 @@ class MSql
     }
 
     // 更新日记
-    public static function UpdateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $temperature_outside, $date)
+    public static function UpdateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $public)
     {
         $timeNow = date('Y-m-d H:i:s');
         $parsed_title = addslashes($title);
@@ -99,7 +99,8 @@ class MSql
                   diaries.content='${parsed_content}',
                   diaries.weather='${weather}',
                   diaries.temperature='${temperature}',
-                  diaries.temperature_outside='${temperature_outside}'
+                  diaries.temperature_outside='${temperature_outside}',
+                  diaries.public='${public}'
                 WHERE id='${id}' and uid='${uid}'";
         return $sql;
     }
@@ -109,6 +110,13 @@ class MSql
     {
         return "select * from diaries
                 where uid = '${uid}' and id = '${id}'";
+    }
+
+    // 查询日记内容 - 分享时
+    public static function QuerySharedDiaries($id)
+    {
+        return "select * from diaries
+                where id = '${id}'";
     }
 
 
