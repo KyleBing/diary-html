@@ -17,10 +17,10 @@ class MSql
 
     public static $CREATEDIARIES = "CREATE TABLE `diaries` (
                                       `id` int(11) NOT NULL AUTO_INCREMENT,
-                                      `create_date` datetime NOT NULL,
+                                      `date_create` datetime NOT NULL,
                                       `content` varchar(255) NOT NULL,
                                       `category` enum('life','study','film','game','work','sport','bigevent','other') NOT NULL DEFAULT 'life',
-                                      `modify_date` datetime DEFAULT NULL,
+                                      `date_modify` datetime DEFAULT NULL,
                                       `date` datetime NOT NULL,
                                       `uid` int(11) NOT NULL,
                                       PRIMARY KEY (`id`)
@@ -67,14 +67,34 @@ class MSql
         return $sql;
     }
 
+
+
+    // 日记统计：类别
+    public static function DiaryStatisticCategory($uid)
+    {
+        return "
+                select  
+                count(case when category='life' then 1 end) as life,
+                count(case when category='study' then 1 end) as study,
+                count(case when category='film' then 1 end) as film,
+                count(case when category='game' then 1 end) as game,
+                count(case when category='work' then 1 end) as work,
+                count(case when category='sport' then 1 end) as sport,
+                count(case when category='bigevent' then 1 end) as bigevent,
+                count(case when category='week' then 1 end) as week,
+                count(case when category='article' then 1 end) as article
+                from diaries where uid='${uid}'
+        ";
+    }
+
     // 添加日记
-    public static function AddDiary($uid, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $public)
+    public static function AddDiary($uid, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $is_public)
     {
         $timeNow = date('Y-m-d H:i:s');
         $parsed_title = addslashes($title);
         $parsed_content = addslashes($content);
-        return "INSERT into diaries(title,content,category,weather,temperature,temperature_outside,create_date,modify_date,date,uid, public )
-                VALUES('${parsed_title}','${parsed_content}','${category}','${weather}','${temperature}','${temperature_outside}','${timeNow}','${timeNow}','${date}','${uid}','${public}')";
+        return "INSERT into diaries(title,content,category,weather,temperature,temperature_outside,date_create,date_modify,date,uid, is_public )
+                VALUES('${parsed_title}','${parsed_content}','${category}','${weather}','${temperature}','${temperature_outside}','${timeNow}','${timeNow}','${date}','${uid}','${is_public}')";
     }
 
     // 删除日记
@@ -86,13 +106,13 @@ class MSql
     }
 
     // 更新日记
-    public static function UpdateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $public)
+    public static function UpdateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $is_public)
     {
         $timeNow = date('Y-m-d H:i:s');
         $parsed_title = addslashes($title);
         $parsed_content = addslashes($content);
         $sql =  "update diaries 
-                set diaries.modify_date='${timeNow}', 
+                set diaries.date_modify='${timeNow}', 
                   diaries.date='${date}', 
                   diaries.category='${category}',
                   diaries.title='${parsed_title}',
@@ -100,7 +120,7 @@ class MSql
                   diaries.weather='${weather}',
                   diaries.temperature='${temperature}',
                   diaries.temperature_outside='${temperature_outside}',
-                  diaries.public='${public}'
+                  diaries.is_public='${is_public}'
                 WHERE id='${id}' and uid='${uid}'";
         return $sql;
     }

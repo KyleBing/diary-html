@@ -99,14 +99,14 @@ function queryDiary($uid, $id)
 
 
 //修改
-function updateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $public)
+function updateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $is_public)
 {
     $con = new dsqli();
     $con->set_charset('utf8');
     $response = '';
     $title = unicodeEncode($title);
     $content = unicodeEncode($content);
-    $result = $con->query(MSql::UpdateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $public));
+    $result = $con->query(MSql::UpdateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $is_public));
     if ($result) {
         $response = new ResponseSuccess('修改成功');
     } else {
@@ -135,14 +135,14 @@ function deleteDiary($uid, $id)
 
 
 // 添加
-function addDiary($uid, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $public)
+function addDiary($uid, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $is_public)
 {
     $con = new dsqli();
     $con->set_charset('utf8');
     $response = '';
     $title = unicodeEncode($title);
     $content = unicodeEncode($content);
-    $result = $con->query(MSql::AddDiary($uid, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $public));
+    $result = $con->query(MSql::AddDiary($uid, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $is_public));
     if ($result) {
         $response = new ResponseSuccess('保存成功');
         $queryResult = $con->query('select * from diaries where id=LAST_INSERT_ID()');

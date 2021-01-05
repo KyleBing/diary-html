@@ -28,7 +28,7 @@ function queryDiary($id)
             $diary['title'] = unicodeDecode($diary['title']);
             $diary['content'] = unicodeDecode($diary['content']);
             $response->setData($diary);
-            if ($diary['public'] == '0'){
+            if ($diary['is_public'] == '0'){
                 $password_result = $con->query(MSql::QueryUserPassword($_COOKIE['diaryEmail']));
                 if ($password_result) {
                     if ($password_result->num_rows !== 0) { // 存在用户
