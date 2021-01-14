@@ -83,10 +83,14 @@ function queryDiary($uid, $id)
     if ($result) {
         $response = new ResponseSuccess();
         $diary = $result->fetch_object();
-        // 处理数据，把带 emoji 表情的数据解析出来
-        $diary -> title = unicodeDecode($diary -> title);
-        $diary -> content = unicodeDecode($diary -> content);
-        $response->setData($diary);
+        if ($diary){
+            // 处理数据，把带 emoji 表情的数据解析出来
+            $diary -> title = unicodeDecode($diary -> title);
+            $diary -> content = unicodeDecode($diary -> content);
+            $response->setData($diary);
+        } else {
+            $response = new ResponseError('查无此日记');
+        }
     } else {
         $response = new ResponseError();
     }
