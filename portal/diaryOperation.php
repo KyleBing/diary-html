@@ -27,6 +27,9 @@ if (checkLogin($_COOKIE['diaryEmail'], $_COOKIE['diaryToken'])) {
         case 'delete':
             deleteDiary($_COOKIE['diaryUid'], $_POST['diaryId']);
             break;
+        case 'statistic':
+            diaryStatistic($_COOKIE['diaryUid']);
+            break;
         case 'search':
         case 'list':
             $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
@@ -51,7 +54,6 @@ function searchDiary($uid, $categories, $keyword, $pageCount, $pageNo)
 {
     $startPoint = ($pageNo - 1) * $pageCount;
     $con = new dsqli();
-    $con->set_charset('utf8');
     $response = '';
     $result = $con->query(MSql::SearchDiaries($uid, $categories, $keyword, $startPoint, $pageCount));
     if ($result) {
@@ -72,24 +74,19 @@ function searchDiary($uid, $categories, $keyword, $pageCount, $pageNo)
     $con->close();
 }
 
-//查询日记内容
+// 查询日记内容
 function queryDiary($uid, $id)
 {
     $con = new dsqli();
-    $con->set_charset('utf8');
     $response = '';
     $result = $con->query(MSql::QueryDiaries($uid, $id));
     if ($result) {
         $response = new ResponseSuccess();
-        $diaries = $result->fetch_all(1); // 参数1会把字段名也读取出来
+        $diary = $result->fetch_object();
         // 处理数据，把带 emoji 表情的数据解析出来
-        $decodedDiaries = array();
-        foreach ($diaries as $diary){
-            $diary['title'] = unicodeDecode($diary['title']);
-            $diary['content'] = unicodeDecode($diary['content']);
-            array_push($decodedDiaries, $diary);
-        }
-        $response->setData($decodedDiaries);
+        $diary -> title = unicodeDecode($diary -> title);
+        $diary -> content = unicodeDecode($diary -> content);
+        $response->setData($diary);
     } else {
         $response = new ResponseError();
     }
@@ -102,7 +99,6 @@ function queryDiary($uid, $id)
 function updateDiary($uid, $id, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $is_public)
 {
     $con = new dsqli();
-    $con->set_charset('utf8');
     $response = '';
     $title = unicodeEncode($title);
     $content = unicodeEncode($content);
@@ -121,7 +117,6 @@ function updateDiary($uid, $id, $title, $content, $category, $weather, $temperat
 function deleteDiary($uid, $id)
 {
     $con = new dsqli();
-    $con->set_charset('utf8');
     $response = '';
     $result = $con->query(MSql::DeleteDiary($uid, $id));
     if ($result) {
@@ -133,12 +128,27 @@ function deleteDiary($uid, $id)
     $con->close();
 }
 
+// 日记统计
+function diaryStatistic($uid){
+    $con = new dsqli();
+    $response = '';
+    $result = $con->query(MSql::StatisticDiary($uid));
+    if ($result) {
+        $response = new ResponseSuccess();
+        $statistic = $result->fetch_object(); // 参数1会把字段名也读取出来
+        // 处理数据，把带 emoji 表情的数据解析出来
+        $response->setData($statistic);
+    } else {
+        $response = new ResponseError();
+    }
+    echo $response->toJson();
+    $con->close();
+}
 
 // 添加
 function addDiary($uid, $title, $content, $category, $weather, $temperature, $temperature_outside, $date, $is_public)
 {
     $con = new dsqli();
-    $con->set_charset('utf8');
     $response = '';
     $title = unicodeEncode($title);
     $content = unicodeEncode($content);

@@ -21,10 +21,9 @@ function queryDiary($id)
     $result = $con->query(MSql::QuerySharedDiaries($id));
     if ($result) {
         $response = new ResponseSuccess();
-        $diaries = $result->fetch_all(1); // 参数1会把字段名也读取出来
+        $diary = $result->fetch_object(); // 参数1会把字段名也读取出来
         // 处理数据，把带 emoji 表情的数据解析出来
-        if (count($diaries) === 1){
-            $diary = $diaries[0];
+        if ($diary){
             $diary['title'] = unicodeDecode($diary['title']);
             $diary['content'] = unicodeDecode($diary['content']);
             $response->setData($diary);

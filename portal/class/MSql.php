@@ -97,6 +97,24 @@ class MSql
                 VALUES('${parsed_title}','${parsed_content}','${category}','${weather}','${temperature}','${temperature_outside}','${timeNow}','${timeNow}','${date}','${uid}','${is_public}')";
     }
 
+    // 日记统计
+    public static function StatisticDiary($uid)
+    {
+        return "select  
+                count(case when category='life' then 1 end) as life,
+                count(case when category='study' then 1 end) as study,
+                count(case when category='film' then 1 end) as film,
+                count(case when category='game' then 1 end) as game,
+                count(case when category='work' then 1 end) as work,
+                count(case when category='sport' then 1 end) as sport,
+                count(case when category='bigevent' then 1 end) as bigevent,
+                count(case when category='week' then 1 end) as week,
+                count(case when category='article' then 1 end) as article,
+                count(case when is_public='1' then 1 end) as is_public,
+                count(*) as amount
+                from diaries where uid='${uid}'";
+    }
+
     // 删除日记
     public static function DeleteDiary($uid, $id)
     {
@@ -188,6 +206,7 @@ class dsqli extends mysqli
     public function __construct()
     {
         parent::__construct(HOST, USER, PASSWORD, DATABASE, PORT);
+        $this -> set_charset('utf8');
     }
 
     public function query($query, $resultmode = MYSQLI_STORE_RESULT)
