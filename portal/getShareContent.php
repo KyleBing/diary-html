@@ -24,10 +24,10 @@ function queryDiary($id)
         $diary = $result->fetch_object(); // 参数1会把字段名也读取出来
         // 处理数据，把带 emoji 表情的数据解析出来
         if ($diary){
-            $diary['title'] = unicodeDecode($diary['title']);
-            $diary['content'] = unicodeDecode($diary['content']);
+            $diary -> title = unicodeDecode($diary -> title);
+            $diary -> content = unicodeDecode($diary -> content);
             $response->setData($diary);
-            if ($diary['is_public'] == '0'){
+            if ($diary -> is_public == '0'){
                 $password_result = $con->query(MSql::QueryUserPassword($_COOKIE['diaryEmail']));
                 if ($password_result) {
                     if ($password_result->num_rows !== 0) { // 存在用户

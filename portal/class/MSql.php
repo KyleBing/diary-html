@@ -110,7 +110,7 @@ class MSql
                 count(case when category='bigevent' then 1 end) as bigevent,
                 count(case when category='week' then 1 end) as week,
                 count(case when category='article' then 1 end) as article,
-                count(case when is_public='1' then 1 end) as is_public,
+                count(case when is_public='1' then 1 end) as shared,
                 count(*) as amount
                 from diaries where uid='${uid}'";
     }
