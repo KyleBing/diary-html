@@ -6,10 +6,14 @@
  * Date: 2019-03-13
  * Time: 19:24
  */
-
+require "common.php";
 require "class/Response.php";
 require "class/MSql.php";
-require "common.php";
+require "class/ResponseError.php";
+require "class/ResponseLogin.php";
+require "class/ResponseSuccess.php";
+require "class/Statistic.php";
+require "class/StatisticMonth.php";
 
 // 传 email 是为了避免，邮件正确，日记id不对的情况
 
@@ -135,16 +139,19 @@ function deleteDiary($uid, $id)
 // 日记统计
 function diaryStatistic($uid){
     $con = new dsqli();
-    $response = '';
-    $result = $con->query(MSql::StatisticDiary($uid));
-    if ($result) {
-        $response = new ResponseSuccess();
-        $statistic = $result->fetch_object(); // 参数1会把字段名也读取出来
-        // 处理数据，把带 emoji 表情的数据解析出来
-        $response->setData($statistic);
-    } else {
-        $response = new ResponseError();
+    $response = new ResponseSuccess();
+    $resultCategory = $con->query(MSql::StatisticDiaryByCategory($uid));
+    $statisticCategory = $resultCategory->fetch_object();
+
+    $statisticMonthArray = array();
+    $tempYear = date('y',time());
+    for ($year=(int)date('Y',time()); $year >= 2019 ; $year--){
+        $tempResult = $con->query(MSql::StatisticDiaryByMonth($uid, $year));
+        $tempResultArray = $tempResult -> fetch_all(1);
+        array_push($statisticMonthArray, new StatisticMonth($year, $tempResultArray));
     }
+    $statistic = new Statistic($statisticCategory, $statisticMonthArray);
+    $response->setData($statistic);
     echo $response->toJson();
     $con->close();
 }

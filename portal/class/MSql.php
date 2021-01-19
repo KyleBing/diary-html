@@ -98,8 +98,8 @@ class MSql
                 VALUES('${parsed_title}','${parsed_content}','${category}','${weather}','${temperature}','${temperature_outside}','${timeNow}','${timeNow}','${date}','${uid}','${is_public}')";
     }
 
-    // 日记统计
-    public static function StatisticDiary($uid)
+    // 日记统计: category
+    public static function StatisticDiaryByCategory($uid)
     {
         return "select  
                 count(case when category='life' then 1 end) as life,
@@ -114,6 +114,19 @@ class MSql
                 count(case when is_public='1' then 1 end) as shared,
                 count(*) as amount
                 from diaries where uid='${uid}'";
+    }
+
+    // 日记统计: month
+    public static function StatisticDiaryByMonth($uid, $year)
+    {
+        return "select 
+                date_format(date,'%Y%m') as id,
+                date_format(date,'%m') as month,
+                count(*) as 'count'
+                from diaries 
+                where year(date) = ${year}
+                and uid = ${uid}
+                group by month";
     }
 
     // 删除日记
