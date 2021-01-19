@@ -45,8 +45,15 @@ class MSql
     /************************* 日记操作 *************************/
 
     // 搜索日记
-    public static function SearchDiaries($uid, $categories, $filterShared,  $keyword, $startPoint, $pageCount)
+    public static function SearchDiaries($uid, $categories, $filterShared, $dateRange, $keyword, $startPoint, $pageCount)
     {
+        $dateRangeStr = '';
+        if ($dateRange){
+            $year = substr($dateRange,0,4);
+            $month = substr($dateRange,4,2);
+            $dateRangeStr = "and  YEAR(date)='${year}' AND MONTH(date)='${month}'";
+        }
+
         $categoryStr = '';
         if (count($categories) > 0) {
             for($i=0; $i<count($categories); $i++){
@@ -61,7 +68,7 @@ class MSql
         $sql = "SELECT *
                   from diaries 
                   where uid='${uid}' 
-                  and (${categoryStr}) ${shareStr}
+                  and (${categoryStr}) ${shareStr} ${dateRangeStr}
                   and ( title like '%${keyword}%' or content like '%${keyword}%')
                   order by date desc  
                   limit $startPoint, $pageCount";
@@ -126,7 +133,8 @@ class MSql
                 from diaries 
                 where year(date) = ${year}
                 and uid = ${uid}
-                group by month";
+                group by month
+                order by month desc";
     }
 
     // 删除日记
