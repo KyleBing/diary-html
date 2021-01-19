@@ -45,7 +45,7 @@ class MSql
     /************************* 日记操作 *************************/
 
     // 搜索日记
-    public static function SearchDiaries($uid, $categories, $keyword, $startPoint, $pageCount)
+    public static function SearchDiaries($uid, $categories, $filterShared,  $keyword, $startPoint, $pageCount)
     {
         $categoryStr = '';
         if (count($categories) > 0) {
@@ -57,10 +57,11 @@ class MSql
         } else {
             $categoryStr = "category = ''";
         }
+        $shareStr = $filterShared === '1'? "and is_public = 1": "";
         $sql = "SELECT *
                   from diaries 
                   where uid='${uid}' 
-                  and (${categoryStr})
+                  and (${categoryStr}) ${shareStr}
                   and ( title like '%${keyword}%' or content like '%${keyword}%')
                   order by date desc  
                   limit $startPoint, $pageCount";

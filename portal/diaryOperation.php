@@ -34,7 +34,7 @@ if (checkLogin($_COOKIE['diaryEmail'], $_COOKIE['diaryToken'])) {
         case 'list':
             $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
             $categories = isset($_COOKIE['diaryCategories']) ? json_decode($_COOKIE['diaryCategories']) : '';
-            searchDiary($_COOKIE['diaryUid'], $categories, $keyword, $_GET['pageCount'], $_GET['pageNo']);
+            searchDiary($_COOKIE['diaryUid'], $categories, $_GET['filterShared'], $keyword, $_GET['pageCount'], $_GET['pageNo']);
             break;
         default:
             $response = new ResponseError('请求参数错误');
@@ -50,12 +50,12 @@ if (checkLogin($_COOKIE['diaryEmail'], $_COOKIE['diaryToken'])) {
 
 
 // 搜索，展示日记
-function searchDiary($uid, $categories, $keyword, $pageCount, $pageNo)
+function searchDiary($uid, $categories,$filterShared, $keyword, $pageCount, $pageNo)
 {
     $startPoint = ($pageNo - 1) * $pageCount;
     $con = new dsqli();
     $response = '';
-    $result = $con->query(MSql::SearchDiaries($uid, $categories, $keyword, $startPoint, $pageCount));
+    $result = $con->query(MSql::SearchDiaries($uid, $categories, $filterShared, $keyword, $startPoint, $pageCount));
     if ($result) {
         $response = new ResponseSuccess();
         $diaries = $result->fetch_all(1); // 参数1会把字段名也读取出来
@@ -161,7 +161,7 @@ function addDiary($uid, $title, $content, $category, $weather, $temperature, $te
         $response = new ResponseSuccess('保存成功');
         $queryResult = $con->query('select * from diaries where id=LAST_INSERT_ID()');
         if ($queryResult){
-            $response->setData($queryResult->fetch_all(1));
+            $response->setData($queryResult->fetch_object());
         }
     } else {
         $response = new ResponseError('保存失败');
