@@ -5,6 +5,9 @@
  */
 
 require "class/Response.php";
+require "class/ResponseSuccess.php";
+require "class/ResponseError.php";
+require "class/ResponseLogin.php";
 require "class/MSql.php";
 require "common.php";
 
