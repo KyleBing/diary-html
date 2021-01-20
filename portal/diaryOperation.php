@@ -38,7 +38,7 @@ if (checkLogin($_COOKIE['diaryEmail'], $_COOKIE['diaryToken'])) {
         case 'list':
             $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
             $categories = isset($_COOKIE['diaryCategories']) ? json_decode($_COOKIE['diaryCategories']) : '';
-            searchDiary($_COOKIE['diaryUid'], $categories, $_GET['filterShared'], $_GET['dateRange'], $keyword, $_GET['pageCount'], $_GET['pageNo']);
+            searchDiary($_COOKIE['diaryUid'], $categories, $_GET['filterShared'], $_GET['dateRange']? $_GET['dateRange']: '' , $keyword, $_GET['pageCount'], $_GET['pageNo']);
             break;
         default:
             $response = new ResponseError('请求参数错误');
