@@ -16,11 +16,6 @@
 
 
 
-![intro](https://github.com/KyleBing/diary/blob/master/github/intro.png?raw=true)
-![content](https://github.com/KyleBing/diary/blob/master/github/intro-content.png?raw=true)
-![menu](https://github.com/KyleBing/diary/blob/master/github/intro-menu.png?raw=true)
-
-
 ## 标题日记 - Diary
 
 > “ 用一句话记录你最珍贵的时刻 ”
