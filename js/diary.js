@@ -14,8 +14,8 @@ $(function () {
 });
 
 let URL = {
-    userOperation:  '../portal/userOperation.php',
-    diaryOperation: '../portal/diaryOperation.php'
+    userOperation:  '../diary-portal/userOperation.php',
+    diaryOperation: '../diary-portal/diaryOperation.php'
 };
 
 let FrontURL = {

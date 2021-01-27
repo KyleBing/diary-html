@@ -170,7 +170,7 @@
               popMessage(PopMessageType.success, res.info); // 提示
               if(res.data){
                 diaryEditor.isNew = false;
-                diaryEditor.id = res.data[0].id
+                diaryEditor.id = res.data.id
               }
             } else if (!res.logined){ // 未登录
               popMessage(PopMessageType.default, res.info, () => {
@@ -273,7 +273,7 @@
           },
           success: data => {
             if (data.success){
-              let diary = data.data[0];
+              let diary = data.data;
               diaryEditor.id = diary.id;
               diaryEditor.title = diary.title;
               diaryEditor.titleOrigin = diary.title;

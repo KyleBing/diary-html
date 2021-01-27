@@ -163,7 +163,7 @@
         },
         success: function (data) {
           if (data.success) {
-            let diary = data.data[0];
+            let diary = data.data;
             vm.diary = diary;
             vm.diary.date = formateDate(diary.date);
             let contentArray = diary.content.split('\n');
