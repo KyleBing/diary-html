@@ -1,3 +1,20 @@
+# 前端 - HTML 版
+
+> 已搁置，请查看最新版 vue 版： [https://github.com/KyleBing/diary-vue](https://github.com/KyleBing/diary-vue)
+
+```bash
+├── README.md               # 说明文档
+├── css
+├── img
+├── js
+├── change_password.html    # 修改密码
+├── edit.html               # 新建 / 编辑 日记页
+├── index.html              # 列表页 / 搜索显示页
+├── login.html              # 登录
+└── regist.html             # 注册
+```
+
+
 
 ![intro](https://github.com/KyleBing/diary/blob/master/github/intro.png?raw=true)
 ![content](https://github.com/KyleBing/diary/blob/master/github/intro-content.png?raw=true)
